@@ -1,0 +1,36 @@
+---
+title: "."
+---
+
+```{python}
+# | echo: false
+
+from helpers import include_shiny_folder
+
+```
+
+:::: {.grid .column-screen-inset}
+::: {.g-col-12 .g-col-md-9}
+```{python}
+#| echo: false
+#| output: asis  
+include_shiny_folder("apps/basic-app")
+```
+:::
+
+
+::: {.g-col-12 .g-col-md-3 #vcenter}
+```{mermaid}
+flowchart TD
+  D[Dates] --> F[Filtered Data]
+  F --> H((Distribution))
+  F --> E((Daily Error))
+  subgraph Module
+    style Module fill:#CCCCCC,stroke:#CCCCCC
+    S[State] -.-> C(Cities)
+  end
+  C --> F
+  A[Alpha] --> E
+```
+:::
+::::
