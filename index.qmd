@@ -1,26 +1,19 @@
 ---
 title: "Shiny for Python Workshop"
-execute: 
-  keep-md: true
 ---
-
 ```{python}
 # | echo: false
-
 from helpers import problem_tabs, include_shiny_folder
 
 ```
 
-
-
-```{python}
-# | echo: false
-# | output: asis
-
-include_shiny_folder("apps/basic-app", "app.py")
-```
-
 # Exercise 
+
+This application has some repetitive UI code, see if you can extract a function which takes some UI elements and places them in columns on a single row. 
+
+::: {.callout-tip}
+These examples all run in your browser so you can edit your solution and check to make sure it runs. 
+Try to struggle with the problem a bit before revealing the solution. 
 
 ```{python}
 # | echo: false
@@ -28,3 +21,6 @@ include_shiny_folder("apps/basic-app", "app.py")
 
 problem_tabs("apps/basic-app")
 ```
+
+
+

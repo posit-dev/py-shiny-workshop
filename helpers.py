@@ -26,7 +26,7 @@ def include_shiny_folder(
     folder_path = Path(__name__).parent / path
 
     # Start with the header
-    header = f"```{{shinylive-python}}\n#| standalone: true\n#| components: [{components}]\n#| layout: horizontal"
+    header = f"```{{shinylive-python}}\n#| standalone: true\n#| components: [{components}]\n#| layout: horizontal\n#| viewerHeight: 800"
     print(header)
     # Print contents of app.py
     print_file(folder_path / file_name, None)
@@ -54,8 +54,9 @@ def include_shiny_folder(
 def problem_tabs(path: str):
     print("\n:::: {.column-screen}\n::: {.panel-tabset}")
 
-    print("## Target")
+    print("## Goal")
     include_shiny_folder(path, "app.py", components="viewer")
+
     print("## Problem")
     include_shiny_folder(path, "app.py", exclusions=["app-solution.py"])
     print("## Solution")

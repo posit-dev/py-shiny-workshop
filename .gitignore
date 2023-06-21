@@ -161,7 +161,6 @@ cython_debug/
 .Rproj.user
 
 /.quarto/
-
 .DS_Store
-
 _site
+site_libs
