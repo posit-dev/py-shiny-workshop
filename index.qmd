@@ -7,6 +7,8 @@ from helpers import problem_tabs, include_shiny_folder
 
 ```
 
+
+
 # Exercise 
 
 This application has some repetitive UI code, see if you can extract a function which takes some UI elements and places them in columns on a single row. 

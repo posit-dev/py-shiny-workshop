@@ -22,13 +22,22 @@ def include_shiny_folder(
     file_name: str = "app.py",
     exclusions: list = [],
     components: str = "editor, viewer",
+    viewer_height: str = "800",
 ):
     folder_path = Path(__name__).parent / path
 
     # Start with the header
-    header = f"```{{shinylive-python}}\n#| standalone: true\n#| components: [{components}]\n#| layout: horizontal\n#| viewerHeight: 800"
-    print(header)
-    # Print contents of app.py
+    headers = [
+        "```{shinylive-python}",
+        "#| standalone: true",
+        f"#| components: [{components}]",
+        "#| layout: horizontal",
+        f"#| viewerHeight: {viewer_height}",
+    ]
+
+    print("\n".join(headers))
+
+    # Print contents of the main application
     print_file(folder_path / file_name, None)
 
     exclude_list = ["__pycache__"] + [file_name] + exclusions
