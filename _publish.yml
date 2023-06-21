@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 95f693d8-9af0-46bc-aa91-883fc946d55d
+      url: 'https://gordon.quarto.pub/shiny-for-python-workshop'

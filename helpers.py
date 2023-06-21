@@ -17,17 +17,21 @@ def list_files(path):
     return files
 
 
-def include_shiny_folder(path, file_name="app.py"):
+def include_shiny_folder(
+    path: str,
+    file_name: str = "app.py",
+    exclusions: list = [],
+    components: str = "editor, viewer",
+):
     folder_path = Path(__name__).parent / path
 
     # Start with the header
-    header = "```{shinylive-python}\n#| standalone: true\n#| components: [editor, viewer]\n#| layout: horizontal"
+    header = f"```{{shinylive-python}}\n#| standalone: true\n#| components: [{components}]\n#| layout: horizontal"
     print(header)
-
     # Print contents of app.py
     print_file(folder_path / file_name, None)
 
-    exclude_list = ["__pycache__", file_name]
+    exclude_list = ["__pycache__"] + [file_name] + exclusions
 
     files = list_files(path)
 
@@ -45,3 +49,16 @@ def include_shiny_folder(path, file_name="app.py"):
 
     # Finish with the closing tag
     print("```")
+
+
+def problem_tabs(path: str):
+    print("\n:::: {.column-screen}\n::: {.panel-tabset}")
+
+    print("## Target")
+    include_shiny_folder(path, "app.py", components="viewer")
+    print("## Problem")
+    include_shiny_folder(path, "app.py", exclusions=["app-solution.py"])
+    print("## Solution")
+    include_shiny_folder(path, "app-solution.py", exclusions=["app.py"])
+
+    print(":::\n::::")

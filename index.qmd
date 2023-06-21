@@ -1,36 +1,30 @@
 ---
-title: "."
+title: "Shiny for Python Workshop"
+execute: 
+  keep-md: true
 ---
 
 ```{python}
 # | echo: false
 
-from helpers import include_shiny_folder
+from helpers import problem_tabs, include_shiny_folder
 
 ```
 
-:::: {.grid .column-screen-inset}
-::: {.g-col-12 .g-col-md-9}
+
+
 ```{python}
-#| echo: false
-#| output: asis  
-include_shiny_folder("apps/basic-app")
-```
-:::
+# | echo: false
+# | output: asis
 
-
-::: {.g-col-12 .g-col-md-3 #vcenter}
-```{mermaid}
-flowchart TD
-  D[Dates] --> F[Filtered Data]
-  F --> H((Distribution))
-  F --> E((Daily Error))
-  subgraph Module
-    style Module fill:#CCCCCC,stroke:#CCCCCC
-    S[State] -.-> C(Cities)
-  end
-  C --> F
-  A[Alpha] --> E
+include_shiny_folder("apps/basic-app", "app.py")
 ```
-:::
-::::
+
+# Exercise 
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("apps/basic-app")
+```
