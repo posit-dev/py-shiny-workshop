@@ -1,28 +1,36 @@
 ---
 title: "Shiny for Python Workshop"
 ---
-```{python}
-# | echo: false
-from helpers import problem_tabs, include_shiny_folder
 
-```
+# Introduction
 
+This website contains the materials for the [Shiny for Python workshop](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog?search=python&search.sessiontype=1675316728702001wr6r) at the 2023 posit conf.
 
+# Background
 
-# Exercise 
+This workshop is aimed at people who are somewhat familliar with doing data analysis in Python, but do not have much of a background in Shiny. If you are brand new to Python we recommend spending a bit of time familliarizing yourself with the following topics before the workshop: - How to install python packages in a virtual environment - How to do basic data manipulation with pandas or polars - How to draw plots - How to clone a repository with git
 
-This application has some repetitive UI code, see if you can extract a function which takes some UI elements and places them in columns on a single row. 
+# Setup
 
-::: {.callout-tip}
-These examples all run in your browser so you can edit your solution and check to make sure it runs. 
-Try to struggle with the problem a bit before revealing the solution. 
+There are two ways to work through the examples and exercises in this workshop.
 
-```{python}
-# | echo: false
-# | output: asis
+## 1) Shinylive
 
-problem_tabs("apps/basic-app")
-```
+Shinylive allows you to run full featured shiny apps in your browser, and includes a basic editor which is good enough to run examples. As a result you should be able to work through all of the examples in the workshop using just the browser without installing anything locally.
 
+## 2) Locally with VS Code
 
+While Shinylive is great, it likely isn't the environment you'll use to develop Shiny apps, and so it makes sense to set up VS Code and run the examples locally. To do this follow these steps before the workshop:
 
+1)  Install [VS Code](https://code.visualstudio.com/)
+2)  Install the Shiny for Python [VS Code extension](https://marketplace.visualstudio.com/items?itemName=posit.shiny-python)
+3)  Clone the repository with `git clone https://github.com/rstudio/shiny-python-workshop-2023.git`, or alternately download the repository as a zip file: \
+    ![](images/git-download-button.png){width="287"}
+4)  Navigate to the project directory and create a new virtual environment with `python3 -m venv .vevn`
+5)  Set your python interpreter to the virtual environment with `CMD + SHIFT + P` \> `Select Interpreter`
+6)  Open a new terminal prompt, which should switch to `(.venv)`
+7)  Install the relevant packages with `pip install -r requirements.txt`
+
+All of the example apps are stored in the `/apps` directory. 
+If you've installed the VS Code extention can run any of the apps by opening the `app.py` file and clicking the play button in the top right. 
+Alternately, run them from the command line with `shiny run <path-to-app> --reload`.

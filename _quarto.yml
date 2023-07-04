@@ -3,8 +3,8 @@ project:
 
 website:
   title: "."
-  navbar:
-    left:
+  sidebar:
+    contents:
       - href: index.qmd
         text: Home
       - about.qmd
