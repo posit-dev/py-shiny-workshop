@@ -1,11 +1,12 @@
 ---
 title: "Getting started"
+code-annotations: hover
 ---
 
 ```{python}
 #| echo: false
 
-from helpers import include_shiny_folder
+from helpers import include_shiny_folder, problem_tabs
 
 ```
 # Goal 
@@ -21,8 +22,8 @@ Shiny apps are divided into two parts.
 The app *UI* consists of various input and output components, and the *server* expresses how those inputs and outputs should interact. 
 
 Let's start by creating a basic shiny app
-To do this you can call `shiny create .` in a project folder, or open up `apps/basic-app` in the repo. 
-You'll generate the simplest possible Shiny application with one input and one output. 
+To do this you can call `shiny create .` in a project folder, or open up `apps/basic-app/app.py` in the repo. 
+This is the simplest possible Shiny application with one input and one output. 
 
 ```{python}
 #| echo: false
@@ -30,3 +31,63 @@ You'll generate the simplest possible Shiny application with one input and one o
 
 include_shiny_folder("apps/basic-app")
 ```
+
+There are a four important features that your code needs to have to generate a working Shiny app. 
+
+### 1) UI structure
+
+The Shiny UI is defined with a set of nested function calls. 
+You typically start with a container function like `ui.page_fluid()` and then add inputs like `ui.input_slider` and outputs like `ui.output_text_verbatim`.
+
+Inputs and outputs have an `id` value which allows you to refer to their values in the `server` function. 
+In this simple example the slider `id` is `"n"` and the output id is `"txt"`.
+
+### 3) Output decorators
+The server function defines how your app should calculate outputs for a given set of inputs. 
+To do this, you write a function inside the main `server` function which has the same name as the output key, and add two decorators. 
+`@output` tells Shiny that the function is an output, and `@render.text` tells it the output type. 
+So to fill in the logic for the `txt` output we write:
+
+```{.python}
+@output                                     # <1>
+@render.text                                # <2>
+def txt():                                  # <3>
+    return f"n*2 is {input.n() * 2}"
+
+1. Identify that this function is an output
+2. Define output type
+3. Function name connects it to output id
+```
+
+### 4) How to refer to inputs
+
+Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. 
+You identify these inputs by calling the attribute of the `input` object which corresponds with a particular input id. 
+In this case to refer to `n` we call it with `input.n()`
+
+::: callout-tip
+Note that inputs are called with `()` so it's `input.n()` not `input.n`
+:::
+
+# Exercise
+
+1) Add a `ui.input_numeric` to your UI which identifies the multiplier. Use this to all people to change the multiplier from the hard coded value of 2 to another number. 
+
+2) Add a second `ui.output_text_verbatim` which calculates the quotient of the two numbers. 
+
+
+```{python}
+#| echo: false
+#| output: asis
+
+problem_tabs("apps/basic-app")
+```
+
+# Summary
+
+In this section you learned the three main things you need to do to get your Shiny app to run:
+- Add inputs and outputs to the UI
+- Add server functions which are decorated with @output and @render
+- Refer to inputs within server funtions with `input.<id>()`
+
+Next we'll learn what shiny does to make this all work

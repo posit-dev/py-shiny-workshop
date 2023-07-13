@@ -64,7 +64,9 @@ def problem_tabs(path: str):
     print("\n:::: {.column-screen}\n::: {.panel-tabset}")
 
     print("## Goal")
-    include_shiny_folder(path, "app.py", components="viewer")
+    include_shiny_folder(
+        path, "app-solution.py", exclusions=["app.py"], components="viewer"
+    )
 
     print("## Problem")
     include_shiny_folder(path, "app.py", exclusions=["app-solution.py"])
