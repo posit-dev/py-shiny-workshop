@@ -53,25 +53,25 @@ So to fill in the logic for the `txt` output we write:
 @render.text                                # <2>
 def txt():                                  # <3>
     return f"n*2 is {input.n() * 2}"
-
+```
 1. Identify that this function is an output
 2. Define output type
 3. Function name connects it to output id
-```
 
 ### 4) How to refer to inputs
 
 Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. 
+We'll learn more about reactivity in the next section, but for now
 You identify these inputs by calling the attribute of the `input` object which corresponds with a particular input id. 
 In this case to refer to `n` we call it with `input.n()`
-
+ 
 ::: callout-tip
 Note that inputs are called with `()` so it's `input.n()` not `input.n`
 :::
-
+ 
 # Exercise
 
-1) Add a `ui.input_numeric` to your UI which identifies the multiplier. Use this to all people to change the multiplier from the hard coded value of 2 to another number. 
+1) Add a `ui.input_numeric` to your UI which identifies the multiplier. Use this to allow people to change the multiplier from the hard coded value of 2 to another number. 
 
 2) Add a second `ui.output_text_verbatim` which calculates the quotient of the two numbers. 
 

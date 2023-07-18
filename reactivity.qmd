@@ -1,0 +1,43 @@
+---
+title: "Basic Reactivity"
+code-annotations: hover
+---
+
+```{python}
+# | echo: false
+
+from helpers import include_shiny_folder, problem_tabs
+
+```
+
+In the last section we built a very simple shiny app which multiplied two numbers together based on the user's input.
+One thing you might notice about the code which genrated this application is that while we specify _what_ should happen in response to a user's action, we don't actually specify _when_ it should happen. 
+There are no callbacks in this application which define when a bit of code should re-run, so how does shiny know when to run the code?
+
+Shiny is different from many other frameworks because it is declarative. 
+Instead of specifying when code should run, you specify recipes for creating the output you want to run, and then leave it up to Shiny to figure out when to rerun them. 
+Shiny does this by inferring a `reactive computation graph` for your application and reredenering downstream elements whenever the upstream elements change. 
+
+
+:::: {.grid .column-screen-inset}
+::: {.g-col-12 .g-col-md-9}
+```{python}
+#| echo: false
+#| output: asis  
+include_shiny_folder(
+    "apps/basic-app", file_name="app-solution.py", exclusions=["app.py"]
+)
+```
+:::
+
+::: {.g-col-12 .g-col-md-3 #vcenter}
+```{mermaid}
+flowchart TD
+  N[input.n] --> M((product))
+  K[input.multiplier] --> Q((quotient))
+  N --> Q
+  K --> M
+```
+:::
+::::
+
