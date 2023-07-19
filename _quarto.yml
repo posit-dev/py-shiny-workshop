@@ -1,6 +1,5 @@
 project:
   type: website
-  pre-render: imports.py
 
 website:
   title: "."
