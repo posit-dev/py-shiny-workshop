@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/about.html</loc>
+    <lastmod>2023-07-20T17:46:52.050Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/getting-started.html</loc>
+    <lastmod>2023-07-20T17:46:46.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/modules.html</loc>
+    <lastmod>2023-07-20T17:46:29.789Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/index.html</loc>
+    <lastmod>2023-07-20T17:46:29.049Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/side-effects.html</loc>
+    <lastmod>2023-07-20T17:46:30.189Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/reactivity.html</loc>
+    <lastmod>2023-07-20T17:46:51.698Z</lastmod>
+  </url>
+</urlset>
