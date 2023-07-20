@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "."
+  title: "Shiny for Python Workshop"
   sidebar:
     contents:
       - href: index.qmd
