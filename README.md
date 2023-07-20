@@ -38,3 +38,34 @@ You can then use the `problem_tabs` function to include the tabs.
 
 problem_tabs("apps/basic-app")
 ```
+
+## Inserting multiple choice questions
+
+You can insert a shinylive app which displays sets of multiple choice questions by supplying a dictionary. 
+It is a good idea to always wrap this dictionary with the `Quiz` class which validates that it is the right format for the application.
+
+```{python}
+# | echo: false
+# | output: asis
+
+from helpers import multiple_choice_app, Quiz
+
+questions = Quiz(
+    {
+        "What ui input is used for plots?": {
+            "choices": ["ui.input_plot", "ui.plot_input", "ui.plotInput"],
+            "answer": "ui.Input_plot",
+        },
+        "How do you remove a reacitve link??": {
+            "choices": ["reactive.isolate", "req", "reactive.Effect"],
+            "answer": "reactive.isolate",
+        },
+        "What should you use to save an image of a plot to disk?": {
+            "choices": ["reactive.Calc", "@ui.output_plot", "reactive.Effect"],
+            "answer": "reactive.Effect",
+        },
+    }
+)
+
+multiple_choice_app(questions)
+```

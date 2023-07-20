@@ -1,5 +1,9 @@
 from pathlib import Path
 import glob
+import tempfile
+import shutil
+import os
+import json
 
 
 def print_file(file_path: str, file_name: str = None):
@@ -23,6 +27,7 @@ def include_shiny_folder(
     exclusions: list = [],
     components: str = "editor, viewer",
     viewer_height: str = "800",
+    extra_object: any = "",
 ):
     folder_path = Path(__name__).parent / path
 
@@ -74,3 +79,48 @@ def problem_tabs(path: str):
     include_shiny_folder(path, "app-solution.py", exclusions=["app.py"])
 
     print(":::\n::::")
+
+
+class Quiz(dict):
+    def __init__(self, data):
+        super().__init__(data)
+        self.validate()
+
+    def validate(self):
+        if not isinstance(self, dict):
+            raise ValueError("Invalid data format: The data should be a dictionary.")
+        for key, value in self.items():
+            if not isinstance(value, dict):
+                raise ValueError(
+                    f"Invalid data format for '{key}': The value should be a dictionary."
+                )
+            if "choices" not in value or "answer" not in value:
+                raise ValueError(
+                    f"Invalid data format for '{key}': Missing 'choices' or 'answer' key."
+                )
+            if not isinstance(value["choices"], list) or not all(
+                isinstance(choice, str) for choice in value["choices"]
+            ):
+                raise ValueError(
+                    f"Invalid data format for '{key}': 'choices' should be a list of strings."
+                )
+            if not isinstance(value["answer"], str):
+                raise ValueError(
+                    f"Invalid data format for '{key}': 'answer' should be a string."
+                )
+            if value["answer"] not in value["choices"]:
+                raise ValueError(
+                    f"Invalid data format for '{key}': '{value['answer']}' is not one of the choices."
+                )
+
+        return True
+
+
+def multiple_choice_app(questions: Quiz):
+    questions = Quiz(questions)
+    temp_dir = tempfile.mkdtemp("temp_folder")
+    shutil.copy("apps/multiple-choice/app.py", temp_dir)
+    with open(os.path.join(temp_dir, "questions.json"), "w") as file:
+        json.dump(questions, file)
+
+    include_shiny_folder(temp_dir, components="viewer", viewer_height="300")

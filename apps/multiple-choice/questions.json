@@ -1,0 +1,18 @@
+{
+    "What is your favourite color?": {
+        "choices": [
+            "blue",
+            "green",
+            "gold"
+        ],
+        "answer": "green"
+    },
+    "What is your favourite food?": {
+        "choices": [
+            "beans",
+            "apples",
+            "alfalfa"
+        ],
+        "answer": "beans"
+    }
+}
