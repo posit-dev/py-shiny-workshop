@@ -123,4 +123,7 @@ def multiple_choice_app(questions: Quiz):
     with open(os.path.join(temp_dir, "questions.json"), "w") as file:
         json.dump(questions, file)
 
-    include_shiny_folder(temp_dir, components="viewer", viewer_height="300")
+    print("::: callout-note")
+    print("## Test your understanding")
+    include_shiny_folder(temp_dir, components="viewer", viewer_height="250")
+    print(":::")

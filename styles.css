@@ -3,3 +3,9 @@
 #vcenter {
     vertical-align: middle;
 }
+
+.callout .shinylive-wrapper {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+}
