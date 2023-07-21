@@ -6,7 +6,7 @@ code-annotations: hover
 ```{python}
 #| echo: false
 
-from helpers import include_shiny_folder, problem_tabs
+from helpers import include_shiny_folder, problem_tabs, multiple_choice_app, Quiz
 
 ```
 # Goal 
@@ -25,11 +25,12 @@ Let's start by creating a basic shiny app
 To do this you can call `shiny create .` in a project folder, or open up `apps/basic-app/app.py` in the repo. 
 This is the simplest possible Shiny application with one input and one output. 
 
+#### 
 ```{python}
 #| echo: false
 #| output: asis
 
-include_shiny_folder("apps/basic-app")
+include_shiny_folder("apps/examples/1.0-basic-app")
 ```
 
 There are a four important features that your code needs to have to generate a working Shiny app. 
@@ -68,19 +69,99 @@ In this case to refer to `n` we call it with `input.n()`
 ::: callout-tip
 Note that inputs are called with `()` so it's `input.n()` not `input.n`
 :::
- 
+
+# Improving the app
+
+The basic app created by shiny is not terribly interesting, so instead we're going to work with the [palmer penguins](https://github.com/mcnakhaee/palmerpenguins) data to include a data table and a couple of plots. 
+To include a table we need to use a different output function and rendering decorator, but otherwise it works the same. 
+
+::: callout-tip
+When reading in data it's usually good to use pathlib `Path(__file__).parent` to reference the data relative to the current file. 
+This makes it easier to call `shiny run` from other direcotries without error.
+::::
+
+```{python}
+#| echo: false
+#| output: asis
+
+include_shiny_folder("apps/examples/1.1-table-only")
+```
+
+All of the inputs and outputs are documented with interactive examples on the Shiny for Python [reference page](https://shiny.rstudio.com/py/api/), it's a good 
+
+#### Quiz 1.0
+```{python}
+# | echo: false
+# | output: asis
+
+questions = Quiz(
+    {
+        "What ui input is used for plots?": {
+            "choices": ["ui.input_plot", "ui.plot_input", "ui.plotInput"],
+            "answer": "ui.input_plot",
+        },
+        "What rendering decorator is used for images?": {
+            "choices": ["@render.image", "@ui.render.image", "@render.Image"],
+            "answer": "@render.image"
+        },
+        "What should you use to collect multiple checkbox reponses?": {
+            "choices": ["ui.input.checkbox", "ui.checkbox_group", "ui.radio_buttons"],
+            "answer": "ui.checkbox_group",
+        },
+    }
+)
+
+multiple_choice_app(questions)
+```
+
+## Add an input
+
+In order to create an interactive app, we need to add an input which the user can manipulate. 
+Let's add a `ui.input_slider` widget which let the user select the minimum body mass to include in the table. 
+To do this we need to do two things:
+
+1) Add the `ui.input_slider` function to the ui code 
+2) Use the value of that code in the rendering function which generates the table.
+
+::: callout-warning
+Be careful of mutability when manipulating objects in a data frame. 
+Use `.copy` to make sure that you're not changing the original object.
+:::
+
+```{python}
+#| echo: false
+#| output: asis
+
+include_shiny_folder("apps/examples/1.3-table-input-slider")
+```
+
+## Add a plot
+
+We can add a plot to the app in the same way that we added a table. 
+The steps are:
+1) Add `ui.output_plot()` to the ui
+2) Add a function whose name matches the id of the output 
+3) Decorate that function with `@output` and `@reactive.plot`
+
+```{python}
+#| echo: false
+#| output: asis
+
+include_shiny_folder("apps/examples/1.4-table-graph-input-slider")
+```
+
 # Exercise
 
-1) Add a `ui.input_numeric` to your UI which identifies the multiplier. Use this to allow people to change the multiplier from the hard coded value of 2 to another number. 
+1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.
 
-2) Add a second `ui.output_text_verbatim` which calculates the quotient of the two numbers. 
+2) Add a checkbox which adds a line of best fit to the plot. 
 
 
 ```{python}
 #| echo: false
 #| output: asis
 
-problem_tabs("apps/basic-app")
+problem_tabs("apps/problem-sets/1.5-add-plot")
 ```
 
 # Summary
