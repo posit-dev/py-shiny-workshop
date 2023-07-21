@@ -278,15 +278,15 @@ app = App(app_ui, server)
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-2">Identify that this function is an output</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Identify that this function is an output</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="2" data-code-cell="annotated-cell-2">Define output type</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="2">Define output type</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-lines="3" data-code-annotation="3" data-code-cell="annotated-cell-2">Function name connects it to output id</span>
+<span data-code-annotation="3" data-code-cell="annotated-cell-2" data-code-lines="3">Function name connects it to output id</span>
 </dd>
 </dl>
 </section>
@@ -701,10 +701,20 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 <p>All of the inputs and outputs are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>, it’s a good</p>
 <section id="quiz-1.0" class="level4">
 <h4 class="anchored" data-anchor-id="quiz-1.0">Quiz 1.0</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Test your understanding
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
-#| viewerHeight: 300
+#| viewerHeight: 250
 from shiny import App, render, ui, reactive, req
 import json
 from pathlib import Path
@@ -761,6 +771,8 @@ app = App(app_ui, server)
 
 ## file: questions.json
 {"What ui input is used for plots?": {"choices": ["ui.input_plot", "ui.plot_input", "ui.plotInput"], "answer": "ui.input_plot"}, "What rendering decorator is used for images?": {"choices": ["@render.image", "@ui.render.image", "@render.Image"], "answer": "@render.image"}, "What should you use to collect multiple checkbox reponses?": {"choices": ["ui.input.checkbox", "ui.checkbox_group", "ui.radio_buttons"], "answer": "ui.checkbox_group"}}</code></pre>
+</div>
+</div>
 </section>
 <section id="add-an-input" class="level2">
 <h2 class="anchored" data-anchor-id="add-an-input">Add an input</h2>
