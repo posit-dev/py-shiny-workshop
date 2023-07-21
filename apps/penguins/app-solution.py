@@ -20,6 +20,7 @@ app_ui = ui.page_fluid(
             ui.input_checkbox("smoother", "Add Smoother"),
         ),
         ui.panel_main(
+            ui.output_data_frame("table"),
             ui.output_plot(id="scatter"),
             ui.output_plot(id="mass_distribution"),
         ),
@@ -29,10 +30,22 @@ app_ui = ui.page_fluid(
 
 def server(input, output, session):
     @reactive.Calc
-    def filtered_data():
+    def filtered_data() -> pd.DataFrame:
         filt_df = penguins.copy()
         filt_df = filt_df.loc[filt_df["Body Mass (g)"] < input.mass()]
         return filt_df
+
+    @output
+    @render.data_frame
+    def table():
+        df = filtered_data()
+        summary = (
+            df.set_index("Species")
+            .groupby(level="Species")
+            .agg({"Bill Length (mm)": "mean", "Bill Depth (mm)": "mean"})
+            .reset_index()
+        )
+        return summary
 
     @output
     @render.plot

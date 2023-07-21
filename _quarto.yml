@@ -12,6 +12,15 @@ website:
       - side-effects.qmd
       - modules.qmd
       - styling.qmd
+  navbar:
+    tools: 
+      - icon: github
+        href: https://github.com/rstudio/shiny-python-workshop-2023
+      - icon: fa-dicord
+        href: https://discord.gg/AQVJzG2bnN
+    left:
+      - href: index.qmd
+        text: Home
 
 filters:
   - shinylive

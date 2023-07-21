@@ -40,7 +40,7 @@ def server(input, output, session):
     def scatter():
         filt_df = penguins.copy()
         filt_df = filt_df.loc[filt_df["Body Mass (g)"] < input.mass()]
-        return scatter_plot(filtered_data(), filt_df)
+        return scatter_plot(filt_df, input.smoother())
 
 
 app = App(app_ui, server)

@@ -25,7 +25,7 @@ Shiny does this by inferring a `reactive computation graph` for your application
 #| echo: false
 #| output: asis  
 include_shiny_folder(
-    "apps/basic-app", file_name="app-solution.py", exclusions=["app.py"]
+    "apps/problem-sets/1.5-add-plot", file_name="app-solution.py", exclusions=["app.py"]
 )
 ```
 :::

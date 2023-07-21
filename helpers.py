@@ -119,7 +119,7 @@ class Quiz(dict):
 def multiple_choice_app(questions: Quiz):
     questions = Quiz(questions)
     temp_dir = tempfile.mkdtemp("temp_folder")
-    shutil.copy("apps/multiple-choice/app.py", temp_dir)
+    shutil.copy("apps/utilities/multiple-choice/app.py", temp_dir)
     with open(os.path.join(temp_dir, "questions.json"), "w") as file:
         json.dump(questions, file)
 
