@@ -5,13 +5,8 @@ website:
   title: "Shiny for Python Workshop"
   sidebar:
     contents:
-      - href: index.qmd
-        text: Home
       - getting-started.qmd
       - reactivity.qmd
-      - side-effects.qmd
-      - modules.qmd
-      - styling.qmd
   navbar:
     tools: 
       - icon: github

@@ -4,7 +4,12 @@ title: "Shiny for Python Workshop"
 
 # Introduction
 
-This website contains the materials for the [Shiny for Python workshop](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog?search=python&search.sessiontype=1675316728702001wr6r) at the 2023 posit conf.
+This is the workshop website for the 2023 Posit Conference Shiny for Python Workshop. 
+While most of these materials are designed to be used in conjunction with the workshop, they also stand alone as an educational resource. 
+If you have questions or comments, please raise a Github issue, and if you would like to attend the in-person workshop, please [register today](https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog?search=&search.sessiontype=1675316728702001wr6r).
+
+If you would like help hosting a Shiny for Python workshop of would like to book a webinar, please contact us on [Discord](https://discord.gg/AQVJzG2bnN).
+
 
 # Background
 
