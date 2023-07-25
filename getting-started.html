@@ -271,7 +271,7 @@ app = App(app_ui, server)
 </section>
 <section id="how-to-refer-to-inputs" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-refer-to-inputs">4) How to refer to inputs</h3>
-<p>Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. We’ll learn more about reactivity in the next section, but for now You identify these inputs by calling the attribute of the <code>input</code> object which corresponds with a particular input id. In this case to refer to <code>n</code> we call it with <code>input.n()</code></p>
+<p>Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. We’ll learn more about reactivity in the next section, but for now just know that referring to an input will automatically cause that output to regenerate when the input changes. You identify these inputs by calling the attribute of the <code>input</code> object which corresponds with a particular input id. In this case to refer to <code>n</code> we call it with <code>input.n()</code></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -289,7 +289,7 @@ Tip
 </section>
 <section id="improving-the-app" class="level1">
 <h1>Improving the app</h1>
-<p>The basic app created by shiny is not terribly interesting, so instead we’re going to work with the <a href="https://github.com/mcnakhaee/palmerpenguins">palmer penguins</a> data to include a data table and a couple of plots. To include a table we need to use a different output function and rendering decorator, but otherwise it works the same.</p>
+<p>The basic app created by shiny is not terribly interesting, so instead we’re going to work with the <a href="https://github.com/mcnakhaee/palmerpenguins">palmer penguins</a> data to include a data table and a couple of plots. To include a table we need to use a different output function and rendering decorator, but otherwise it works the same as the simple example.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -677,7 +677,7 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-<p>All of the inputs and outputs are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>, it’s a good</p>
+<p>All of the inputs and outputs are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>, it’s a good idea to look a few things up on this page because it’s the best place learn about Shiny’s functionality.</p>
 <section id="quiz-1.0" class="level4">
 <h4 class="anchored" data-anchor-id="quiz-1.0">Quiz 1.0</h4>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2937,7 +2937,7 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 <section id="summary" class="level1">
 <h1>Summary</h1>
 <p>In this section you learned the three main things you need to do to get your Shiny app to run: - Add inputs and outputs to the UI - Add server functions which are decorated with <span class="citation" data-cites="output">@output</span> and <span class="citation" data-cites="render">@render</span> - Refer to inputs within server funtions with <code>input.&lt;id&gt;()</code></p>
-<p>Next we’ll learn what shiny does to make this all work</p>
+<p>Next we’ll learn what Shiny does to make this all work.</p>
 
 
 </section>
