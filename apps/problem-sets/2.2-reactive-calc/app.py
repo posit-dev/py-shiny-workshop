@@ -1,12 +1,16 @@
-from shiny import App, render, ui
+from shiny import App, render, ui, reactive
 import pandas as pd
 from pathlib import Path
+import time
+from plots import dist_plot
 
 infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
 
 app_ui = ui.page_fluid(
     ui.h2("Hello Penguins!"),
+    ui.input_numeric("sample", "Sample Size", value=100),
+    ui.output_plot("mass_plot"),
     ui.input_slider(
         "mass",
         "Mass",
@@ -14,16 +18,44 @@ app_ui = ui.page_fluid(
         8000,
         6000,
     ),
-    ui.output_data_frame("table"),
-    ui.output_plot("dist"),
+    ui.output_text("row_count"),
+    ui.input_selectize(
+        "columns",
+        "Columns",
+        choices=penguins.columns.tolist(),
+        selected=["species", "island"],
+        multiple=True,
+    ),
+    ui.output_data_frame("species_summary"),
 )
 
 
 def server(input, output, session):
     @output
+    @render.plot
+    def mass_plot():
+        df = sample_data(penguins.copy(), input.sample())
+        return dist_plot(df)
+
+    @output
+    @render.text
+    def row_count():
+        df = sample_data(penguins.copy(), input.sample())
+        df = df.loc[df["body_mass"] < input.mass()]
+        return f"{df.shape[0]} rows in filtered sample"
+
+    @output
     @render.data_frame
-    def table():
-        return penguins
+    def species_summary():
+        df = sample_data(penguins.copy(), input.sample())
+        filtered = df.loc[df["body_mass"] < input.mass()]
+        return filtered[list(input.columns())]
 
 
 app = App(app_ui, server)
+
+
+def sample_data(data: pd.DataFrame, n: int) -> pd.DataFrame:
+    time.sleep(1)
+    print("Sampling")
+    return data.sample(n, replace=True)
