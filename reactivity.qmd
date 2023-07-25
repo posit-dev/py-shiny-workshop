@@ -11,13 +11,14 @@ from helpers import include_shiny_folder, problem_tabs
 
 ```
 
-In the last section we built a simple shiny app which allowed the user to filter a dataframe and display some plots.
+In the last section we built a simple shiny app which allowed the user to filter a dataframe and display two plots.
 One thing you might notice about the code which genrated this application is that while we specify _what_ should happen in response to a user's action, we don't actually specify _when_ it should happen. 
 We don't have anything like cllback functions which define when a calculation should be run, so how does Shiny know when to run the code to keep everything up to date?
 
 Shiny is different from many other frameworks because it is declarative. 
 Instead of specifying when code should run, you specify recipes for creating the output you want to run, and then leave it up to Shiny to figure out when to rerun them. 
-Shiny does this by inferring a `reactive computation graph` for your application and reredenering downstream elements whenever the upstream elements change.
+This greatly simplifies application develpment because managing interaction is the most difficult part of web development, and for the most part Shiny will do a good job managing interaciton.
+Shiny does this by inferring a **reactive computation graph** for your application and reredenering downstream elements only if the upstream elements change.
 
 This pattern leads to two main benefits for Shiny users:
 
@@ -25,10 +26,10 @@ This pattern leads to two main benefits for Shiny users:
 2) You do not need to explicitly tell Shiny when to rerender things
 
 
-To start with we can draw the reactive graph for the application from the previous lesson. 
-This app has two inputs, and three outputs, but the checkbox to add a trndline is only used by one of the outputs.
+Let's draw the reactive graph for the application from the previous lesson. 
+This app has two inputs, and three outputs, but the checkbox to add a trendline is only used by one of the outputs.
 
-For the purposes of this course we're going to draw this as a top down Directed Acyclic Graph (DAG) and put them to the right fo the app:
+For the purposes of this course we're going to draw this as a top down directed acyclic graph (DAG) and put them to the right fo the app:
 
 :::: {.grid .column-screen-inset}
 ::: {.g-col-12 .g-col-md-9}
@@ -55,9 +56,9 @@ flowchart TD
 # Steping through the interaction
 
 It's worth walking through the interaction of this simple app to develop an intuition about how Shiny works. 
-When the app is first rendered Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. 
+When the app is first runs, Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. 
 When an input changes downstream elements are **invalidated** which means that they are flagged for recalculation. 
-Shiny then recalculates each element which needs to be recalculated
+Shiny then recalculates each element which needs to be recalculated but does not render the elements whih don't depend on that input. 
 
 ### User changes the slider
 
@@ -178,7 +179,7 @@ flowchart TD
 ::::
 
 This simple process of changing inputs, invalidating dependencies, and recaulating values turns out to scale to very complicated applications. 
-As a result it's worth thinking through the computation graph whenever you're looking to understand or refactor a shiny application.
+As a result it's a good idea to think through the computation graph whenever you're looking to understand or refactor a Shiny application.
 
 # Reactive Calculations
 
@@ -190,14 +191,14 @@ df = penguins.copy()
 filtered = df.loc[df["Body Mass (g)"] < input.mass()]
 ```
 
-A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that your code should not repeat itself. 
-The main reason why you be strict about this is that usually repetitive Shiny code will lead to an inefficient final application because a calculation will run more times than it needs to. 
-For example in this app each time we change the filter the dataset is being copied and filtered three times.
+A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat itself. 
+The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient final application because a calculation will run more times than it needs to. 
+For example in this app each time we change the filter the dataset is being copied and filtered three times when ideally we should only need to copy it once.
 As your app grows in complexity, or starts executing more intensive computations this repetition will noticibly slow your app down. 
 **Reactive calcuations** allow you to store the result of a calculation and re-use it across other components. 
-The reactive calculaton is reactive in the sense that it will be invalidated and rerendered just like any other reactive element, and it allows other elements to retrieve the value of that calculation without reexecuting it. 
+The reactive calculaton is reactive in that it will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it. 
 
-To create a reactive calculation, all you do is decorate a function with `@reactive.Calc` and call it as you would an input object. 
+To create a reactive calculation you need to decorate a function with `@reactive.Calc` and call it as you would an input object. 
 In this case we create a function called `filt_df` which contains the filtering logic and call it in the render method with `filt_df()`.
 This improves the application both because the filtration logic is kept in one place, and also because it the app UI will not recalculate the value more than necessary. 
 
