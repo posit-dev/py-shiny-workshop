@@ -13,7 +13,7 @@ from helpers import include_shiny_folder, problem_tabs, multiple_choice_app, Qui
 
 The goal of this section is to learn what you need to do to stand up a Shiny application.
 Don't worry if you don't really understand how the framework works, or why it's designed in a particular way. 
-All we're tryign to do at this stage is to get something working, and become comfortable with the development pattern.
+All we're trying to do at this stage is to get something working, and become comfortable with the development pattern.
 
 
 # Create an app
