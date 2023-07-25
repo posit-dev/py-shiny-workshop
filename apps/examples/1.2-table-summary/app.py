@@ -17,9 +17,9 @@ def server(input, output, session):
     def table():
         summary = (
             penguins.copy()
-            .set_index("Species")
-            .groupby(level="Species")
-            .agg({"Bill Length (mm)": "mean", "Bill Depth (mm)": "mean"})
+            .set_index("species")
+            .groupby(level="species")
+            .agg({"bill_length": "mean", "bill_depth": "mean"})
             .reset_index()
         )
         return summary

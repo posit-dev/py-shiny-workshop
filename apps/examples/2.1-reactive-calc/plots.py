@@ -3,7 +3,7 @@ from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_sm
 
 def dist_plot(df):
     plot = (
-        ggplot(df, aes(x="Body Mass (g)", fill="Species"))
+        ggplot(df, aes(x="body_mass", fill="species"))
         + geom_density(alpha=0.2)
         + theme_light()
     )
@@ -15,10 +15,10 @@ def scatter_plot(df, smoother=False):
         ggplot(
             df,
             aes(
-                x="Bill Length (mm)",
-                y="Bill Depth (mm)",
-                color="Species",
-                group="Species",
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
             ),
         )
         + geom_point()

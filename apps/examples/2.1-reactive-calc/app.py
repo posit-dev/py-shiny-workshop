@@ -26,7 +26,7 @@ def server(input, output, session):
     @reactive.Calc
     def filt_df():
         df = penguins.copy()
-        filtered = df.loc[df["Body Mass (g)"] < input.mass()]
+        filtered = df.loc[df["body_mass"] < input.mass()]
         return filtered
 
     @output
@@ -34,9 +34,9 @@ def server(input, output, session):
     def table():
         summary = (
             filt_df()
-            .set_index("Species")
-            .groupby(level="Species")
-            .agg({"Bill Length (mm)": "mean", "Bill Depth (mm)": "mean"})
+            .set_index("species")
+            .groupby(level="species")
+            .agg({"bill_length": "mean", "bill_depth": "mean"})
             .reset_index()
         )
         return summary
