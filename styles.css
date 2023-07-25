@@ -9,3 +9,7 @@
     box-shadow: none;
     margin: 0;
 }
+
+.someclass {
+    fill: rgb(240, 102, 255);
+}
