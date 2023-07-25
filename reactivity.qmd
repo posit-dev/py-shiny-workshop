@@ -239,3 +239,16 @@ flowchart TD
 :::
 ::::
 
+## Exercise 2.2
+
+We've made some changes to the penguins app and included an artificially slow bootstrap sampling method. 
+Currently all three elemenets in the app call the slow sampling function, which causes the app to slow down (you can interact with the goal app and the problem app to experience this sluggishness).
+
+Extract reeactive calculations from this app to speed it up. 
+
+```{python}
+#| echo: false
+#| output: asis  
+problem_tabs("apps/problem-sets/2.2-reactive-calc")
+```
+:::

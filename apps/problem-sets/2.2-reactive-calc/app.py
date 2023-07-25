@@ -1,7 +1,6 @@
 from shiny import App, render, ui, reactive
 import pandas as pd
 from pathlib import Path
-import time
 from plots import dist_plot
 
 infile = Path(__file__).parent / "penguins.csv"
@@ -56,6 +55,9 @@ app = App(app_ui, server)
 
 
 def sample_data(data: pd.DataFrame, n: int) -> pd.DataFrame:
-    time.sleep(1)
-    print("Sampling")
-    return data.sample(n, replace=True)
+    # This loop is here to simulate a lengthy computation
+    # pyodide does not support time.sleep() so this is the
+    # workaround.
+    for i in range(10000):
+        out = data.sample(n, replace=True)
+    return out
