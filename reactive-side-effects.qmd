@@ -1,0 +1,27 @@
+---
+title: "Getting started"
+---
+
+```{python}
+# | echo: false
+
+from helpers import include_shiny_folder
+
+```
+
+
+
+```{python}
+# | echo: false
+# | output: asis
+
+import os
+
+folder = "apps/examples"
+apps = os.listdir("apps/examples")
+
+for app in apps:
+    print(f"## {app}")
+    include_shiny_folder(folder + "/" + app)
+
+```

@@ -191,12 +191,12 @@ df = penguins.copy()
 filtered = df.loc[df["Body Mass (g)"] < input.mass()]
 ```
 
-A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat itself. 
-The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient final application because a calculation will run more times than it needs to. 
-For example in this app each time we change the filter the dataset is being copied and filtered three times when ideally we should only need to copy it once.
+A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat yourself. 
+The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient application because calculations will run more often than they need to.
+For example, in this app each time we change the filter the dataset is being copied and filtered three times when ideally this should only occur once.
 As your app grows in complexity, or starts executing more intensive computations this repetition will noticibly slow your app down. 
-**Reactive calcuations** allow you to store the result of a calculation and re-use it across other components. 
-The reactive calculaton is reactive in that it will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it. 
+[Reactive calculations](https://shiny.rstudio.com/py/docs/reactive-calculations.html) allow you to store the result of a calculation and re-use it across other components. 
+These calculations are reactive in that they will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it. 
 
 To create a reactive calculation you need to decorate a function with `@reactive.Calc` and call it as you would an input object. 
 In this case we create a function called `filt_df` which contains the filtering logic and call it in the render method with `filt_df()`.
@@ -244,7 +244,8 @@ flowchart TD
 We've made some changes to the penguins app and included an artificially slow bootstrap sampling method. 
 Currently all three elemenets in the app call the slow sampling function, which causes the app to slow down (you can interact with the goal app and the problem app to experience this sluggishness).
 
-Extract reeactive calculations from this app to speed it up. 
+Extract reeactive calculations from this app to reduce repetition and speed up the app.
+There are several good solutions to this problem, but more people end up with two reactive calculations.
 
 ```{python}
 #| echo: false
@@ -252,3 +253,13 @@ Extract reeactive calculations from this app to speed it up.
 problem_tabs("apps/problem-sets/2.2-reactive-calc")
 ```
 :::
+
+
+# Summary
+In this section you've learned to use reactive calculations to improve your Shiny app. 
+The key takeaways are:
+
+- Shiny infers a reactive computation graph to rerender UI outputs
+- You usually don't need to tell Shiny _when_ to reexecute code
+- Shiny rewards not repeating yourself
+- Reactive calculations allow you to extract repetitive logic while ensuring that the calculations are up-to-date
