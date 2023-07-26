@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -137,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./getting-started.html">Getting started</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Getting started</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -151,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./getting-started.html" class="sidebar-item-text sidebar-link active">
+  <a href="./getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting started</span></a>
   </div>
 </li>
@@ -171,25 +137,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
-  <li><a href="#create-an-app" id="toc-create-an-app" class="nav-link" data-scroll-target="#create-an-app">Create an app</a>
-  <ul class="collapse">
-  <li><a href="#ui-structure" id="toc-ui-structure" class="nav-link" data-scroll-target="#ui-structure">1) UI structure</a></li>
-  <li><a href="#output-decorators" id="toc-output-decorators" class="nav-link" data-scroll-target="#output-decorators">3) Output decorators</a></li>
-  <li><a href="#how-to-refer-to-inputs" id="toc-how-to-refer-to-inputs" class="nav-link" data-scroll-target="#how-to-refer-to-inputs">4) How to refer to inputs</a></li>
-  </ul></li>
-  <li><a href="#improving-the-app" id="toc-improving-the-app" class="nav-link" data-scroll-target="#improving-the-app">Improving the app</a>
-  <ul class="collapse">
-  <li><a href="#add-an-input" id="toc-add-an-input" class="nav-link" data-scroll-target="#add-an-input">Add an input</a></li>
-  <li><a href="#add-a-plot" id="toc-add-a-plot" class="nav-link" data-scroll-target="#add-a-plot">Add a plot</a></li>
-  </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#reactive-calc" id="toc-reactive-calc" class="nav-link active" data-scroll-target="#reactive-calc">2.1-reactive-calc</a></li>
+  <li><a href="#table-only" id="toc-table-only" class="nav-link" data-scroll-target="#table-only">1.1-table-only</a></li>
+  <li><a href="#table-graph-input-slider" id="toc-table-graph-input-slider" class="nav-link" data-scroll-target="#table-graph-input-slider">1.4-table-graph-input-slider</a></li>
+  <li><a href="#css" id="toc-css" class="nav-link" data-scroll-target="#css">3.3-css</a></li>
+  <li><a href="#basic-app" id="toc-basic-app" class="nav-link" data-scroll-target="#basic-app">1.0-basic-app</a></li>
+  <li><a href="#table-summary" id="toc-table-summary" class="nav-link" data-scroll-target="#table-summary">1.2-table-summary</a></li>
+  <li><a href="#table-input-slider" id="toc-table-input-slider" class="nav-link" data-scroll-target="#table-input-slider">1.3-table-input-slider</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -208,101 +167,453 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="goal" class="level1">
-<h1>Goal</h1>
-<p>The goal of this section is to learn what you need to do to stand up a Shiny application. Don’t worry if you don’t really understand how the framework works, or why it’s designed in a particular way. All we’re trying to do at this stage is to get something working, and become comfortable with the development pattern.</p>
-</section>
-<section id="create-an-app" class="level1">
-<h1>Create an app</h1>
-<p>Shiny apps are divided into two parts. The app <em>UI</em> consists of various input and output components, and the <em>server</em> expresses how those inputs and outputs should interact.</p>
-<p>Let’s start by creating a basic shiny app To do this you can call <code>shiny create .</code> in a project folder, or open up <code>apps/basic-app/app.py</code> in the repo. This is the simplest possible Shiny application with one input and one output.</p>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
+<section id="reactive-calc" class="level2">
+<h2 class="anchored" data-anchor-id="reactive-calc">2.1-reactive-calc</h2>
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
-from shiny import App, render, ui
+from shiny import App, render, ui, reactive
+import pandas as pd
+from pathlib import Path
+from plots import dist_plot, scatter_plot
+
+infile = Path(__file__).parent / "penguins.csv"
+penguins = pd.read_csv(infile)
 
 app_ui = ui.page_fluid(
-    ui.h2("Hello Shiny!"),
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
+    ui.h2("Hello Penguins!"),
+    ui.input_slider(
+        "mass",
+        "Mass",
+        2000,
+        8000,
+        6000,
+    ),
+    ui.output_data_frame("table"),
+    ui.output_plot("dist"),
+    ui.input_checkbox("trend", "Add trendline"),
+    ui.output_plot("scatter"),
 )
 
 
 def server(input, output, session):
+    @reactive.Calc
+    def filt_df():
+        df = penguins.copy()
+        filtered = df.loc[df["body_mass"] &lt; input.mass()]
+        return filtered
+
     @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+    @render.data_frame
+    def table():
+        summary = (
+            filt_df()
+            .set_index("species")
+            .groupby(level="species")
+            .agg({"bill_length": "mean", "bill_depth": "mean"})
+            .reset_index()
+        )
+        return summary
+
+    @output
+    @render.plot
+    def dist():
+        return dist_plot(filt_df())
+
+    @output
+    @render.plot
+    def scatter():
+        return scatter_plot(filt_df(), input.trend())
 
 
 app = App(app_ui, server)
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
+
+
+## file: penguins.csv
+species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
+Adelie,Torgersen,39.1,18.7,181,3750,male,2007
+Adelie,Torgersen,39.5,17.4,186,3800,female,2007
+Adelie,Torgersen,40.3,18,195,3250,female,2007
+Adelie,Torgersen,NA,NA,NA,NA,NA,2007
+Adelie,Torgersen,36.7,19.3,193,3450,female,2007
+Adelie,Torgersen,39.3,20.6,190,3650,male,2007
+Adelie,Torgersen,38.9,17.8,181,3625,female,2007
+Adelie,Torgersen,39.2,19.6,195,4675,male,2007
+Adelie,Torgersen,34.1,18.1,193,3475,NA,2007
+Adelie,Torgersen,42,20.2,190,4250,NA,2007
+Adelie,Torgersen,37.8,17.1,186,3300,NA,2007
+Adelie,Torgersen,37.8,17.3,180,3700,NA,2007
+Adelie,Torgersen,41.1,17.6,182,3200,female,2007
+Adelie,Torgersen,38.6,21.2,191,3800,male,2007
+Adelie,Torgersen,34.6,21.1,198,4400,male,2007
+Adelie,Torgersen,36.6,17.8,185,3700,female,2007
+Adelie,Torgersen,38.7,19,195,3450,female,2007
+Adelie,Torgersen,42.5,20.7,197,4500,male,2007
+Adelie,Torgersen,34.4,18.4,184,3325,female,2007
+Adelie,Torgersen,46,21.5,194,4200,male,2007
+Adelie,Biscoe,37.8,18.3,174,3400,female,2007
+Adelie,Biscoe,37.7,18.7,180,3600,male,2007
+Adelie,Biscoe,35.9,19.2,189,3800,female,2007
+Adelie,Biscoe,38.2,18.1,185,3950,male,2007
+Adelie,Biscoe,38.8,17.2,180,3800,male,2007
+Adelie,Biscoe,35.3,18.9,187,3800,female,2007
+Adelie,Biscoe,40.6,18.6,183,3550,male,2007
+Adelie,Biscoe,40.5,17.9,187,3200,female,2007
+Adelie,Biscoe,37.9,18.6,172,3150,female,2007
+Adelie,Biscoe,40.5,18.9,180,3950,male,2007
+Adelie,Dream,39.5,16.7,178,3250,female,2007
+Adelie,Dream,37.2,18.1,178,3900,male,2007
+Adelie,Dream,39.5,17.8,188,3300,female,2007
+Adelie,Dream,40.9,18.9,184,3900,male,2007
+Adelie,Dream,36.4,17,195,3325,female,2007
+Adelie,Dream,39.2,21.1,196,4150,male,2007
+Adelie,Dream,38.8,20,190,3950,male,2007
+Adelie,Dream,42.2,18.5,180,3550,female,2007
+Adelie,Dream,37.6,19.3,181,3300,female,2007
+Adelie,Dream,39.8,19.1,184,4650,male,2007
+Adelie,Dream,36.5,18,182,3150,female,2007
+Adelie,Dream,40.8,18.4,195,3900,male,2007
+Adelie,Dream,36,18.5,186,3100,female,2007
+Adelie,Dream,44.1,19.7,196,4400,male,2007
+Adelie,Dream,37,16.9,185,3000,female,2007
+Adelie,Dream,39.6,18.8,190,4600,male,2007
+Adelie,Dream,41.1,19,182,3425,male,2007
+Adelie,Dream,37.5,18.9,179,2975,NA,2007
+Adelie,Dream,36,17.9,190,3450,female,2007
+Adelie,Dream,42.3,21.2,191,4150,male,2007
+Adelie,Biscoe,39.6,17.7,186,3500,female,2008
+Adelie,Biscoe,40.1,18.9,188,4300,male,2008
+Adelie,Biscoe,35,17.9,190,3450,female,2008
+Adelie,Biscoe,42,19.5,200,4050,male,2008
+Adelie,Biscoe,34.5,18.1,187,2900,female,2008
+Adelie,Biscoe,41.4,18.6,191,3700,male,2008
+Adelie,Biscoe,39,17.5,186,3550,female,2008
+Adelie,Biscoe,40.6,18.8,193,3800,male,2008
+Adelie,Biscoe,36.5,16.6,181,2850,female,2008
+Adelie,Biscoe,37.6,19.1,194,3750,male,2008
+Adelie,Biscoe,35.7,16.9,185,3150,female,2008
+Adelie,Biscoe,41.3,21.1,195,4400,male,2008
+Adelie,Biscoe,37.6,17,185,3600,female,2008
+Adelie,Biscoe,41.1,18.2,192,4050,male,2008
+Adelie,Biscoe,36.4,17.1,184,2850,female,2008
+Adelie,Biscoe,41.6,18,192,3950,male,2008
+Adelie,Biscoe,35.5,16.2,195,3350,female,2008
+Adelie,Biscoe,41.1,19.1,188,4100,male,2008
+Adelie,Torgersen,35.9,16.6,190,3050,female,2008
+Adelie,Torgersen,41.8,19.4,198,4450,male,2008
+Adelie,Torgersen,33.5,19,190,3600,female,2008
+Adelie,Torgersen,39.7,18.4,190,3900,male,2008
+Adelie,Torgersen,39.6,17.2,196,3550,female,2008
+Adelie,Torgersen,45.8,18.9,197,4150,male,2008
+Adelie,Torgersen,35.5,17.5,190,3700,female,2008
+Adelie,Torgersen,42.8,18.5,195,4250,male,2008
+Adelie,Torgersen,40.9,16.8,191,3700,female,2008
+Adelie,Torgersen,37.2,19.4,184,3900,male,2008
+Adelie,Torgersen,36.2,16.1,187,3550,female,2008
+Adelie,Torgersen,42.1,19.1,195,4000,male,2008
+Adelie,Torgersen,34.6,17.2,189,3200,female,2008
+Adelie,Torgersen,42.9,17.6,196,4700,male,2008
+Adelie,Torgersen,36.7,18.8,187,3800,female,2008
+Adelie,Torgersen,35.1,19.4,193,4200,male,2008
+Adelie,Dream,37.3,17.8,191,3350,female,2008
+Adelie,Dream,41.3,20.3,194,3550,male,2008
+Adelie,Dream,36.3,19.5,190,3800,male,2008
+Adelie,Dream,36.9,18.6,189,3500,female,2008
+Adelie,Dream,38.3,19.2,189,3950,male,2008
+Adelie,Dream,38.9,18.8,190,3600,female,2008
+Adelie,Dream,35.7,18,202,3550,female,2008
+Adelie,Dream,41.1,18.1,205,4300,male,2008
+Adelie,Dream,34,17.1,185,3400,female,2008
+Adelie,Dream,39.6,18.1,186,4450,male,2008
+Adelie,Dream,36.2,17.3,187,3300,female,2008
+Adelie,Dream,40.8,18.9,208,4300,male,2008
+Adelie,Dream,38.1,18.6,190,3700,female,2008
+Adelie,Dream,40.3,18.5,196,4350,male,2008
+Adelie,Dream,33.1,16.1,178,2900,female,2008
+Adelie,Dream,43.2,18.5,192,4100,male,2008
+Adelie,Biscoe,35,17.9,192,3725,female,2009
+Adelie,Biscoe,41,20,203,4725,male,2009
+Adelie,Biscoe,37.7,16,183,3075,female,2009
+Adelie,Biscoe,37.8,20,190,4250,male,2009
+Adelie,Biscoe,37.9,18.6,193,2925,female,2009
+Adelie,Biscoe,39.7,18.9,184,3550,male,2009
+Adelie,Biscoe,38.6,17.2,199,3750,female,2009
+Adelie,Biscoe,38.2,20,190,3900,male,2009
+Adelie,Biscoe,38.1,17,181,3175,female,2009
+Adelie,Biscoe,43.2,19,197,4775,male,2009
+Adelie,Biscoe,38.1,16.5,198,3825,female,2009
+Adelie,Biscoe,45.6,20.3,191,4600,male,2009
+Adelie,Biscoe,39.7,17.7,193,3200,female,2009
+Adelie,Biscoe,42.2,19.5,197,4275,male,2009
+Adelie,Biscoe,39.6,20.7,191,3900,female,2009
+Adelie,Biscoe,42.7,18.3,196,4075,male,2009
+Adelie,Torgersen,38.6,17,188,2900,female,2009
+Adelie,Torgersen,37.3,20.5,199,3775,male,2009
+Adelie,Torgersen,35.7,17,189,3350,female,2009
+Adelie,Torgersen,41.1,18.6,189,3325,male,2009
+Adelie,Torgersen,36.2,17.2,187,3150,female,2009
+Adelie,Torgersen,37.7,19.8,198,3500,male,2009
+Adelie,Torgersen,40.2,17,176,3450,female,2009
+Adelie,Torgersen,41.4,18.5,202,3875,male,2009
+Adelie,Torgersen,35.2,15.9,186,3050,female,2009
+Adelie,Torgersen,40.6,19,199,4000,male,2009
+Adelie,Torgersen,38.8,17.6,191,3275,female,2009
+Adelie,Torgersen,41.5,18.3,195,4300,male,2009
+Adelie,Torgersen,39,17.1,191,3050,female,2009
+Adelie,Torgersen,44.1,18,210,4000,male,2009
+Adelie,Torgersen,38.5,17.9,190,3325,female,2009
+Adelie,Torgersen,43.1,19.2,197,3500,male,2009
+Adelie,Dream,36.8,18.5,193,3500,female,2009
+Adelie,Dream,37.5,18.5,199,4475,male,2009
+Adelie,Dream,38.1,17.6,187,3425,female,2009
+Adelie,Dream,41.1,17.5,190,3900,male,2009
+Adelie,Dream,35.6,17.5,191,3175,female,2009
+Adelie,Dream,40.2,20.1,200,3975,male,2009
+Adelie,Dream,37,16.5,185,3400,female,2009
+Adelie,Dream,39.7,17.9,193,4250,male,2009
+Adelie,Dream,40.2,17.1,193,3400,female,2009
+Adelie,Dream,40.6,17.2,187,3475,male,2009
+Adelie,Dream,32.1,15.5,188,3050,female,2009
+Adelie,Dream,40.7,17,190,3725,male,2009
+Adelie,Dream,37.3,16.8,192,3000,female,2009
+Adelie,Dream,39,18.7,185,3650,male,2009
+Adelie,Dream,39.2,18.6,190,4250,male,2009
+Adelie,Dream,36.6,18.4,184,3475,female,2009
+Adelie,Dream,36,17.8,195,3450,female,2009
+Adelie,Dream,37.8,18.1,193,3750,male,2009
+Adelie,Dream,36,17.1,187,3700,female,2009
+Adelie,Dream,41.5,18.5,201,4000,male,2009
+Gentoo,Biscoe,46.1,13.2,211,4500,female,2007
+Gentoo,Biscoe,50,16.3,230,5700,male,2007
+Gentoo,Biscoe,48.7,14.1,210,4450,female,2007
+Gentoo,Biscoe,50,15.2,218,5700,male,2007
+Gentoo,Biscoe,47.6,14.5,215,5400,male,2007
+Gentoo,Biscoe,46.5,13.5,210,4550,female,2007
+Gentoo,Biscoe,45.4,14.6,211,4800,female,2007
+Gentoo,Biscoe,46.7,15.3,219,5200,male,2007
+Gentoo,Biscoe,43.3,13.4,209,4400,female,2007
+Gentoo,Biscoe,46.8,15.4,215,5150,male,2007
+Gentoo,Biscoe,40.9,13.7,214,4650,female,2007
+Gentoo,Biscoe,49,16.1,216,5550,male,2007
+Gentoo,Biscoe,45.5,13.7,214,4650,female,2007
+Gentoo,Biscoe,48.4,14.6,213,5850,male,2007
+Gentoo,Biscoe,45.8,14.6,210,4200,female,2007
+Gentoo,Biscoe,49.3,15.7,217,5850,male,2007
+Gentoo,Biscoe,42,13.5,210,4150,female,2007
+Gentoo,Biscoe,49.2,15.2,221,6300,male,2007
+Gentoo,Biscoe,46.2,14.5,209,4800,female,2007
+Gentoo,Biscoe,48.7,15.1,222,5350,male,2007
+Gentoo,Biscoe,50.2,14.3,218,5700,male,2007
+Gentoo,Biscoe,45.1,14.5,215,5000,female,2007
+Gentoo,Biscoe,46.5,14.5,213,4400,female,2007
+Gentoo,Biscoe,46.3,15.8,215,5050,male,2007
+Gentoo,Biscoe,42.9,13.1,215,5000,female,2007
+Gentoo,Biscoe,46.1,15.1,215,5100,male,2007
+Gentoo,Biscoe,44.5,14.3,216,4100,NA,2007
+Gentoo,Biscoe,47.8,15,215,5650,male,2007
+Gentoo,Biscoe,48.2,14.3,210,4600,female,2007
+Gentoo,Biscoe,50,15.3,220,5550,male,2007
+Gentoo,Biscoe,47.3,15.3,222,5250,male,2007
+Gentoo,Biscoe,42.8,14.2,209,4700,female,2007
+Gentoo,Biscoe,45.1,14.5,207,5050,female,2007
+Gentoo,Biscoe,59.6,17,230,6050,male,2007
+Gentoo,Biscoe,49.1,14.8,220,5150,female,2008
+Gentoo,Biscoe,48.4,16.3,220,5400,male,2008
+Gentoo,Biscoe,42.6,13.7,213,4950,female,2008
+Gentoo,Biscoe,44.4,17.3,219,5250,male,2008
+Gentoo,Biscoe,44,13.6,208,4350,female,2008
+Gentoo,Biscoe,48.7,15.7,208,5350,male,2008
+Gentoo,Biscoe,42.7,13.7,208,3950,female,2008
+Gentoo,Biscoe,49.6,16,225,5700,male,2008
+Gentoo,Biscoe,45.3,13.7,210,4300,female,2008
+Gentoo,Biscoe,49.6,15,216,4750,male,2008
+Gentoo,Biscoe,50.5,15.9,222,5550,male,2008
+Gentoo,Biscoe,43.6,13.9,217,4900,female,2008
+Gentoo,Biscoe,45.5,13.9,210,4200,female,2008
+Gentoo,Biscoe,50.5,15.9,225,5400,male,2008
+Gentoo,Biscoe,44.9,13.3,213,5100,female,2008
+Gentoo,Biscoe,45.2,15.8,215,5300,male,2008
+Gentoo,Biscoe,46.6,14.2,210,4850,female,2008
+Gentoo,Biscoe,48.5,14.1,220,5300,male,2008
+Gentoo,Biscoe,45.1,14.4,210,4400,female,2008
+Gentoo,Biscoe,50.1,15,225,5000,male,2008
+Gentoo,Biscoe,46.5,14.4,217,4900,female,2008
+Gentoo,Biscoe,45,15.4,220,5050,male,2008
+Gentoo,Biscoe,43.8,13.9,208,4300,female,2008
+Gentoo,Biscoe,45.5,15,220,5000,male,2008
+Gentoo,Biscoe,43.2,14.5,208,4450,female,2008
+Gentoo,Biscoe,50.4,15.3,224,5550,male,2008
+Gentoo,Biscoe,45.3,13.8,208,4200,female,2008
+Gentoo,Biscoe,46.2,14.9,221,5300,male,2008
+Gentoo,Biscoe,45.7,13.9,214,4400,female,2008
+Gentoo,Biscoe,54.3,15.7,231,5650,male,2008
+Gentoo,Biscoe,45.8,14.2,219,4700,female,2008
+Gentoo,Biscoe,49.8,16.8,230,5700,male,2008
+Gentoo,Biscoe,46.2,14.4,214,4650,NA,2008
+Gentoo,Biscoe,49.5,16.2,229,5800,male,2008
+Gentoo,Biscoe,43.5,14.2,220,4700,female,2008
+Gentoo,Biscoe,50.7,15,223,5550,male,2008
+Gentoo,Biscoe,47.7,15,216,4750,female,2008
+Gentoo,Biscoe,46.4,15.6,221,5000,male,2008
+Gentoo,Biscoe,48.2,15.6,221,5100,male,2008
+Gentoo,Biscoe,46.5,14.8,217,5200,female,2008
+Gentoo,Biscoe,46.4,15,216,4700,female,2008
+Gentoo,Biscoe,48.6,16,230,5800,male,2008
+Gentoo,Biscoe,47.5,14.2,209,4600,female,2008
+Gentoo,Biscoe,51.1,16.3,220,6000,male,2008
+Gentoo,Biscoe,45.2,13.8,215,4750,female,2008
+Gentoo,Biscoe,45.2,16.4,223,5950,male,2008
+Gentoo,Biscoe,49.1,14.5,212,4625,female,2009
+Gentoo,Biscoe,52.5,15.6,221,5450,male,2009
+Gentoo,Biscoe,47.4,14.6,212,4725,female,2009
+Gentoo,Biscoe,50,15.9,224,5350,male,2009
+Gentoo,Biscoe,44.9,13.8,212,4750,female,2009
+Gentoo,Biscoe,50.8,17.3,228,5600,male,2009
+Gentoo,Biscoe,43.4,14.4,218,4600,female,2009
+Gentoo,Biscoe,51.3,14.2,218,5300,male,2009
+Gentoo,Biscoe,47.5,14,212,4875,female,2009
+Gentoo,Biscoe,52.1,17,230,5550,male,2009
+Gentoo,Biscoe,47.5,15,218,4950,female,2009
+Gentoo,Biscoe,52.2,17.1,228,5400,male,2009
+Gentoo,Biscoe,45.5,14.5,212,4750,female,2009
+Gentoo,Biscoe,49.5,16.1,224,5650,male,2009
+Gentoo,Biscoe,44.5,14.7,214,4850,female,2009
+Gentoo,Biscoe,50.8,15.7,226,5200,male,2009
+Gentoo,Biscoe,49.4,15.8,216,4925,male,2009
+Gentoo,Biscoe,46.9,14.6,222,4875,female,2009
+Gentoo,Biscoe,48.4,14.4,203,4625,female,2009
+Gentoo,Biscoe,51.1,16.5,225,5250,male,2009
+Gentoo,Biscoe,48.5,15,219,4850,female,2009
+Gentoo,Biscoe,55.9,17,228,5600,male,2009
+Gentoo,Biscoe,47.2,15.5,215,4975,female,2009
+Gentoo,Biscoe,49.1,15,228,5500,male,2009
+Gentoo,Biscoe,47.3,13.8,216,4725,NA,2009
+Gentoo,Biscoe,46.8,16.1,215,5500,male,2009
+Gentoo,Biscoe,41.7,14.7,210,4700,female,2009
+Gentoo,Biscoe,53.4,15.8,219,5500,male,2009
+Gentoo,Biscoe,43.3,14,208,4575,female,2009
+Gentoo,Biscoe,48.1,15.1,209,5500,male,2009
+Gentoo,Biscoe,50.5,15.2,216,5000,female,2009
+Gentoo,Biscoe,49.8,15.9,229,5950,male,2009
+Gentoo,Biscoe,43.5,15.2,213,4650,female,2009
+Gentoo,Biscoe,51.5,16.3,230,5500,male,2009
+Gentoo,Biscoe,46.2,14.1,217,4375,female,2009
+Gentoo,Biscoe,55.1,16,230,5850,male,2009
+Gentoo,Biscoe,44.5,15.7,217,4875,NA,2009
+Gentoo,Biscoe,48.8,16.2,222,6000,male,2009
+Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
+Gentoo,Biscoe,NA,NA,NA,NA,NA,2009
+Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
+Gentoo,Biscoe,50.4,15.7,222,5750,male,2009
+Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
+Gentoo,Biscoe,49.9,16.1,213,5400,male,2009
+Chinstrap,Dream,46.5,17.9,192,3500,female,2007
+Chinstrap,Dream,50,19.5,196,3900,male,2007
+Chinstrap,Dream,51.3,19.2,193,3650,male,2007
+Chinstrap,Dream,45.4,18.7,188,3525,female,2007
+Chinstrap,Dream,52.7,19.8,197,3725,male,2007
+Chinstrap,Dream,45.2,17.8,198,3950,female,2007
+Chinstrap,Dream,46.1,18.2,178,3250,female,2007
+Chinstrap,Dream,51.3,18.2,197,3750,male,2007
+Chinstrap,Dream,46,18.9,195,4150,female,2007
+Chinstrap,Dream,51.3,19.9,198,3700,male,2007
+Chinstrap,Dream,46.6,17.8,193,3800,female,2007
+Chinstrap,Dream,51.7,20.3,194,3775,male,2007
+Chinstrap,Dream,47,17.3,185,3700,female,2007
+Chinstrap,Dream,52,18.1,201,4050,male,2007
+Chinstrap,Dream,45.9,17.1,190,3575,female,2007
+Chinstrap,Dream,50.5,19.6,201,4050,male,2007
+Chinstrap,Dream,50.3,20,197,3300,male,2007
+Chinstrap,Dream,58,17.8,181,3700,female,2007
+Chinstrap,Dream,46.4,18.6,190,3450,female,2007
+Chinstrap,Dream,49.2,18.2,195,4400,male,2007
+Chinstrap,Dream,42.4,17.3,181,3600,female,2007
+Chinstrap,Dream,48.5,17.5,191,3400,male,2007
+Chinstrap,Dream,43.2,16.6,187,2900,female,2007
+Chinstrap,Dream,50.6,19.4,193,3800,male,2007
+Chinstrap,Dream,46.7,17.9,195,3300,female,2007
+Chinstrap,Dream,52,19,197,4150,male,2007
+Chinstrap,Dream,50.5,18.4,200,3400,female,2008
+Chinstrap,Dream,49.5,19,200,3800,male,2008
+Chinstrap,Dream,46.4,17.8,191,3700,female,2008
+Chinstrap,Dream,52.8,20,205,4550,male,2008
+Chinstrap,Dream,40.9,16.6,187,3200,female,2008
+Chinstrap,Dream,54.2,20.8,201,4300,male,2008
+Chinstrap,Dream,42.5,16.7,187,3350,female,2008
+Chinstrap,Dream,51,18.8,203,4100,male,2008
+Chinstrap,Dream,49.7,18.6,195,3600,male,2008
+Chinstrap,Dream,47.5,16.8,199,3900,female,2008
+Chinstrap,Dream,47.6,18.3,195,3850,female,2008
+Chinstrap,Dream,52,20.7,210,4800,male,2008
+Chinstrap,Dream,46.9,16.6,192,2700,female,2008
+Chinstrap,Dream,53.5,19.9,205,4500,male,2008
+Chinstrap,Dream,49,19.5,210,3950,male,2008
+Chinstrap,Dream,46.2,17.5,187,3650,female,2008
+Chinstrap,Dream,50.9,19.1,196,3550,male,2008
+Chinstrap,Dream,45.5,17,196,3500,female,2008
+Chinstrap,Dream,50.9,17.9,196,3675,female,2009
+Chinstrap,Dream,50.8,18.5,201,4450,male,2009
+Chinstrap,Dream,50.1,17.9,190,3400,female,2009
+Chinstrap,Dream,49,19.6,212,4300,male,2009
+Chinstrap,Dream,51.5,18.7,187,3250,male,2009
+Chinstrap,Dream,49.8,17.3,198,3675,female,2009
+Chinstrap,Dream,48.1,16.4,199,3325,female,2009
+Chinstrap,Dream,51.4,19,201,3950,male,2009
+Chinstrap,Dream,45.7,17.3,193,3600,female,2009
+Chinstrap,Dream,50.7,19.7,203,4050,male,2009
+Chinstrap,Dream,42.5,17.3,187,3350,female,2009
+Chinstrap,Dream,52.2,18.8,197,3450,male,2009
+Chinstrap,Dream,45.2,16.6,191,3250,female,2009
+Chinstrap,Dream,49.3,19.9,203,4050,male,2009
+Chinstrap,Dream,50.2,18.8,202,3800,male,2009
+Chinstrap,Dream,45.6,19.4,194,3525,female,2009
+Chinstrap,Dream,51.9,19.5,206,3950,male,2009
+Chinstrap,Dream,46.8,16.5,189,3650,female,2009
+Chinstrap,Dream,45.7,17,195,3650,female,2009
+Chinstrap,Dream,55.8,19.8,207,4000,male,2009
+Chinstrap,Dream,43.5,18.1,202,3400,female,2009
+Chinstrap,Dream,49.6,18.2,193,3775,male,2009
+Chinstrap,Dream,50.8,19,210,4100,male,2009
+Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-<p>There are a four important features that your code needs to have to generate a working Shiny app.</p>
 </section>
-<section id="ui-structure" class="level3">
-<h3 class="anchored" data-anchor-id="ui-structure">1) UI structure</h3>
-<p>The Shiny UI is defined with a set of nested function calls. You typically start with a container function like <code>ui.page_fluid()</code> and then add inputs like <code>ui.input_slider</code> and outputs like <code>ui.output_text_verbatim</code>.</p>
-<p>Inputs and outputs have an <code>id</code> value which allows you to refer to their values in the <code>server</code> function. In this simple example the slider <code>id</code> is <code>"n"</code> and the output id is <code>"txt"</code>.</p>
-</section>
-<section id="output-decorators" class="level3">
-<h3 class="anchored" data-anchor-id="output-decorators">3) Output decorators</h3>
-<p>The server function defines how your app should calculate outputs for a given set of inputs. To do this, you write a function inside the main <code>server</code> function which has the same name as the output key, and add two decorators. <code>@output</code> tells Shiny that the function is an output, and <code>@render.text</code> tells it the output type. So to fill in the logic for the <code>txt</code> output we write:</p>
-<div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@output</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="at">@render.text</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> txt():</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Identify that this function is an output</span>
-</dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define output type</span>
-</dd>
-<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Function name connects it to output id</span>
-</dd>
-</dl>
-</section>
-<section id="how-to-refer-to-inputs" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-refer-to-inputs">4) How to refer to inputs</h3>
-<p>Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. We’ll learn more about reactivity in the next section, but for now just know that referring to an input will automatically cause that output to regenerate when the input changes. You identify these inputs by calling the attribute of the <code>input</code> object which corresponds with a particular input id. In this case to refer to <code>n</code> we call it with <code>input.n()</code></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note that inputs are called with <code>()</code> so it’s <code>input.n()</code> not <code>input.n</code></p>
-</div>
-</div>
-</section>
-</section>
-<section id="improving-the-app" class="level1">
-<h1>Improving the app</h1>
-<p>The basic app created by shiny is not terribly interesting, so instead we’re going to work with the <a href="https://github.com/mcnakhaee/palmerpenguins">palmer penguins</a> data to include a data table and a couple of plots. To include a table we need to use a different output function and rendering decorator, but otherwise it works the same as the simple example.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When reading in data it’s usually good to use pathlib <code>Path(__file__).parent</code> to reference the data relative to the current file. This makes it easier to call <code>shiny run</code> from other direcotries without error.</p>
-</div>
-</div>
+<section id="table-only" class="level2">
+<h2 class="anchored" data-anchor-id="table-only">1.1-table-only</h2>
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
@@ -677,495 +988,9 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-<p>All of the inputs and outputs are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>, it’s a good idea to look a few things up on this page because it’s the best place learn about Shiny’s functionality.</p>
-<section id="quiz-1.0" class="level4">
-<h4 class="anchored" data-anchor-id="quiz-1.0">Quiz 1.0</h4>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Test your understanding
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<pre class="shinylive-python"><code>#| standalone: true
-#| components: [viewer]
-#| layout: horizontal
-#| viewerHeight: 250
-from shiny import App, render, ui, reactive, req
-import json
-from pathlib import Path
-
-with open(Path(__file__).parent / "questions.json", "r") as file:
-    questions = json.load(file)
-
-app_ui = ui.page_fluid(ui.output_ui("question"), ui.output_ui("validation"))
-
-
-def server(input, output, session):
-    q_num = reactive.Value(0)
-
-    question_keys = list(questions.keys())
-
-    @reactive.Calc
-    def current_q():
-        return questions[question_keys[q_num()]]
-
-    @output
-    @render.ui
-    def question():
-        return ui.div(
-            ui.h5(question_keys[q_num()], style="margin-bottom: 20px"),
-            ui.input_radio_buttons(
-                "question",
-                "",
-                choices=current_q()["choices"],
-                selected="",
-            ),
-        )
-
-    @output
-    @render.ui
-    def validation():
-        req(input.question())
-        if input.question() == current_q()["answer"]:
-            if q_num() == len(question_keys) - 1:
-                return ui.p("Correct! Quiz complete.")
-            else:
-                return ui.div(
-                    ui.p("Correct!"), ui.input_action_button("next", "Next Question")
-                )
-        return ui.p("Not quite right, try again")
-
-    @reactive.Effect
-    @reactive.event(input.next)
-    def next_question():
-        q_num.set(q_num.get() + 1)
-
-
-app = App(app_ui, server)
-
-
-## file: questions.json
-{"What ui input is used for plots?": {"choices": ["ui.input_plot", "ui.plot_input", "ui.plotInput"], "answer": "ui.input_plot"}, "What rendering decorator is used for images?": {"choices": ["@render.image", "@ui.render.image", "@render.Image"], "answer": "@render.image"}, "What should you use to collect multiple checkbox reponses?": {"choices": ["ui.input.checkbox", "ui.checkbox_group", "ui.radio_buttons"], "answer": "ui.checkbox_group"}}</code></pre>
-</div>
-</div>
 </section>
-<section id="add-an-input" class="level2">
-<h2 class="anchored" data-anchor-id="add-an-input">Add an input</h2>
-<p>In order to create an interactive app, we need to add an input which the user can manipulate. Let’s add a <code>ui.input_slider</code> widget which let the user select the minimum body mass to include in the table. To do this we need to do two things:</p>
-<ol type="1">
-<li>Add the <code>ui.input_slider</code> function to the ui code</li>
-<li>Use the value of that code in the rendering function which generates the table.</li>
-</ol>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Be careful of mutability when manipulating objects in a data frame. Use <code>.copy</code> to make sure that you’re not changing the original object.</p>
-</div>
-</div>
-<pre class="shinylive-python"><code>#| standalone: true
-#| components: [editor, viewer]
-#| layout: horizontal
-#| viewerHeight: 800
-from shiny import App, render, ui
-import pandas as pd
-from pathlib import Path
-
-infile = Path(__file__).parent / "penguins.csv"
-penguins = pd.read_csv(infile)
-
-app_ui = ui.page_fluid(
-    ui.h2("Hello Penguins!"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
-    ),
-    ui.output_data_frame("table"),
-)
-
-
-def server(input, output, session):
-    @output
-    @render.data_frame
-    def table():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        summary = (
-            filtered.set_index("species")
-            .groupby(level="species")
-            .agg({"bill_length": "mean", "bill_depth": "mean"})
-            .reset_index()
-        )
-        return summary
-
-
-app = App(app_ui, server)
-
-
-## file: penguins.csv
-species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
-Adelie,Torgersen,39.1,18.7,181,3750,male,2007
-Adelie,Torgersen,39.5,17.4,186,3800,female,2007
-Adelie,Torgersen,40.3,18,195,3250,female,2007
-Adelie,Torgersen,NA,NA,NA,NA,NA,2007
-Adelie,Torgersen,36.7,19.3,193,3450,female,2007
-Adelie,Torgersen,39.3,20.6,190,3650,male,2007
-Adelie,Torgersen,38.9,17.8,181,3625,female,2007
-Adelie,Torgersen,39.2,19.6,195,4675,male,2007
-Adelie,Torgersen,34.1,18.1,193,3475,NA,2007
-Adelie,Torgersen,42,20.2,190,4250,NA,2007
-Adelie,Torgersen,37.8,17.1,186,3300,NA,2007
-Adelie,Torgersen,37.8,17.3,180,3700,NA,2007
-Adelie,Torgersen,41.1,17.6,182,3200,female,2007
-Adelie,Torgersen,38.6,21.2,191,3800,male,2007
-Adelie,Torgersen,34.6,21.1,198,4400,male,2007
-Adelie,Torgersen,36.6,17.8,185,3700,female,2007
-Adelie,Torgersen,38.7,19,195,3450,female,2007
-Adelie,Torgersen,42.5,20.7,197,4500,male,2007
-Adelie,Torgersen,34.4,18.4,184,3325,female,2007
-Adelie,Torgersen,46,21.5,194,4200,male,2007
-Adelie,Biscoe,37.8,18.3,174,3400,female,2007
-Adelie,Biscoe,37.7,18.7,180,3600,male,2007
-Adelie,Biscoe,35.9,19.2,189,3800,female,2007
-Adelie,Biscoe,38.2,18.1,185,3950,male,2007
-Adelie,Biscoe,38.8,17.2,180,3800,male,2007
-Adelie,Biscoe,35.3,18.9,187,3800,female,2007
-Adelie,Biscoe,40.6,18.6,183,3550,male,2007
-Adelie,Biscoe,40.5,17.9,187,3200,female,2007
-Adelie,Biscoe,37.9,18.6,172,3150,female,2007
-Adelie,Biscoe,40.5,18.9,180,3950,male,2007
-Adelie,Dream,39.5,16.7,178,3250,female,2007
-Adelie,Dream,37.2,18.1,178,3900,male,2007
-Adelie,Dream,39.5,17.8,188,3300,female,2007
-Adelie,Dream,40.9,18.9,184,3900,male,2007
-Adelie,Dream,36.4,17,195,3325,female,2007
-Adelie,Dream,39.2,21.1,196,4150,male,2007
-Adelie,Dream,38.8,20,190,3950,male,2007
-Adelie,Dream,42.2,18.5,180,3550,female,2007
-Adelie,Dream,37.6,19.3,181,3300,female,2007
-Adelie,Dream,39.8,19.1,184,4650,male,2007
-Adelie,Dream,36.5,18,182,3150,female,2007
-Adelie,Dream,40.8,18.4,195,3900,male,2007
-Adelie,Dream,36,18.5,186,3100,female,2007
-Adelie,Dream,44.1,19.7,196,4400,male,2007
-Adelie,Dream,37,16.9,185,3000,female,2007
-Adelie,Dream,39.6,18.8,190,4600,male,2007
-Adelie,Dream,41.1,19,182,3425,male,2007
-Adelie,Dream,37.5,18.9,179,2975,NA,2007
-Adelie,Dream,36,17.9,190,3450,female,2007
-Adelie,Dream,42.3,21.2,191,4150,male,2007
-Adelie,Biscoe,39.6,17.7,186,3500,female,2008
-Adelie,Biscoe,40.1,18.9,188,4300,male,2008
-Adelie,Biscoe,35,17.9,190,3450,female,2008
-Adelie,Biscoe,42,19.5,200,4050,male,2008
-Adelie,Biscoe,34.5,18.1,187,2900,female,2008
-Adelie,Biscoe,41.4,18.6,191,3700,male,2008
-Adelie,Biscoe,39,17.5,186,3550,female,2008
-Adelie,Biscoe,40.6,18.8,193,3800,male,2008
-Adelie,Biscoe,36.5,16.6,181,2850,female,2008
-Adelie,Biscoe,37.6,19.1,194,3750,male,2008
-Adelie,Biscoe,35.7,16.9,185,3150,female,2008
-Adelie,Biscoe,41.3,21.1,195,4400,male,2008
-Adelie,Biscoe,37.6,17,185,3600,female,2008
-Adelie,Biscoe,41.1,18.2,192,4050,male,2008
-Adelie,Biscoe,36.4,17.1,184,2850,female,2008
-Adelie,Biscoe,41.6,18,192,3950,male,2008
-Adelie,Biscoe,35.5,16.2,195,3350,female,2008
-Adelie,Biscoe,41.1,19.1,188,4100,male,2008
-Adelie,Torgersen,35.9,16.6,190,3050,female,2008
-Adelie,Torgersen,41.8,19.4,198,4450,male,2008
-Adelie,Torgersen,33.5,19,190,3600,female,2008
-Adelie,Torgersen,39.7,18.4,190,3900,male,2008
-Adelie,Torgersen,39.6,17.2,196,3550,female,2008
-Adelie,Torgersen,45.8,18.9,197,4150,male,2008
-Adelie,Torgersen,35.5,17.5,190,3700,female,2008
-Adelie,Torgersen,42.8,18.5,195,4250,male,2008
-Adelie,Torgersen,40.9,16.8,191,3700,female,2008
-Adelie,Torgersen,37.2,19.4,184,3900,male,2008
-Adelie,Torgersen,36.2,16.1,187,3550,female,2008
-Adelie,Torgersen,42.1,19.1,195,4000,male,2008
-Adelie,Torgersen,34.6,17.2,189,3200,female,2008
-Adelie,Torgersen,42.9,17.6,196,4700,male,2008
-Adelie,Torgersen,36.7,18.8,187,3800,female,2008
-Adelie,Torgersen,35.1,19.4,193,4200,male,2008
-Adelie,Dream,37.3,17.8,191,3350,female,2008
-Adelie,Dream,41.3,20.3,194,3550,male,2008
-Adelie,Dream,36.3,19.5,190,3800,male,2008
-Adelie,Dream,36.9,18.6,189,3500,female,2008
-Adelie,Dream,38.3,19.2,189,3950,male,2008
-Adelie,Dream,38.9,18.8,190,3600,female,2008
-Adelie,Dream,35.7,18,202,3550,female,2008
-Adelie,Dream,41.1,18.1,205,4300,male,2008
-Adelie,Dream,34,17.1,185,3400,female,2008
-Adelie,Dream,39.6,18.1,186,4450,male,2008
-Adelie,Dream,36.2,17.3,187,3300,female,2008
-Adelie,Dream,40.8,18.9,208,4300,male,2008
-Adelie,Dream,38.1,18.6,190,3700,female,2008
-Adelie,Dream,40.3,18.5,196,4350,male,2008
-Adelie,Dream,33.1,16.1,178,2900,female,2008
-Adelie,Dream,43.2,18.5,192,4100,male,2008
-Adelie,Biscoe,35,17.9,192,3725,female,2009
-Adelie,Biscoe,41,20,203,4725,male,2009
-Adelie,Biscoe,37.7,16,183,3075,female,2009
-Adelie,Biscoe,37.8,20,190,4250,male,2009
-Adelie,Biscoe,37.9,18.6,193,2925,female,2009
-Adelie,Biscoe,39.7,18.9,184,3550,male,2009
-Adelie,Biscoe,38.6,17.2,199,3750,female,2009
-Adelie,Biscoe,38.2,20,190,3900,male,2009
-Adelie,Biscoe,38.1,17,181,3175,female,2009
-Adelie,Biscoe,43.2,19,197,4775,male,2009
-Adelie,Biscoe,38.1,16.5,198,3825,female,2009
-Adelie,Biscoe,45.6,20.3,191,4600,male,2009
-Adelie,Biscoe,39.7,17.7,193,3200,female,2009
-Adelie,Biscoe,42.2,19.5,197,4275,male,2009
-Adelie,Biscoe,39.6,20.7,191,3900,female,2009
-Adelie,Biscoe,42.7,18.3,196,4075,male,2009
-Adelie,Torgersen,38.6,17,188,2900,female,2009
-Adelie,Torgersen,37.3,20.5,199,3775,male,2009
-Adelie,Torgersen,35.7,17,189,3350,female,2009
-Adelie,Torgersen,41.1,18.6,189,3325,male,2009
-Adelie,Torgersen,36.2,17.2,187,3150,female,2009
-Adelie,Torgersen,37.7,19.8,198,3500,male,2009
-Adelie,Torgersen,40.2,17,176,3450,female,2009
-Adelie,Torgersen,41.4,18.5,202,3875,male,2009
-Adelie,Torgersen,35.2,15.9,186,3050,female,2009
-Adelie,Torgersen,40.6,19,199,4000,male,2009
-Adelie,Torgersen,38.8,17.6,191,3275,female,2009
-Adelie,Torgersen,41.5,18.3,195,4300,male,2009
-Adelie,Torgersen,39,17.1,191,3050,female,2009
-Adelie,Torgersen,44.1,18,210,4000,male,2009
-Adelie,Torgersen,38.5,17.9,190,3325,female,2009
-Adelie,Torgersen,43.1,19.2,197,3500,male,2009
-Adelie,Dream,36.8,18.5,193,3500,female,2009
-Adelie,Dream,37.5,18.5,199,4475,male,2009
-Adelie,Dream,38.1,17.6,187,3425,female,2009
-Adelie,Dream,41.1,17.5,190,3900,male,2009
-Adelie,Dream,35.6,17.5,191,3175,female,2009
-Adelie,Dream,40.2,20.1,200,3975,male,2009
-Adelie,Dream,37,16.5,185,3400,female,2009
-Adelie,Dream,39.7,17.9,193,4250,male,2009
-Adelie,Dream,40.2,17.1,193,3400,female,2009
-Adelie,Dream,40.6,17.2,187,3475,male,2009
-Adelie,Dream,32.1,15.5,188,3050,female,2009
-Adelie,Dream,40.7,17,190,3725,male,2009
-Adelie,Dream,37.3,16.8,192,3000,female,2009
-Adelie,Dream,39,18.7,185,3650,male,2009
-Adelie,Dream,39.2,18.6,190,4250,male,2009
-Adelie,Dream,36.6,18.4,184,3475,female,2009
-Adelie,Dream,36,17.8,195,3450,female,2009
-Adelie,Dream,37.8,18.1,193,3750,male,2009
-Adelie,Dream,36,17.1,187,3700,female,2009
-Adelie,Dream,41.5,18.5,201,4000,male,2009
-Gentoo,Biscoe,46.1,13.2,211,4500,female,2007
-Gentoo,Biscoe,50,16.3,230,5700,male,2007
-Gentoo,Biscoe,48.7,14.1,210,4450,female,2007
-Gentoo,Biscoe,50,15.2,218,5700,male,2007
-Gentoo,Biscoe,47.6,14.5,215,5400,male,2007
-Gentoo,Biscoe,46.5,13.5,210,4550,female,2007
-Gentoo,Biscoe,45.4,14.6,211,4800,female,2007
-Gentoo,Biscoe,46.7,15.3,219,5200,male,2007
-Gentoo,Biscoe,43.3,13.4,209,4400,female,2007
-Gentoo,Biscoe,46.8,15.4,215,5150,male,2007
-Gentoo,Biscoe,40.9,13.7,214,4650,female,2007
-Gentoo,Biscoe,49,16.1,216,5550,male,2007
-Gentoo,Biscoe,45.5,13.7,214,4650,female,2007
-Gentoo,Biscoe,48.4,14.6,213,5850,male,2007
-Gentoo,Biscoe,45.8,14.6,210,4200,female,2007
-Gentoo,Biscoe,49.3,15.7,217,5850,male,2007
-Gentoo,Biscoe,42,13.5,210,4150,female,2007
-Gentoo,Biscoe,49.2,15.2,221,6300,male,2007
-Gentoo,Biscoe,46.2,14.5,209,4800,female,2007
-Gentoo,Biscoe,48.7,15.1,222,5350,male,2007
-Gentoo,Biscoe,50.2,14.3,218,5700,male,2007
-Gentoo,Biscoe,45.1,14.5,215,5000,female,2007
-Gentoo,Biscoe,46.5,14.5,213,4400,female,2007
-Gentoo,Biscoe,46.3,15.8,215,5050,male,2007
-Gentoo,Biscoe,42.9,13.1,215,5000,female,2007
-Gentoo,Biscoe,46.1,15.1,215,5100,male,2007
-Gentoo,Biscoe,44.5,14.3,216,4100,NA,2007
-Gentoo,Biscoe,47.8,15,215,5650,male,2007
-Gentoo,Biscoe,48.2,14.3,210,4600,female,2007
-Gentoo,Biscoe,50,15.3,220,5550,male,2007
-Gentoo,Biscoe,47.3,15.3,222,5250,male,2007
-Gentoo,Biscoe,42.8,14.2,209,4700,female,2007
-Gentoo,Biscoe,45.1,14.5,207,5050,female,2007
-Gentoo,Biscoe,59.6,17,230,6050,male,2007
-Gentoo,Biscoe,49.1,14.8,220,5150,female,2008
-Gentoo,Biscoe,48.4,16.3,220,5400,male,2008
-Gentoo,Biscoe,42.6,13.7,213,4950,female,2008
-Gentoo,Biscoe,44.4,17.3,219,5250,male,2008
-Gentoo,Biscoe,44,13.6,208,4350,female,2008
-Gentoo,Biscoe,48.7,15.7,208,5350,male,2008
-Gentoo,Biscoe,42.7,13.7,208,3950,female,2008
-Gentoo,Biscoe,49.6,16,225,5700,male,2008
-Gentoo,Biscoe,45.3,13.7,210,4300,female,2008
-Gentoo,Biscoe,49.6,15,216,4750,male,2008
-Gentoo,Biscoe,50.5,15.9,222,5550,male,2008
-Gentoo,Biscoe,43.6,13.9,217,4900,female,2008
-Gentoo,Biscoe,45.5,13.9,210,4200,female,2008
-Gentoo,Biscoe,50.5,15.9,225,5400,male,2008
-Gentoo,Biscoe,44.9,13.3,213,5100,female,2008
-Gentoo,Biscoe,45.2,15.8,215,5300,male,2008
-Gentoo,Biscoe,46.6,14.2,210,4850,female,2008
-Gentoo,Biscoe,48.5,14.1,220,5300,male,2008
-Gentoo,Biscoe,45.1,14.4,210,4400,female,2008
-Gentoo,Biscoe,50.1,15,225,5000,male,2008
-Gentoo,Biscoe,46.5,14.4,217,4900,female,2008
-Gentoo,Biscoe,45,15.4,220,5050,male,2008
-Gentoo,Biscoe,43.8,13.9,208,4300,female,2008
-Gentoo,Biscoe,45.5,15,220,5000,male,2008
-Gentoo,Biscoe,43.2,14.5,208,4450,female,2008
-Gentoo,Biscoe,50.4,15.3,224,5550,male,2008
-Gentoo,Biscoe,45.3,13.8,208,4200,female,2008
-Gentoo,Biscoe,46.2,14.9,221,5300,male,2008
-Gentoo,Biscoe,45.7,13.9,214,4400,female,2008
-Gentoo,Biscoe,54.3,15.7,231,5650,male,2008
-Gentoo,Biscoe,45.8,14.2,219,4700,female,2008
-Gentoo,Biscoe,49.8,16.8,230,5700,male,2008
-Gentoo,Biscoe,46.2,14.4,214,4650,NA,2008
-Gentoo,Biscoe,49.5,16.2,229,5800,male,2008
-Gentoo,Biscoe,43.5,14.2,220,4700,female,2008
-Gentoo,Biscoe,50.7,15,223,5550,male,2008
-Gentoo,Biscoe,47.7,15,216,4750,female,2008
-Gentoo,Biscoe,46.4,15.6,221,5000,male,2008
-Gentoo,Biscoe,48.2,15.6,221,5100,male,2008
-Gentoo,Biscoe,46.5,14.8,217,5200,female,2008
-Gentoo,Biscoe,46.4,15,216,4700,female,2008
-Gentoo,Biscoe,48.6,16,230,5800,male,2008
-Gentoo,Biscoe,47.5,14.2,209,4600,female,2008
-Gentoo,Biscoe,51.1,16.3,220,6000,male,2008
-Gentoo,Biscoe,45.2,13.8,215,4750,female,2008
-Gentoo,Biscoe,45.2,16.4,223,5950,male,2008
-Gentoo,Biscoe,49.1,14.5,212,4625,female,2009
-Gentoo,Biscoe,52.5,15.6,221,5450,male,2009
-Gentoo,Biscoe,47.4,14.6,212,4725,female,2009
-Gentoo,Biscoe,50,15.9,224,5350,male,2009
-Gentoo,Biscoe,44.9,13.8,212,4750,female,2009
-Gentoo,Biscoe,50.8,17.3,228,5600,male,2009
-Gentoo,Biscoe,43.4,14.4,218,4600,female,2009
-Gentoo,Biscoe,51.3,14.2,218,5300,male,2009
-Gentoo,Biscoe,47.5,14,212,4875,female,2009
-Gentoo,Biscoe,52.1,17,230,5550,male,2009
-Gentoo,Biscoe,47.5,15,218,4950,female,2009
-Gentoo,Biscoe,52.2,17.1,228,5400,male,2009
-Gentoo,Biscoe,45.5,14.5,212,4750,female,2009
-Gentoo,Biscoe,49.5,16.1,224,5650,male,2009
-Gentoo,Biscoe,44.5,14.7,214,4850,female,2009
-Gentoo,Biscoe,50.8,15.7,226,5200,male,2009
-Gentoo,Biscoe,49.4,15.8,216,4925,male,2009
-Gentoo,Biscoe,46.9,14.6,222,4875,female,2009
-Gentoo,Biscoe,48.4,14.4,203,4625,female,2009
-Gentoo,Biscoe,51.1,16.5,225,5250,male,2009
-Gentoo,Biscoe,48.5,15,219,4850,female,2009
-Gentoo,Biscoe,55.9,17,228,5600,male,2009
-Gentoo,Biscoe,47.2,15.5,215,4975,female,2009
-Gentoo,Biscoe,49.1,15,228,5500,male,2009
-Gentoo,Biscoe,47.3,13.8,216,4725,NA,2009
-Gentoo,Biscoe,46.8,16.1,215,5500,male,2009
-Gentoo,Biscoe,41.7,14.7,210,4700,female,2009
-Gentoo,Biscoe,53.4,15.8,219,5500,male,2009
-Gentoo,Biscoe,43.3,14,208,4575,female,2009
-Gentoo,Biscoe,48.1,15.1,209,5500,male,2009
-Gentoo,Biscoe,50.5,15.2,216,5000,female,2009
-Gentoo,Biscoe,49.8,15.9,229,5950,male,2009
-Gentoo,Biscoe,43.5,15.2,213,4650,female,2009
-Gentoo,Biscoe,51.5,16.3,230,5500,male,2009
-Gentoo,Biscoe,46.2,14.1,217,4375,female,2009
-Gentoo,Biscoe,55.1,16,230,5850,male,2009
-Gentoo,Biscoe,44.5,15.7,217,4875,NA,2009
-Gentoo,Biscoe,48.8,16.2,222,6000,male,2009
-Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
-Gentoo,Biscoe,NA,NA,NA,NA,NA,2009
-Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
-Gentoo,Biscoe,50.4,15.7,222,5750,male,2009
-Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
-Gentoo,Biscoe,49.9,16.1,213,5400,male,2009
-Chinstrap,Dream,46.5,17.9,192,3500,female,2007
-Chinstrap,Dream,50,19.5,196,3900,male,2007
-Chinstrap,Dream,51.3,19.2,193,3650,male,2007
-Chinstrap,Dream,45.4,18.7,188,3525,female,2007
-Chinstrap,Dream,52.7,19.8,197,3725,male,2007
-Chinstrap,Dream,45.2,17.8,198,3950,female,2007
-Chinstrap,Dream,46.1,18.2,178,3250,female,2007
-Chinstrap,Dream,51.3,18.2,197,3750,male,2007
-Chinstrap,Dream,46,18.9,195,4150,female,2007
-Chinstrap,Dream,51.3,19.9,198,3700,male,2007
-Chinstrap,Dream,46.6,17.8,193,3800,female,2007
-Chinstrap,Dream,51.7,20.3,194,3775,male,2007
-Chinstrap,Dream,47,17.3,185,3700,female,2007
-Chinstrap,Dream,52,18.1,201,4050,male,2007
-Chinstrap,Dream,45.9,17.1,190,3575,female,2007
-Chinstrap,Dream,50.5,19.6,201,4050,male,2007
-Chinstrap,Dream,50.3,20,197,3300,male,2007
-Chinstrap,Dream,58,17.8,181,3700,female,2007
-Chinstrap,Dream,46.4,18.6,190,3450,female,2007
-Chinstrap,Dream,49.2,18.2,195,4400,male,2007
-Chinstrap,Dream,42.4,17.3,181,3600,female,2007
-Chinstrap,Dream,48.5,17.5,191,3400,male,2007
-Chinstrap,Dream,43.2,16.6,187,2900,female,2007
-Chinstrap,Dream,50.6,19.4,193,3800,male,2007
-Chinstrap,Dream,46.7,17.9,195,3300,female,2007
-Chinstrap,Dream,52,19,197,4150,male,2007
-Chinstrap,Dream,50.5,18.4,200,3400,female,2008
-Chinstrap,Dream,49.5,19,200,3800,male,2008
-Chinstrap,Dream,46.4,17.8,191,3700,female,2008
-Chinstrap,Dream,52.8,20,205,4550,male,2008
-Chinstrap,Dream,40.9,16.6,187,3200,female,2008
-Chinstrap,Dream,54.2,20.8,201,4300,male,2008
-Chinstrap,Dream,42.5,16.7,187,3350,female,2008
-Chinstrap,Dream,51,18.8,203,4100,male,2008
-Chinstrap,Dream,49.7,18.6,195,3600,male,2008
-Chinstrap,Dream,47.5,16.8,199,3900,female,2008
-Chinstrap,Dream,47.6,18.3,195,3850,female,2008
-Chinstrap,Dream,52,20.7,210,4800,male,2008
-Chinstrap,Dream,46.9,16.6,192,2700,female,2008
-Chinstrap,Dream,53.5,19.9,205,4500,male,2008
-Chinstrap,Dream,49,19.5,210,3950,male,2008
-Chinstrap,Dream,46.2,17.5,187,3650,female,2008
-Chinstrap,Dream,50.9,19.1,196,3550,male,2008
-Chinstrap,Dream,45.5,17,196,3500,female,2008
-Chinstrap,Dream,50.9,17.9,196,3675,female,2009
-Chinstrap,Dream,50.8,18.5,201,4450,male,2009
-Chinstrap,Dream,50.1,17.9,190,3400,female,2009
-Chinstrap,Dream,49,19.6,212,4300,male,2009
-Chinstrap,Dream,51.5,18.7,187,3250,male,2009
-Chinstrap,Dream,49.8,17.3,198,3675,female,2009
-Chinstrap,Dream,48.1,16.4,199,3325,female,2009
-Chinstrap,Dream,51.4,19,201,3950,male,2009
-Chinstrap,Dream,45.7,17.3,193,3600,female,2009
-Chinstrap,Dream,50.7,19.7,203,4050,male,2009
-Chinstrap,Dream,42.5,17.3,187,3350,female,2009
-Chinstrap,Dream,52.2,18.8,197,3450,male,2009
-Chinstrap,Dream,45.2,16.6,191,3250,female,2009
-Chinstrap,Dream,49.3,19.9,203,4050,male,2009
-Chinstrap,Dream,50.2,18.8,202,3800,male,2009
-Chinstrap,Dream,45.6,19.4,194,3525,female,2009
-Chinstrap,Dream,51.9,19.5,206,3950,male,2009
-Chinstrap,Dream,46.8,16.5,189,3650,female,2009
-Chinstrap,Dream,45.7,17,195,3650,female,2009
-Chinstrap,Dream,55.8,19.8,207,4000,male,2009
-Chinstrap,Dream,43.5,18.1,202,3400,female,2009
-Chinstrap,Dream,49.6,18.2,193,3775,male,2009
-Chinstrap,Dream,50.8,19,210,4100,male,2009
-Chinstrap,Dream,50.2,18.7,198,3775,female,2009
-</code></pre>
-</section>
-<section id="add-a-plot" class="level2">
-<h2 class="anchored" data-anchor-id="add-a-plot">Add a plot</h2>
-<p>We can add a plot to the app in the same way that we added a table. The steps are: 1) Add <code>ui.output_plot()</code> to the ui 2) Add a function whose name matches the id of the output 3) Decorate that function with <code>@output</code> and <code>@reactive.plot</code></p>
+<section id="table-graph-input-slider" class="level2">
+<h2 class="anchored" data-anchor-id="table-graph-input-slider">1.4-table-graph-input-slider</h2>
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
@@ -1599,461 +1424,75 @@ Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
 </section>
-</section>
-<section id="exercise" class="level1 page-columns page-full">
-<h1>Exercise</h1>
-<ol type="1">
-<li><p>Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there’s a plotting function in <code>plots.py</code> which provides one implementation.</p></li>
-<li><p>Add a checkbox which adds a line of best fit to the plot.</p></li>
-</ol>
-<div class="column-screen">
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<section id="css" class="level2">
+<h2 class="anchored" data-anchor-id="css">3.3-css</h2>
 <pre class="shinylive-python"><code>#| standalone: true
-#| components: [viewer]
+#| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
-from shiny import App, render, ui
-import pandas as pd
 from pathlib import Path
-from plots import dist_plot, scatter_plot
 
-infile = Path(__file__).parent / "penguins.csv"
-penguins = pd.read_csv(infile)
+from shiny import App, Inputs, Outputs, Session, render, ui
+
+css_path = Path(__file__).parent / "www" / "my_styles.css"
 
 app_ui = ui.page_fluid(
-    ui.h2("Hello Penguins!"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
+    {"class": "blue-body"},
+    ui.include_css(css_path),
+    ui.input_slider("num", "Number:", min=10, max=100, value=30),
+    ui.div(
+        {"class": "bold-output;"},
+        ui.output_text("slider_val"),
     ),
-    ui.output_data_frame("table"),
-    ui.output_plot("dist"),
-    ui.input_checkbox("trend", "Add trendline"),
-    ui.output_plot("scatter"),
 )
 
 
-def server(input, output, session):
+def server(input: Inputs, output: Outputs, session: Session):
     @output
-    @render.data_frame
-    def table():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        summary = (
-            filtered.set_index("species")
-            .groupby(level="species")
-            .agg({"bill_length": "mean", "bill_depth": "mean"})
-            .reset_index()
-        )
-        return summary
-
-    @output
-    @render.plot
-    def dist():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        return dist_plot(filtered)
-
-    @output
-    @render.plot
-    def scatter():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        return scatter_plot(filtered, input.trend())
+    @render.text
+    def slider_val():
+        return f"{input.num()}"
 
 
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+## file: www/my_styles.css
+.blue-body {
+    background-color: rgba(0, 128, 255, 0.5);
+}
+
+.bold-output {
+    font-weight: bold;
+}</code></pre>
+</section>
+<section id="basic-app" class="level2">
+<h2 class="anchored" data-anchor-id="basic-app">1.0-basic-app</h2>
+<pre class="shinylive-python"><code>#| standalone: true
+#| components: [editor, viewer]
+#| layout: horizontal
+#| viewerHeight: 800
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.h2("Hello Shiny!"),
+    ui.input_slider("n", "N", 0, 100, 20),
+    ui.output_text_verbatim("txt"),
+)
 
 
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
+def server(input, output, session):
+    @output
+    @render.text
+    def txt():
+        return f"n*2 is {input.n() * 2}"
 
 
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
-## file: penguins.csv
-species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
-Adelie,Torgersen,39.1,18.7,181,3750,male,2007
-Adelie,Torgersen,39.5,17.4,186,3800,female,2007
-Adelie,Torgersen,40.3,18,195,3250,female,2007
-Adelie,Torgersen,NA,NA,NA,NA,NA,2007
-Adelie,Torgersen,36.7,19.3,193,3450,female,2007
-Adelie,Torgersen,39.3,20.6,190,3650,male,2007
-Adelie,Torgersen,38.9,17.8,181,3625,female,2007
-Adelie,Torgersen,39.2,19.6,195,4675,male,2007
-Adelie,Torgersen,34.1,18.1,193,3475,NA,2007
-Adelie,Torgersen,42,20.2,190,4250,NA,2007
-Adelie,Torgersen,37.8,17.1,186,3300,NA,2007
-Adelie,Torgersen,37.8,17.3,180,3700,NA,2007
-Adelie,Torgersen,41.1,17.6,182,3200,female,2007
-Adelie,Torgersen,38.6,21.2,191,3800,male,2007
-Adelie,Torgersen,34.6,21.1,198,4400,male,2007
-Adelie,Torgersen,36.6,17.8,185,3700,female,2007
-Adelie,Torgersen,38.7,19,195,3450,female,2007
-Adelie,Torgersen,42.5,20.7,197,4500,male,2007
-Adelie,Torgersen,34.4,18.4,184,3325,female,2007
-Adelie,Torgersen,46,21.5,194,4200,male,2007
-Adelie,Biscoe,37.8,18.3,174,3400,female,2007
-Adelie,Biscoe,37.7,18.7,180,3600,male,2007
-Adelie,Biscoe,35.9,19.2,189,3800,female,2007
-Adelie,Biscoe,38.2,18.1,185,3950,male,2007
-Adelie,Biscoe,38.8,17.2,180,3800,male,2007
-Adelie,Biscoe,35.3,18.9,187,3800,female,2007
-Adelie,Biscoe,40.6,18.6,183,3550,male,2007
-Adelie,Biscoe,40.5,17.9,187,3200,female,2007
-Adelie,Biscoe,37.9,18.6,172,3150,female,2007
-Adelie,Biscoe,40.5,18.9,180,3950,male,2007
-Adelie,Dream,39.5,16.7,178,3250,female,2007
-Adelie,Dream,37.2,18.1,178,3900,male,2007
-Adelie,Dream,39.5,17.8,188,3300,female,2007
-Adelie,Dream,40.9,18.9,184,3900,male,2007
-Adelie,Dream,36.4,17,195,3325,female,2007
-Adelie,Dream,39.2,21.1,196,4150,male,2007
-Adelie,Dream,38.8,20,190,3950,male,2007
-Adelie,Dream,42.2,18.5,180,3550,female,2007
-Adelie,Dream,37.6,19.3,181,3300,female,2007
-Adelie,Dream,39.8,19.1,184,4650,male,2007
-Adelie,Dream,36.5,18,182,3150,female,2007
-Adelie,Dream,40.8,18.4,195,3900,male,2007
-Adelie,Dream,36,18.5,186,3100,female,2007
-Adelie,Dream,44.1,19.7,196,4400,male,2007
-Adelie,Dream,37,16.9,185,3000,female,2007
-Adelie,Dream,39.6,18.8,190,4600,male,2007
-Adelie,Dream,41.1,19,182,3425,male,2007
-Adelie,Dream,37.5,18.9,179,2975,NA,2007
-Adelie,Dream,36,17.9,190,3450,female,2007
-Adelie,Dream,42.3,21.2,191,4150,male,2007
-Adelie,Biscoe,39.6,17.7,186,3500,female,2008
-Adelie,Biscoe,40.1,18.9,188,4300,male,2008
-Adelie,Biscoe,35,17.9,190,3450,female,2008
-Adelie,Biscoe,42,19.5,200,4050,male,2008
-Adelie,Biscoe,34.5,18.1,187,2900,female,2008
-Adelie,Biscoe,41.4,18.6,191,3700,male,2008
-Adelie,Biscoe,39,17.5,186,3550,female,2008
-Adelie,Biscoe,40.6,18.8,193,3800,male,2008
-Adelie,Biscoe,36.5,16.6,181,2850,female,2008
-Adelie,Biscoe,37.6,19.1,194,3750,male,2008
-Adelie,Biscoe,35.7,16.9,185,3150,female,2008
-Adelie,Biscoe,41.3,21.1,195,4400,male,2008
-Adelie,Biscoe,37.6,17,185,3600,female,2008
-Adelie,Biscoe,41.1,18.2,192,4050,male,2008
-Adelie,Biscoe,36.4,17.1,184,2850,female,2008
-Adelie,Biscoe,41.6,18,192,3950,male,2008
-Adelie,Biscoe,35.5,16.2,195,3350,female,2008
-Adelie,Biscoe,41.1,19.1,188,4100,male,2008
-Adelie,Torgersen,35.9,16.6,190,3050,female,2008
-Adelie,Torgersen,41.8,19.4,198,4450,male,2008
-Adelie,Torgersen,33.5,19,190,3600,female,2008
-Adelie,Torgersen,39.7,18.4,190,3900,male,2008
-Adelie,Torgersen,39.6,17.2,196,3550,female,2008
-Adelie,Torgersen,45.8,18.9,197,4150,male,2008
-Adelie,Torgersen,35.5,17.5,190,3700,female,2008
-Adelie,Torgersen,42.8,18.5,195,4250,male,2008
-Adelie,Torgersen,40.9,16.8,191,3700,female,2008
-Adelie,Torgersen,37.2,19.4,184,3900,male,2008
-Adelie,Torgersen,36.2,16.1,187,3550,female,2008
-Adelie,Torgersen,42.1,19.1,195,4000,male,2008
-Adelie,Torgersen,34.6,17.2,189,3200,female,2008
-Adelie,Torgersen,42.9,17.6,196,4700,male,2008
-Adelie,Torgersen,36.7,18.8,187,3800,female,2008
-Adelie,Torgersen,35.1,19.4,193,4200,male,2008
-Adelie,Dream,37.3,17.8,191,3350,female,2008
-Adelie,Dream,41.3,20.3,194,3550,male,2008
-Adelie,Dream,36.3,19.5,190,3800,male,2008
-Adelie,Dream,36.9,18.6,189,3500,female,2008
-Adelie,Dream,38.3,19.2,189,3950,male,2008
-Adelie,Dream,38.9,18.8,190,3600,female,2008
-Adelie,Dream,35.7,18,202,3550,female,2008
-Adelie,Dream,41.1,18.1,205,4300,male,2008
-Adelie,Dream,34,17.1,185,3400,female,2008
-Adelie,Dream,39.6,18.1,186,4450,male,2008
-Adelie,Dream,36.2,17.3,187,3300,female,2008
-Adelie,Dream,40.8,18.9,208,4300,male,2008
-Adelie,Dream,38.1,18.6,190,3700,female,2008
-Adelie,Dream,40.3,18.5,196,4350,male,2008
-Adelie,Dream,33.1,16.1,178,2900,female,2008
-Adelie,Dream,43.2,18.5,192,4100,male,2008
-Adelie,Biscoe,35,17.9,192,3725,female,2009
-Adelie,Biscoe,41,20,203,4725,male,2009
-Adelie,Biscoe,37.7,16,183,3075,female,2009
-Adelie,Biscoe,37.8,20,190,4250,male,2009
-Adelie,Biscoe,37.9,18.6,193,2925,female,2009
-Adelie,Biscoe,39.7,18.9,184,3550,male,2009
-Adelie,Biscoe,38.6,17.2,199,3750,female,2009
-Adelie,Biscoe,38.2,20,190,3900,male,2009
-Adelie,Biscoe,38.1,17,181,3175,female,2009
-Adelie,Biscoe,43.2,19,197,4775,male,2009
-Adelie,Biscoe,38.1,16.5,198,3825,female,2009
-Adelie,Biscoe,45.6,20.3,191,4600,male,2009
-Adelie,Biscoe,39.7,17.7,193,3200,female,2009
-Adelie,Biscoe,42.2,19.5,197,4275,male,2009
-Adelie,Biscoe,39.6,20.7,191,3900,female,2009
-Adelie,Biscoe,42.7,18.3,196,4075,male,2009
-Adelie,Torgersen,38.6,17,188,2900,female,2009
-Adelie,Torgersen,37.3,20.5,199,3775,male,2009
-Adelie,Torgersen,35.7,17,189,3350,female,2009
-Adelie,Torgersen,41.1,18.6,189,3325,male,2009
-Adelie,Torgersen,36.2,17.2,187,3150,female,2009
-Adelie,Torgersen,37.7,19.8,198,3500,male,2009
-Adelie,Torgersen,40.2,17,176,3450,female,2009
-Adelie,Torgersen,41.4,18.5,202,3875,male,2009
-Adelie,Torgersen,35.2,15.9,186,3050,female,2009
-Adelie,Torgersen,40.6,19,199,4000,male,2009
-Adelie,Torgersen,38.8,17.6,191,3275,female,2009
-Adelie,Torgersen,41.5,18.3,195,4300,male,2009
-Adelie,Torgersen,39,17.1,191,3050,female,2009
-Adelie,Torgersen,44.1,18,210,4000,male,2009
-Adelie,Torgersen,38.5,17.9,190,3325,female,2009
-Adelie,Torgersen,43.1,19.2,197,3500,male,2009
-Adelie,Dream,36.8,18.5,193,3500,female,2009
-Adelie,Dream,37.5,18.5,199,4475,male,2009
-Adelie,Dream,38.1,17.6,187,3425,female,2009
-Adelie,Dream,41.1,17.5,190,3900,male,2009
-Adelie,Dream,35.6,17.5,191,3175,female,2009
-Adelie,Dream,40.2,20.1,200,3975,male,2009
-Adelie,Dream,37,16.5,185,3400,female,2009
-Adelie,Dream,39.7,17.9,193,4250,male,2009
-Adelie,Dream,40.2,17.1,193,3400,female,2009
-Adelie,Dream,40.6,17.2,187,3475,male,2009
-Adelie,Dream,32.1,15.5,188,3050,female,2009
-Adelie,Dream,40.7,17,190,3725,male,2009
-Adelie,Dream,37.3,16.8,192,3000,female,2009
-Adelie,Dream,39,18.7,185,3650,male,2009
-Adelie,Dream,39.2,18.6,190,4250,male,2009
-Adelie,Dream,36.6,18.4,184,3475,female,2009
-Adelie,Dream,36,17.8,195,3450,female,2009
-Adelie,Dream,37.8,18.1,193,3750,male,2009
-Adelie,Dream,36,17.1,187,3700,female,2009
-Adelie,Dream,41.5,18.5,201,4000,male,2009
-Gentoo,Biscoe,46.1,13.2,211,4500,female,2007
-Gentoo,Biscoe,50,16.3,230,5700,male,2007
-Gentoo,Biscoe,48.7,14.1,210,4450,female,2007
-Gentoo,Biscoe,50,15.2,218,5700,male,2007
-Gentoo,Biscoe,47.6,14.5,215,5400,male,2007
-Gentoo,Biscoe,46.5,13.5,210,4550,female,2007
-Gentoo,Biscoe,45.4,14.6,211,4800,female,2007
-Gentoo,Biscoe,46.7,15.3,219,5200,male,2007
-Gentoo,Biscoe,43.3,13.4,209,4400,female,2007
-Gentoo,Biscoe,46.8,15.4,215,5150,male,2007
-Gentoo,Biscoe,40.9,13.7,214,4650,female,2007
-Gentoo,Biscoe,49,16.1,216,5550,male,2007
-Gentoo,Biscoe,45.5,13.7,214,4650,female,2007
-Gentoo,Biscoe,48.4,14.6,213,5850,male,2007
-Gentoo,Biscoe,45.8,14.6,210,4200,female,2007
-Gentoo,Biscoe,49.3,15.7,217,5850,male,2007
-Gentoo,Biscoe,42,13.5,210,4150,female,2007
-Gentoo,Biscoe,49.2,15.2,221,6300,male,2007
-Gentoo,Biscoe,46.2,14.5,209,4800,female,2007
-Gentoo,Biscoe,48.7,15.1,222,5350,male,2007
-Gentoo,Biscoe,50.2,14.3,218,5700,male,2007
-Gentoo,Biscoe,45.1,14.5,215,5000,female,2007
-Gentoo,Biscoe,46.5,14.5,213,4400,female,2007
-Gentoo,Biscoe,46.3,15.8,215,5050,male,2007
-Gentoo,Biscoe,42.9,13.1,215,5000,female,2007
-Gentoo,Biscoe,46.1,15.1,215,5100,male,2007
-Gentoo,Biscoe,44.5,14.3,216,4100,NA,2007
-Gentoo,Biscoe,47.8,15,215,5650,male,2007
-Gentoo,Biscoe,48.2,14.3,210,4600,female,2007
-Gentoo,Biscoe,50,15.3,220,5550,male,2007
-Gentoo,Biscoe,47.3,15.3,222,5250,male,2007
-Gentoo,Biscoe,42.8,14.2,209,4700,female,2007
-Gentoo,Biscoe,45.1,14.5,207,5050,female,2007
-Gentoo,Biscoe,59.6,17,230,6050,male,2007
-Gentoo,Biscoe,49.1,14.8,220,5150,female,2008
-Gentoo,Biscoe,48.4,16.3,220,5400,male,2008
-Gentoo,Biscoe,42.6,13.7,213,4950,female,2008
-Gentoo,Biscoe,44.4,17.3,219,5250,male,2008
-Gentoo,Biscoe,44,13.6,208,4350,female,2008
-Gentoo,Biscoe,48.7,15.7,208,5350,male,2008
-Gentoo,Biscoe,42.7,13.7,208,3950,female,2008
-Gentoo,Biscoe,49.6,16,225,5700,male,2008
-Gentoo,Biscoe,45.3,13.7,210,4300,female,2008
-Gentoo,Biscoe,49.6,15,216,4750,male,2008
-Gentoo,Biscoe,50.5,15.9,222,5550,male,2008
-Gentoo,Biscoe,43.6,13.9,217,4900,female,2008
-Gentoo,Biscoe,45.5,13.9,210,4200,female,2008
-Gentoo,Biscoe,50.5,15.9,225,5400,male,2008
-Gentoo,Biscoe,44.9,13.3,213,5100,female,2008
-Gentoo,Biscoe,45.2,15.8,215,5300,male,2008
-Gentoo,Biscoe,46.6,14.2,210,4850,female,2008
-Gentoo,Biscoe,48.5,14.1,220,5300,male,2008
-Gentoo,Biscoe,45.1,14.4,210,4400,female,2008
-Gentoo,Biscoe,50.1,15,225,5000,male,2008
-Gentoo,Biscoe,46.5,14.4,217,4900,female,2008
-Gentoo,Biscoe,45,15.4,220,5050,male,2008
-Gentoo,Biscoe,43.8,13.9,208,4300,female,2008
-Gentoo,Biscoe,45.5,15,220,5000,male,2008
-Gentoo,Biscoe,43.2,14.5,208,4450,female,2008
-Gentoo,Biscoe,50.4,15.3,224,5550,male,2008
-Gentoo,Biscoe,45.3,13.8,208,4200,female,2008
-Gentoo,Biscoe,46.2,14.9,221,5300,male,2008
-Gentoo,Biscoe,45.7,13.9,214,4400,female,2008
-Gentoo,Biscoe,54.3,15.7,231,5650,male,2008
-Gentoo,Biscoe,45.8,14.2,219,4700,female,2008
-Gentoo,Biscoe,49.8,16.8,230,5700,male,2008
-Gentoo,Biscoe,46.2,14.4,214,4650,NA,2008
-Gentoo,Biscoe,49.5,16.2,229,5800,male,2008
-Gentoo,Biscoe,43.5,14.2,220,4700,female,2008
-Gentoo,Biscoe,50.7,15,223,5550,male,2008
-Gentoo,Biscoe,47.7,15,216,4750,female,2008
-Gentoo,Biscoe,46.4,15.6,221,5000,male,2008
-Gentoo,Biscoe,48.2,15.6,221,5100,male,2008
-Gentoo,Biscoe,46.5,14.8,217,5200,female,2008
-Gentoo,Biscoe,46.4,15,216,4700,female,2008
-Gentoo,Biscoe,48.6,16,230,5800,male,2008
-Gentoo,Biscoe,47.5,14.2,209,4600,female,2008
-Gentoo,Biscoe,51.1,16.3,220,6000,male,2008
-Gentoo,Biscoe,45.2,13.8,215,4750,female,2008
-Gentoo,Biscoe,45.2,16.4,223,5950,male,2008
-Gentoo,Biscoe,49.1,14.5,212,4625,female,2009
-Gentoo,Biscoe,52.5,15.6,221,5450,male,2009
-Gentoo,Biscoe,47.4,14.6,212,4725,female,2009
-Gentoo,Biscoe,50,15.9,224,5350,male,2009
-Gentoo,Biscoe,44.9,13.8,212,4750,female,2009
-Gentoo,Biscoe,50.8,17.3,228,5600,male,2009
-Gentoo,Biscoe,43.4,14.4,218,4600,female,2009
-Gentoo,Biscoe,51.3,14.2,218,5300,male,2009
-Gentoo,Biscoe,47.5,14,212,4875,female,2009
-Gentoo,Biscoe,52.1,17,230,5550,male,2009
-Gentoo,Biscoe,47.5,15,218,4950,female,2009
-Gentoo,Biscoe,52.2,17.1,228,5400,male,2009
-Gentoo,Biscoe,45.5,14.5,212,4750,female,2009
-Gentoo,Biscoe,49.5,16.1,224,5650,male,2009
-Gentoo,Biscoe,44.5,14.7,214,4850,female,2009
-Gentoo,Biscoe,50.8,15.7,226,5200,male,2009
-Gentoo,Biscoe,49.4,15.8,216,4925,male,2009
-Gentoo,Biscoe,46.9,14.6,222,4875,female,2009
-Gentoo,Biscoe,48.4,14.4,203,4625,female,2009
-Gentoo,Biscoe,51.1,16.5,225,5250,male,2009
-Gentoo,Biscoe,48.5,15,219,4850,female,2009
-Gentoo,Biscoe,55.9,17,228,5600,male,2009
-Gentoo,Biscoe,47.2,15.5,215,4975,female,2009
-Gentoo,Biscoe,49.1,15,228,5500,male,2009
-Gentoo,Biscoe,47.3,13.8,216,4725,NA,2009
-Gentoo,Biscoe,46.8,16.1,215,5500,male,2009
-Gentoo,Biscoe,41.7,14.7,210,4700,female,2009
-Gentoo,Biscoe,53.4,15.8,219,5500,male,2009
-Gentoo,Biscoe,43.3,14,208,4575,female,2009
-Gentoo,Biscoe,48.1,15.1,209,5500,male,2009
-Gentoo,Biscoe,50.5,15.2,216,5000,female,2009
-Gentoo,Biscoe,49.8,15.9,229,5950,male,2009
-Gentoo,Biscoe,43.5,15.2,213,4650,female,2009
-Gentoo,Biscoe,51.5,16.3,230,5500,male,2009
-Gentoo,Biscoe,46.2,14.1,217,4375,female,2009
-Gentoo,Biscoe,55.1,16,230,5850,male,2009
-Gentoo,Biscoe,44.5,15.7,217,4875,NA,2009
-Gentoo,Biscoe,48.8,16.2,222,6000,male,2009
-Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
-Gentoo,Biscoe,NA,NA,NA,NA,NA,2009
-Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
-Gentoo,Biscoe,50.4,15.7,222,5750,male,2009
-Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
-Gentoo,Biscoe,49.9,16.1,213,5400,male,2009
-Chinstrap,Dream,46.5,17.9,192,3500,female,2007
-Chinstrap,Dream,50,19.5,196,3900,male,2007
-Chinstrap,Dream,51.3,19.2,193,3650,male,2007
-Chinstrap,Dream,45.4,18.7,188,3525,female,2007
-Chinstrap,Dream,52.7,19.8,197,3725,male,2007
-Chinstrap,Dream,45.2,17.8,198,3950,female,2007
-Chinstrap,Dream,46.1,18.2,178,3250,female,2007
-Chinstrap,Dream,51.3,18.2,197,3750,male,2007
-Chinstrap,Dream,46,18.9,195,4150,female,2007
-Chinstrap,Dream,51.3,19.9,198,3700,male,2007
-Chinstrap,Dream,46.6,17.8,193,3800,female,2007
-Chinstrap,Dream,51.7,20.3,194,3775,male,2007
-Chinstrap,Dream,47,17.3,185,3700,female,2007
-Chinstrap,Dream,52,18.1,201,4050,male,2007
-Chinstrap,Dream,45.9,17.1,190,3575,female,2007
-Chinstrap,Dream,50.5,19.6,201,4050,male,2007
-Chinstrap,Dream,50.3,20,197,3300,male,2007
-Chinstrap,Dream,58,17.8,181,3700,female,2007
-Chinstrap,Dream,46.4,18.6,190,3450,female,2007
-Chinstrap,Dream,49.2,18.2,195,4400,male,2007
-Chinstrap,Dream,42.4,17.3,181,3600,female,2007
-Chinstrap,Dream,48.5,17.5,191,3400,male,2007
-Chinstrap,Dream,43.2,16.6,187,2900,female,2007
-Chinstrap,Dream,50.6,19.4,193,3800,male,2007
-Chinstrap,Dream,46.7,17.9,195,3300,female,2007
-Chinstrap,Dream,52,19,197,4150,male,2007
-Chinstrap,Dream,50.5,18.4,200,3400,female,2008
-Chinstrap,Dream,49.5,19,200,3800,male,2008
-Chinstrap,Dream,46.4,17.8,191,3700,female,2008
-Chinstrap,Dream,52.8,20,205,4550,male,2008
-Chinstrap,Dream,40.9,16.6,187,3200,female,2008
-Chinstrap,Dream,54.2,20.8,201,4300,male,2008
-Chinstrap,Dream,42.5,16.7,187,3350,female,2008
-Chinstrap,Dream,51,18.8,203,4100,male,2008
-Chinstrap,Dream,49.7,18.6,195,3600,male,2008
-Chinstrap,Dream,47.5,16.8,199,3900,female,2008
-Chinstrap,Dream,47.6,18.3,195,3850,female,2008
-Chinstrap,Dream,52,20.7,210,4800,male,2008
-Chinstrap,Dream,46.9,16.6,192,2700,female,2008
-Chinstrap,Dream,53.5,19.9,205,4500,male,2008
-Chinstrap,Dream,49,19.5,210,3950,male,2008
-Chinstrap,Dream,46.2,17.5,187,3650,female,2008
-Chinstrap,Dream,50.9,19.1,196,3550,male,2008
-Chinstrap,Dream,45.5,17,196,3500,female,2008
-Chinstrap,Dream,50.9,17.9,196,3675,female,2009
-Chinstrap,Dream,50.8,18.5,201,4450,male,2009
-Chinstrap,Dream,50.1,17.9,190,3400,female,2009
-Chinstrap,Dream,49,19.6,212,4300,male,2009
-Chinstrap,Dream,51.5,18.7,187,3250,male,2009
-Chinstrap,Dream,49.8,17.3,198,3675,female,2009
-Chinstrap,Dream,48.1,16.4,199,3325,female,2009
-Chinstrap,Dream,51.4,19,201,3950,male,2009
-Chinstrap,Dream,45.7,17.3,193,3600,female,2009
-Chinstrap,Dream,50.7,19.7,203,4050,male,2009
-Chinstrap,Dream,42.5,17.3,187,3350,female,2009
-Chinstrap,Dream,52.2,18.8,197,3450,male,2009
-Chinstrap,Dream,45.2,16.6,191,3250,female,2009
-Chinstrap,Dream,49.3,19.9,203,4050,male,2009
-Chinstrap,Dream,50.2,18.8,202,3800,male,2009
-Chinstrap,Dream,45.6,19.4,194,3525,female,2009
-Chinstrap,Dream,51.9,19.5,206,3950,male,2009
-Chinstrap,Dream,46.8,16.5,189,3650,female,2009
-Chinstrap,Dream,45.7,17,195,3650,female,2009
-Chinstrap,Dream,55.8,19.8,207,4000,male,2009
-Chinstrap,Dream,43.5,18.1,202,3400,female,2009
-Chinstrap,Dream,49.6,18.2,193,3775,male,2009
-Chinstrap,Dream,50.8,19,210,4100,male,2009
-Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+app = App(app_ui, server)
 </code></pre>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+</section>
+<section id="table-summary" class="level2">
+<h2 class="anchored" data-anchor-id="table-summary">1.2-table-summary</h2>
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
@@ -2061,22 +1500,13 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 from shiny import App, render, ui
 import pandas as pd
 from pathlib import Path
-from plots import dist_plot
 
 infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
 
 app_ui = ui.page_fluid(
     ui.h2("Hello Penguins!"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
-    ),
     ui.output_data_frame("table"),
-    ui.output_plot("dist"),
 )
 
 
@@ -2084,59 +1514,17 @@ def server(input, output, session):
     @output
     @render.data_frame
     def table():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
         summary = (
-            filtered.set_index("species")
+            penguins.copy()
+            .set_index("species")
             .groupby(level="species")
             .agg({"bill_length": "mean", "bill_depth": "mean"})
             .reset_index()
         )
         return summary
 
-    @output
-    @render.plot
-    def dist():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        return dist_plot(filtered)
-
 
 app = App(app_ui, server)
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
 
 
 ## file: penguins.csv
@@ -2486,8 +1874,9 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-</div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+</section>
+<section id="table-input-slider" class="level2">
+<h2 class="anchored" data-anchor-id="table-input-slider">1.3-table-input-slider</h2>
 <pre class="shinylive-python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
@@ -2495,7 +1884,6 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 from shiny import App, render, ui
 import pandas as pd
 from pathlib import Path
-from plots import dist_plot, scatter_plot
 
 infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
@@ -2510,9 +1898,6 @@ app_ui = ui.page_fluid(
         6000,
     ),
     ui.output_data_frame("table"),
-    ui.output_plot("dist"),
-    ui.input_checkbox("trend", "Add trendline"),
-    ui.output_plot("scatter"),
 )
 
 
@@ -2530,56 +1915,8 @@ def server(input, output, session):
         )
         return summary
 
-    @output
-    @render.plot
-    def dist():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        return dist_plot(filtered)
-
-    @output
-    @render.plot
-    def scatter():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] &lt; input.mass()]
-        return scatter_plot(filtered, input.trend())
-
 
 app = App(app_ui, server)
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
 
 
 ## file: penguins.csv
@@ -2929,15 +2266,6 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="summary" class="level1">
-<h1>Summary</h1>
-<p>In this section you learned the three main things you need to do to get your Shiny app to run: - Add inputs and outputs to the UI - Add server functions which are decorated with <span class="citation" data-cites="output">@output</span> and <span class="citation" data-cites="render">@render</span> - Refer to inputs within server funtions with <code>input.&lt;id&gt;()</code></p>
-<p>Next we’ll learn what Shiny does to make this all work.</p>
 
 
 </section>
@@ -3117,90 +2445,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-      // Handle positioning of the toggle
-      window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-      for (let i=0; i<annoteTargets.length; i++) {
-        const annoteTarget = annoteTargets[i];
-        const targetCell = annoteTarget.getAttribute("data-target-cell");
-        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-        const contentFn = () => {
-          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          if (content) {
-            const tipContent = content.cloneNode(true);
-            tipContent.classList.add("code-annotation-tip-content");
-            return tipContent.outerHTML;
-          }
-        }
-        const config = {
-          allowHTML: true,
-          content: contentFn,
-          onShow: (instance) => {
-            selectCodeLines(instance.reference);
-            instance.reference.classList.add('code-annotation-active');
-            window.tippy.hideAll();
-          },
-          onHide: (instance) => {
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
             unselectCodeLines();
-            instance.reference.classList.remove('code-annotation-active');
-          },
-          maxWidth: 300,
-          delay: [50, 0],
-          duration: [200, 0],
-          offset: [5, 10],
-          arrow: true,
-          appendTo: function(el) {
-            return el.parentElement.parentElement.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'quarto',
-          placement: 'right',
-          popperOptions: {
-            modifiers: [
-            {
-              name: 'flip',
-              options: {
-                flipVariations: false, // true by default
-                allowedAutoPlacements: ['right'],
-                fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
-              },
-            },
-            {
-              name: 'preventOverflow',
-              options: {
-                mainAxis: false,
-                altAxis: false
-              }
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
             }
-            ]        
-          }      
-        };
-        window.tippy(annoteTarget, config); 
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
