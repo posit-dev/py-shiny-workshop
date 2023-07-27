@@ -7,6 +7,7 @@ website:
     contents:
       - getting-started.qmd
       - reactivity.qmd
+      - reactive-side-effects.qmd
   navbar:
     tools: 
       - icon: github
