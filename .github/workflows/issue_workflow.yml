@@ -17,7 +17,7 @@ jobs:
             | jq -r '.permission' | grep -q 'admin' && echo 'true' || echo 'false')"
 
       - name: Apply "needs triage" label to issues created by non-maintainers
-        if: steps.check_maintainer.outputs.is_maintainer == 'user'
+        if: steps.check_maintainer.outputs.is_maintainer == 'false'
         uses: actions/github-script@v6
         with:
           script: |
@@ -28,9 +28,20 @@ jobs:
               labels: ["needs-triage"]
             })
 
+      - name: Apply "needs triage" label to issues created by non-maintainers
+        if: steps.check_maintainer.outputs.is_maintainer == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["maintainer-issue"]
+            })
 
       - name: Add issue to project for issues created by maintainers
-        if: steps.check_maintainer.outputs.is_maintainer == 'organization'
+        if: steps.check_maintainer.outputs.is_maintainer == 'true'
         uses: actions/add-to-project@v0.4.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
