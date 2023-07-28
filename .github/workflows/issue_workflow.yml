@@ -15,8 +15,16 @@ jobs:
 
       - name: Apply "needs triage" label to issues created by non-maintainers
         if: steps.check_maintainer.outputs.is_maintainer == 'user'
-        run: |
-          gh issue add-label "${{ github.event.issue.number }}" "needs triage"
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["needs-triage"]
+            })
+
 
       - name: Add issue to project for issues created by maintainers
         if: steps.check_maintainer.outputs.is_maintainer == 'organization'
