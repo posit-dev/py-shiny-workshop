@@ -12,13 +12,13 @@ from helpers import include_shiny_folder, problem_tabs
 ```
 
 In the last section we built a simple shiny app which allowed the user to filter a dataframe and display two plots.
-One thing you might notice about the code which genrated this application is that while we specify _what_ should happen in response to a user's action, we don't actually specify _when_ it should happen. 
-We don't have anything like cllback functions which define when a calculation should be run, so how does Shiny know when to run the code to keep everything up to date?
+One thing you might notice about the code which generated this application is that while we specify _what_ should happen in response to a user's action, we don't actually specify _when_ it should happen. 
+We don't have anything like callback functions which define when a calculation should be run, so how does Shiny know when to run the code to keep everything up to date?
 
 Shiny is different from many other frameworks because it is declarative. 
 Instead of specifying when code should run, you specify recipes for creating the output you want to run, and then leave it up to Shiny to figure out when to rerun them. 
-This greatly simplifies application develpment because managing interaction is the most difficult part of web development, and for the most part Shiny will do a good job managing interaciton.
-Shiny does this by inferring a **reactive computation graph** for your application and reredenering downstream elements only if the upstream elements change.
+This greatly simplifies application develpment because managing interaction is the most difficult part of web development, and for the most part Shiny will do a good job managing interaction.
+Shiny does this by inferring a **reactive computation graph** (a graph of what depends on what) for your application and rerendering downstream elements only if the upstream elements change.
 
 This pattern leads to two main benefits for Shiny users:
 
@@ -29,7 +29,7 @@ This pattern leads to two main benefits for Shiny users:
 Let's draw the reactive graph for the application from the previous lesson. 
 This app has two inputs, and three outputs, but the checkbox to add a trendline is only used by one of the outputs.
 
-For the purposes of this course we're going to draw this as a top down directed acyclic graph (DAG) and put them to the right fo the app:
+For the purposes of this course, we'll put the computation graphs to the right of the app. We will use rectangles to describe inputs and circles to describe outputs.
 
 :::: {.grid .column-screen-inset}
 ::: {.g-col-12 .g-col-md-9}
@@ -56,13 +56,13 @@ flowchart TD
 # Steping through the interaction
 
 It's worth walking through the interaction of this simple app to develop an intuition about how Shiny works. 
-When the app is first runs, Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. 
-When an input changes downstream elements are **invalidated** which means that they are flagged for recalculation. 
-Shiny then recalculates each element which needs to be recalculated but does not render the elements whih don't depend on that input. 
+When an app first runs, Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. 
+When an input changes, downstream elements are **invalidated** which means that they are flagged for recalculation. 
+Shiny then recalculates each element that needs to be recalculated but does not rerender the elements that do not depend on the input. 
 
 ### User changes the slider
 
-When the user changes an input, this invalidates any dependencies, which tells Shiny that those dependencies need to be recalculated with the new value. 
+When the user changes an input, this invalidates any elements that depend on it, which tells Shiny that those elements need to be recalculated with the new input value. 
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -121,7 +121,7 @@ flowchart TD
 
 ### User changes the checkbox
 
-When the user changes the checkbox the exact same process repeats itself, however, becasue only one output depends on the checkbox, only one element is recalculated.
+When the user changes the checkbox, the exact same process repeats itself; however, becasue only one output depends on the checkbox, only one element is recalculated.
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -179,7 +179,7 @@ flowchart TD
 ::::
 
 This simple process of changing inputs, invalidating dependencies, and recaulating values turns out to scale to very complicated applications. 
-As a result it's a good idea to think through the computation graph whenever you're looking to understand or refactor a Shiny application.
+As a result, it's a good idea to think through the computation graph whenever you're looking to understand or refactor a Shiny application.
 
 # Reactive Calculations
 
@@ -191,16 +191,17 @@ df = penguins.copy()
 filtered = df.loc[df["Body Mass (g)"] < input.mass()]
 ```
 
-A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat yourself. 
-The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient application because calculations will run more often than they need to.
-For example, in this app each time we change the filter the dataset is being copied and filtered three times when ideally this should only occur once.
-As your app grows in complexity, or starts executing more intensive computations this repetition will noticibly slow your app down. 
+A little bit of repetition like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat yourself. 
+The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient application, because calculations will run more often than they need to.
+For example, in this app each time we change the slider the dataset will be copied and filtered three times. Ideally this should only occur once.
+As your app grows in complexity, or starts executing more intensive computations, this repetition will noticeably slow your app down. 
+
 [Reactive calculations](https://shiny.rstudio.com/py/docs/reactive-calculations.html) allow you to store the result of a calculation and re-use it across other components. 
 These calculations are reactive in that they will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it. 
 
 To create a reactive calculation you need to decorate a function with `@reactive.Calc` and call it as you would an input object. 
-In this case we create a function called `filt_df` which contains the filtering logic and call it in the render method with `filt_df()`.
-This improves the application both because the filtration logic is kept in one place, and also because it the app UI will not recalculate the value more than necessary. 
+In this case, we create a function called `filt_df` which contains the filtering logic and call it in the render method with `filt_df()`.
+This improves the application both because the filtration logic is kept in one place, where it is easy to maintain, and also because it the app UI will not recalculate the value more than necessary. 
 
 ```{.python}
   @reactive.Calc
@@ -244,8 +245,8 @@ flowchart TD
 We've made some changes to the penguins app and included an artificially slow bootstrap sampling method. 
 Currently all three elemenets in the app call the slow sampling function, which causes the app to slow down (you can interact with the goal app and the problem app to experience this sluggishness).
 
-Extract reeactive calculations from this app to reduce repetition and speed up the app.
-There are several good solutions to this problem, but more people end up with two reactive calculations.
+Extract reactive calculations from this app to reduce repetition and speed up the app.
+There are several good solutions to this problem, but the majority of people end up with two reactive calculations.
 
 ```{python}
 #| echo: false
@@ -256,7 +257,7 @@ problem_tabs("apps/problem-sets/2.2-reactive-calc")
 
 
 # Summary
-In this section you've learned to use reactive calculations to improve your Shiny app. 
+In this section, you've learned to use reactive calculations to improve your Shiny app. 
 The key takeaways are:
 
 - Shiny infers a reactive computation graph to rerender UI outputs
