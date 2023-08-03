@@ -6,13 +6,20 @@ import os
 import json
 
 
-def print_file(file_path: str, file_name: str = None):
-    if file_name is not None:
-        print(f"\n## file: {file_name}")
+class QuartoPrint(list):
+    def __init__(self, data):
+        super().__init__(data)
 
-    with open(file_path, "r") as app_file:
-        app_contents = app_file.read()
-        print(app_contents)
+    def __str__(self):
+        return "\n".join(str(item) for item in self)
+
+    def append_file(self, file_path: str, file_name: str = None):
+        if file_name is not None:
+            self.append(f"## file: {file_name}")
+
+        with open(file_path, "r") as app_file:
+            app_contents = app_file.read()
+            self.append(app_contents)
 
 
 def list_files(path):
@@ -29,21 +36,36 @@ def include_shiny_folder(
     viewer_height: str = "800",
     extra_object: any = "",
 ):
+    print(
+        _include_shiny_folder(
+            path, file_name, exclusions, components, viewer_height, extra_object
+        )
+    )
+
+
+def _include_shiny_folder(
+    path: str,
+    file_name: str = "app.py",
+    exclusions: list = [],
+    components: str = "editor, viewer",
+    viewer_height: str = "800",
+    extra_object: any = "",
+):
     folder_path = Path(__name__).parent / path
 
     # Start with the header
-    headers = [
-        "```{shinylive-python}",
-        "#| standalone: true",
-        f"#| components: [{components}]",
-        "#| layout: horizontal",
-        f"#| viewerHeight: {viewer_height}",
-    ]
-
-    print("\n".join(headers))
+    block = QuartoPrint(
+        [
+            "```{shinylive-python}",
+            "#| standalone: true",
+            f"#| components: [{components}]",
+            "#| layout: horizontal",
+            f"#| viewerHeight: {viewer_height}",
+        ]
+    )
 
     # Print contents of the main application
-    print_file(folder_path / file_name, None)
+    block.append_file(folder_path / file_name, None)
 
     exclude_list = ["__pycache__"] + [file_name] + exclusions
 
@@ -59,26 +81,48 @@ def include_shiny_folder(
 
     # Additional files need to start with ## file:
     for x, y in zip(path_list, file_names):
-        print_file(x, y)
+        block.append_file(x, y)
 
     # Finish with the closing tag
-    print("```")
+    block.append("```")
+    return block
 
 
-def problem_tabs(path: str):
-    print("\n:::: {.column-screen}\n::: {.panel-tabset}")
-
-    print("## Goal")
-    include_shiny_folder(
-        path, "app-solution.py", exclusions=["app.py"], components="viewer"
+def problem_tabs(path: str, prompt: str = ""):
+    block = QuartoPrint(
+        [
+            "::::: {.grid .column-screen-inset}",
+            ":::: {.g-col-12 .g-col-md-9}",
+            "::: {.panel-tabset}",
+            "## Goal",
+        ]
     )
 
-    print("## Problem")
-    include_shiny_folder(path, "app.py", exclusions=["app-solution.py"])
-    print("## Solution")
-    include_shiny_folder(path, "app-solution.py", exclusions=["app.py"])
+    block.extend(
+        _include_shiny_folder(
+            path, "app-solution.py", exclusions=["app.py"], components="viewer"
+        )
+    )
 
-    print(":::\n::::")
+    block.append("## Problem")
+    block.extend(_include_shiny_folder(path, "app.py", exclusions=["app-solution.py"]))
+    block.append("## Solution")
+    block.extend(_include_shiny_folder(path, "app-solution.py", exclusions=["app.py"]))
+    block.append(":::")
+    block.append("::::")
+
+    block.extend(
+        [
+            ":::: {.g-col-12 .g-col-md-3 #vcenter}",
+            "::: callout-note",
+            "## Exercise",
+            prompt,
+            ":::",
+            "::::",
+        ]
+    )
+    block.append(":::::")
+    print(block)
 
 
 class Quiz(dict):
