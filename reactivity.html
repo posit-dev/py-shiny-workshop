@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content=".">
-<script src="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/shinylive.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -285,40 +285,6 @@ def server(input, output, session):
 
 
 app = App(app_ui, server)
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
 
 
 ## file: penguins.csv
@@ -667,6 +633,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </div>
 <div id="vcenter" class="g-col-12 g-col-md-3">
@@ -956,40 +956,6 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -1336,6 +1302,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </div>
 <div id="vcenter" class="g-col-12 g-col-md-3">
@@ -1440,43 +1440,6 @@ def sample_data(data: pd.DataFrame, n: int) -&gt; pd.DataFrame:
     return out
 
 
-## file: sample
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -1823,6 +1786,43 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
+
+
+## file: sample
 </code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -1895,43 +1895,6 @@ def sample_data(data: pd.DataFrame, n: int) -&gt; pd.DataFrame:
     return out
 
 
-## file: sample
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2278,6 +2241,43 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
+
+
+## file: sample
 </code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -2354,43 +2354,6 @@ def sample_data(data: pd.DataFrame, n: int) -&gt; pd.DataFrame:
     return out
 
 
-## file: sample
-
-
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2737,6 +2700,43 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
+
+
+## file: sample
 </code></pre>
 </div>
 </div>

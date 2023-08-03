@@ -74,9 +74,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content=".">
-<script src="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="site_libs/quarto-contrib/shinylive-0.1.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/run-python-blocks.js" type="module"></script>
+<link href="site_libs/quarto-contrib/shinylive-0.1.4/shinylive/shinylive.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="create-an-app" class="level1">
 <h1>Create an app</h1>
 <p>Shiny apps are divided into two parts. The app <em>UI</em> consists of various input and output components, and the <em>server</em> expresses how those inputs and outputs should interact.</p>
-<p>Let’s start by creating a basic shiny app To do this you can call <code>shiny create .</code> in a project folder, or open up <code>apps/basic-app/app.py</code> in the repo. This is the simplest possible Shiny application with one input and one output.</p>
+<p>Let’s start by creating a basic shiny app. To do this, you can call <code>shiny create .</code> in a project folder, or open up <code>apps/basic-app/app.py</code> in the repo. This is the simplest possible Shiny application with one input and one output.</p>
 <section id="section" class="level4">
 <h4 class="anchored" data-anchor-id="section"></h4>
 <pre class="shinylive-python"><code>#| standalone: true
@@ -246,7 +246,7 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 </code></pre>
-<p>There are a four important features that your code needs to have to generate a working Shiny app.</p>
+<p>There are four important features that your code needs to have to generate a working Shiny app.</p>
 </section>
 <section id="ui-structure" class="level3">
 <h3 class="anchored" data-anchor-id="ui-structure">1) UI structure</h3>
@@ -255,7 +255,7 @@ app = App(app_ui, server)
 </section>
 <section id="output-decorators" class="level3">
 <h3 class="anchored" data-anchor-id="output-decorators">3) Output decorators</h3>
-<p>The server function defines how your app should calculate outputs for a given set of inputs. To do this, you write a function inside the main <code>server</code> function which has the same name as the output key, and add two decorators. <code>@output</code> tells Shiny that the function is an output, and <code>@render.text</code> tells it the output type. So to fill in the logic for the <code>txt</code> output we write:</p>
+<p>The server function defines how your app should calculate outputs for a given set of inputs. To do this, you write a function inside the main <code>server</code> function which has the same name as the output id, and add two decorators. <code>@output</code> tells Shiny that the function is an output, and <code>@render.text</code> tells it the output type. So to fill in the logic for the <code>txt</code> output we write:</p>
 <div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@output</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a><span class="at">@render.text</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3">3</button><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> txt():</span>
@@ -277,7 +277,7 @@ app = App(app_ui, server)
 </section>
 <section id="how-to-refer-to-inputs" class="level3">
 <h3 class="anchored" data-anchor-id="how-to-refer-to-inputs">4) How to refer to inputs</h3>
-<p>Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. We’ll learn more about reactivity in the next section, but for now just know that referring to an input will automatically cause that output to regenerate when the input changes. You identify these inputs by calling the attribute of the <code>input</code> object which corresponds with a particular input id. In this case to refer to <code>n</code> we call it with <code>input.n()</code></p>
+<p>Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. We’ll learn more about reactivity in the next section, but for now just know that referring to an input in an output’s server function will automatically cause that output to regenerate when the input changes. You identify these inputs by calling the attribute of the <code>input</code> object which corresponds with a particular input id. In this case to refer to <code>n</code> we call it with <code>input.n()</code></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -683,7 +683,7 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
-<p>All of the inputs and outputs are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>, it’s a good idea to look a few things up on this page because it’s the best place learn about Shiny’s functionality.</p>
+<p>All of the input and output options are documented with interactive examples on the Shiny for Python <a href="https://shiny.rstudio.com/py/api/">reference page</a>. It’s a good idea to look a few things up on this page because it’s the best place learn about Shiny’s functionality.</p>
 <section id="quiz-1.0" class="level4">
 <h4 class="anchored" data-anchor-id="quiz-1.0">Quiz 1.0</h4>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1223,40 +1223,6 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -1603,6 +1569,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </section>
 </section>
@@ -1677,40 +1677,6 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2057,6 +2023,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -2111,40 +2111,6 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2491,6 +2457,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -2554,40 +2554,6 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 
-## file: plots.py
-from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
-
-
-def dist_plot(df):
-    plot = (
-        ggplot(df, aes(x="body_mass", fill="species"))
-        + geom_density(alpha=0.2)
-        + theme_light()
-    )
-    return plot
-
-
-def scatter_plot(df, smoother=False):
-    plot = (
-        ggplot(
-            df,
-            aes(
-                x="bill_length",
-                y="bill_depth",
-                color="species",
-                group="species",
-            ),
-        )
-        + geom_point()
-        + theme_light()
-    )
-
-    if smoother:
-        plot = plot + stat_smooth()
-
-    return plot
-
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2934,6 +2900,40 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+
+## file: plots.py
+from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
+
+
+def dist_plot(df):
+    plot = (
+        ggplot(df, aes(x="body_mass", fill="species"))
+        + geom_density(alpha=0.2)
+        + theme_light()
+    )
+    return plot
+
+
+def scatter_plot(df, smoother=False):
+    plot = (
+        ggplot(
+            df,
+            aes(
+                x="bill_length",
+                y="bill_depth",
+                color="species",
+                group="species",
+            ),
+        )
+        + geom_point()
+        + theme_light()
+    )
+
+    if smoother:
+        plot = plot + stat_smooth()
+
+    return plot
 </code></pre>
 </div>
 </div>
@@ -2942,8 +2942,13 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>In this section you learned the three main things you need to do to get your Shiny app to run: - Add inputs and outputs to the UI - Add server functions which are decorated with <span class="citation" data-cites="output">@output</span> and <span class="citation" data-cites="render">@render</span> - Refer to inputs within server funtions with <code>input.&lt;id&gt;()</code></p>
-<p>Next we’ll learn what Shiny does to make this all work.</p>
+<p>In this section you learned the three main things you need to do to get your Shiny app to run:</p>
+<ul>
+<li>Add inputs and outputs to the UI</li>
+<li>Add server functions which are decorated with <code>@output</code> and <code>@render</code></li>
+<li>Refer to inputs within server funtions with <code>input.&lt;id&gt;()</code></li>
+</ul>
+<p>Next, we’ll learn what Shiny does to make this all work.</p>
 
 
 </section>
