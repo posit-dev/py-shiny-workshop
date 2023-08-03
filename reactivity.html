@@ -216,15 +216,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="the-reactive-graph" class="level1 page-columns page-full">
 <h1>The reactive graph</h1>
-<p>In the last section we built a simple shiny app which allowed the user to filter a dataframe and display two plots. One thing you might notice about the code which genrated this application is that while we specify <em>what</em> should happen in response to a user’s action, we don’t actually specify <em>when</em> it should happen. We don’t have anything like cllback functions which define when a calculation should be run, so how does Shiny know when to run the code to keep everything up to date?</p>
-<p>Shiny is different from many other frameworks because it is declarative. Instead of specifying when code should run, you specify recipes for creating the output you want to run, and then leave it up to Shiny to figure out when to rerun them. This greatly simplifies application develpment because managing interaction is the most difficult part of web development, and for the most part Shiny will do a good job managing interaciton. Shiny does this by inferring a <strong>reactive computation graph</strong> for your application and reredenering downstream elements only if the upstream elements change.</p>
+<p>In the last section we built a simple shiny app which allowed the user to filter a dataframe and display two plots. One thing you might notice about the code which generated this application is that while we specify <em>what</em> should happen in response to a user’s action, we don’t actually specify <em>when</em> it should happen. We don’t have anything like callback functions which define when a calculation should be run, so how does Shiny know when to run the code to keep everything up to date?</p>
+<p>Shiny is different from many other frameworks because it is declarative. Instead of specifying when code should run, you specify recipes for creating the output you want to run, and then leave it up to Shiny to figure out when to rerun them. This greatly simplifies application develpment because managing interaction is the most difficult part of web development, and for the most part Shiny will do a good job managing interaction. Shiny does this by inferring a <strong>reactive computation graph</strong> (a graph of what depends on what) for your application and rerendering downstream elements only if the upstream elements change.</p>
 <p>This pattern leads to two main benefits for Shiny users:</p>
 <ol type="1">
 <li>The Shiny UI renders extremely efficiently</li>
 <li>You do not need to explicitly tell Shiny when to rerender things</li>
 </ol>
 <p>Let’s draw the reactive graph for the application from the previous lesson. This app has two inputs, and three outputs, but the checkbox to add a trendline is only used by one of the outputs.</p>
-<p>For the purposes of this course we’re going to draw this as a top down directed acyclic graph (DAG) and put them to the right fo the app:</p>
+<p>For the purposes of this course, we’ll put the computation graphs to the right of the app. We will use rectangles to describe inputs and circles to describe outputs.</p>
 <div class="grid column-screen-inset">
 <div class="g-col-12 g-col-md-9">
 <pre class="shinylive-python"><code>#| standalone: true
@@ -690,10 +690,10 @@ def scatter_plot(df, smoother=False):
 </section>
 <section id="steping-through-the-interaction" class="level1">
 <h1>Steping through the interaction</h1>
-<p>It’s worth walking through the interaction of this simple app to develop an intuition about how Shiny works. When the app is first runs, Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. When an input changes downstream elements are <strong>invalidated</strong> which means that they are flagged for recalculation. Shiny then recalculates each element which needs to be recalculated but does not render the elements whih don’t depend on that input.</p>
+<p>It’s worth walking through the interaction of this simple app to develop an intuition about how Shiny works. When an app first runs, Shiny identifies all of the dependencies in the app, to keep track of what needs to change when an input changes. When an input changes, downstream elements are <strong>invalidated</strong> which means that they are flagged for recalculation. Shiny then recalculates each element that needs to be recalculated but does not rerender the elements that do not depend on the input.</p>
 <section id="user-changes-the-slider" class="level3">
 <h3 class="anchored" data-anchor-id="user-changes-the-slider">User changes the slider</h3>
-<p>When the user changes an input, this invalidates any dependencies, which tells Shiny that those dependencies need to be recalculated with the new value.</p>
+<p>When the user changes an input, this invalidates any elements that depend on it, which tells Shiny that those elements need to be recalculated with the new input value.</p>
 <div class="columns">
 <div class="column" style="width:45%;">
 <section id="slider-changes" class="level4">
@@ -784,7 +784,7 @@ def scatter_plot(df, smoother=False):
 </section>
 <section id="user-changes-the-checkbox" class="level3">
 <h3 class="anchored" data-anchor-id="user-changes-the-checkbox">User changes the checkbox</h3>
-<p>When the user changes the checkbox the exact same process repeats itself, however, becasue only one output depends on the checkbox, only one element is recalculated.</p>
+<p>When the user changes the checkbox, the exact same process repeats itself; however, becasue only one output depends on the checkbox, only one element is recalculated.</p>
 <div class="columns">
 <div class="column" style="width:45%;">
 <section id="slider-changes-1" class="level4">
@@ -872,7 +872,7 @@ def scatter_plot(df, smoother=False):
 </section>
 </div>
 </div>
-<p>This simple process of changing inputs, invalidating dependencies, and recaulating values turns out to scale to very complicated applications. As a result it’s a good idea to think through the computation graph whenever you’re looking to understand or refactor a Shiny application.</p>
+<p>This simple process of changing inputs, invalidating dependencies, and recaulating values turns out to scale to very complicated applications. As a result, it’s a good idea to think through the computation graph whenever you’re looking to understand or refactor a Shiny application.</p>
 </section>
 </section>
 <section id="reactive-calculations" class="level1 page-columns page-full">
@@ -880,8 +880,9 @@ def scatter_plot(df, smoother=False):
 <p>The penguins application we’ve been working with contains a bit of repetition. Each of the rendering functions contain this code which copies and filters the main dataset:</p>
 <pre><code>df = penguins.copy()
 filtered = df.loc[df["Body Mass (g)"] &lt; input.mass()]</code></pre>
-<p>A little bit of repeittion like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat yourself. The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient application because calculations will run more often than they need to. For example, in this app each time we change the filter the dataset is being copied and filtered three times when ideally this should only occur once. As your app grows in complexity, or starts executing more intensive computations this repetition will noticibly slow your app down. <a href="https://shiny.rstudio.com/py/docs/reactive-calculations.html">Reactive calculations</a> allow you to store the result of a calculation and re-use it across other components. These calculations are reactive in that they will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it.</p>
-<p>To create a reactive calculation you need to decorate a function with <code>@reactive.Calc</code> and call it as you would an input object. In this case we create a function called <code>filt_df</code> which contains the filtering logic and call it in the render method with <code>filt_df()</code>. This improves the application both because the filtration logic is kept in one place, and also because it the app UI will not recalculate the value more than necessary.</p>
+<p>A little bit of repetition like this is not the end of the world, but Shiny rewards fairly strict adherence to the principle that you should not repeat yourself. The main reason why you be strict about this is that repetitive Shiny code will usually lead to an inefficient application, because calculations will run more often than they need to. For example, in this app each time we change the slider the dataset will be copied and filtered three times. Ideally this should only occur once. As your app grows in complexity, or starts executing more intensive computations, this repetition will noticeably slow your app down.</p>
+<p><a href="https://shiny.rstudio.com/py/docs/reactive-calculations.html">Reactive calculations</a> allow you to store the result of a calculation and re-use it across other components. These calculations are reactive in that they will be invalidated and rerendered just like any other reactive element while allowing other elements to retrieve the value of that calculation without reexecuting it.</p>
+<p>To create a reactive calculation you need to decorate a function with <code>@reactive.Calc</code> and call it as you would an input object. In this case, we create a function called <code>filt_df</code> which contains the filtering logic and call it in the render method with <code>filt_df()</code>. This improves the application both because the filtration logic is kept in one place, where it is easy to maintain, and also because it the app UI will not recalculate the value more than necessary.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  <span class="at">@reactive.Calc</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> filt_df():</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      df <span class="op">=</span> penguins.copy()</span>
@@ -1361,7 +1362,7 @@ def scatter_plot(df, smoother=False):
 <section id="exercise-2.2" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="exercise-2.2">Exercise 2.2</h2>
 <p>We’ve made some changes to the penguins app and included an artificially slow bootstrap sampling method. Currently all three elemenets in the app call the slow sampling function, which causes the app to slow down (you can interact with the goal app and the problem app to experience this sluggishness).</p>
-<p>Extract reeactive calculations from this app to reduce repetition and speed up the app. There are several good solutions to this problem, but more people end up with two reactive calculations.</p>
+<p>Extract reactive calculations from this app to reduce repetition and speed up the app. There are several good solutions to this problem, but the majority of people end up with two reactive calculations.</p>
 <div class="column-screen">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
@@ -2747,7 +2748,7 @@ def scatter_plot(df, smoother=False):
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>In this section you’ve learned to use reactive calculations to improve your Shiny app. The key takeaways are:</p>
+<p>In this section, you’ve learned to use reactive calculations to improve your Shiny app. The key takeaways are:</p>
 <ul>
 <li>Shiny infers a reactive computation graph to rerender UI outputs</li>
 <li>You usually don’t need to tell Shiny <em>when</em> to reexecute code</li>
