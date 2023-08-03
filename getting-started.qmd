@@ -21,8 +21,8 @@ All we're trying to do at this stage is to get something working, and become com
 Shiny apps are divided into two parts.
 The app *UI* consists of various input and output components, and the *server* expresses how those inputs and outputs should interact. 
 
-Let's start by creating a basic shiny app
-To do this you can call `shiny create .` in a project folder, or open up `apps/basic-app/app.py` in the repo. 
+Let's start by creating a basic shiny app.
+To do this, you can call `shiny create .` in a project folder, or open up `apps/basic-app/app.py` in the repo. 
 This is the simplest possible Shiny application with one input and one output. 
 
 #### 
@@ -33,7 +33,7 @@ This is the simplest possible Shiny application with one input and one output.
 include_shiny_folder("apps/examples/1.0-basic-app")
 ```
 
-There are a four important features that your code needs to have to generate a working Shiny app. 
+There are four important features that your code needs to have to generate a working Shiny app. 
 
 ### 1) UI structure
 
@@ -45,7 +45,7 @@ In this simple example the slider `id` is `"n"` and the output id is `"txt"`.
 
 ### 3) Output decorators
 The server function defines how your app should calculate outputs for a given set of inputs. 
-To do this, you write a function inside the main `server` function which has the same name as the output key, and add two decorators. 
+To do this, you write a function inside the main `server` function which has the same name as the output id, and add two decorators. 
 `@output` tells Shiny that the function is an output, and `@render.text` tells it the output type. 
 So to fill in the logic for the `txt` output we write:
 
@@ -62,7 +62,7 @@ def txt():                                  # <3>
 ### 4) How to refer to inputs
 
 Shiny is a reactive framework which means that it recalculates an output if and only if its inputs change. 
-We'll learn more about reactivity in the next section, but for now just know that referring to an input will automatically cause that output to regenerate when the input changes.
+We'll learn more about reactivity in the next section, but for now just know that referring to an input in an output's server function will automatically cause that output to regenerate when the input changes.
 You identify these inputs by calling the attribute of the `input` object which corresponds with a particular input id. 
 In this case to refer to `n` we call it with `input.n()`
  
@@ -87,7 +87,7 @@ This makes it easier to call `shiny run` from other direcotries without error.
 include_shiny_folder("apps/examples/1.1-table-only")
 ```
 
-All of the inputs and outputs are documented with interactive examples on the Shiny for Python [reference page](https://shiny.rstudio.com/py/api/), it's a good idea to look a few things up on this page because it's the best place learn about Shiny's functionality. 
+All of the input and output options are documented with interactive examples on the Shiny for Python [reference page](https://shiny.rstudio.com/py/api/). It's a good idea to look a few things up on this page because it's the best place learn about Shiny's functionality. 
 
 #### Quiz 1.0
 ```{python}
@@ -167,8 +167,9 @@ problem_tabs("apps/problem-sets/1.5-add-plot")
 # Summary
 
 In this section you learned the three main things you need to do to get your Shiny app to run:
+
 - Add inputs and outputs to the UI
-- Add server functions which are decorated with @output and @render
+- Add server functions which are decorated with `@output` and `@render`
 - Refer to inputs within server funtions with `input.<id>()`
 
-Next we'll learn what Shiny does to make this all work.
+Next, we'll learn what Shiny does to make this all work.
