@@ -258,11 +258,11 @@ Warning
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-2">Identify that this is a reactive effect called for its side effects</span>
+<span data-code-lines="1" data-code-cell="annotated-cell-2" data-code-annotation="1">Identify that this is a reactive effect called for its side effects</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="2" data-code-cell="annotated-cell-2">Define which inputs should trigger the effect.</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-2" data-code-annotation="2">Define which inputs should trigger the effect.</span>
 </dd>
 </dl>
 <p>The distinction between values and side effects is crucial for using Shiny effectively because it determines which pattern you should use. You should use <code>reactive.Calc</code> when you want the <em>value</em> of a function, and <code>reactive.Effect</code> when you want a <em>side effect</em>. New Shiny developers often make the mistake of using one of these patterns for their entire application, and create needless complexity in their application. It’s a mistake to use <code>reactive.Effect</code> when you’re after the value of a function, and it’s a mistake to try to use <code>reactive.Calc</code> when you want a side effect. This short quiz can help develop an intuition about this distinction:</p>
@@ -335,7 +335,6 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
-
 ## file: questions.json
 {"Writing a CSV": {"choices": ["value", "side effect"], "answer": "side effect"}, "Querying a database": {"choices": ["value", "side effect"], "answer": "value"}, "Adding two numbers": {"choices": ["value", "side effect"], "answer": "value"}, "A function which prints to the console": {"choices": ["value", "side effect"], "answer": "side effect"}, "Fetching the current temperature from an API": {"choices": ["value", "side effect"], "answer": "value"}, "A function which sorts a list in place": {"choices": ["value", "side effect"], "answer": "side effect"}, "Getting a model score for a set of inputs": {"choices": ["value", "side effect"], "answer": "value"}, "Deploying a model to a hosting service": {"choices": ["value", "side effect"], "answer": "side effect"}}</code></pre>
 </div>
@@ -357,7 +356,8 @@ Tip
 <p>You should probably use one of the <code>ui.update_*</code> functions listed in the <a href="https://shiny.rstudio.com/py/api/">documentation</a></p>
 </div>
 </div>
-<div class="column-screen">
+<div class="grid column-screen-inset">
+<div class="g-col-12 g-col-md-9">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
 <div class="tab-content">
@@ -408,7 +408,6 @@ def server(input, output, session):
 
 
 app = App(app_ui, server)
-
 
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
@@ -799,7 +798,6 @@ def server(input, output, session):
 
 
 app = App(app_ui, server)
-
 
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
@@ -1197,7 +1195,6 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -1545,6 +1542,22 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="vcenter" class="g-col-12 g-col-md-3">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
 </div>
 </div>
 </div>
