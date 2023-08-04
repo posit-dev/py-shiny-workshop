@@ -22,7 +22,7 @@ class QuartoPrint(list):
             self.append(app_contents)
 
 
-def list_files(path):
+def list_files(path: str) -> list:
     files = glob.glob(path + "/**", recursive=True)
     files = [file for file in files if not glob.os.path.isdir(file)]
     return files
@@ -35,7 +35,7 @@ def include_shiny_folder(
     components: str = "editor, viewer",
     viewer_height: str = "800",
     extra_object: any = "",
-):
+) -> None:
     print(
         _include_shiny_folder(
             path, file_name, exclusions, components, viewer_height, extra_object
@@ -50,7 +50,7 @@ def _include_shiny_folder(
     components: str = "editor, viewer",
     viewer_height: str = "800",
     extra_object: any = "",
-):
+) -> QuartoPrint:
     folder_path = Path(__name__).parent / path
 
     # Start with the header
@@ -88,39 +88,39 @@ def _include_shiny_folder(
     return block
 
 
-def problem_tabs(path: str, prompt: str = ""):
+def collapse_prompt(prompt: str) -> list:
+    out = [
+        "",
+        '::: {.callout-note collapse="false"}',
+        "## Exercise",
+        prompt,
+        ":::",
+        "",
+    ]
+    return out
+
+
+def problem_tabs(path: str, prompt: str = "") -> None:
     block = QuartoPrint(
         [
-            "::::: {.grid .column-screen-inset}",
-            ":::: {.g-col-12 .g-col-md-9}",
+            "::::: {.column-screen-inset}",
             "::: {.panel-tabset}",
             "## Goal",
         ]
     )
-
+    block.extend(collapse_prompt(prompt))
     block.extend(
         _include_shiny_folder(
             path, "app-solution.py", exclusions=["app.py"], components="viewer"
         )
     )
-
     block.append("## Problem")
+    block.extend(collapse_prompt(prompt))
     block.extend(_include_shiny_folder(path, "app.py", exclusions=["app-solution.py"]))
     block.append("## Solution")
+    block.extend(collapse_prompt(prompt))
     block.extend(_include_shiny_folder(path, "app-solution.py", exclusions=["app.py"]))
     block.append(":::")
-    block.append("::::")
-
-    block.extend(
-        [
-            ":::: {.g-col-12 .g-col-md-3 #vcenter}",
-            "::: callout-note",
-            "## Exercise",
-            prompt,
-            ":::",
-            "::::",
-        ]
-    )
     block.append(":::::")
     print(block)
 
