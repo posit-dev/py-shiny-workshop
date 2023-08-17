@@ -23,7 +23,7 @@ app_ui = ui.page_fluid(
             width=3,
         ),
         ui.panel_main(
-            ui.row(ui.output_ui("boxes")),
+            ui.row(),  # Boxes go here
             ui.row(
                 ui.column(8, ui.output_plot("dist")),
                 ui.column(4, ui.output_plot("scatter")),
@@ -39,17 +39,6 @@ def server(input, output, session):
         df = penguins.copy()
         filtered = df.loc[df["body_mass"] < input.mass()]
         return filtered
-
-    @output
-    @render.ui
-    def boxes():
-        species_count = filt_df().groupby(["species"])["species"].count()
-        box_list = []
-
-        for index, value in species_count.items():
-            box_list.append(make_value_box(index, value))
-
-        return x.ui.layout_column_wrap(1 / len(box_list), *box_list)
 
     @output
     @render.plot

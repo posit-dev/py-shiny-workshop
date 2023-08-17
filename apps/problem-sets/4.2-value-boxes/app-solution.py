@@ -4,16 +4,11 @@ from pathlib import Path
 from plots import dist_plot, scatter_plot
 from boxes import make_value_box
 import shiny.experimental as x
-from shinyswatch import theme
 
 infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
 
-css_path = Path(__file__).parent / "www/styles.css"
-
 app_ui = ui.page_fluid(
-    theme.minty(),
-    ui.include_css(css_path),
     ui.panel_title("Penguins Dashboard"),
     ui.layout_sidebar(
         ui.panel_sidebar(

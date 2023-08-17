@@ -1,0 +1,226 @@
+---
+title: "UI customization"
+code-annotations: hover
+---
+```{python}
+# | echo: false
+
+from helpers import include_shiny_folder, problem_tabs
+
+```
+
+In the previous sections you built a functional shiny app, and developed some intution about how reactive programming works, but the app itself isn't strcutured very well. 
+In this section we will explore the basics of how to customize the layout of your shiny application to make it more intuitive and attractive. 
+
+Up until this point all of our UI code has looked like this, with a bunch of ui elements contained by `ui.page_fluid`. 
+The `ui.page_fluid` function is **container** function that organizes **child** elements like `ui.h2` and `ui.output_plot`'. 
+
+```{.python}
+app_ui = ui.page_fluid(
+    ui.h2("Hello Penguins!"),
+    ui.output_data_frame("table"),
+    ui.output_plot("dist"),
+    ui.input_checkbox("trend", "Add trendline"),
+    ui.output_plot("scatter"),
+)
+```
+
+While this is a great way to get started, it produes a somewhat confusing user interface. 
+Since each new element is appended at the bottom of the page, it can be difficult for a user to quickly see which inputs they can change.  
+In order to help you build more inutive user interfaces, Shiny has a few additional container functions which you can compose to build almost any layout you want. 
+
+To start with let's take a look at `ui.layout_sidebar()` which breaks your app up into a sidebar and a main panel. 
+
+```{.python}
+app_ui = ui.page_fluid(
+    ui.panel_title(),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ...
+        ),
+        ui.panel_main(
+            ...
+        ),
+    ),
+)
+```
+
+There are a couple of things to unpack about this code.
+First we have the `page_fluid` function which defines how the top-level page should behave in the browser. 
+The `page_fluid` function is a good default because it'll make your app respond to browser resizes. 
+Second, we have the `layout_sidebar` function which lays `ui.panel_sidebar` and `ui.panel_main` side-by-side.
+You can add child elements to the panels by passing them as arguments to the two `panel` functions in the same way that you did for the basic app:
+
+```{.python}
+app_ui = ui.page_fluid(
+    ui.panel_title(),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_text("txt",  "Text Input"),
+            ui.input_action_button("button", "A button")
+        ),
+        ui.panel_main(
+            ui.plot_output("plot")
+        ),
+    ),
+)
+```
+
+::: callout-caution
+We're going to start making the problems a bit harder and less explicit, so don't be surprised if they feel a bit trickier.
+Remember you can always refer to the [documentation](https://shiny.posit.co/py/api/) or look at some [example apps](https://shinylive.io/py/examples/) to unblock yourself.
+:::
+
+## Problem 4.0, add a sidebar
+
+```{python}
+# | echo: false
+# | output: asis
+
+prompt = """
+Modify your existing app to put the inputs in a sidebar, and your outputs in the main panel. 
+Note that you'll need to change the sidebar width to match the answer app.
+"""
+
+problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+```
+
+# Rows and columns 
+
+You can further customize the layout of your applicaton with `ui.row` and `ui.column`. 
+These two functions layout elements in either a row, or a column and can be nested inside one another to create almost any layout. 
+For example if you wanted to create an app with a row of two columns and a row of three columns, you would do so like this:
+
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder(
+    "apps/examples/4.0.1-rows-columns", components="viewer", viewer_height="400"
+)
+```
+
+Rows and columns can be composed together, or with other ui layout functions to get the behaviour you want.
+For example, you can use `layout_sidebar` for your main application layout, but then break up the `main_panel` into smaller sections with rows and columns.
+
+## The bootstrap grid
+
+Shiny uses [bootstrap](https://getbootstrap.com/) to layout content in rows and columns, and it's important to understand the bootstrap grid system in order to implement custom Shiny layouts. 
+Bootstrap divides the available screen real estate into 12 vertical sections, and allows you to specify how many sections each element takes up. 
+When you call `ui.column(4)` you are saying that this column should always 4/12 vertical sections, or 1/3 of the available real estate on the screen. 
+The reason there are 12 columns is that it's a number which can easily be divided into 2, 3, 4, or 6 equal sections. 
+The width of a column is specified relative to the width of its parent. 
+For example if we have two top-level columns with `width=6`, and three nested columns with `width=4`, each nested column will take up 1/6th of the overall screen. `6/12 * 4/12` of the overall screen.
+The top level column divides the screen in half, and the nested column divides the top level column in half.
+
+The power of this layout system is that since your column widths are relative to the overall screen size, they will look good on different sized screns, or when the user resizes the window. 
+
+
+## Problem 4.1 add rows and columns
+
+```{python}
+# | echo: false
+# | output: asis
+
+prompt = """
+Arrange the main panel of your app into rows and columns.
+"""
+
+problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+```
+
+# Dynamic ui elements
+
+So far we've just worked with directly coding UI elements into our Shiny apps, but every Shiny UI element can be generated on the server using the `ui.output_ui` function and the `@render.ui` decorator. 
+This is extremely powerful because it allows to change the application in response to the user's behaviour. 
+For example, imagine that you had an app which let users select any city in United States. 
+This input would be difficult to use because there are so many options. 
+Instead, we can add a select input which lets the user pick the state, and then populate the city select input with cities from that state. 
+
+### Selectize example
+
+:::: {.grid .column-screen-inset}
+::: {.g-col-12 .g-col-md-9}
+```{python}
+#| echo: false
+#| output: asis  
+include_shiny_folder(
+    "apps/examples/4.1.1-dynamic-ui", components="viewer", viewer_height="400"
+)
+```
+:::
+
+::: {.g-col-12 .g-col-md-3 #vcenter}
+```{mermaid}
+flowchart TD
+
+  S[State] -.-> C[Cities]
+  C --> P((Plot))
+```
+:::
+::::
+
+At first this might seem a bit tricky, but it's actually the exact same pattern we've been using to generate outputs based on inputs.
+The only difference is that instead of returning a plot or a table, our function returns a ui element.
+
+Just like we learned in the first section, we add a `ui.ouput_ui` to identify where the dynamic UI element should go in the app:
+
+```{.python}
+app_ui = ui.page_fluid(
+        ui.input_selectize("state", "State", choices=["NY", "CO", "OR", "MI"], selected="NY"),
+        ui.output_ui("cities_ui"),
+    ),
+)
+```
+
+And then create a matching rendering function which is decorated with the `@render.ui` decorator. 
+
+
+``` {.python}
+    @output
+    @render.ui
+    def cities_ui():
+        opts = weather[weather["state"] == input.state()]["city"].unique().tolist()
+        return ui.input_selectize(
+            "cities", "Cities", choices=opts, selected=opts[0], multiple=True
+        )
+```
+
+You can use this dynamically generated input just like you would use one that was statically created. 
+In this case the city input is consumed by a reactive calculation. 
+
+```{.python}
+    @reactive.Calc
+    def filtered_data():
+        df = weather.copy()
+        df = df[df["city"].isin(input.cities())]
+        return df
+```
+
+::: callout-caution
+Referring to inputs which don't yet exist can cause an error. To avoid this error wrap them in the [`req`](https://shiny.posit.co/py/api/req.html) function. 
+This tells shiny to use the input if it's there, but silently stop execution if the input doesn't exist.
+:::
+
+### Going further
+While dynamic uis are often used for simple cases where you return a single element, they can actually return any set of UI elements. 
+For example you can return several inputs wrapped in a `row`, or even generate the whole main panel on the server side. 
+
+## Exercise 4.2
+
+```{python}
+# | echo: false
+# | output: asis
+
+prompt = """
+Use the function `make_value_boxes` to add thre value boxes which show the counts of each penguin. 
+Note that there is a [`ui.layout_column_wrap`](https://shiny.posit.co/py/api/ExFillingLayout.html) in the experimental module that can help with displaying a list of ui elements.
+"""
+
+problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+```
+
+
+# Adding CSS
+
+
