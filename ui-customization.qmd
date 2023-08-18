@@ -9,11 +9,12 @@ from helpers import include_shiny_folder, problem_tabs
 
 ```
 
-In the previous sections you built a functional shiny app, and developed some intution about how reactive programming works, but the app itself isn't strcutured very well. 
+In the previous sections you built a functional shiny app, and developed some intution about how reactive programming works, but the app itself isn't laid out very well. 
 In this section we will explore the basics of how to customize the layout of your shiny application to make it more intuitive and attractive. 
 
 Up until this point all of our UI code has looked like this, with a bunch of ui elements contained by `ui.page_fluid`. 
 The `ui.page_fluid` function is **container** function that organizes **child** elements like `ui.h2` and `ui.output_plot`'. 
+You can add as many children as you want to a container function, and they will be laid out one after another.
 
 ```{.python}
 app_ui = ui.page_fluid(
@@ -26,7 +27,7 @@ app_ui = ui.page_fluid(
 ```
 
 While this is a great way to get started, it produes a somewhat confusing user interface. 
-Since each new element is appended at the bottom of the page, it can be difficult for a user to quickly see which inputs they can change.  
+Since each new element is appended at the bottom of the page, it can be difficult for a user to quickly see which inputs they can change.
 In order to help you build more inutive user interfaces, Shiny has a few additional container functions which you can compose to build almost any layout you want. 
 
 To start with let's take a look at `ui.layout_sidebar()` which breaks your app up into a sidebar and a main panel. 
@@ -66,6 +67,8 @@ app_ui = ui.page_fluid(
 )
 ```
 
+Give this a try by reorganizing your app into a sidebar layout. 
+
 ::: callout-caution
 We're going to start making the problems a bit harder and less explicit, so don't be surprised if they feel a bit trickier.
 Remember you can always refer to the [documentation](https://shiny.posit.co/py/api/) or look at some [example apps](https://shinylive.io/py/examples/) to unblock yourself.
@@ -85,35 +88,39 @@ Note that you'll need to change the sidebar width to match the answer app.
 problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
 ```
 
+
+
 # Rows and columns 
 
 You can further customize the layout of your applicaton with `ui.row` and `ui.column`. 
 These two functions layout elements in either a row, or a column and can be nested inside one another to create almost any layout. 
 For example if you wanted to create an app with a row of two columns and a row of three columns, you would do so like this:
 
+::: column-screen-inset
 ```{python}
 # | echo: false
 # | output: asis
 
 include_shiny_folder(
-    "apps/examples/4.0.1-rows-columns", components="viewer", viewer_height="400"
+    "apps/examples/4.0.1-rows-columns", viewer_height="400"
 )
 ```
+:::
 
 Rows and columns can be composed together, or with other ui layout functions to get the behaviour you want.
 For example, you can use `layout_sidebar` for your main application layout, but then break up the `main_panel` into smaller sections with rows and columns.
 
 ## The bootstrap grid
 
-Shiny uses [bootstrap](https://getbootstrap.com/) to layout content in rows and columns, and it's important to understand the bootstrap grid system in order to implement custom Shiny layouts. 
+Shiny uses the [bootstrap](https://getbootstrap.com/) grid system to layout content in rows and columns, and it's important to understand the bootstrap grid system in order to implement custom Shiny layouts. 
 Bootstrap divides the available screen real estate into 12 vertical sections, and allows you to specify how many sections each element takes up. 
 When you call `ui.column(4)` you are saying that this column should always 4/12 vertical sections, or 1/3 of the available real estate on the screen. 
-The reason there are 12 columns is that it's a number which can easily be divided into 2, 3, 4, or 6 equal sections. 
-The width of a column is specified relative to the width of its parent. 
-For example if we have two top-level columns with `width=6`, and three nested columns with `width=4`, each nested column will take up 1/6th of the overall screen. `6/12 * 4/12` of the overall screen.
+The reason there are 12 columns is that it's a number which can easily be divided into 2, 3, 4, or 6 equal sections, so it's fairly easy to create common divisions. 
+The width of a child column is specified relative to the width of its parent. 
+For example if we have two top-level columns with `width=6`, and three nested columns with `width=4`, each nested column will take up 1/6th (6/12 * 4/12) of the overall screen.
 The top level column divides the screen in half, and the nested column divides the top level column in half.
 
-The power of this layout system is that since your column widths are relative to the overall screen size, they will look good on different sized screns, or when the user resizes the window. 
+The power of this layout system is that since your column widths are always defined relative to the overall screen size, they will look good on different sized screns, or when the user resizes the window. 
 
 
 ## Problem 4.1 add rows and columns
@@ -128,6 +135,8 @@ Arrange the main panel of your app into rows and columns.
 
 problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
 ```
+
+
 
 # Dynamic ui elements
 
@@ -145,7 +154,7 @@ Instead, we can add a select input which lets the user pick the state, and then 
 #| echo: false
 #| output: asis  
 include_shiny_folder(
-    "apps/examples/4.1.1-dynamic-ui", components="viewer", viewer_height="400"
+    "apps/examples/4.1.1-dynamic-ui", viewer_height="400"
 )
 ```
 :::
@@ -217,10 +226,104 @@ Use the function `make_value_boxes` to add thre value boxes which show the count
 Note that there is a [`ui.layout_column_wrap`](https://shiny.posit.co/py/api/ExFillingLayout.html) in the experimental module that can help with displaying a list of ui elements.
 """
 
-problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+problem_tabs("apps/problem-sets/4.2-value-boxes", prompt)
 ```
 
 
 # Adding CSS
 
+Every part of your shiny app can be customized with CSS, and while the full scope of  this subject is too big for this workshop, it's good to learn the basic mechanics of adding CSS to an app in case it ever comes up. 
+People usually start working with CSS because they want to make minor tweaks to an app, and before they know it they're developing custom corporate style sheets to make their app fit in with a broader brand. 
+There are a few ways to style your shiny app, but we're going to just focus on using an external style sheet.
 
+::: callout-note
+Language models like ChatGPT are exceptional at translating human requests into working CSS code. 
+When starting with CSS it's often good to describe what you want a component to look like, and ask chatGPT to generate the CSS.
+:::
+
+## Adding a style sheet
+
+To add an external style sheet to a shiny app, you should use the `ui.include_css()` function which picks up an external css sheet and applies it to your application.
+CSS effectively applies styling paramaters to classes. 
+These parameters modify or add to the parameters which are already applied to a class, which is why it's a cascading style sheet. 
+
+
+### Figuring out what to change
+
+The first challenge with customizing your app is figuring out which class to modify. 
+The easiest way to do this is to open your app in Google Chrome and using the inspector. 
+To do this, right-click on the element you want to modify and select "inspect", this will open up the inspector which will show your app's HTML markup. 
+For example if you select a row you will see something like this:
+
+```{.HTML}
+<div class="row">
+....
+</div>
+```
+The thing we're after is the `class="row"` which will let us identify that class in css. 
+
+::: callout-tip
+If you get lost you can copy markup with `copy element` and paste it into chatGPT and ask which class you should change.
+:::
+
+### Modifying a class
+
+To modify a class you add it to the `style.css` file. 
+The syntax looks like this:
+
+```{.css}
+.class {
+    parameter: value;
+    parameter: valyue;
+}
+```
+
+For example if we wanted to give the rows a pink background we would modify the `row` class like this:
+
+```{.css}
+.row {
+    background-color: lightpink;
+    border-radius: 10px;
+    padding: 10px;
+}
+```
+
+### Applying a new class
+
+In addition to modifying an existing class, you can also add new classes to your shiny components. 
+This is helpful if, for example, you want to change the style of one row without changing other styles. 
+To add a custom class to an element pass a `_class = "myclass"`.
+
+
+:::: {.columns width = "50%"}
+::: {.column width = "50%"}
+```{.CSS}
+.fancy_column {
+    padding: 10px;
+}
+```
+:::
+::: {.column width = "50%"}
+```{.python}
+ui.column(8, ui.output_plot("dist"), _class="fancy_column")
+```
+:::
+::::
+
+
+```{python}
+# | echo: false
+# | output: asis
+
+prompt = """
+1) Give one of the rows in the app a pink background
+2) Ask chatGPT for help creating a style and add it to your application
+"""
+
+problem_tabs("apps/problem-sets/4.3-style-changes", prompt)
+```
+
+# Conclusion
+
+Shiny is very customisable, and as a result there are a lot of ways to customize the look and feel of your app.
+This session has hopefully given you a map for further exploration. 
