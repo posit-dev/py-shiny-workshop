@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/rstudio/shiny-python-workshop-2023/side-effects.html</loc>
-    <lastmod>2023-08-10T19:08:09.978Z</lastmod>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/reactive-side-effects.html</loc>
+    <lastmod>2023-08-21T16:12:20.749Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/rstudio/shiny-python-workshop-2023/reactive-side-effects.html</loc>
-    <lastmod>2023-08-10T19:08:00.542Z</lastmod>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/side-effects.html</loc>
+    <lastmod>2023-08-21T16:11:58.237Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rstudio/shiny-python-workshop-2023/index.html</loc>
-    <lastmod>2023-08-10T19:07:37.109Z</lastmod>
+    <lastmod>2023-08-21T16:11:47.985Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rstudio/shiny-python-workshop-2023/reactivity.html</loc>
-    <lastmod>2023-08-10T19:07:53.417Z</lastmod>
+    <lastmod>2023-08-21T16:11:46.977Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rstudio/shiny-python-workshop-2023/getting-started.html</loc>
-    <lastmod>2023-08-10T19:08:09.642Z</lastmod>
+    <lastmod>2023-08-21T16:11:57.861Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rstudio/shiny-python-workshop-2023/ui-customization.html</loc>
+    <lastmod>2023-08-21T16:12:12.965Z</lastmod>
   </url>
 </urlset>
