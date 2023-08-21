@@ -294,22 +294,15 @@ In addition to modifying an existing class, you can also add new classes to your
 This is helpful if, for example, you want to change the style of one row without changing other styles. 
 To add a custom class to an element pass a `_class = "myclass"`.
 
+```{.python}
+ui.column(8, ui.output_plot("dist"), _class="fancy_column")
+```
 
-:::: {.columns width = "50%"}
-::: {.column width = "50%"}
 ```{.CSS}
 .fancy_column {
     padding: 10px;
 }
 ```
-:::
-::: {.column width = "50%"}
-```{.python}
-ui.column(8, ui.output_plot("dist"), _class="fancy_column")
-```
-:::
-::::
-
 
 ```{python}
 # | echo: false
