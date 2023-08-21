@@ -1,55 +1,66 @@
-from shiny import App, render, ui, reactive
-import pandas as pd
-from pathlib import Path
-from plots import dist_plot, scatter_plot
+from typing import List
 
-infile = Path(__file__).parent / "penguins.csv"
-penguins = pd.read_csv(infile)
+from shiny import App, Inputs, Outputs, Session, reactive, ui
+from shiny.types import NavSetArg
 
-app_ui = ui.page_fluid(
-    ui.h2("Hello Penguins!"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
-    ),
-    ui.output_data_frame("table"),
-    ui.output_plot("dist"),
-    ui.input_checkbox("trend", "Add trendline"),
-    ui.output_plot("scatter"),
+
+def nav_controls(prefix: str) -> List[NavSetArg]:
+    return [
+        ui.div(
+            {"style": "background-color: pink"}, ui.nav("a", prefix + ": tab a content")
+        ),
+        ui.nav("b", prefix + ": tab b content"),
+        ui.nav_control(
+            ui.a(
+                "Shiny",
+                href="https://github.com/rstudio/shiny",
+                target="_blank",
+            )
+        ),
+        ui.nav_spacer(),
+        ui.nav_menu(
+            "Other links",
+            ui.nav("c", prefix + ": tab c content"),
+            "----",
+            "Plain text",
+            "----",
+            ui.nav_control(
+                ui.a(
+                    "RStudio",
+                    href="https://rstudio.com",
+                    target="_blank",
+                )
+            ),
+            align="right",
+        ),
+    ]
+
+
+app_ui = ui.page_navbar(
+    *nav_controls("page_navbar"),
+    title="page_navbar()",
+    bg="#0062cc",
+    inverse=True,
+    id="navbar_id",
+    footer=ui.div(
+        {"style": "width:80%;margin: 0 auto"},
+        ui.tags.style(
+            """
+            h4 {
+                margin-top: 3em;
+            }
+            """
+        ),
+        ui.h4("navset_pill_list()"),
+        ui.navset_pill_list(*nav_controls("navset_pill_list()")),
+    )
 )
 
 
-def server(input, output, session):
-    @reactive.Calc
-    def filt_df():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] < input.mass()]
-        return filtered
-
-    @output
-    @render.data_frame
-    def table():
-        summary = (
-            filt_df()
-            .set_index("species")
-            .groupby(level="species")
-            .agg({"bill_length": "mean", "bill_depth": "mean"})
-            .reset_index()
-        )
-        return summary
-
-    @output
-    @render.plot
-    def dist():
-        return dist_plot(filt_df())
-
-    @output
-    @render.plot
-    def scatter():
-        return scatter_plot(filt_df(), input.trend())
+def server(input: Inputs, output: Outputs, session: Session):
+    @reactive.Effect
+    def _():
+        print("Current navbar page: ", input.navbar_id())
 
 
 app = App(app_ui, server)
