@@ -1,0 +1,840 @@
+---
+title: "Getting Started"
+format: html
+editor: visual
+filters:
+  - shinylive
+---
+
+<!-- 
+Timing estimate:
+30 minutes speaking
+
+
+-->
+
+
+```{python}
+#| echo: false
+from shiny import ui
+from helpers import include_shiny_folder, problem_tabs, multiple_choice_app, Quiz
+
+```
+
+# What is a Shiny App?
+
+A Shiny app is an interactive web application. When users manipulate **inputs**, the app runs Python code to update **outputs**.
+
+## Your Turn
+
+Play with the Shiny app below to get a feel for the experience.
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 700
+# 3 minutes
+
+## file: penguins.csv
+
+Species,Island,Bill Length (mm),Bill Depth (mm),Flipper Length (mm),Body Mass (g),Sex,Year
+Adelie,Torgersen,39.1,18.7,181,3750,male,2007
+Adelie,Torgersen,39.5,17.4,186,3800,female,2007
+Adelie,Torgersen,40.3,18,195,3250,female,2007
+Adelie,Torgersen,NA,NA,NA,NA,NA,2007
+Adelie,Torgersen,36.7,19.3,193,3450,female,2007
+Adelie,Torgersen,39.3,20.6,190,3650,male,2007
+Adelie,Torgersen,38.9,17.8,181,3625,female,2007
+Adelie,Torgersen,39.2,19.6,195,4675,male,2007
+Adelie,Torgersen,34.1,18.1,193,3475,NA,2007
+Adelie,Torgersen,42,20.2,190,4250,NA,2007
+Adelie,Torgersen,37.8,17.1,186,3300,NA,2007
+Adelie,Torgersen,37.8,17.3,180,3700,NA,2007
+Adelie,Torgersen,41.1,17.6,182,3200,female,2007
+Adelie,Torgersen,38.6,21.2,191,3800,male,2007
+Adelie,Torgersen,34.6,21.1,198,4400,male,2007
+Adelie,Torgersen,36.6,17.8,185,3700,female,2007
+Adelie,Torgersen,38.7,19,195,3450,female,2007
+Adelie,Torgersen,42.5,20.7,197,4500,male,2007
+Adelie,Torgersen,34.4,18.4,184,3325,female,2007
+Adelie,Torgersen,46,21.5,194,4200,male,2007
+Adelie,Biscoe,37.8,18.3,174,3400,female,2007
+Adelie,Biscoe,37.7,18.7,180,3600,male,2007
+Adelie,Biscoe,35.9,19.2,189,3800,female,2007
+Adelie,Biscoe,38.2,18.1,185,3950,male,2007
+Adelie,Biscoe,38.8,17.2,180,3800,male,2007
+Adelie,Biscoe,35.3,18.9,187,3800,female,2007
+Adelie,Biscoe,40.6,18.6,183,3550,male,2007
+Adelie,Biscoe,40.5,17.9,187,3200,female,2007
+Adelie,Biscoe,37.9,18.6,172,3150,female,2007
+Adelie,Biscoe,40.5,18.9,180,3950,male,2007
+Adelie,Dream,39.5,16.7,178,3250,female,2007
+Adelie,Dream,37.2,18.1,178,3900,male,2007
+Adelie,Dream,39.5,17.8,188,3300,female,2007
+Adelie,Dream,40.9,18.9,184,3900,male,2007
+Adelie,Dream,36.4,17,195,3325,female,2007
+Adelie,Dream,39.2,21.1,196,4150,male,2007
+Adelie,Dream,38.8,20,190,3950,male,2007
+Adelie,Dream,42.2,18.5,180,3550,female,2007
+Adelie,Dream,37.6,19.3,181,3300,female,2007
+Adelie,Dream,39.8,19.1,184,4650,male,2007
+Adelie,Dream,36.5,18,182,3150,female,2007
+Adelie,Dream,40.8,18.4,195,3900,male,2007
+Adelie,Dream,36,18.5,186,3100,female,2007
+Adelie,Dream,44.1,19.7,196,4400,male,2007
+Adelie,Dream,37,16.9,185,3000,female,2007
+Adelie,Dream,39.6,18.8,190,4600,male,2007
+Adelie,Dream,41.1,19,182,3425,male,2007
+Adelie,Dream,37.5,18.9,179,2975,NA,2007
+Adelie,Dream,36,17.9,190,3450,female,2007
+Adelie,Dream,42.3,21.2,191,4150,male,2007
+Adelie,Biscoe,39.6,17.7,186,3500,female,2008
+Adelie,Biscoe,40.1,18.9,188,4300,male,2008
+Adelie,Biscoe,35,17.9,190,3450,female,2008
+Adelie,Biscoe,42,19.5,200,4050,male,2008
+Adelie,Biscoe,34.5,18.1,187,2900,female,2008
+Adelie,Biscoe,41.4,18.6,191,3700,male,2008
+Adelie,Biscoe,39,17.5,186,3550,female,2008
+Adelie,Biscoe,40.6,18.8,193,3800,male,2008
+Adelie,Biscoe,36.5,16.6,181,2850,female,2008
+Adelie,Biscoe,37.6,19.1,194,3750,male,2008
+Adelie,Biscoe,35.7,16.9,185,3150,female,2008
+Adelie,Biscoe,41.3,21.1,195,4400,male,2008
+Adelie,Biscoe,37.6,17,185,3600,female,2008
+Adelie,Biscoe,41.1,18.2,192,4050,male,2008
+Adelie,Biscoe,36.4,17.1,184,2850,female,2008
+Adelie,Biscoe,41.6,18,192,3950,male,2008
+Adelie,Biscoe,35.5,16.2,195,3350,female,2008
+Adelie,Biscoe,41.1,19.1,188,4100,male,2008
+Adelie,Torgersen,35.9,16.6,190,3050,female,2008
+Adelie,Torgersen,41.8,19.4,198,4450,male,2008
+Adelie,Torgersen,33.5,19,190,3600,female,2008
+Adelie,Torgersen,39.7,18.4,190,3900,male,2008
+Adelie,Torgersen,39.6,17.2,196,3550,female,2008
+Adelie,Torgersen,45.8,18.9,197,4150,male,2008
+Adelie,Torgersen,35.5,17.5,190,3700,female,2008
+Adelie,Torgersen,42.8,18.5,195,4250,male,2008
+Adelie,Torgersen,40.9,16.8,191,3700,female,2008
+Adelie,Torgersen,37.2,19.4,184,3900,male,2008
+Adelie,Torgersen,36.2,16.1,187,3550,female,2008
+Adelie,Torgersen,42.1,19.1,195,4000,male,2008
+Adelie,Torgersen,34.6,17.2,189,3200,female,2008
+Adelie,Torgersen,42.9,17.6,196,4700,male,2008
+Adelie,Torgersen,36.7,18.8,187,3800,female,2008
+Adelie,Torgersen,35.1,19.4,193,4200,male,2008
+Adelie,Dream,37.3,17.8,191,3350,female,2008
+Adelie,Dream,41.3,20.3,194,3550,male,2008
+Adelie,Dream,36.3,19.5,190,3800,male,2008
+Adelie,Dream,36.9,18.6,189,3500,female,2008
+Adelie,Dream,38.3,19.2,189,3950,male,2008
+Adelie,Dream,38.9,18.8,190,3600,female,2008
+Adelie,Dream,35.7,18,202,3550,female,2008
+Adelie,Dream,41.1,18.1,205,4300,male,2008
+Adelie,Dream,34,17.1,185,3400,female,2008
+Adelie,Dream,39.6,18.1,186,4450,male,2008
+Adelie,Dream,36.2,17.3,187,3300,female,2008
+Adelie,Dream,40.8,18.9,208,4300,male,2008
+Adelie,Dream,38.1,18.6,190,3700,female,2008
+Adelie,Dream,40.3,18.5,196,4350,male,2008
+Adelie,Dream,33.1,16.1,178,2900,female,2008
+Adelie,Dream,43.2,18.5,192,4100,male,2008
+Adelie,Biscoe,35,17.9,192,3725,female,2009
+Adelie,Biscoe,41,20,203,4725,male,2009
+Adelie,Biscoe,37.7,16,183,3075,female,2009
+Adelie,Biscoe,37.8,20,190,4250,male,2009
+Adelie,Biscoe,37.9,18.6,193,2925,female,2009
+Adelie,Biscoe,39.7,18.9,184,3550,male,2009
+Adelie,Biscoe,38.6,17.2,199,3750,female,2009
+Adelie,Biscoe,38.2,20,190,3900,male,2009
+Adelie,Biscoe,38.1,17,181,3175,female,2009
+Adelie,Biscoe,43.2,19,197,4775,male,2009
+Adelie,Biscoe,38.1,16.5,198,3825,female,2009
+Adelie,Biscoe,45.6,20.3,191,4600,male,2009
+Adelie,Biscoe,39.7,17.7,193,3200,female,2009
+Adelie,Biscoe,42.2,19.5,197,4275,male,2009
+Adelie,Biscoe,39.6,20.7,191,3900,female,2009
+Adelie,Biscoe,42.7,18.3,196,4075,male,2009
+Adelie,Torgersen,38.6,17,188,2900,female,2009
+Adelie,Torgersen,37.3,20.5,199,3775,male,2009
+Adelie,Torgersen,35.7,17,189,3350,female,2009
+Adelie,Torgersen,41.1,18.6,189,3325,male,2009
+Adelie,Torgersen,36.2,17.2,187,3150,female,2009
+Adelie,Torgersen,37.7,19.8,198,3500,male,2009
+Adelie,Torgersen,40.2,17,176,3450,female,2009
+Adelie,Torgersen,41.4,18.5,202,3875,male,2009
+Adelie,Torgersen,35.2,15.9,186,3050,female,2009
+Adelie,Torgersen,40.6,19,199,4000,male,2009
+Adelie,Torgersen,38.8,17.6,191,3275,female,2009
+Adelie,Torgersen,41.5,18.3,195,4300,male,2009
+Adelie,Torgersen,39,17.1,191,3050,female,2009
+Adelie,Torgersen,44.1,18,210,4000,male,2009
+Adelie,Torgersen,38.5,17.9,190,3325,female,2009
+Adelie,Torgersen,43.1,19.2,197,3500,male,2009
+Adelie,Dream,36.8,18.5,193,3500,female,2009
+Adelie,Dream,37.5,18.5,199,4475,male,2009
+Adelie,Dream,38.1,17.6,187,3425,female,2009
+Adelie,Dream,41.1,17.5,190,3900,male,2009
+Adelie,Dream,35.6,17.5,191,3175,female,2009
+Adelie,Dream,40.2,20.1,200,3975,male,2009
+Adelie,Dream,37,16.5,185,3400,female,2009
+Adelie,Dream,39.7,17.9,193,4250,male,2009
+Adelie,Dream,40.2,17.1,193,3400,female,2009
+Adelie,Dream,40.6,17.2,187,3475,male,2009
+Adelie,Dream,32.1,15.5,188,3050,female,2009
+Adelie,Dream,40.7,17,190,3725,male,2009
+Adelie,Dream,37.3,16.8,192,3000,female,2009
+Adelie,Dream,39,18.7,185,3650,male,2009
+Adelie,Dream,39.2,18.6,190,4250,male,2009
+Adelie,Dream,36.6,18.4,184,3475,female,2009
+Adelie,Dream,36,17.8,195,3450,female,2009
+Adelie,Dream,37.8,18.1,193,3750,male,2009
+Adelie,Dream,36,17.1,187,3700,female,2009
+Adelie,Dream,41.5,18.5,201,4000,male,2009
+Gentoo,Biscoe,46.1,13.2,211,4500,female,2007
+Gentoo,Biscoe,50,16.3,230,5700,male,2007
+Gentoo,Biscoe,48.7,14.1,210,4450,female,2007
+Gentoo,Biscoe,50,15.2,218,5700,male,2007
+Gentoo,Biscoe,47.6,14.5,215,5400,male,2007
+Gentoo,Biscoe,46.5,13.5,210,4550,female,2007
+Gentoo,Biscoe,45.4,14.6,211,4800,female,2007
+Gentoo,Biscoe,46.7,15.3,219,5200,male,2007
+Gentoo,Biscoe,43.3,13.4,209,4400,female,2007
+Gentoo,Biscoe,46.8,15.4,215,5150,male,2007
+Gentoo,Biscoe,40.9,13.7,214,4650,female,2007
+Gentoo,Biscoe,49,16.1,216,5550,male,2007
+Gentoo,Biscoe,45.5,13.7,214,4650,female,2007
+Gentoo,Biscoe,48.4,14.6,213,5850,male,2007
+Gentoo,Biscoe,45.8,14.6,210,4200,female,2007
+Gentoo,Biscoe,49.3,15.7,217,5850,male,2007
+Gentoo,Biscoe,42,13.5,210,4150,female,2007
+Gentoo,Biscoe,49.2,15.2,221,6300,male,2007
+Gentoo,Biscoe,46.2,14.5,209,4800,female,2007
+Gentoo,Biscoe,48.7,15.1,222,5350,male,2007
+Gentoo,Biscoe,50.2,14.3,218,5700,male,2007
+Gentoo,Biscoe,45.1,14.5,215,5000,female,2007
+Gentoo,Biscoe,46.5,14.5,213,4400,female,2007
+Gentoo,Biscoe,46.3,15.8,215,5050,male,2007
+Gentoo,Biscoe,42.9,13.1,215,5000,female,2007
+Gentoo,Biscoe,46.1,15.1,215,5100,male,2007
+Gentoo,Biscoe,44.5,14.3,216,4100,NA,2007
+Gentoo,Biscoe,47.8,15,215,5650,male,2007
+Gentoo,Biscoe,48.2,14.3,210,4600,female,2007
+Gentoo,Biscoe,50,15.3,220,5550,male,2007
+Gentoo,Biscoe,47.3,15.3,222,5250,male,2007
+Gentoo,Biscoe,42.8,14.2,209,4700,female,2007
+Gentoo,Biscoe,45.1,14.5,207,5050,female,2007
+Gentoo,Biscoe,59.6,17,230,6050,male,2007
+Gentoo,Biscoe,49.1,14.8,220,5150,female,2008
+Gentoo,Biscoe,48.4,16.3,220,5400,male,2008
+Gentoo,Biscoe,42.6,13.7,213,4950,female,2008
+Gentoo,Biscoe,44.4,17.3,219,5250,male,2008
+Gentoo,Biscoe,44,13.6,208,4350,female,2008
+Gentoo,Biscoe,48.7,15.7,208,5350,male,2008
+Gentoo,Biscoe,42.7,13.7,208,3950,female,2008
+Gentoo,Biscoe,49.6,16,225,5700,male,2008
+Gentoo,Biscoe,45.3,13.7,210,4300,female,2008
+Gentoo,Biscoe,49.6,15,216,4750,male,2008
+Gentoo,Biscoe,50.5,15.9,222,5550,male,2008
+Gentoo,Biscoe,43.6,13.9,217,4900,female,2008
+Gentoo,Biscoe,45.5,13.9,210,4200,female,2008
+Gentoo,Biscoe,50.5,15.9,225,5400,male,2008
+Gentoo,Biscoe,44.9,13.3,213,5100,female,2008
+Gentoo,Biscoe,45.2,15.8,215,5300,male,2008
+Gentoo,Biscoe,46.6,14.2,210,4850,female,2008
+Gentoo,Biscoe,48.5,14.1,220,5300,male,2008
+Gentoo,Biscoe,45.1,14.4,210,4400,female,2008
+Gentoo,Biscoe,50.1,15,225,5000,male,2008
+Gentoo,Biscoe,46.5,14.4,217,4900,female,2008
+Gentoo,Biscoe,45,15.4,220,5050,male,2008
+Gentoo,Biscoe,43.8,13.9,208,4300,female,2008
+Gentoo,Biscoe,45.5,15,220,5000,male,2008
+Gentoo,Biscoe,43.2,14.5,208,4450,female,2008
+Gentoo,Biscoe,50.4,15.3,224,5550,male,2008
+Gentoo,Biscoe,45.3,13.8,208,4200,female,2008
+Gentoo,Biscoe,46.2,14.9,221,5300,male,2008
+Gentoo,Biscoe,45.7,13.9,214,4400,female,2008
+Gentoo,Biscoe,54.3,15.7,231,5650,male,2008
+Gentoo,Biscoe,45.8,14.2,219,4700,female,2008
+Gentoo,Biscoe,49.8,16.8,230,5700,male,2008
+Gentoo,Biscoe,46.2,14.4,214,4650,NA,2008
+Gentoo,Biscoe,49.5,16.2,229,5800,male,2008
+Gentoo,Biscoe,43.5,14.2,220,4700,female,2008
+Gentoo,Biscoe,50.7,15,223,5550,male,2008
+Gentoo,Biscoe,47.7,15,216,4750,female,2008
+Gentoo,Biscoe,46.4,15.6,221,5000,male,2008
+Gentoo,Biscoe,48.2,15.6,221,5100,male,2008
+Gentoo,Biscoe,46.5,14.8,217,5200,female,2008
+Gentoo,Biscoe,46.4,15,216,4700,female,2008
+Gentoo,Biscoe,48.6,16,230,5800,male,2008
+Gentoo,Biscoe,47.5,14.2,209,4600,female,2008
+Gentoo,Biscoe,51.1,16.3,220,6000,male,2008
+Gentoo,Biscoe,45.2,13.8,215,4750,female,2008
+Gentoo,Biscoe,45.2,16.4,223,5950,male,2008
+Gentoo,Biscoe,49.1,14.5,212,4625,female,2009
+Gentoo,Biscoe,52.5,15.6,221,5450,male,2009
+Gentoo,Biscoe,47.4,14.6,212,4725,female,2009
+Gentoo,Biscoe,50,15.9,224,5350,male,2009
+Gentoo,Biscoe,44.9,13.8,212,4750,female,2009
+Gentoo,Biscoe,50.8,17.3,228,5600,male,2009
+Gentoo,Biscoe,43.4,14.4,218,4600,female,2009
+Gentoo,Biscoe,51.3,14.2,218,5300,male,2009
+Gentoo,Biscoe,47.5,14,212,4875,female,2009
+Gentoo,Biscoe,52.1,17,230,5550,male,2009
+Gentoo,Biscoe,47.5,15,218,4950,female,2009
+Gentoo,Biscoe,52.2,17.1,228,5400,male,2009
+Gentoo,Biscoe,45.5,14.5,212,4750,female,2009
+Gentoo,Biscoe,49.5,16.1,224,5650,male,2009
+Gentoo,Biscoe,44.5,14.7,214,4850,female,2009
+Gentoo,Biscoe,50.8,15.7,226,5200,male,2009
+Gentoo,Biscoe,49.4,15.8,216,4925,male,2009
+Gentoo,Biscoe,46.9,14.6,222,4875,female,2009
+Gentoo,Biscoe,48.4,14.4,203,4625,female,2009
+Gentoo,Biscoe,51.1,16.5,225,5250,male,2009
+Gentoo,Biscoe,48.5,15,219,4850,female,2009
+Gentoo,Biscoe,55.9,17,228,5600,male,2009
+Gentoo,Biscoe,47.2,15.5,215,4975,female,2009
+Gentoo,Biscoe,49.1,15,228,5500,male,2009
+Gentoo,Biscoe,47.3,13.8,216,4725,NA,2009
+Gentoo,Biscoe,46.8,16.1,215,5500,male,2009
+Gentoo,Biscoe,41.7,14.7,210,4700,female,2009
+Gentoo,Biscoe,53.4,15.8,219,5500,male,2009
+Gentoo,Biscoe,43.3,14,208,4575,female,2009
+Gentoo,Biscoe,48.1,15.1,209,5500,male,2009
+Gentoo,Biscoe,50.5,15.2,216,5000,female,2009
+Gentoo,Biscoe,49.8,15.9,229,5950,male,2009
+Gentoo,Biscoe,43.5,15.2,213,4650,female,2009
+Gentoo,Biscoe,51.5,16.3,230,5500,male,2009
+Gentoo,Biscoe,46.2,14.1,217,4375,female,2009
+Gentoo,Biscoe,55.1,16,230,5850,male,2009
+Gentoo,Biscoe,44.5,15.7,217,4875,NA,2009
+Gentoo,Biscoe,48.8,16.2,222,6000,male,2009
+Gentoo,Biscoe,47.2,13.7,214,4925,female,2009
+Gentoo,Biscoe,NA,NA,NA,NA,NA,2009
+Gentoo,Biscoe,46.8,14.3,215,4850,female,2009
+Gentoo,Biscoe,50.4,15.7,222,5750,male,2009
+Gentoo,Biscoe,45.2,14.8,212,5200,female,2009
+Gentoo,Biscoe,49.9,16.1,213,5400,male,2009
+Chinstrap,Dream,46.5,17.9,192,3500,female,2007
+Chinstrap,Dream,50,19.5,196,3900,male,2007
+Chinstrap,Dream,51.3,19.2,193,3650,male,2007
+Chinstrap,Dream,45.4,18.7,188,3525,female,2007
+Chinstrap,Dream,52.7,19.8,197,3725,male,2007
+Chinstrap,Dream,45.2,17.8,198,3950,female,2007
+Chinstrap,Dream,46.1,18.2,178,3250,female,2007
+Chinstrap,Dream,51.3,18.2,197,3750,male,2007
+Chinstrap,Dream,46,18.9,195,4150,female,2007
+Chinstrap,Dream,51.3,19.9,198,3700,male,2007
+Chinstrap,Dream,46.6,17.8,193,3800,female,2007
+Chinstrap,Dream,51.7,20.3,194,3775,male,2007
+Chinstrap,Dream,47,17.3,185,3700,female,2007
+Chinstrap,Dream,52,18.1,201,4050,male,2007
+Chinstrap,Dream,45.9,17.1,190,3575,female,2007
+Chinstrap,Dream,50.5,19.6,201,4050,male,2007
+Chinstrap,Dream,50.3,20,197,3300,male,2007
+Chinstrap,Dream,58,17.8,181,3700,female,2007
+Chinstrap,Dream,46.4,18.6,190,3450,female,2007
+Chinstrap,Dream,49.2,18.2,195,4400,male,2007
+Chinstrap,Dream,42.4,17.3,181,3600,female,2007
+Chinstrap,Dream,48.5,17.5,191,3400,male,2007
+Chinstrap,Dream,43.2,16.6,187,2900,female,2007
+Chinstrap,Dream,50.6,19.4,193,3800,male,2007
+Chinstrap,Dream,46.7,17.9,195,3300,female,2007
+Chinstrap,Dream,52,19,197,4150,male,2007
+Chinstrap,Dream,50.5,18.4,200,3400,female,2008
+Chinstrap,Dream,49.5,19,200,3800,male,2008
+Chinstrap,Dream,46.4,17.8,191,3700,female,2008
+Chinstrap,Dream,52.8,20,205,4550,male,2008
+Chinstrap,Dream,40.9,16.6,187,3200,female,2008
+Chinstrap,Dream,54.2,20.8,201,4300,male,2008
+Chinstrap,Dream,42.5,16.7,187,3350,female,2008
+Chinstrap,Dream,51,18.8,203,4100,male,2008
+Chinstrap,Dream,49.7,18.6,195,3600,male,2008
+Chinstrap,Dream,47.5,16.8,199,3900,female,2008
+Chinstrap,Dream,47.6,18.3,195,3850,female,2008
+Chinstrap,Dream,52,20.7,210,4800,male,2008
+Chinstrap,Dream,46.9,16.6,192,2700,female,2008
+Chinstrap,Dream,53.5,19.9,205,4500,male,2008
+Chinstrap,Dream,49,19.5,210,3950,male,2008
+Chinstrap,Dream,46.2,17.5,187,3650,female,2008
+Chinstrap,Dream,50.9,19.1,196,3550,male,2008
+Chinstrap,Dream,45.5,17,196,3500,female,2008
+Chinstrap,Dream,50.9,17.9,196,3675,female,2009
+Chinstrap,Dream,50.8,18.5,201,4450,male,2009
+Chinstrap,Dream,50.1,17.9,190,3400,female,2009
+Chinstrap,Dream,49,19.6,212,4300,male,2009
+Chinstrap,Dream,51.5,18.7,187,3250,male,2009
+Chinstrap,Dream,49.8,17.3,198,3675,female,2009
+Chinstrap,Dream,48.1,16.4,199,3325,female,2009
+Chinstrap,Dream,51.4,19,201,3950,male,2009
+Chinstrap,Dream,45.7,17.3,193,3600,female,2009
+Chinstrap,Dream,50.7,19.7,203,4050,male,2009
+Chinstrap,Dream,42.5,17.3,187,3350,female,2009
+Chinstrap,Dream,52.2,18.8,197,3450,male,2009
+Chinstrap,Dream,45.2,16.6,191,3250,female,2009
+Chinstrap,Dream,49.3,19.9,203,4050,male,2009
+Chinstrap,Dream,50.2,18.8,202,3800,male,2009
+Chinstrap,Dream,45.6,19.4,194,3525,female,2009
+Chinstrap,Dream,51.9,19.5,206,3950,male,2009
+Chinstrap,Dream,46.8,16.5,189,3650,female,2009
+Chinstrap,Dream,45.7,17,195,3650,female,2009
+Chinstrap,Dream,55.8,19.8,207,4000,male,2009
+Chinstrap,Dream,43.5,18.1,202,3400,female,2009
+Chinstrap,Dream,49.6,18.2,193,3775,male,2009
+Chinstrap,Dream,50.8,19,210,4100,male,2009
+Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+## file: app.py
+
+from pathlib import Path
+
+import pandas as pd
+import seaborn as sns
+
+import shiny.experimental as x
+from shiny import App, Inputs, Outputs, Session, reactive, render, req, ui
+
+sns.set_theme()
+
+df = pd.read_csv(Path(__file__).parent / "penguins.csv", na_values="NA")
+numeric_cols = df.select_dtypes(include=["float64"]).columns.tolist()
+species = df["Species"].unique().tolist()
+species.sort()
+
+app_ui = x.ui.page_sidebar(
+    x.ui.sidebar(
+        ui.input_selectize(
+            "xvar", "X variable", numeric_cols, selected="Bill Length (mm)"
+        ),
+        ui.input_selectize(
+            "yvar", "Y variable", numeric_cols, selected="Bill Depth (mm)"
+        ),
+        ui.input_checkbox_group(
+            "species", "Filter by species", species, selected=species
+        ),
+        ui.hr(),
+        ui.input_switch("by_species", "Show species", value=True),
+        ui.input_switch("show_margins", "Show marginal plots", value=True),
+    ),
+    x.ui.output_plot("scatter")
+)
+
+
+def server(input: Inputs, output: Outputs, session: Session):
+    @reactive.Calc
+    def filtered_df() -> pd.DataFrame:
+        """Returns a Pandas data frame that includes only the desired rows"""
+
+        # This calculation "req"uires that at least one species is selected
+        req(len(input.species()) > 0)
+
+        # Filter the rows so we only include the desired species
+        return df[df["Species"].isin(input.species())]
+
+    @output
+    @render.plot
+    def scatter():
+        """Generates a plot for Shiny to display to the user"""
+
+        # The plotting function to use depends on whether margins are desired
+        plotfunc = sns.jointplot if input.show_margins() else sns.scatterplot
+
+        plotfunc(
+            data=filtered_df(),
+            x=input.xvar(),
+            y=input.yvar(),
+            hue="Species" if input.by_species() else None,
+            hue_order=species,
+            legend=False,
+        )
+
+
+app = App(app_ui, server) 
+```
+
+## Notice
+
+- The app contains input elements [DIAGRAM] and output elements [DIAGRAM]
+
+- The app is **reactive**. It doesn't do anything until you change an input.
+
+- When you change an input, Shiny doesn't reload the whole app. It only updates the outputs that depend on the input. The outputs are similar to formulas in Excel. You create the outputs by telling Shiny how to create them. Shiny takes care of the rest. No need to mess with callbacks, caching, or any of the usual complexity associated with a web app.
+
+- The app looks nice, and you don't need to be a web developer to make one. You just call Python functions to:
+    - Create inputs
+    - Layout inputs and outputs
+    - Declare how to make outputs from inputs
+
+But if you do know a little about web development, you can apply those skills to your app to add whatever design elements you like.
+
+::: tip
+This would be a great place to draw a comparison to streamlit or dash if we have one.
+:::
+
+## Agenda
+
+Over the next 90 minutes, we'll learn how to make a functioning Shiny app, focusing on these steps:
+
+1. Layout a UI 
+2. Add outputs to the UI
+3. Add inputs to the UI
+4. Declare how to make outputs from inputs
+
+Consider this the basic "whole game" of Shiny development. After we get used to this workflow, we'll spend the rest of today diving deeper into:
+
+1. How to work with Reactivity
+2. How to design a UI
+
+# Your first Shiny App
+
+The goal of this section is to learn what you need to do to stand up a Shiny application.
+Don't worry if you don't really understand how the framework works, or why it's designed in a particular way. 
+All we're trying to do at this stage is to get something working, and become comfortable with the development pattern.
+
+## `shiny create`
+
+Now that we know what a Shiny app looks like to our user, what does a Shiny app look like to us, the developer?
+
+**Run this command at the terminal** to create a new Shiny app in your current directory.
+
+```
+shiny create .
+```
+
+## App structure
+
+Every Shiny app begins like this: as a directory, named after the app, that contains an `app.py` file. 
+
+The `app.py` file tells Shiny how to build and rebuild the app as the user uses it. `shiny create .` fills in a working app template for us. 
+
+In the future, you can begin here and modify the template to make your apps. But since we are learning, lets step back a step and build our first app from the ground up.
+
+**Erase the contents of `app.py`** You should now have a blank file. Great!
+
+## `app.py` structure
+
+Every Shiny `app.py` contains these same elements:
+
+```{python}
+#| eval: false
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid()
+
+def server(input, output, session):
+    return None
+
+app = App(app_ui, server)
+```
+
+1. Line 1 sets up the environment of the app. It imports all of the methods and reads in all of the files that the app will use. 
+2. Line 3 tells Shiny how to assemble a UI for our app
+3. Line 5 tells Shiny how to build outputs from inputs
+4. Line 8 puts it all together and launches our app.
+
+**Type this into your `app.py` file, then click the play button.** It is like learn python the hard way. It is the only time in your life you will have to do this.
+<!--2 minutes-->
+
+## The UI
+
+If that worked you should see a blank white screen. Bravo! That's an empty Shiny app. 
+
+You can think of this as the "boilerplate" for every Shiny app. What we add to it is what makes our app unique. 
+
+Which brings us to Lesson 1: anything you pass as an argument to the `ui.page_fluid()` function will be inserted into the App UI as if it were HTML.
+
+Later today, we will learn about many useful Shiny functions that write the HTML for you, but for now, let's just insert a string of text...
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 1 minute
+
+problem_tabs("apps/01-hello-world", prompt= """
+Add the phrase hello World to the app, so that it appears in the UI of the app. Then run the app.
+""")
+```
+
+## The `ui` module for Python output
+
+Nice! But not very interesting. The goal of most Shiny apps is to display output generated with Python. Then your customer can tweak the output without needing to learn Python. 
+
+You can add python output to the UI with the `output_` functions that come in Shiny's `ui` module. Each function inserts a different type of output, wrapping it in the HTML and CSS the app needs to show that output. They all require a name to use for the output.
+
+For example, we can use `ui.output_data_frame` to add a table of data, or a data frame, named `df` to the app. Each `output_` function requires us to name the output.
+
+Follow along with me and add this code to your `app.py` file. Notice that we are adding it as an argument of `ui.page_fluid()`, which means that we need to separate it from the previous argument with a comma.
+
+```{python}
+#| eval: false
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+  "Hello World!",
+  ui.output_data_frame("df")
+)
+
+def server(input, output, session):
+    return None
+
+app = App(app_ui, server)
+```
+
+Now run your app...
+
+## Did anything happen?
+
+Amazing! Do you see what we added? No? That's because we only added a _space_ to put a data frame generated by Python in [DIAGRAM]. There is now an empty space set aside in the UI for the data frame. That's a crucial, but not very satisfying step in the process. Anytime we want a Python output to appear in the UI we need to tell the UI where to place the element. But the UI doesn't do the hard work of building the Python output. That's the server's job. 
+
+Now, we have to use Python to build, read in, or otherwise provide that data set. But before we do, let's notice that `ui.output_data_frame()` is one of those Shiny functions that generate HTML output for us that I talked about.
+
+```{python}
+ui.output_data_frame("df")
+```
+
+So we've added an empty div.
+
+## Step two: tell the server how to make `df`
+
+For each output we place in the app, we need to tell the server how to create the output. We do that by defining a Python function that returns the output. 
+
+So, for example, this app now reads in a csv file as a data frame named `world`. And this function will return `world`.
+
+Where does it get the csv file? From a directory named `data/` that I've added beside `app.py`.
+
+```{python}
+#| eval: false
+from shiny import App, render, ui
+import pandas as pd
+from pathlib import Path
+
+infile = Path(__file__).parent / "data/gapminder2023.csv"
+world = pd.read_csv(infile)
+
+app_ui = ui.page_fluid(
+    ui.h2("Hello World"),
+    ui.output_data_frame("world")
+)
+
+def server(input, output, session):
+    def ____():
+    return world
+
+app = App(app_ui, server)
+```
+
+Notice that my server function no longer needs to return `None`: it now returns this function. Also notice that I left the name of the function blank. That's for you to fix. 
+
+When we define an output function, we need to do three special things to the function that will ensure Shiny can use it to create an output. 
+
+1. First, we need to give the function the same name as the output. Shiny will run this function everytime it needs to build or update the output.
+
+2. Second, we need to decorate the function with a `@render.` decorator. EXPLAIN WHAT A DECORATOR IS. The render decorator will render the results of the function into a format that Shiny can display in the UI div we created above. Different types of output are rendered in different ways, so we need to choose the @render. decorator that matches our output format, i.e. a data frame
+
+3. Finally, we need to decorate the function with the @output decorator. This should always be the top-most decorator. It (?) adds the function to the list of output functions that Shiny will search through to build outputs (?) (Garrett - I DON'T KNOW IF THIS IS THE TRUE EXPLANATION, BUT OVER THE LONG TERM, STUDENTS WILL DO BETTER REBUILDING THE DETAILS FROM THE EXPLANATIONS THEY REMEMBER THAN THEY WILL REMEMBERING THE DETAILS)
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 4 minutes
+
+problem_tabs("apps/02-def", prompt= """
+Tell the server how to render a data frame named `df` to be shown in the UI. Then run the app.
+""")
+```
+
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/03-debug", prompt= """
+Something has gone wrong. Can you correct it?
+""")
+```
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/04-debug", prompt= """
+Something has gone wrong. Can you correct it?
+""")
+```
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/04.5-debug", prompt= """
+Something has gone wrong. Can you correct it?
+""")
+```
+
+## Inputs
+
+Very nice, but our app isn't very interactive. In fact, we've given our user no way to interact with it. You can do that with a `ui.input_` function. Each adds an HTML widget that the user can use to provide a different type of value. Each passes on the value or values that the user provides for the app to use.
+
+Each `ui.input_` function takes the same first two arguments:
+
+1. A name to save the user supplied value as
+2. A label to show to the user. This is your chance to make it clear to the user what they are supposed to do with the widget.
+
+The remaining arguments differ from widget to widget. The best place to look up those arguments is the Shiny for Python function reference. 
+
+Let's add a widget that the user can use to filter our table of data.
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 5 minutes
+
+problem_tabs("apps/05-input", prompt= """
+Add a Select menu to the UI that has the label "Select a region". The user should be able to select from the folowing choices: Americas, Africa, Asia, Europe, and Oceania. Set the initial choice to Americas and arrange for the app to save the user's value as 'region'.
+""")
+```
+
+## Reactivity
+
+Is our app interactive? Check! Reactive? Not quite. But creating reactivity from this stage is surprisingly simple. 
+
+Our output functions on the server side can access a widget's value with the syntax `input.<id>()`, where `<id>` is the name we gave the value in the first argument of the widget. So for example, we can access the value of this widget with 
+
+```{python}
+#| eval: false
+input.region()
+```
+
+Notice that this is a function, not a value. The function looks up the current value and makes some arrangements on our behalf when it does.
+
+Let's try it out and then examine the results. 
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/06-filter", prompt= """
+Update the app so that each time a user selects a region, the app re-filters the table to that region. Try it out.
+""")
+```
+
+## Closing the reactive loop
+
+To create reactivity, all we need to do is call an input value from within our output function. Shiny will take care of the rest. It tracks which outputs rely on which inputs. Whenever an input value changes, Shiny will regenerate the outputswhose definition functions call that input value (they don't even need to meaningfully use the input value). 
+
+Shiny will regenerate those outputs by rerunning the functions that define them. In the process, it will scoop up and use the new value of the input, and reset the process to happen again the next time the value changes.
+
+Calling an input value from an output function is like completing an electric circuit. Reactivity will begin to "flow" automatically.
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/07-debug", prompt= """
+Something has gone wrong. Can you fix it?
+""")
+```
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 2 minutes
+
+problem_tabs("apps/08-debug", prompt= """
+Something has gone wrong. Can you fix it?
+""")
+```
+
+## An aside
+
+Right now we should just focus on the workflow, but this approach to creating interactions is extremely efficient:
+
+- Your app is computationally lazy (reminder: that's a great thing). Shiny only updates the bare minimum of what needs to be updated, and only when it needs to be updated. There's even caching involved under the hood.
+- Your code is very simple. You do not need to arrange callbacks, caching, or if else statments that predict all of the future states of the app. You just declare how Shiny should regenerate an output when it needs to.
+
+We'll be able to appreciate this more when we dive into reactivity after the break.
+
+## 
+
+That's the Shiny workflow in a nutshell:
+
+1. Layout a UI
+2. Include inputs and outputs
+3. Use input values to build outputs
+
+You are now ready for the big leagues, but first, let's practice what we've learned to add a second set of inputs and outputs.
+
+The app below uses a helper function named `top5_line_plot()`, which I've defined here [SHOW] to plot one variable for the filtered data. Your task is to recreate the app.
+
+Notice that this drop down menu will require us to use a dictionary instead of a list. For each choice in the drop down menu, the label will be the actual value passed to the app. These match the columns in our data frame, and are slightly shy of being human readable. The values of the dictionary are the values the user will see in the select menu. This arrangement lets the user choose something that makes sense to them, while simultaneously allowing the widget to pass on something that makes sense to the server.
+
+Use what you've learned to recreate the app.
+
+## Your Turn
+
+```{python}
+#| echo: false
+#| output: asis
+# 10 minutes
+
+problem_tabs("apps/09-plot", prompt= """
+Add a second select menu to our app as well as a plot which shows the change in the selected variable over time for the filtered data. You can use top5_line_plot() to generate the plot.
+""")
+```
+
+## Retrospective
+
+You now have a performant, useful app. All that is left is using functions to tweak the UI. For example, we can make Hello World! a second level header, and layout the elements into a sidebar arrangement. **Run the app below** to see what I mean.
+
+```{python}
+#| echo: false
+#| output: asis
+
+include_shiny_folder("apps/10-gapminder")
+```
+
+These tweaks are pretty straightforward and we'll look at them more closely this afternoon.
+
+## Recap
+
+For now, remember:
+
+1. Every Shiny app is organized as a directory that contains an `app.py` file (or its equivalent)
+2. Every `app.py` uses a standard structure, that looks like this:
+
+```
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid()
+
+def server(input, output, session):
+    return None
+
+app = App(app_ui, server)
+```
+
+3. You add elements, including inputs and outputs to the UI by passing them as arguments to `ui.page_fluid()` (or its equivalent)
+4. You generate outputs by defining functions that create them inside the `server` function
+5. You access input values as `input.<id>()`
+6. Shiny will automatically update any output that uses an input function when the input function changes.

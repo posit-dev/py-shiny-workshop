@@ -1,0 +1,1 @@
+Add a Select menu to the UI that has the label "Select a region". The user should be able to select from the folowing choices: Americas, Africa, Asia, Europe, and Oceania. Set the initial choice to Americas and arrange for the app to save the user's value as 'region'.
