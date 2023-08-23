@@ -1,0 +1,1 @@
+The filter is not connected to the output table so changing it doesn't do anything. Modify the app so that the data frame is filtered when the slider changes.

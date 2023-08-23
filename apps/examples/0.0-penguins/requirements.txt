@@ -1,0 +1,4 @@
+shiny==0.5.1
+shinyswatch==0.2.4
+seaborn==0.12.2
+matplotlib==3.7.1
