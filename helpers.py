@@ -100,7 +100,15 @@ def collapse_prompt(prompt: str) -> list:
     return out
 
 
-def problem_tabs(path: str, prompt: str = "") -> None:
+def parse_readme(path: str) -> str:
+    file_path = Path(__name__).parent / path / "README"
+    file_contents = ""
+    with open(file_path, "r") as file:
+        file_contents = file.read()
+    return file_contents
+
+
+def problem_tabs(path: str) -> None:
     block = QuartoPrint(
         [
             "::::: {.column-screen-inset}",
@@ -108,18 +116,26 @@ def problem_tabs(path: str, prompt: str = "") -> None:
             "## Goal",
         ]
     )
+    prompt = parse_readme(path)
     block.extend(collapse_prompt(prompt))
     block.extend(
         _include_shiny_folder(
-            path, "app-solution.py", exclusions=["app.py"], components="viewer"
+            path,
+            "app-solution.py",
+            exclusions=["app.py", "README"],
+            components="viewer",
         )
     )
     block.append("## Problem")
     block.extend(collapse_prompt(prompt))
-    block.extend(_include_shiny_folder(path, "app.py", exclusions=["app-solution.py"]))
+    block.extend(
+        _include_shiny_folder(path, "app.py", exclusions=["app-solution.py", "README"])
+    )
     block.append("## Solution")
     block.extend(collapse_prompt(prompt))
-    block.extend(_include_shiny_folder(path, "app-solution.py", exclusions=["app.py"]))
+    block.extend(
+        _include_shiny_folder(path, "app-solution.py", exclusions=["app.py", "README"])
+    )
     block.append(":::")
     block.append(":::::")
     print(block)

@@ -1,0 +1,2 @@
+Use the function `make_value_boxes` to add thre value boxes which show the counts of each penguin. 
+Note that there is a [`ui.layout_column_wrap`](https://shiny.posit.co/py/api/ExFillingLayout.html) in the experimental module that can help with displaying a list of ui elements.

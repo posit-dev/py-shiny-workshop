@@ -80,12 +80,7 @@ Remember you can always refer to the [documentation](https://shiny.posit.co/py/a
 # | echo: false
 # | output: asis
 
-prompt = """
-Modify your existing app to put the inputs in a sidebar, and your outputs in the main panel. 
-Note that you'll need to change the sidebar width to match the answer app.
-"""
-
-problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+problem_tabs("apps/problem-sets/4.0-add-sidebar")
 ```
 
 
@@ -129,11 +124,7 @@ The power of this layout system is that since your column widths are always defi
 # | echo: false
 # | output: asis
 
-prompt = """
-Arrange the main panel of your app into rows and columns.
-"""
-
-problem_tabs("apps/problem-sets/4.0-add-sidebar", prompt)
+problem_tabs("apps/problem-sets/4.1-rows-and-columns")
 ```
 
 
@@ -221,12 +212,7 @@ For example you can return several inputs wrapped in a `row`, or even generate t
 # | echo: false
 # | output: asis
 
-prompt = """
-Use the function `make_value_boxes` to add thre value boxes which show the counts of each penguin. 
-Note that there is a [`ui.layout_column_wrap`](https://shiny.posit.co/py/api/ExFillingLayout.html) in the experimental module that can help with displaying a list of ui elements.
-"""
-
-problem_tabs("apps/problem-sets/4.2-value-boxes", prompt)
+problem_tabs("apps/problem-sets/4.2-value-boxes")
 ```
 
 
@@ -308,12 +294,7 @@ ui.column(8, ui.output_plot("dist"), _class="fancy_column")
 # | echo: false
 # | output: asis
 
-prompt = """
-1) Give one of the rows in the app a pink background
-2) Ask chatGPT for help creating a style and add it to your application
-"""
-
-problem_tabs("apps/problem-sets/4.3-style-changes", prompt)
+problem_tabs("apps/problem-sets/4.3-style-changes")
 ```
 
 # Conclusion

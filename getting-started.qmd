@@ -20,7 +20,6 @@ All we're trying to do at this stage is to get something working, and become com
 
 Shiny apps are divided into two parts.
 The app *UI* consists of various input and output components, and the *server* expresses how those inputs and outputs should interact. 
-
 Let's start by creating a basic shiny app.
 To do this, you can call `shiny create .` in a project folder, or open up `apps/basic-app/app.py` in the repo. 
 This is the simplest possible Shiny application with one input and one output. 
@@ -154,11 +153,7 @@ include_shiny_folder("apps/examples/1.4-table-graph-input-slider")
 #| echo: false
 #| output: asis
 
-problem_tabs("apps/problem-sets/1.5-add-plot", prompt= """
-1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.
-
-2) Add a checkbox which adds a line of best fit to the plot. 
-""")
+problem_tabs("apps/problem-sets/1.5-add-plot")
 ```
 
 # Summary

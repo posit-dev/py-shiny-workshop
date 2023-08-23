@@ -1,0 +1,4 @@
+It's often a good idea to allow users of your application to reset input values to their initial state.
+Take this simple application and add a `ui.action_button` which resets the slider. 
+
+You should use one of the `ui.update_*` functions listed in the [documentation](https://shiny.rstudio.com/py/api/)

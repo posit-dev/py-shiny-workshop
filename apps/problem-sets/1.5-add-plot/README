@@ -1,0 +1,2 @@
+1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.
+2) Add a checkbox which adds a line of best fit to the plot. 

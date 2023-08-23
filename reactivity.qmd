@@ -245,9 +245,6 @@ flowchart TD
 We've made some changes to the penguins app and included an artificially slow bootstrap sampling method. 
 Currently all three elemenets in the app call the slow sampling function, which causes the app to slow down (you can interact with the goal app and the problem app to experience this sluggishness).
 
-Extract reactive calculations from this app to reduce repetition and speed up the app.
-There are several good solutions to this problem, but the majority of people end up with two reactive calculations.
-
 ```{python}
 #| echo: false
 #| output: asis  
