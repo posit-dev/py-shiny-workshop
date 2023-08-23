@@ -2,3 +2,4 @@ shiny
 shinylive 
 pandas
 plotnine
+seaborn

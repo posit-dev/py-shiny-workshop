@@ -5,11 +5,17 @@ website:
   title: "Shiny for Python Workshop"
   sidebar:
     contents:
-      - getting-started.qmd
-      - reactivity.qmd
-      - reactive-side-effects.qmd
-      - ui-customization.qmd
+      - section: "Documents"
+        contents:        
+          - getting-started.qmd
+          - reactivity.qmd
+          - reactive-side-effects.qmd
+          - ui-customization.qmd
+      - section: "Slides"
+        contents:
+          - slides/getting-started.qmd
   navbar:
+
     tools: 
       - icon: github
         href: https://github.com/rstudio/shiny-python-workshop-2023

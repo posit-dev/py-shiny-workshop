@@ -1,0 +1,64 @@
+---
+title: "Shiny for Python session 1"
+author: "Gordon Shotwell"
+format: revealjs
+---
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder
+
+```
+
+
+## What's a Shiny app?
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder(
+    "apps/examples/0.0-penguins", components="viewer", viewer_height=500
+)
+```
+
+## Key features of Shiny
+
+- Easy to develop
+- Extensible
+- Efficient
+
+## Outline for the day
+
+9:00-10:15 : Getting started with Shiny
+10:30-12:00: Reactivity
+12:00-1:00 : Lunch
+1:30 - 2:45: UI Customization
+3:00 - 5:00: Workflow best practicces
+
+## Goals of Session 1
+
+1) Understand the mechanics of a Shiny app (what to do, not why you do it)
+2) Develop comfort with failure and debugging
+3) You know where to go for help 
+
+## Pedagogy
+
+- This session is going to be exercise based
+- We want to get into trouble
+- Don't worry about understanding, just get things working 
+
+
+## Exercises
+- All of the exercises and slides are running live on the [website](https://rstudio.github.io/shiny-python-workshop-2023/)
+- You can do them on the website or open the apps in the `apps/problem-sets` folder
+
+## Testing your setup
+
+1) In a terminal type `shiny create my-app`
+2) Open `my-app/app.py`
+3) Click the "run app" button in the top right of VS Code
+4) If your local setup doesn't work 
+
+
