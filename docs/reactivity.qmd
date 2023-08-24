@@ -2,14 +2,14 @@
 title: "Basic Reactivity"
 code-annotations: hover
 ---
-
-# The reactive graph
 ```{python}
 # | echo: false
+import os
 
-from helpers import include_shiny_folder, problem_tabs
-
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder
 ```
+# The reactive graph
 
 In the last section we built a simple shiny app which allowed the user to filter a dataframe and display two plots.
 One thing you might notice about the code which generated this application is that while we specify _what_ should happen in response to a user's action, we don't actually specify _when_ it should happen. 
@@ -37,7 +37,7 @@ For the purposes of this course, we'll put the computation graphs to the right o
 #| echo: false
 #| output: asis  
  include_shiny_folder(
-     "apps/problem-sets/1.5-add-plot", file_name="app-solution.py", exclusions=["app.py"]
+     "apps/problem-sets/1-getting-started/1.10-add-plot", file_name="app-solution.py", exclusions=["app.py"]
  )
 ```
 :::
@@ -248,7 +248,7 @@ Currently all three elemenets in the app call the slow sampling function, which 
 ```{python}
 #| echo: false
 #| output: asis  
-problem_tabs("apps/problem-sets/2.2-reactive-calc")
+problem_tabs("apps/problem-sets/2-reactivity/2.2-reactive-calc")
 ```
 :::
 

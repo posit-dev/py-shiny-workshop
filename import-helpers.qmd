@@ -1,0 +1,10 @@
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder
+
+print("foo!")
+```

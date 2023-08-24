@@ -4,9 +4,10 @@ code-annotations: hover
 ---
 ```{python}
 # | echo: false
+import os
 
-from helpers import include_shiny_folder, problem_tabs
-
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder
 ```
 
 In the previous sections you built a functional shiny app, and developed some intution about how reactive programming works, but the app itself isn't laid out very well. 
@@ -80,7 +81,7 @@ Remember you can always refer to the [documentation](https://shiny.posit.co/py/a
 # | echo: false
 # | output: asis
 
-problem_tabs("apps/problem-sets/4.0-add-sidebar")
+problem_tabs("apps/problem-sets/4-ui-customization/4.0-add-sidebar")
 ```
 
 
@@ -124,7 +125,7 @@ The power of this layout system is that since your column widths are always defi
 # | echo: false
 # | output: asis
 
-problem_tabs("apps/problem-sets/4.1-rows-and-columns")
+problem_tabs("apps/problem-sets/4-ui-customization/4.1-rows-and-columns")
 ```
 
 
@@ -212,7 +213,7 @@ For example you can return several inputs wrapped in a `row`, or even generate t
 # | echo: false
 # | output: asis
 
-problem_tabs("apps/problem-sets/4.2-value-boxes")
+problem_tabs("apps/problem-sets/4-ui-customization/4.2-value-boxes")
 ```
 
 
@@ -294,7 +295,7 @@ ui.column(8, ui.output_plot("dist"), _class="fancy_column")
 # | echo: false
 # | output: asis
 
-problem_tabs("apps/problem-sets/4.3-style-changes")
+problem_tabs("apps/problem-sets/4-ui-customization/4.3-style-changes")
 ```
 
 # Conclusion

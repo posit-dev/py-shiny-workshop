@@ -5,8 +5,10 @@ code-annotations: hover
 
 ```{python}
 # | echo: false
+import os
 
-from helpers import include_shiny_folder, problem_tabs, multiple_choice_app
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_app
 
 ```
 
@@ -118,5 +120,5 @@ multiple_choice_app(questions)
 # | output: asis
 # | echo: false
 
-problem_tabs("apps/problem-sets/3.1-update-slider")
+problem_tabs("apps/problem-sets/3-reactive-effects/3.1-update-slider")
 ```

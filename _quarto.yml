@@ -7,10 +7,10 @@ website:
     contents:
       - section: "Documents"
         contents:        
-          - getting-started.qmd
-          - reactivity.qmd
-          - reactive-side-effects.qmd
-          - ui-customization.qmd
+          - docs/getting-started.qmd
+          - docs/reactivity.qmd
+          - docs/reactive-side-effects.qmd
+          - docs/ui-customization.qmd
       - section: "Slides"
         contents:
           - slides/getting-started.qmd

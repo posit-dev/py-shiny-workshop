@@ -2,12 +2,12 @@
 title: "Getting started"
 code-annotations: hover
 ---
-
 ```{python}
-#| echo: false
+# | echo: false
+import os
 
-from helpers import include_shiny_folder, problem_tabs, multiple_choice_app, Quiz
-
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_app
 ```
 # Goal 
 
@@ -26,8 +26,8 @@ This is the simplest possible Shiny application with one input and one output.
 
 #### 
 ```{python}
-#| echo: false
-#| output: asis
+# | echo: false
+# | output: asis
 
 include_shiny_folder("apps/examples/1.0-basic-app")
 ```
@@ -80,8 +80,8 @@ This makes it easier to call `shiny run` from other direcotries without error.
 ::::
 
 ```{python}
-#| echo: false
-#| output: asis
+# | echo: false
+# | output: asis
 
 include_shiny_folder("apps/examples/1.1-table-only")
 ```
@@ -101,7 +101,7 @@ questions = Quiz(
         },
         "What rendering decorator is used for images?": {
             "choices": ["@render.image", "@ui.render.image", "@render.Image"],
-            "answer": "@render.image"
+            "answer": "@render.image",
         },
         "What should you use to collect multiple checkbox reponses?": {
             "choices": ["ui.input.checkbox", "ui.checkbox_group", "ui.radio_buttons"],
@@ -128,8 +128,8 @@ Use `.copy` to make sure that you're not changing the original object.
 :::
 
 ```{python}
-#| echo: false
-#| output: asis
+# | echo: false
+# | output: asis
 
 include_shiny_folder("apps/examples/1.3-table-input-slider")
 ```
@@ -143,17 +143,17 @@ The steps are:
 3) Decorate that function with `@output` and `@reactive.plot`
 
 ```{python}
-#| echo: false
-#| output: asis
+# | echo: false
+# | output: asis
 
 include_shiny_folder("apps/examples/1.4-table-graph-input-slider")
 ```
 
 ```{python}
-#| echo: false
-#| output: asis
+# | echo: false
+# | output: asis
 
-problem_tabs("apps/problem-sets/1.5-add-plot")
+problem_tabs("apps/problem-sets/1-getting-started/1.10-add-plot")
 ```
 
 # Summary
