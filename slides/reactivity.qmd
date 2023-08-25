@@ -12,75 +12,43 @@ from helpers import problem_tabs, include_shiny_folder
 
 ```
 
-# Housekeeping 
+## How did Shiny do that?
 
-## Outline for the day
-
-9:00-10:15 : Getting started with Shiny
-10:30-12:00: Reactivity
-12:00-1:00 : Lunch
-1:30 - 2:45: UI Customization
-3:00 - 5:00: Workflow best practicces
-
-## Goals of Session 1
-
-1) Understand the mechanics of a Shiny app (what to do, not why you do it)
-2) Develop comfort with failure and debugging
-3) You know where to go for help 
-
-## Pedagogy
-
-- This session is going to be exercise based
-- We want to get into trouble
-- Don't worry about understanding at this point, just get things working 
-
-
-## Exercises
-- All of the exercises and slides are running live on the [website](https://rstudio.github.io/shiny-python-workshop-2023/)
-- You can do them on the website or open the apps in the `apps/problem-sets` folder
-- If you need help put a red sticker on your laptop, when you're done put up a green sticker
-
-## Testing your setup
-
-1) In a terminal type `shiny create my-app`
-2) Open `my-app/app.py`
-3) Click the "run app" button in the top right of VS Code
-4) If your local setup doesn't work, switch to Posit Workbench and try again
-
-
-# Hello Shiny
-
-## What's a Shiny app?
 ```{python}
 # | echo: false
 # | output: asis
-
 include_shiny_folder(
-    "apps/examples/0.0-penguins", components="viewer", viewer_height=500
+    "apps/problem-sets/1-getting-started/1.10-add-plot",
+    file_name="app-solution.py",
+    exclusions=["app.py"],
+    components="viewer",
+    viewer_height=500,
 )
 ```
 
-## Key features of Shiny
+## How did Shiny do that?
 
-- Easy to develop
-- Extensible
-- Efficient
+- We told Shiny _what_ to do
+- We didn't tell Shiny _when_ to do it
 
-## Why Shiny for Python?
-- More efficient than Streamlit
-- Better development experience than Dash
-- More Python than Shiny for R
+## How do other frameworks work?
 
-## Anatomy of a Shiny App
-To make a Shiny app work you need to do three things:
+- Streamlit: rerender everything everwhere all the time
+- Dash/Panel/Gradio: Define callback functions
 
-1) Add inputs and outputs to the UI
-1) Create a rendering function
-1) Refer to inputs 
+## Event driven programming
 
-## Inputs and outputs
+- You have to do it
+- Easy to get wrong
+- Hard to tell when you've gotten it wrong
 
-```{.python code-line-numbers="3-6"}
+## What's a better way?
+
+We can infer the relationship between components, and use those relationships to optimally rerender the app.
+
+## Outputs and recipes
+
+```{.python code-line-numbers="5,12"}
 from shiny import Inputs, Outputs, Session, App, render, ui
 
 app_ui = ui.page_fluid(
@@ -99,9 +67,9 @@ def server(input: Inputs, output: Outputs, session: Session):
 app = App(app_ui, server)
 ```
 
-## Rendering function
+## Recipes and inputs
 
-```{.python code-line-numbers="10-12"}
+```{.python code-line-numbers="4,13"}
 from shiny import Inputs, Outputs, Session, App, render, ui
 
 app_ui = ui.page_fluid(
@@ -120,96 +88,139 @@ def server(input: Inputs, output: Outputs, session: Session):
 app = App(app_ui, server)
 ```
 
-## Refer to inputs
+## Reactive graph
 
-```{.python code-line-numbers="13"}
-from shiny import Inputs, Outputs, Session, App, render, ui
+```{mermaid}
+flowchart TD
+  S[Slider] --> R{Recipe}
+  R --> Sc((Text))
+```
 
-app_ui = ui.page_fluid(
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
+## Reactive graph
+
+```{mermaid}
+flowchart TD
+  S[Slider] --> Sc((Text))
+```
+
+## Declarative programming
+
+- Tell Shiny what you want to happen
+- Trust that the framework will keep everything up-to-date
+
+## Your turn
+
+Draw the graph of this application
+
+```{python}
+# | echo: false
+# | output: asis
+include_shiny_folder(
+    "apps/problem-sets/1-getting-started/1.10-add-plot",
+    file_name="app-solution.py",
+    exclusions=["app.py"],
+    components="viewer",
+    viewer_height=500,
 )
-
-
-def server(input: Inputs, output: Outputs, session: Session):
-    @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
-
-
-app = App(app_ui, server)
 ```
 
-## UI functions
+## Reactive graph
 
-- UI functions are in the `ui` submodule
-- Inputs start with `ui.input_*()` and take an id, and options
-- Outputs start with `ui.output_*()` and ususally just take an ID
-- Other functions like `ui.h1()` or `ui.p()` add static HTML to the app
-- We'll get to layout functions in session 3
-
-## Your turn
-
-Go to [exercises/1-hello-world](../exercises/1-hello-world.html) or run `apps/problem-sets/1-getting-started/1.0-hello-world` locally.
-
-## Rendering functions
-
-```{.python}
-def server(input: Inputs, output: Outputs, session: Session):
-    @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
 ```
 
-## Rendering functions
+## Slider changes
 
-- Functions are defined inside the main `server` function
-- They need to be **decorated** with `@output` and `@render.*` in that order
-- The function **name** should match the output id
-- The return value is sent to the Shiny UI
-
-## Common problems
-
-- An output doesn't render
-- An output doesn't update when an input changes
-- There's some weird error
-
-## Your turn
-
-Go to [exercises/2-debugging-outputs](../exercises/2-debugging.html) or work through exercises 1.1-1.5 locally.
-
-## Connecting inputs to outputs
-
-```{.python code-line-numbers="5"}
-def server(input: Inputs, output: Outputs, session: Session):
-    @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider]:::changed --> T((Table))
+  
+  classDef changed fill:#f96
 ```
 
-## Connecting inputs to outputs
+## Invalidated
 
-- Inputs are called `input.n()` not `input.n`
-- Referring to an input creates a reactive link between the input and output
-- When the input changes the rendering function will re-execute
-- You can use multiple inputs in the same rendering function
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  Sl[Slider]:::changed --> T((Table)):::changed
+  
+  classDef changed fill:#f96
+```
 
-## Your turn
+## Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  Sl[Slider] --> T((Table)):::changed
+  
+  classDef changed fill:#f96
+```
 
-Go to [exercises/3-add-filter](../exercises/3-add-filter.html) or work through exercises 1.6-1.9 locally.
+## Update
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
+  
+  classDef changed fill:#f96
+```
 
-## Recap
+## Checkbox changes
+```{mermaid}
+flowchart TD
+  C[Checkbox]:::changed --> Sc((Scatter\nPlot))
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
+  
+  classDef changed fill:#f96
+```
 
-Most shiny app development consists of variations of these three things:
+## Invalidated
 
-1) Add ui elements
-1) Add rendering functions
-1) Connect inputs and outputs
+```{mermaid}
+flowchart TD
+  C[Checkbox]:::changed --> Sc((Scatter\nPlot)):::changed
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
+  
+  classDef changed fill:#f96
+```
 
+## Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
+  
+  classDef changed fill:#f96
+```
 
-## Your turn
-
-Go to [exercises/4-add-plot](../exercises/4-add-plot.html) or work through exercises 1.10 locally.
+## Updated
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl --> Sc 
+  Sl --> M((Dist Plot))
+  Sl[Slider] --> T((Table))
+  
+  classDef changed fill:#f96
+```
