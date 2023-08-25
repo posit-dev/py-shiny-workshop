@@ -5,17 +5,38 @@ website:
   title: "Shiny for Python Workshop"
   sidebar:
     contents:
-      - section: "Documents"
-        contents:        
+      - section: "Session 1"
+        contents:
           - docs/getting-started.qmd
+          - slides/getting-started.qmd
+          - section: "Exercises"
+            contents: 
+            - exercises/1-hello-world.qmd
+            - exercises/2-debug.qmd
+            - exercises/3-add-filter.qmd
+            - exercises/4-add-plot.qmd
+      - section: "Session 2"
+        contents:
           - docs/reactivity.qmd
           - docs/reactive-side-effects.qmd
-          - docs/ui-customization.qmd
-      - section: "Slides"
+          - slides/reactivity.qmd
+          - section: "Exercises"
+            contents: 
+            - exercises/1-hello-world.qmd
+            - exercises/2-debug.qmd
+            - exercises/3-add-filter.qmd
+            - exercises/4-add-plot.qmd
+      - section: "Session 3"
         contents:
-          - slides/getting-started.qmd
+          - docs/ui-customization.qmd
+          - section: "Exercises"
+            contents: 
+            - exercises/1-hello-world.qmd
+            - exercises/2-debug.qmd
+            - exercises/3-add-filter.qmd
+            - exercises/4-add-plot.qmd
+      
   navbar:
-
     tools: 
       - icon: github
         href: https://github.com/rstudio/shiny-python-workshop-2023

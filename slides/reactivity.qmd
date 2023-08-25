@@ -1,5 +1,5 @@
 ---
-title: "Session 1 slides"
+title: "Session 2 slides"
 author: "Gordon Shotwell"
 format: revealjs
 ---
