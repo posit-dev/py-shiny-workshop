@@ -6,16 +6,22 @@ infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
 
 app_ui = ui.page_fluid(
-    ui.h2("Hello Penguins!"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
+    ui.panel_title("Hello Penguins!"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_slider(
+                "mass",
+                "Mass",
+                2000,
+                8000,
+                6000,
+            ),
+            ui.input_action_button("reset", "Reset Slider"),
+        ),
+        ui.panel_main(
+            ui.output_data_frame("table"),
+        ),
     ),
-    ui.input_action_button("reset", "Reset Slider"),
-    ui.output_data_frame("table"),
 )
 
 

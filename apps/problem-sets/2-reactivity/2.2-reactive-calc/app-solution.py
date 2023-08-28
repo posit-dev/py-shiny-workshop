@@ -7,25 +7,31 @@ infile = Path(__file__).parent / "penguins.csv"
 penguins = pd.read_csv(infile)
 
 app_ui = ui.page_fluid(
-    ui.h2("Hello Penguins!"),
-    ui.input_numeric("sample", "Sample Size", value=100),
-    ui.output_plot("mass_plot"),
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
+    ui.panel_title("Hello Penguins!"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_numeric("sample", "Sample Size", value=100),
+            ui.input_slider(
+                "mass",
+                "Mass",
+                2000,
+                8000,
+                6000,
+            ),
+            ui.input_selectize(
+                "columns",
+                "Columns",
+                choices=penguins.columns.tolist(),
+                selected=["species", "island"],
+                multiple=True,
+            ),
+        ),
+        ui.panel_main(
+            ui.output_plot("mass_plot"),
+            ui.output_text("row_count"),
+            ui.output_data_frame("species_summary"),
+        ),
     ),
-    ui.output_text("row_count"),
-    ui.input_selectize(
-        "columns",
-        "Columns",
-        choices=penguins.columns.tolist(),
-        selected=["species", "island"],
-        multiple=True,
-    ),
-    ui.output_data_frame("species_summary"),
 )
 
 
