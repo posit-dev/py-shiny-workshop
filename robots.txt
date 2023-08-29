@@ -1,1 +1,1 @@
-Sitemap: https://github.com/rstudio/shiny-python-workshop-2023/sitemap.xml
+Sitemap: https://github.com/posit-dev/shiny-python-workshop-2023/sitemap.xml

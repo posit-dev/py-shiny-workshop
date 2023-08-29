@@ -22,3 +22,11 @@
     max-height: calc(80vh - 110px);
     overflow: auto;
 }
+
+.v-center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    background-color: brown;
+}

@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 1 slides</span></a>
+ <span class="menu-text">Session 1: Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/reactivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 2 slides</span></a>
+ <span class="menu-text">Session 2: Reactivity</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -248,26 +248,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/1-hello-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hello World!</span></a>
+  <a href="../exercises/5-reactivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reactive calc</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/2-debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Debugging rendering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/3-add-filter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Adding filters</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/4-add-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Add a plot</span></a>
+  <a href="../exercises/6-reactive-event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">| echo: false</span></a>
   </div>
 </li>
       </ul>
@@ -532,7 +520,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -547,7 +535,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -990,7 +978,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -1005,7 +993,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -1454,7 +1442,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -1469,7 +1457,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -1967,7 +1955,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -1982,7 +1970,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -2431,7 +2419,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -2446,7 +2434,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -2898,7 +2886,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -2913,7 +2901,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -5438,7 +5426,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -5453,7 +5441,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -5903,7 +5891,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -5918,7 +5906,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -6379,7 +6367,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -6394,7 +6382,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -6938,7 +6926,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -6953,7 +6941,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -7428,7 +7416,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -7443,7 +7431,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -7919,7 +7907,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -7934,7 +7922,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot

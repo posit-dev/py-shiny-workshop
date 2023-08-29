@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/getting-started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 1 slides</span></a>
+ <span class="menu-text">Session 1: Intro</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../slides/reactivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Session 2 slides</span></a>
+ <span class="menu-text">Session 2: Reactivity</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -245,26 +245,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/1-hello-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hello World!</span></a>
+  <a href="../exercises/5-reactivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reactive calc</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/2-debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Debugging rendering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/3-add-filter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Adding filters</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/4-add-plot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Add a plot</span></a>
+  <a href="../exercises/6-reactive-event.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">| echo: false</span></a>
   </div>
 </li>
       </ul>
@@ -417,15 +405,15 @@ app = App(app_ui, server)
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Identify that this function is an output</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Identify that this function is an output</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="2">Define output type</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define output type</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-2" data-code-lines="3">Function name connects it to output id</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Function name connects it to output id</span>
 </dd>
 </dl>
 </section>
@@ -1386,7 +1374,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -1401,7 +1389,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -1855,7 +1843,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -1870,7 +1858,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -2312,7 +2300,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -2327,7 +2315,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot
@@ -2778,7 +2766,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -2793,7 +2781,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot

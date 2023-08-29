@@ -12,11 +12,12 @@
 <script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/run-python-blocks.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/posit_slides/posit-slides.js"></script><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
-  <meta name="author" content="Gordon Shotwell">
-  <title>Shiny for Python Workshop - Session 1 slides</title>
+  <meta name="author" content="Gordon Shotwell &amp; Joe Cheng">
+  <title>Shiny for Python Workshop - Session 1: Intro</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -61,49 +62,51 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
+        color: #767676;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #545454; background-color: #fefefe; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
     code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -394,62 +397,69 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Session 1 slides</h1>
+<section id="title-slide" data-background-color="black" data-background-image="images/toc-people-dark.svg" data-background-size="contain" class="quarto-title-block">
+  <h1 class="title">Session 1: Intro</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Gordon Shotwell 
+Gordon Shotwell &amp; Joe Cheng 
 </div>
 </div>
 </div>
 
 </section>
 <section>
-<section id="housekeeping" class="title-slide slide level1 center">
+<section class="title-slide slide level1">
 <h1>Housekeeping</h1>
 
 </section>
 <section id="outline-for-the-day" class="slide level2">
 <h2>Outline for the day</h2>
-<p>9:00-10:15 : Getting started with Shiny 10:30-12:00: Reactivity 12:00-1:00 : Lunch 1:30 - 2:45: UI Customization 3:00 - 5:00: Workflow best practicces</p>
+<p>9:00-10:30 : Getting started with Shiny</p>
+<p>10:30-11:00: Coffee break</p>
+<p>11:00-12:30 : Reactivity</p>
+<p>12:30 - 13:30: Lunch</p>
+<p>13:30 - 14:00: UI Customization</p>
+<p>15:00 - 15:30: Coffee break</p>
+<p>15:30 - 17:00: Workflow best practices / Q&amp;A</p>
 </section>
 <section id="goals-of-session-1" class="slide level2">
 <h2>Goals of Session 1</h2>
 <ol type="1">
-<li>Understand the mechanics of a Shiny app (what to do, not why you do it)</li>
-<li>Develop comfort with failure and debugging</li>
-<li>You know where to go for help</li>
+<li class="fragment">Understand the mechanics of a Shiny app (what to do, not why you do it)</li>
+<li class="fragment">Develop comfort with failure and debugging</li>
+<li class="fragment">You know where to go for help</li>
 </ol>
 </section>
 <section id="pedagogy" class="slide level2">
 <h2>Pedagogy</h2>
 <ul>
-<li>This session is going to be exercise based</li>
-<li>We want to get into trouble</li>
-<li>Don’t worry about understanding at this point, just get things working</li>
+<li class="fragment">This session is going to be exercise based</li>
+<li class="fragment">We want to get into trouble</li>
+<li class="fragment">Don’t worry about understanding at this point, just get things working</li>
+<li class="fragment">Expect frustration</li>
 </ul>
 </section>
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
 <ul>
-<li>All of the exercises and slides are running live on the <a href="https://rstudio.github.io/shiny-python-workshop-2023/">website</a></li>
-<li>You can do them on the website or open the apps in the <code>apps/problem-sets</code> folder</li>
-<li>If you need help put a red sticker on your laptop, when you’re done put up a green sticker</li>
+<li class="fragment">All of the exercises and slides are running live on the <a href="https://rstudio.github.io/shiny-python-workshop-2023/">website</a></li>
+<li class="fragment">You can do them on the website or open the apps in the <code>apps/problem-sets</code> folder</li>
+<li class="fragment">If you need help put a red sticker on your laptop, when you’re done put up a green sticker</li>
 </ul>
 </section>
 <section id="testing-your-setup" class="slide level2">
 <h2>Testing your setup</h2>
 <ol type="1">
-<li>In a terminal type <code>shiny create my-app</code></li>
-<li>Open <code>my-app/app.py</code></li>
-<li>Click the “run app” button in the top right of VS Code</li>
-<li>If your local setup doesn’t work, switch to Posit Workbench and try again</li>
+<li class="fragment">In a terminal type <code>shiny create my-app</code></li>
+<li class="fragment">Open <code>my-app/app.py</code></li>
+<li class="fragment">Click the “run app” button in the top right of VS Code</li>
+<li class="fragment">If your local setup doesn’t work, switch to Posit Workbench and try again</li>
 </ol>
 </section></section>
 <section>
-<section id="hello-shiny" class="title-slide slide level1 center">
+<section class="title-slide slide level1">
 <h1>Hello Shiny</h1>
 
 </section>
@@ -881,26 +891,28 @@ Gordon Shotwell
 <section id="key-features-of-shiny" class="slide level2">
 <h2>Key features of Shiny</h2>
 <ul>
-<li>Easy to develop</li>
-<li>Extensible</li>
-<li>Efficient</li>
+<li class="fragment">Easy to develop</li>
+<li class="fragment">Extensible</li>
+<li class="fragment">Efficient</li>
 </ul>
 </section>
 <section id="why-shiny-for-python" class="slide level2">
 <h2>Why Shiny for Python?</h2>
 <ul>
-<li>More efficient than Streamlit</li>
-<li>Better development experience than Dash</li>
-<li>More Python than Shiny for R</li>
+<li class="fragment">Shiny is designed to take you from prototype to product</li>
+<li class="fragment">Easy enough to use for prototypes</li>
+<li class="fragment">Efficient enough to handle complexity</li>
+<li class="fragment">Everything you need to build production quality apps</li>
+<li class="fragment">You don’t need to throw away your Shiny apps</li>
 </ul>
 </section>
 <section id="anatomy-of-a-shiny-app" class="slide level2">
 <h2>Anatomy of a Shiny App</h2>
 <p>To make a Shiny app work you need to do three things:</p>
 <ol type="1">
-<li>Add inputs and outputs to the UI</li>
-<li>Create a rendering function</li>
-<li>Refer to inputs</li>
+<li class="fragment">Add inputs and outputs to the UI</li>
+<li class="fragment">Create a rendering function</li>
+<li class="fragment">Refer to inputs</li>
 </ol>
 </section>
 <section id="inputs-and-outputs" class="slide level2">
@@ -913,7 +925,7 @@ Gordon Shotwell
 <span id="cb2-6"><a href="#cb2-6"></a>)</span>
 <span id="cb2-7"><a href="#cb2-7"></a></span>
 <span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
 <span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">@output</span></span>
 <span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">@render.text</span></span>
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="kw">def</span> txt():</span>
@@ -932,7 +944,7 @@ Gordon Shotwell
 <span id="cb3-6"><a href="#cb3-6"></a>)</span>
 <span id="cb3-7"><a href="#cb3-7"></a></span>
 <span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
 <span id="cb3-10"><a href="#cb3-10"></a>    <span class="at">@output</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a>    <span class="at">@render.text</span></span>
 <span id="cb3-12"><a href="#cb3-12"></a>    <span class="kw">def</span> txt():</span>
@@ -951,7 +963,7 @@ Gordon Shotwell
 <span id="cb4-6"><a href="#cb4-6"></a>)</span>
 <span id="cb4-7"><a href="#cb4-7"></a></span>
 <span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
 <span id="cb4-10"><a href="#cb4-10"></a>    <span class="at">@output</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a>    <span class="at">@render.text</span></span>
 <span id="cb4-12"><a href="#cb4-12"></a>    <span class="kw">def</span> txt():</span>
@@ -963,20 +975,28 @@ Gordon Shotwell
 <section id="ui-functions" class="slide level2">
 <h2>UI functions</h2>
 <ul>
-<li>UI functions are in the <code>ui</code> submodule</li>
-<li>Inputs start with <code>ui.input_*()</code> and take an id, and options</li>
-<li>Outputs start with <code>ui.output_*()</code> and ususally just take an ID</li>
-<li>Other functions like <code>ui.h1()</code> or <code>ui.p()</code> add static HTML to the app</li>
-<li>We’ll get to layout functions in session 3</li>
+<li class="fragment">UI functions are in the <code>ui</code> submodule</li>
+<li class="fragment">Inputs start with <code>ui.input_*()</code> and take an id, and options</li>
+<li class="fragment">Outputs start with <code>ui.output_*()</code> and ususally just take an ID</li>
+<li class="fragment">Other functions like <code>ui.h1()</code> or <code>ui.p()</code> add static HTML to the app</li>
+<li class="fragment">We’ll get to layout functions in session 3</li>
 </ul>
 </section>
 <section id="your-turn" class="slide level2">
 <h2>Your turn</h2>
 <p>Go to <a href="../exercises/1-hello-world.html">exercises/1-hello-world</a> or run <code>apps/problem-sets/1-getting-started/1.0-hello-world</code> locally.</p>
 </section>
+<section id="server-function" class="slide level2">
+<h2>Server function</h2>
+<ul>
+<li class="fragment">Every shiny app needs a <code>server</code> function</li>
+<li class="fragment">The server function executes for each user session</li>
+<li class="fragment">This function contains <strong>rendering functions</strong> which define how to turn inputs into outputs</li>
+</ul>
+</section>
 <section id="rendering-functions" class="slide level2">
 <h2>Rendering functions</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="at">@output</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="at">@render.text</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">def</span> txt():</span>
@@ -985,18 +1005,32 @@ Gordon Shotwell
 <section id="rendering-functions-1" class="slide level2">
 <h2>Rendering functions</h2>
 <ul>
-<li>Functions are defined inside the main <code>server</code> function</li>
-<li>They need to be <strong>decorated</strong> with <code>@output</code> and <code>@render.*</code> in that order</li>
-<li>The function <strong>name</strong> should match the output id</li>
-<li>The return value is sent to the Shiny UI</li>
+<li class="fragment">Functions are defined inside the main <code>server</code> function</li>
+<li class="fragment">They need to be <strong>decorated</strong> with <code>@output</code> and <code>@render.*</code> in that order</li>
+<li class="fragment">The function <strong>name</strong> should match the output id</li>
+<li class="fragment">The return value is sent to the Shiny UI</li>
 </ul>
+</section>
+<section id="decorators-are-just-functions" class="slide level2">
+<h2>Decorators are just functions</h2>
+<ul>
+<li class="fragment">Decorators are functions which take other functions</li>
+<li class="fragment">Shiny uses them to identify reactive functions</li>
+<li class="fragment">They can take arguments:</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="at">@output</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">@render.plot</span>(alt<span class="op">=</span><span class="st">"A body mass plot of penguins"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="kw">def</span> mass_plot():</span>
+<span id="cb6-4"><a href="#cb6-4"></a>        df <span class="op">=</span> sample_data(penguins.copy(), <span class="bu">input</span>.sample())</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        df <span class="op">=</span> df.loc[df[<span class="st">"body_mass"</span>] <span class="op">&lt;</span> <span class="bu">input</span>.mass()]</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="cf">return</span> dist_plot(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="common-problems" class="slide level2">
 <h2>Common problems</h2>
 <ul>
-<li>An output doesn’t render</li>
-<li>An output doesn’t update when an input changes</li>
-<li>There’s some weird error</li>
+<li class="fragment">An output doesn’t render</li>
+<li class="fragment">An output doesn’t update when an input changes</li>
+<li class="fragment">There’s some weird error</li>
 </ul>
 </section>
 <section id="your-turn-1" class="slide level2">
@@ -1005,19 +1039,19 @@ Gordon Shotwell
 </section>
 <section id="connecting-inputs-to-outputs" class="slide level2">
 <h2>Connecting inputs to outputs</h2>
-<div class="sourceCode" id="cb6" data-code-line-numbers="5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">@output</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">@render.text</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="kw">def</span> txt():</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7" data-code-line-numbers="5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="at">@output</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">@render.text</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">def</span> txt():</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="connecting-inputs-to-outputs-1" class="slide level2">
 <h2>Connecting inputs to outputs</h2>
 <ul>
-<li>Inputs are called <code>input.n()</code> not <code>input.n</code></li>
-<li>Referring to an input creates a reactive link between the input and output</li>
-<li>When the input changes the rendering function will re-execute</li>
-<li>You can use multiple inputs in the same rendering function</li>
+<li class="fragment">Inputs are called <code>input.n()</code> not <code>input.n</code></li>
+<li class="fragment">Referring to an input creates a reactive link between the input and output</li>
+<li class="fragment">When the input changes the rendering function will re-execute</li>
+<li class="fragment">You can use multiple inputs in the same rendering function</li>
 </ul>
 </section>
 <section id="your-turn-2" class="slide level2">
@@ -1028,9 +1062,9 @@ Gordon Shotwell
 <h2>Recap</h2>
 <p>Most shiny app development consists of variations of these three things:</p>
 <ol type="1">
-<li>Add ui elements</li>
-<li>Add rendering functions</li>
-<li>Connect inputs and outputs</li>
+<li class="fragment">Add ui elements</li>
+<li class="fragment">Add rendering functions</li>
+<li class="fragment">Connect inputs and outputs</li>
 </ol>
 </section>
 <section id="your-turn-3" class="slide level2">
@@ -1051,6 +1085,7 @@ Gordon Shotwell
   <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1072,7 +1107,8 @@ Gordon Shotwell
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1093,7 +1129,7 @@ Gordon Shotwell
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1218,9 +1254,9 @@ Gordon Shotwell
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -1243,7 +1279,7 @@ Gordon Shotwell
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

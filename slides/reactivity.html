@@ -12,11 +12,12 @@
 <script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/run-python-blocks.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/posit_slides/posit-slides.js"></script><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.450">
 
-  <meta name="author" content="Gordon Shotwell">
-  <title>Shiny for Python Workshop - Session 2 slides</title>
+  <meta name="author" content="Gordon Shotwell &amp; Joe Cheng">
+  <title>Shiny for Python Workshop - Session 2: Reactivity</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -61,49 +62,52 @@
         -khtml-user-select: none; -moz-user-select: none;
         -ms-user-select: none; user-select: none;
         padding: 0 4px; width: 4em;
-        color: #aaaaaa;
+        color: #767676;
       }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #767676;  padding-left: 4px; }
     div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
+      { color: #545454; background-color: #fefefe; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
+    code span { color: #545454; } /* Normal */
+    code span.al { color: #7928a1; } /* Alert */
+    code span.an { color: #696969; } /* Annotation */
+    code span.at { color: #a55a00; } /* Attribute */
+    code span.bn { color: #7928a1; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
+    code span.cf { color: #d91e18; } /* ControlFlow */
+    code span.ch { color: #008000; } /* Char */
+    code span.cn { color: #d91e18; } /* Constant */
+    code span.co { color: #696969; } /* Comment */
+    code span.cv { color: #696969; font-style: italic; } /* CommentVar */
+    code span.do { color: #696969; font-style: italic; } /* Documentation */
+    code span.dt { color: #7928a1; } /* DataType */
+    code span.dv { color: #7928a1; } /* DecVal */
+    code span.er { color: #7928a1; } /* Error */
     code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    code span.fl { color: #a55a00; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #696969; } /* Information */
+    code span.kw { color: #d91e18; } /* Keyword */
+    code span.op { color: #00769e; } /* Operator */
+    code span.ot { color: #d91e18; } /* Other */
+    code span.pp { color: #7928a1; } /* Preprocessor */
+    code span.sc { color: #00769e; } /* SpecialChar */
+    code span.ss { color: #008000; } /* SpecialString */
+    code span.st { color: #008000; } /* String */
+    code span.va { color: #a55a00; } /* Variable */
+    code span.vs { color: #008000; } /* VerbatimString */
+    code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="styles.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -397,16 +401,21 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Session 2 slides</h1>
+<section id="title-slide" data-background-color="black" data-background-image="images/toc-people-dark.svg" data-background-size="contain" class="quarto-title-block">
+  <h1 class="title">Session 2: Reactivity</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Gordon Shotwell 
+Gordon Shotwell &amp; Joe Cheng 
 </div>
 </div>
 </div>
+
+</section>
+<section>
+<section class="title-slide slide level1">
+<h1>Reactivity overview</h1>
 
 </section>
 <section id="how-did-shiny-do-that" class="slide level2">
@@ -489,7 +498,7 @@ Gordon Shotwell
 <span id="cb1-76"><a href="#cb1-76"></a>    return plot</span>
 <span id="cb1-77"><a href="#cb1-77"></a></span>
 <span id="cb1-78"><a href="#cb1-78"></a></span>
-<span id="cb1-79"><a href="#cb1-79"></a>def scatter_plot(df, smoother=False):</span>
+<span id="cb1-79"><a href="#cb1-79"></a>def scatter_plot(df, trend_line=False):</span>
 <span id="cb1-80"><a href="#cb1-80"></a>    plot = (</span>
 <span id="cb1-81"><a href="#cb1-81"></a>        ggplot(</span>
 <span id="cb1-82"><a href="#cb1-82"></a>            df,</span>
@@ -504,7 +513,7 @@ Gordon Shotwell
 <span id="cb1-91"><a href="#cb1-91"></a>        + theme_light()</span>
 <span id="cb1-92"><a href="#cb1-92"></a>    )</span>
 <span id="cb1-93"><a href="#cb1-93"></a></span>
-<span id="cb1-94"><a href="#cb1-94"></a>    if smoother:</span>
+<span id="cb1-94"><a href="#cb1-94"></a>    if trend_line:</span>
 <span id="cb1-95"><a href="#cb1-95"></a>        plot = plot + stat_smooth()</span>
 <span id="cb1-96"><a href="#cb1-96"></a></span>
 <span id="cb1-97"><a href="#cb1-97"></a>    return plot</span>
@@ -863,28 +872,49 @@ Gordon Shotwell
 <section id="how-did-shiny-do-that-1" class="slide level2">
 <h2>How did Shiny do that?</h2>
 <ul>
-<li>We told Shiny <em>what</em> to do</li>
-<li>We didn’t tell Shiny <em>when</em> to do it</li>
+<li class="fragment">We told Shiny <em>what</em> to do</li>
+<li class="fragment">We didn’t tell Shiny <em>when</em> to do it</li>
 </ul>
 </section>
 <section id="how-do-other-frameworks-work" class="slide level2">
 <h2>How do other frameworks work?</h2>
 <ul>
-<li>Streamlit: rerender everything everwhere all the time</li>
-<li>Dash/Panel/Gradio: Define callback functions</li>
+<li class="fragment">Streamlit: rerender everything everwhere all the time</li>
+<li class="fragment">Dash/Panel/Gradio: Define callback functions</li>
 </ul>
 </section>
 <section id="event-driven-programming" class="slide level2">
 <h2>Event driven programming</h2>
 <ul>
-<li>You have to do it</li>
-<li>Easy to get wrong</li>
-<li>Hard to tell when you’ve gotten it wrong</li>
+<li class="fragment">You have to do it</li>
+<li class="fragment">Easy to get wrong</li>
+<li class="fragment">Hard to tell when you’ve gotten it wrong</li>
 </ul>
 </section>
 <section id="whats-a-better-way" class="slide level2">
 <h2>What’s a better way?</h2>
-<p>We can infer the relationship between components, and use those relationships to optimally rerender the app.</p>
+<div class="v-center-container">
+<ul>
+<li class="fragment">Infer the relationships between components</li>
+<li class="fragment">Build a computation graph</li>
+</ul>
+</div>
+</section>
+<section id="does-that-really-work" class="slide level2">
+<h2>Does that really work?</h2>
+<ul>
+<li class="fragment">You’re not wrong to find this suspicious</li>
+<li class="fragment">Magic automatic rendering often goes badly wrong</li>
+<li class="fragment">For this to work, the inference has to be 100% reliable</li>
+</ul>
+</section>
+<section id="it-really-works" class="slide level2">
+<h2>It really works</h2>
+<ul>
+<li class="fragment">We have 10 years of experience with this pattern</li>
+<li class="fragment">R users have found the bugs and illuminated the edge cases</li>
+<li class="fragment">Shiny will always infer the correct computation graph</li>
+</ul>
 </section>
 <section id="outputs-and-recipes" class="slide level2">
 <h2>Outputs and recipes</h2>
@@ -895,15 +925,14 @@ Gordon Shotwell
 <span id="cb2-5"><a href="#cb2-5"></a>    ui.output_text_verbatim(<span class="st">"txt"</span>),</span>
 <span id="cb2-6"><a href="#cb2-6"></a>)</span>
 <span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">@output</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>    <span class="at">@render.text</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>    <span class="kw">def</span> txt():</span>
-<span id="cb2-13"><a href="#cb2-13"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="at">@output</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="at">@render.text</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="kw">def</span> txt():</span>
+<span id="cb2-12"><a href="#cb2-12"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
 <span id="cb2-14"><a href="#cb2-14"></a></span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15"></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="recipes-and-inputs" class="slide level2">
 <h2>Recipes and inputs</h2>
@@ -956,10 +985,19 @@ Gordon Shotwell
 <section id="declarative-programming" class="slide level2">
 <h2>Declarative programming</h2>
 <ul>
-<li>Tell Shiny what you want to happen</li>
-<li>Trust that the framework will keep everything up-to-date</li>
+<li class="fragment">Tell Shiny what you want to happen</li>
+<li class="fragment">Trust that the framework will keep everything up-to-date</li>
+<li class="fragment">You’re setting the menu, not doing the cooking</li>
 </ul>
 </section>
+<section id="event-driven-programming-1" class="slide level2">
+<h2>Event-driven programming</h2>
+
+<img data-src="images/carmy-yelling.webp" class="r-stretch"></section>
+<section id="reactive-programming" class="slide level2">
+<h2>Reactive programming</h2>
+
+<img data-src="images/carmy-whites.png" class="r-stretch"></section>
 <section id="your-turn" class="slide level2">
 <h2>Your turn</h2>
 <p>Draw the graph of this application</p>
@@ -1041,7 +1079,7 @@ Gordon Shotwell
 <span id="cb4-76"><a href="#cb4-76"></a>    return plot</span>
 <span id="cb4-77"><a href="#cb4-77"></a></span>
 <span id="cb4-78"><a href="#cb4-78"></a></span>
-<span id="cb4-79"><a href="#cb4-79"></a>def scatter_plot(df, smoother=False):</span>
+<span id="cb4-79"><a href="#cb4-79"></a>def scatter_plot(df, trend_line=False):</span>
 <span id="cb4-80"><a href="#cb4-80"></a>    plot = (</span>
 <span id="cb4-81"><a href="#cb4-81"></a>        ggplot(</span>
 <span id="cb4-82"><a href="#cb4-82"></a>            df,</span>
@@ -1056,7 +1094,7 @@ Gordon Shotwell
 <span id="cb4-91"><a href="#cb4-91"></a>        + theme_light()</span>
 <span id="cb4-92"><a href="#cb4-92"></a>    )</span>
 <span id="cb4-93"><a href="#cb4-93"></a></span>
-<span id="cb4-94"><a href="#cb4-94"></a>    if smoother:</span>
+<span id="cb4-94"><a href="#cb4-94"></a>    if trend_line:</span>
 <span id="cb4-95"><a href="#cb4-95"></a>        plot = plot + stat_smooth()</span>
 <span id="cb4-96"><a href="#cb4-96"></a></span>
 <span id="cb4-97"><a href="#cb4-97"></a>    return plot</span>
@@ -1418,12 +1456,10 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
   C[Checkbox] --&gt; Sc((Scatter\nPlot))
-  Sl --&gt; Sc 
+    Sl[Slider]  --&gt; Sc 
   Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
 </pre>
 </div>
 </div>
@@ -1436,12 +1472,10 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
   C[Checkbox] --&gt; Sc((Scatter\nPlot))
-  Sl --&gt; Sc 
+  Sl[Slider]:::changed --&gt; Sc 
   Sl --&gt; M((Dist Plot))
-  Sl[Slider]:::changed --&gt; T((Table))
   
   classDef changed fill:#f96
 </pre>
@@ -1456,14 +1490,33 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
   C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
-  Sl --&gt; Sc 
+  Sl[Slider]:::changed --&gt; Sc 
   Sl --&gt; M((Dist Plot)):::changed
-  Sl[Slider]:::changed --&gt; T((Table)):::changed
   
   classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forget-dependencies" class="slide level2">
+<h2>Forget dependencies</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
 </pre>
 </div>
 </div>
@@ -1476,74 +1529,13 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
   C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
-  Sl --&gt; Sc 
-  Sl --&gt; M((Dist Plot)):::changed
-  Sl[Slider] --&gt; T((Table)):::changed
-  
-  classDef changed fill:#f96
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="update" class="slide level2">
-<h2>Update</h2>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-
-<pre class="mermaid mermaid-js">flowchart TD
-  C[Checkbox] --&gt; Sc((Scatter\nPlot))
-  Sl --&gt; Sc 
+  Sl[Slider] --&gt; Sc 
   Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
   
   classDef changed fill:#f96
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="checkbox-changes" class="slide level2">
-<h2>Checkbox changes</h2>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-
-<pre class="mermaid mermaid-js">flowchart TD
-  C[Checkbox]:::changed --&gt; Sc((Scatter\nPlot))
-  Sl --&gt; Sc 
-  Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
-  
-  classDef changed fill:#f96
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="invalidated-1" class="slide level2">
-<h2>Invalidated</h2>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-
-<pre class="mermaid mermaid-js">flowchart TD
-  C[Checkbox]:::changed --&gt; Sc((Scatter\nPlot)):::changed
-  Sl --&gt; Sc 
-  Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
-  
-  classDef changed fill:#f96
+  linkStyle 2 display:none
 </pre>
 </div>
 </div>
@@ -1556,12 +1548,10 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
-  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
-  Sl --&gt; Sc 
-  Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot)):::changed
   
   classDef changed fill:#f96
 </pre>
@@ -1576,12 +1566,10 @@ Gordon Shotwell
 <div class="cell-output-display">
 <div>
 <div>
-
 <pre class="mermaid mermaid-js">flowchart TD
   C[Checkbox] --&gt; Sc((Scatter\nPlot))
-  Sl --&gt; Sc 
+  Sl[Slider] --&gt; Sc 
   Sl --&gt; M((Dist Plot))
-  Sl[Slider] --&gt; T((Table))
   
   classDef changed fill:#f96
 </pre>
@@ -1589,6 +1577,528 @@ Gordon Shotwell
 </div>
 </div>
 </div>
+</section>
+<section id="checkbox-changes" class="slide level2">
+<h2>Checkbox changes</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox]:::changed --&gt; Sc((Scatter\nPlot))
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="invalidated-1" class="slide level2">
+<h2>Invalidated</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox]:::changed --&gt; Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forget-dependencies-1" class="slide level2">
+<h2>Forget dependencies</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-2" class="slide level2">
+<h2>Recalculate</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="updated-1" class="slide level2">
+<h2>Updated</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="reactivity-scales" class="slide level2">
+<h2>Reactivity scales</h2>
+<ul>
+<li class="fragment">Every Shiny app uses this pattern</li>
+<li class="fragment">Works for dynamic UIs</li>
+<li class="fragment">Shiny is lazy</li>
+</ul>
+</section>
+<section id="your-turn-1" class="slide level2">
+<h2>Your turn</h2>
+<p>TODO: Insert reactivity exercise here</p>
+</section></section>
+<section>
+<section class="title-slide slide level1">
+<h1>Reactive calculations</h1>
+
+</section>
+<section id="handling-repetition" class="slide level2">
+<h2>Handling repetition</h2>
+<ul>
+<li class="fragment">So far we’ve been working with shallow reactive graphs</li>
+<li class="fragment">Each input is passed to a rendering function which produces an output</li>
+<li class="fragment">Input -&gt; Recipe -&gt; Output can produce repetitive, inefficient applications</li>
+<li class="fragment"><code>@reactive.Calc</code> lets you define calculations which are consumed by downstream functions</li>
+<li class="fragment">This adds intermediary nodes to the reactive graph</li>
+</ul>
+</section>
+<section id="reactive-calc-example" class="slide level2">
+<h2>Reactive Calc example</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>#| standalone: true</span>
+<span id="cb5-2"><a href="#cb5-2"></a>#| components: [editor, viewer]</span>
+<span id="cb5-3"><a href="#cb5-3"></a>#| layout: horizontal</span>
+<span id="cb5-4"><a href="#cb5-4"></a>#| viewerHeight: 800</span>
+<span id="cb5-5"><a href="#cb5-5"></a>from shiny import Inputs, Outputs, Session, App, reactive, render, req, ui</span>
+<span id="cb5-6"><a href="#cb5-6"></a>import pandas as pd</span>
+<span id="cb5-7"><a href="#cb5-7"></a>from plotnine import ggplot, geom_histogram, labs, aes</span>
+<span id="cb5-8"><a href="#cb5-8"></a>import numpy as np</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>app_ui = ui.page_fluid(</span>
+<span id="cb5-11"><a href="#cb5-11"></a>    ui.input_slider("n_rows", "Sample rows", 0, 100, 20),</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    ui.output_plot("hist"),</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    ui.output_table("df"),</span>
+<span id="cb5-14"><a href="#cb5-14"></a>)</span>
+<span id="cb5-15"><a href="#cb5-15"></a></span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>def server(input: Inputs, output: Outputs, session: Session):</span>
+<span id="cb5-18"><a href="#cb5-18"></a>    @output</span>
+<span id="cb5-19"><a href="#cb5-19"></a>    @render.table</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    def df():</span>
+<span id="cb5-21"><a href="#cb5-21"></a>        rand = np.random.rand(input.n_rows(), 1)</span>
+<span id="cb5-22"><a href="#cb5-22"></a>        df = pd.DataFrame(rand, columns=["col_1"])</span>
+<span id="cb5-23"><a href="#cb5-23"></a>        return df</span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a>    @output</span>
+<span id="cb5-26"><a href="#cb5-26"></a>    @render.plot</span>
+<span id="cb5-27"><a href="#cb5-27"></a>    def hist():</span>
+<span id="cb5-28"><a href="#cb5-28"></a>        rand = np.random.rand(input.n_rows(), 1)</span>
+<span id="cb5-29"><a href="#cb5-29"></a>        df = pd.DataFrame(rand, columns=["col_1"])</span>
+<span id="cb5-30"><a href="#cb5-30"></a>        plot = (</span>
+<span id="cb5-31"><a href="#cb5-31"></a>            ggplot(df, aes(x="col_1"))</span>
+<span id="cb5-32"><a href="#cb5-32"></a>            + geom_histogram(binwidth=0.1, fill="blue", color="black")</span>
+<span id="cb5-33"><a href="#cb5-33"></a>            + labs(x="Random Values", y="Frequency", title="Histogram of Random Data")</span>
+<span id="cb5-34"><a href="#cb5-34"></a>        )</span>
+<span id="cb5-35"><a href="#cb5-35"></a>        return plot</span>
+<span id="cb5-36"><a href="#cb5-36"></a></span>
+<span id="cb5-37"><a href="#cb5-37"></a></span>
+<span id="cb5-38"><a href="#cb5-38"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="identify-repition" class="slide level2">
+<h2>Identify repition</h2>
+<div class="sourceCode" id="cb6" data-code-line-numbers="4,5,11,12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="at">@output</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">@render.table</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="kw">def</span> df():</span>
+<span id="cb6-4"><a href="#cb6-4"></a>        rand <span class="op">=</span> np.random.rand(<span class="bu">input</span>.n_rows(), <span class="dv">1</span>)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>        df <span class="op">=</span> pd.DataFrame(rand, columns<span class="op">=</span>[<span class="st">"col_1"</span>])</span>
+<span id="cb6-6"><a href="#cb6-6"></a>        <span class="cf">return</span> df</span>
+<span id="cb6-7"><a href="#cb6-7"></a></span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">@output</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">@render.plot</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="kw">def</span> hist():</span>
+<span id="cb6-11"><a href="#cb6-11"></a>        rand <span class="op">=</span> np.random.rand(<span class="bu">input</span>.n_rows(), <span class="dv">1</span>)</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        df <span class="op">=</span> pd.DataFrame(rand, columns<span class="op">=</span>[<span class="st">"col_1"</span>])</span>
+<span id="cb6-13"><a href="#cb6-13"></a>        plot <span class="op">=</span> (</span>
+<span id="cb6-14"><a href="#cb6-14"></a>            ggplot(df, aes(x<span class="op">=</span><span class="st">"col_1"</span>))</span>
+<span id="cb6-15"><a href="#cb6-15"></a>            <span class="op">+</span> geom_histogram(binwidth<span class="op">=</span><span class="fl">0.1</span>, fill<span class="op">=</span><span class="st">"blue"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16"></a>            <span class="op">+</span> labs(x<span class="op">=</span><span class="st">"Random Values"</span>, y<span class="op">=</span><span class="st">"Frequency"</span>, title<span class="op">=</span><span class="st">"Histogram of Random Data"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>        )</span>
+<span id="cb6-18"><a href="#cb6-18"></a>        <span class="cf">return</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="problems-with-repetition" class="slide level2">
+<h2>Problems with repetition</h2>
+<ol type="1">
+<li class="fragment">Code is in multiple places</li>
+<li class="fragment">The app is taking the sample twice</li>
+<li class="fragment">The table and graph are not using the same sample!</li>
+</ol>
+</section>
+<section id="reactive-calculation-to-the-rescue" class="slide level2">
+<h2>Reactive Calculation to the rescue</h2>
+<div class="sourceCode" id="cb7" data-code-line-numbers="1-4,9,15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="at">@reactive.Cale</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> sampled_df():</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        rand <span class="op">=</span> np.random.rand(<span class="bu">input</span>.n_rows(), <span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        df <span class="op">=</span> pd.DataFrame(rand, columns<span class="op">=</span>[<span class="st">"col_1"</span>])</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a>    <span class="at">@output</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>    <span class="at">@render.table</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    <span class="kw">def</span> df():</span>
+<span id="cb7-9"><a href="#cb7-9"></a>        <span class="cf">return</span> sampled_df()</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="at">@output</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="at">@render.plot</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>    <span class="kw">def</span> hist():</span>
+<span id="cb7-14"><a href="#cb7-14"></a>        plot <span class="op">=</span> (</span>
+<span id="cb7-15"><a href="#cb7-15"></a>            ggplot(sampled_df(), aes(x<span class="op">=</span><span class="st">"col_1"</span>))</span>
+<span id="cb7-16"><a href="#cb7-16"></a>            <span class="op">+</span> geom_histogram(binwidth<span class="op">=</span><span class="fl">0.1</span>, fill<span class="op">=</span><span class="st">"blue"</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>            <span class="op">+</span> labs(x<span class="op">=</span><span class="st">"Random Values"</span>, y<span class="op">=</span><span class="st">"Frequency"</span>, title<span class="op">=</span><span class="st">"Histogram of Random Data"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18"></a>        )</span>
+<span id="cb7-19"><a href="#cb7-19"></a>        <span class="cf">return</span> plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reactive-calculations-1" class="slide level2">
+<h2>Reactive calculations</h2>
+<ul>
+<li class="fragment">Defined with the <code>@reactive.Calc</code> decorator</li>
+<li class="fragment">Called like other inputs</li>
+<li class="fragment">Can consume inputs, reactive values, or other reactive calculations</li>
+<li class="fragment">Adds a node to the reactive graph.</li>
+</ul>
+</section>
+<section id="deep-reactive-graph" class="slide level2">
+<h2>Deep reactive graph</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="slider-changes-1" class="slide level2">
+<h2>Slider changes</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider]:::changed --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="invalidated-2" class="slide level2">
+<h2>Invalidated</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider]:::changed --&gt; S[Sample]:::changed
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="invalidated-3" class="slide level2">
+<h2>Invalidated</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider]:::changed --&gt; S[Sample]:::changed
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]:::changed
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="forget-dependencies-2" class="slide level2">
+<h2>Forget dependencies</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-table" class="slide level2">
+<h2>Recalculate table</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-table-1" class="slide level2">
+<h2>Recalculate table</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-sample" class="slide level2">
+<h2>Recalculate sample</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]:::changed
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-plot" class="slide level2">
+<h2>Recalculate plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]:::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-plot-1" class="slide level2">
+<h2>Recalculate plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]:::changed
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="updated-2" class="slide level2">
+<h2>Updated</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="your-turn-2" class="slide level2">
+<h2>Your turn</h2>
+<p>Go to <a href="../exercises/5-reactivity.html">exercises/5-reactivity</a> or run <code>apps/problem-sets/exercises/5-reactivity</code> locally.</p>
+</section>
+<section id="exercise-2.2-answer" class="slide level2">
+<h2>Exercise 2.2 answer</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S[Sample] --&gt; F[Filter]
+  F --&gt; T((Table))
+  S --&gt; P((Plot))
+  F --&gt; Tx((Text))
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="escaping-reactivity" class="slide level2">
+<h2>Escaping reactivity</h2>
+<ul>
+<li class="fragment">By default any change in a shiny input will trigger a recalculation</li>
+<li class="fragment">This isn’t always the user interaction you want
+<ul>
+<li class="fragment">Database queries</li>
+<li class="fragment">Expensive modeling</li>
+<li class="fragment">Grouping multiple filters together</li>
+<li class="fragment">Side effects</li>
+</ul></li>
+<li class="fragment"><code>reactive.event</code> and <code>reactive.Effect</code> allow you to interrupt reactive calculations.</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>#| standalone: true</span>
+<span id="cb8-2"><a href="#cb8-2"></a>#| components: [viewer]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>#| layout: horizontal</span>
+<span id="cb8-4"><a href="#cb8-4"></a>#| viewerHeight: 500</span>
+<span id="cb8-5"><a href="#cb8-5"></a>from shiny import Inputs, Outputs, Session, App, reactive, render, req, ui</span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a>app_ui = ui.page_fluid(</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    ui.input_text("input_txt", "Enter text"),</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    ui.output_text_verbatim("output_txt"),</span>
+<span id="cb8-10"><a href="#cb8-10"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a></span>
+<span id="cb8-13"><a href="#cb8-13"></a>def server(input, output, session):</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    @output</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    @render.text</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    def output_txt():</span>
+<span id="cb8-17"><a href="#cb8-17"></a>        return input.input_txt()</span>
+<span id="cb8-18"><a href="#cb8-18"></a></span>
+<span id="cb8-19"><a href="#cb8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20"></a>app = App(app_ui, server)</span>
+<span id="cb8-21"><a href="#cb8-21"></a></span>
+<span id="cb8-22"><a href="#cb8-22"></a>## file: README</span>
+<span id="cb8-23"><a href="#cb8-23"></a>Add an `input.action_button` to the app, and use `@reactive.event` to prevent the text from printing until the user presses the button.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reactive.event" class="slide level2">
+<h2>reactive.event</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="at">@output</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="at">@render.text</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="at">@reactive.event</span>(<span class="bu">input</span>.my_input)</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="kw">def</span> txt():</span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="cf">return</span> <span class="st">"Here is my text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">Reactive event is an explicit way to create a reactive link</li>
+<li class="fragment">It tells shiny to invalidate the node whenever a set of inputs change</li>
+<li class="fragment"><code>reactive.event</code> is often used with action buttons or action links</li>
+</ul>
+</section>
+<section id="your-turn-3" class="slide level2">
+<h2>Your turn</h2>
+<p>Go to <a href="../exercises/6-reactive-event.html">exercises/6-reactive-event</a> or run <code>apps/problem-sets/2-reactivity/2.3-reactive-event</code> locally.</p>
+</section></section>
+<section class="title-slide slide level1">
+<h1>Side effects</h1>
 
 <div class="footer footer-default">
 
@@ -1604,6 +2114,7 @@ Gordon Shotwell
   <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1625,7 +2136,8 @@ Gordon Shotwell
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1646,7 +2158,7 @@ Gordon Shotwell
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -1771,9 +2283,9 @@ Gordon Shotwell
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,
@@ -1796,7 +2308,7 @@ Gordon Shotwell
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
