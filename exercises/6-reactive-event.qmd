@@ -1,6 +1,3 @@
----
-title: "Reactive calc"
----
 
 ```{python}
 # | echo: false
@@ -16,15 +13,10 @@ def reactive_problems(file):
 
 ```
 
-# Exercise 2.2
+## Exercise 2.3
 
 ```{python}
 # | echo: false
 # | output: asis
-
-reactive_problems("2.2-reactive-calc")
+reactive_problems("2.3-reactive-event")
 ```
-
-# Exercise 2.3
-
-Draw the reactive graph for the above application

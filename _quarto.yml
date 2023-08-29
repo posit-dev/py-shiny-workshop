@@ -23,6 +23,7 @@ website:
           - section: "Exercises"
             contents: 
             - exercises/5-reactivity.qmd
+            - exercises/6-reactive-event.qmd
       - section: "Session 3"
         contents:
           - docs/ui-customization.qmd

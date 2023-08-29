@@ -1,20 +1,35 @@
 ---
-title: "Session 2 slides"
-author: "Gordon Shotwell"
-format: 
-  revealjs:
-      incremental: true   
+title: "Session 2: Reactivity"
+author: "Gordon Shotwell & Joe Cheng"
+title-slide-attributes: 
+  data-background-color: black
+  data-background-image:  images/toc-people-dark.svg
+  data-background-size: contain
+format:
+  positconfslides-revealjs: 
+    incremental: true
+    chalkboard: true
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    css: "styles.css"
+    filters:
+      - positconfslides
 ---
 ```{python}
 # | echo: false
 import os
 
 os.chdir("..")
-from helpers import problem_tabs, include_shiny_folder
+from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_app
 
 ```
 
 # Reactivity overview
+
 
 ## How did Shiny do that?
 
@@ -48,9 +63,25 @@ include_shiny_folder(
 
 ## What's a better way?
 
-We can infer the relationship between components, and use those relationships to optimally rerender the app.
+::: {.v-center-container}
+- Infer the relationships between components 
+- Build a computation graph
+:::
+
+## Does that really work?
+
+- You're not wrong to find this suspicious
+- Magic automatic rendering often goes badly wrong
+- For this to work, the inference has to be 100% reliable
+
+## It really works
+
+- We have 10 years of experience with this pattern
+- R users have found the bugs and illuminated the edge cases
+- Shiny will always infer the correct computation graph
 
 ## Outputs and recipes
+
 
 ```{.python code-line-numbers="5,12"}
 from shiny import Inputs, Outputs, Session, App, render, ui
@@ -59,7 +90,6 @@ app_ui = ui.page_fluid(
     ui.input_slider("n", "N", 0, 100, 20),
     ui.output_text_verbatim("txt"),
 )
-
 
 def server(input: Inputs, output: Outputs, session: Session):
     @output
@@ -91,6 +121,7 @@ def server(input: Inputs, output: Outputs, session: Session):
 
 app = App(app_ui, server)
 ```
+
 
 ## Reactive graph
 
@@ -166,17 +197,41 @@ flowchart TD
   classDef changed fill:#f96
 ```
 
+## Forget dependencies
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
 ## Recalculate
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
   Sl --> M((Dist Plot)):::changed
   
   classDef changed fill:#f96
 ```
 
-## Update
+## Updated
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
@@ -205,6 +260,18 @@ flowchart TD
   Sl --> M((Dist Plot))
   
   classDef changed fill:#f96
+```
+
+## Forget dependencies
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
 ```
 
 ## Recalculate
@@ -241,7 +308,7 @@ TODO: Insert reactivity exercise here
 
 ## Handling repetition
 
-- So far we've been working with flat reactive graphs
+- So far we've been working with shallow reactive graphs
 - Each input is passed to a rendering function which produces an output
 - Input -> Recipe -> Output can produce repetitive, inefficient applications
 - `@reactive.Calc` lets you define calculations which are consumed by downstream functions
@@ -256,8 +323,8 @@ TODO: Insert reactivity exercise here
 include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 ```
 
-## Reactive Calc example
-```{.python}
+## Identify repition
+```{.python code-line-numbers="4,5,11,12"}
     @output
     @render.table
     def df():
@@ -277,3 +344,220 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
         )
         return plot
 ```
+
+## Problems with repetition
+
+1) Code is in multiple places
+2) The app is taking the sample twice
+3) The table and graph are not using the same sample!
+
+## Reactive Calculation to the rescue
+```{.python code-line-numbers="1-4,9,15"}
+    @reactive.Cale
+    def sampled_df():
+        rand = np.random.rand(input.n_rows(), 1)
+        df = pd.DataFrame(rand, columns=["col_1"])
+
+    @output
+    @render.table
+    def df():
+        return sampled_df()
+
+    @output
+    @render.plot
+    def hist():
+        plot = (
+            ggplot(sampled_df(), aes(x="col_1"))
+            + geom_histogram(binwidth=0.1, fill="blue", color="black")
+            + labs(x="Random Values", y="Frequency", title="Histogram of Random Data")
+        )
+        return plot
+```
+
+## Reactive calculations
+- Defined with the `@reactive.Calc` decorator
+- Called like other inputs
+- Can consume inputs, reactive values, or other reactive calculations
+- Adds a node to the reactive graph.
+
+## Deep reactive graph
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+```
+
+## Slider changes
+
+```{mermaid}
+flowchart TD
+  Sl[Slider]:::changed --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+```
+
+## Invalidated
+```{mermaid}
+flowchart TD
+  Sl[Slider]:::changed --> S[Sample]:::changed
+  S --> T[Table]
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+```
+
+## Invalidated
+```{mermaid}
+flowchart TD
+  Sl[Slider]:::changed --> S[Sample]:::changed
+  S --> T[Table]:::changed
+  S --> P[Plot]:::changed
+  
+  classDef changed fill:#f96
+```
+
+## Forget dependencies
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Recalculate table
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Recalculate table
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+```
+
+## Recalculate sample
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]:::changed
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Recalculate plot
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]:::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Recalculate plot
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]:::changed
+  
+  classDef changed fill:#f96
+```
+
+## Updated
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]
+  classDef changed fill:#f96
+```
+
+
+## Your turn
+
+Go to [exercises/5-reactivity](../exercises/5-reactivity.html) or run `apps/problem-sets/exercises/5-reactivity` locally.
+
+
+## Exercise 2.2 answer 
+
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S[Sample] --> F[Filter]
+  F --> T((Table))
+  S --> P((Plot))
+  F --> Tx((Text))
+  classDef changed fill:#f96
+```
+
+## Escaping reactivity
+
+- By default any change in a shiny input will trigger a recalculation
+- This isn't always the user interaction you want
+    - Database queries
+    - Expensive modeling
+    - Grouping multiple filters together
+    - Side effects
+- `reactive.event` and `reactive.Effect` allow you to interrupt reactive calculations.
+
+## Example
+```{python}
+# | echo: false
+# | output: asis
+include_shiny_folder(
+    "apps/problem-sets/2-reactivity/2.3-reactive-event",
+    file_name="app.py",
+    exclusions=["app-solution.py"],
+    components="viewer",
+    viewer_height=500,
+)
+```
+
+## reactive.event
+```{.python}
+@output
+@render.text
+@reactive.event(input.my_input)
+def txt():
+  return "Here is my text"
+```
+
+- Reactive event is an explicit way to create a reactive link
+- It tells shiny to invalidate the node whenever a set of inputs change
+- `reactive.event` is often used with action buttons or action links
+
+## Your turn
+
+Go to [exercises/6-reactive-event](../exercises/6-reactive-event.html) or run `apps/problem-sets/2-reactivity/2.3-reactive-event` locally.
+
+
+# Side effects
+

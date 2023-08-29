@@ -10,7 +10,7 @@ def dist_plot(df):
     return plot
 
 
-def scatter_plot(df, smoother=False):
+def scatter_plot(df, trend_line=False):
     plot = (
         ggplot(
             df,
@@ -25,7 +25,7 @@ def scatter_plot(df, smoother=False):
         + theme_light()
     )
 
-    if smoother:
+    if trend_line:
         plot = plot + stat_smooth()
 
     return plot

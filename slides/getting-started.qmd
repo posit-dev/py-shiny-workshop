@@ -1,7 +1,23 @@
 ---
-title: "Session 1 slides"
-author: "Gordon Shotwell"
-format: revealjs
+title: "Session 1: Intro"
+author: "Gordon Shotwell & Joe Cheng"
+title-slide-attributes: 
+  data-background-color: black
+  data-background-image:  images/toc-people-dark.svg
+  data-background-size: contain
+format:
+  positconfslides-revealjs: 
+    incremental: true
+    chalkboard: true
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    code-link: true
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    filters:
+      - positconfslides
 ---
 ```{python}
 # | echo: false
@@ -16,11 +32,19 @@ from helpers import problem_tabs, include_shiny_folder
 
 ## Outline for the day
 
-9:00-10:15 : Getting started with Shiny
-10:30-12:00: Reactivity
-12:00-1:00 : Lunch
-1:30 - 2:45: UI Customization
-3:00 - 5:00: Workflow best practicces
+9:00-10:30 : Getting started with Shiny
+
+10:30-11:00: Coffee break
+
+11:00-12:30 : Reactivity
+
+12:30 - 13:30: Lunch
+
+13:30 - 14:00: UI Customization
+
+15:00 - 15:30: Coffee break
+
+15:30 - 17:00: Workflow best practices / Q&A
 
 ## Goals of Session 1
 
@@ -33,6 +57,7 @@ from helpers import problem_tabs, include_shiny_folder
 - This session is going to be exercise based
 - We want to get into trouble
 - Don't worry about understanding at this point, just get things working 
+- Expect frustration
 
 
 ## Exercises
@@ -67,9 +92,11 @@ include_shiny_folder(
 - Efficient
 
 ## Why Shiny for Python?
-- More efficient than Streamlit
-- Better development experience than Dash
-- More Python than Shiny for R
+- Shiny is designed to take you from prototype to product
+- Easy enough to use for prototypes
+- Efficient enough to handle complexity
+- Everything you need to build production quality apps
+- You don't need to throw away your Shiny apps
 
 ## Anatomy of a Shiny App
 To make a Shiny app work you need to do three things:
@@ -89,7 +116,7 @@ app_ui = ui.page_fluid(
 )
 
 
-def server(input: Inputs, output: Outputs, session: Session):
+def server(input, output, session):
     @output
     @render.text
     def txt():
@@ -110,7 +137,7 @@ app_ui = ui.page_fluid(
 )
 
 
-def server(input: Inputs, output: Outputs, session: Session):
+def server(input, output, session):
     @output
     @render.text
     def txt():
@@ -131,7 +158,7 @@ app_ui = ui.page_fluid(
 )
 
 
-def server(input: Inputs, output: Outputs, session: Session):
+def server(input, output, session):
     @output
     @render.text
     def txt():
@@ -153,10 +180,16 @@ app = App(app_ui, server)
 
 Go to [exercises/1-hello-world](../exercises/1-hello-world.html) or run `apps/problem-sets/1-getting-started/1.0-hello-world` locally.
 
+## Server function
+
+- Every shiny app needs a `server` function
+- The server function executes for each user session
+- This function contains **rendering functions** which define how to turn inputs into outputs
+
 ## Rendering functions
 
 ```{.python}
-def server(input: Inputs, output: Outputs, session: Session):
+def server(input, output, session):
     @output
     @render.text
     def txt():
@@ -169,6 +202,20 @@ def server(input: Inputs, output: Outputs, session: Session):
 - They need to be **decorated** with `@output` and `@render.*` in that order
 - The function **name** should match the output id
 - The return value is sent to the Shiny UI
+
+## Decorators are just functions
+- Decorators are functions which take other functions
+- Shiny uses them to identify reactive functions
+- They can take arguments:
+
+```{.python}
+    @output
+    @render.plot(alt="A body mass plot of penguins")
+    def mass_plot():
+        df = sample_data(penguins.copy(), input.sample())
+        df = df.loc[df["body_mass"] < input.mass()]
+        return dist_plot(df)
+```
 
 ## Common problems
 
