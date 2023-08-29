@@ -1,7 +1,9 @@
 ---
 title: "Session 2 slides"
 author: "Gordon Shotwell"
-format: revealjs
+format: 
+  revealjs:
+      incremental: true   
 ---
 ```{python}
 # | echo: false
@@ -11,6 +13,8 @@ os.chdir("..")
 from helpers import problem_tabs, include_shiny_folder
 
 ```
+
+# Reactivity overview
 
 ## How did Shiny do that?
 
@@ -107,6 +111,13 @@ flowchart TD
 
 - Tell Shiny what you want to happen
 - Trust that the framework will keep everything up-to-date
+- You're setting the menu, not doing the cooking
+
+## Event-driven programming
+![](images/carmy-yelling.webp)
+
+## Reactive programming
+![](images/carmy-whites.png)
 
 ## Your turn
 
@@ -129,9 +140,8 @@ include_shiny_folder(
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
-  Sl --> Sc 
+    Sl[Slider]  --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
 ```
 
 ## Slider changes
@@ -139,9 +149,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
-  Sl --> Sc 
+  Sl[Slider]:::changed --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider]:::changed --> T((Table))
   
   classDef changed fill:#f96
 ```
@@ -151,9 +160,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
-  Sl --> Sc 
+  Sl[Slider]:::changed --> Sc 
   Sl --> M((Dist Plot)):::changed
-  Sl[Slider]:::changed --> T((Table)):::changed
   
   classDef changed fill:#f96
 ```
@@ -162,9 +170,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot)):::changed
-  Sl[Slider] --> T((Table)):::changed
   
   classDef changed fill:#f96
 ```
@@ -173,9 +180,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
   
   classDef changed fill:#f96
 ```
@@ -184,9 +190,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox]:::changed --> Sc((Scatter\nPlot))
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
   
   classDef changed fill:#f96
 ```
@@ -196,9 +201,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox]:::changed --> Sc((Scatter\nPlot)):::changed
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
   
   classDef changed fill:#f96
 ```
@@ -207,9 +211,8 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
   
   classDef changed fill:#f96
 ```
@@ -218,9 +221,59 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
-  Sl --> Sc 
+  Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
-  Sl[Slider] --> T((Table))
   
   classDef changed fill:#f96
+```
+
+## Reactivity scales
+
+- Every Shiny app uses this pattern
+- Works for dynamic UIs
+- Shiny is lazy 
+
+## Your turn
+
+TODO: Insert reactivity exercise here
+
+# Reactive calculations
+
+## Handling repetition
+
+- So far we've been working with flat reactive graphs
+- Each input is passed to a rendering function which produces an output
+- Input -> Recipe -> Output can produce repetitive, inefficient applications
+- `@reactive.Calc` lets you define calculations which are consumed by downstream functions
+- This adds intermediary nodes to the reactive graph
+
+## Reactive Calc example
+
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
+```
+
+## Reactive Calc example
+```{.python}
+    @output
+    @render.table
+    def df():
+        rand = np.random.rand(input.n_rows(), 1)
+        df = pd.DataFrame(rand, columns=["col_1"])
+        return df
+
+    @output
+    @render.plot
+    def hist():
+        rand = np.random.rand(input.n_rows(), 1)
+        df = pd.DataFrame(rand, columns=["col_1"])
+        plot = (
+            ggplot(df, aes(x="col_1"))
+            + geom_histogram(binwidth=0.1, fill="blue", color="black")
+            + labs(x="Random Values", y="Frequency", title="Histogram of Random Data")
+        )
+        return plot
 ```

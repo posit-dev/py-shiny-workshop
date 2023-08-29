@@ -22,10 +22,7 @@ website:
           - slides/reactivity.qmd
           - section: "Exercises"
             contents: 
-            - exercises/1-hello-world.qmd
-            - exercises/2-debug.qmd
-            - exercises/3-add-filter.qmd
-            - exercises/4-add-plot.qmd
+            - exercises/5-reactivity.qmd
       - section: "Session 3"
         contents:
           - docs/ui-customization.qmd

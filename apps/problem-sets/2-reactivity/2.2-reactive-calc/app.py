@@ -40,6 +40,7 @@ def server(input, output, session):
     @render.plot
     def mass_plot():
         df = sample_data(penguins.copy(), input.sample())
+        df = df.loc[df["body_mass"] < input.mass()]
         return dist_plot(df)
 
     @output
