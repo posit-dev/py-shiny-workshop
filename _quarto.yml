@@ -7,7 +7,6 @@ website:
     contents:
       - section: "Session 1"
         contents:
-          - docs/getting-started.qmd
           - slides/getting-started.qmd
           - section: "Exercises"
             contents: 
@@ -17,8 +16,6 @@ website:
             - exercises/4-add-plot.qmd
       - section: "Session 2"
         contents:
-          - docs/reactivity.qmd
-          - docs/reactive-side-effects.qmd
           - slides/reactivity.qmd
           - section: "Exercises"
             contents: 
@@ -27,7 +24,7 @@ website:
             - exercises/7-reactive-effects.qmd
       - section: "Session 3"
         contents:
-          - docs/ui-customization.qmd
+          - slides/ui-customization.qmd
           - section: "Exercises"
             contents: 
             - exercises/1-hello-world.qmd
