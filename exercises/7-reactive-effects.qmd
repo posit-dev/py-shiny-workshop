@@ -1,0 +1,22 @@
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+
+def reactive_problems(file):
+    problem_tabs(f"apps/problem-sets/2-reactive-effects/{file}")
+
+
+```
+
+## Exercise 3.1
+
+```{python}
+# | echo: false
+# | output: asis
+reactive_problems("3.1-reactive-event")
+```

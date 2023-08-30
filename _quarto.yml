@@ -24,6 +24,7 @@ website:
             contents: 
             - exercises/5-reactivity.qmd
             - exercises/6-reactive-event.qmd
+            - exercises/7-reactive-effects.qmd
       - section: "Session 3"
         contents:
           - docs/ui-customization.qmd
@@ -37,7 +38,7 @@ website:
   navbar:
     tools: 
       - icon: github
-        href: https://github.com/rstudio/shiny-python-workshop-2023
+        href: https://github.com/posit-dev/shiny-python-workshop-2023
       - icon: fa-dicord
         href: https://discord.gg/AQVJzG2bnN
     left:

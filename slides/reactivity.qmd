@@ -166,6 +166,63 @@ include_shiny_folder(
 )
 ```
 
+## Initial state
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Calculate Scatter plot
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Calculate scatter plot
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot))
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Calculate distribution
+
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+```
+
+## Calculate distribution
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+    Sl[Slider]  --> Sc 
+  Sl --> M((Dist Plot)):::changed
+  classDef changed fill:#f96
+```
+
+
 ## Reactive graph
 
 ```{mermaid}
@@ -174,6 +231,7 @@ flowchart TD
     Sl[Slider]  --> Sc 
   Sl --> M((Dist Plot))
 ```
+
 
 ## Slider changes
 
@@ -216,6 +274,31 @@ flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
   Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+
+## Recalculate
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot))
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot)):::changed
   
   classDef changed fill:#f96
   linkStyle 2 display:none
@@ -263,6 +346,18 @@ flowchart TD
 ```
 
 ## Forget dependencies
+```{mermaid}
+flowchart TD
+  C[Checkbox] --> Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --> Sc 
+  Sl --> M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+```
+
+## Recalculate
 ```{mermaid}
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
@@ -380,6 +475,88 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 - Can consume inputs, reactive values, or other reactive calculations
 - Adds a node to the reactive graph.
 
+## Initial state
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Calculate table
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+```
+
+## Calculate table
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+```
+
+## Calculate sample
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]:::changed
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+```
+
+## Calculate sample
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]:::changed
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Recalculate plot
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]:::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+```
+
+## Recalculate plot
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]
+  S --> T[Table]
+  S --> P[Plot]:::changed
+  
+  classDef changed fill:#f96
+```
+
 ## Deep reactive graph
 ```{mermaid}
 flowchart TD
@@ -409,6 +586,7 @@ flowchart TD
   S --> P[Plot]
   
   classDef changed fill:#f96
+  linkStyle 0 display:none
 ```
 
 ## Invalidated
@@ -419,16 +597,6 @@ flowchart TD
   S --> P[Plot]:::changed
   
   classDef changed fill:#f96
-```
-
-## Forget dependencies
-```{mermaid}
-flowchart TD
-  Sl[Slider] --> S[Sample]
-  S --> T[Table]
-  S --> P[Plot]
-  
-  classDef changed fill:#f96
   linkStyle 0 display:none
   linkStyle 1 display:none
   linkStyle 2 display:none
@@ -451,6 +619,18 @@ flowchart TD
 ```{mermaid}
 flowchart TD
   Sl[Slider] --> S[Sample]
+  S --> T[Table]:::changed
+  S --> P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+```
+
+## Recalculate sample
+```{mermaid}
+flowchart TD
+  Sl[Slider] --> S[Sample]:::changed
   S --> T[Table]:::changed
   S --> P[Plot]
   
@@ -551,7 +731,8 @@ def txt():
 ```
 
 - Reactive event is an explicit way to create a reactive link
-- It tells shiny to invalidate the node whenever a set of inputs change
+- It can be used in conjunction with rendering functions, `reactive.Calc` and `reactive.Effect`
+- It tells shiny to invalidate the node whenever or or more inputs change
 - `reactive.event` is often used with action buttons or action links
 
 ## Your turn
@@ -561,3 +742,108 @@ Go to [exercises/6-reactive-event](../exercises/6-reactive-event.html) or run `a
 
 # Side effects
 
+## What we've learned
+- How Shiny rerenders elements 
+- How Shiny detects dependencies between elements (renderers and inputs)
+- How to add depth to the reactive graph with `reactive.Calc`
+- How to explicitly specify dependencies with `reactive.event`
+
+
+## Is that enough?
+- Shiny has a function `ui.show_modal` which triggers a modal window. 
+- Using what you know so far, how would you call this function?
+
+```{python}
+# | echo: false
+# | output: asis
+include_shiny_folder(
+    "apps/examples/3.0-modal",
+    components="viewer",
+    viewer_height=500,
+)
+```
+
+## Reactivity is for values
+- Normal reactive elements pass values 
+- A node is invalidated when the last value it received is out of date
+- Rendering functions and `reactive.Calc` all expect a return value
+- We often don't care about values
+- When the user clicks a button we care about the fact that they clicked it
+
+## Reactive Effects
+- The `@reactive.Effect` decorator allows you to react to an input without returning a value
+- Usually paird with `@reactive.event` 
+
+``` {.python}
+@reactive.Effect
+2@reactive.event(input.show)
+def toggle_modal():
+    m = ui.modal(
+        "This is a somewhat important message.",
+        title="Click outside the modal to close",
+        easy_close=True,
+        footer=None,
+    )
+    ui.modal_show(m)
+```
+
+## The rule
+
+### Use `reactive.Calc` or `render.*` when you want a **value** use `@reactive.Effect` when you want a **side effect**
+
+## What's a side effect?
+```{python}
+# | echo: false
+# | output: asis
+
+from helpers import multiple_choice_app, Quiz
+
+questions = Quiz(
+    {
+        "Writing a CSV": {
+            "choices": ["value", "side effect"],
+            "answer": "side effect",
+        },
+        "Querying a database": {
+            "choices": ["value", "side effect"],
+            "answer": "value",
+        },
+        "Adding two numbers": {
+            "choices": ["value", "side effect"],
+            "answer": "value",
+        },
+        "A function which prints to the console": {
+            "choices": ["value", "side effect"],
+            "answer": "side effect",
+        },
+        "Fetching the current temperature from an API": {
+            "choices": ["value", "side effect"],
+            "answer": "value",
+        },
+        "A function which sorts a list in place": {
+            "choices": ["value", "side effect"],
+            "answer": "side effect",
+        },
+        "Getting a model score for a set of inputs": {
+            "choices": ["value", "side effect"],
+            "answer": "value",
+        },
+        "Deploying a model to a hosting service": {
+            "choices": ["value", "side effect"],
+            "answer": "side effect",
+        },
+    }
+)
+
+multiple_choice_app(questions)
+```
+
+## What's a side effect?
+
+- Somewhat context dependent
+- Multiple strategies can work
+- If your solution feels complicated and painful, ask whether you should use the other strategy
+
+## Your turn
+
+Go to [exercises/7-reactivity](../exercises/7-reactivity.html) or run `apps/problem-sets/3-reactive-effects/3.1-update-slider` locally.
