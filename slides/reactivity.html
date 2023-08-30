@@ -1450,6 +1450,98 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb4-447"><a href="#cb4-447"></a>1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.</span>
 <span id="cb4-448"><a href="#cb4-448"></a>2) Add a checkbox which adds a line of best fit to the plot. </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="initial-state" class="slide level2">
+<h2>Initial state</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+    Sl[Slider]  --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-scatter-plot" class="slide level2">
+<h2>Calculate Scatter plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-scatter-plot-1" class="slide level2">
+<h2>Calculate scatter plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+    Sl[Slider]  --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-distribution" class="slide level2">
+<h2>Calculate distribution</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+    Sl[Slider]  --&gt; Sc 
+  Sl --&gt; M((Dist Plot)):::changed
+  linkStyle 2 display:none
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-distribution-1" class="slide level2">
+<h2>Calculate distribution</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+    Sl[Slider]  --&gt; Sc 
+  Sl --&gt; M((Dist Plot)):::changed
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="reactive-graph-2" class="slide level2">
 <h2>Reactive graph</h2>
 <div class="cell" data-reveal="true">
@@ -1535,6 +1627,8 @@ Gordon Shotwell &amp; Joe Cheng
   Sl --&gt; M((Dist Plot))
   
   classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
   linkStyle 2 display:none
 </pre>
 </div>
@@ -1543,6 +1637,44 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </section>
 <section id="recalculate-1" class="slide level2">
+<h2>Recalculate</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-2" class="slide level2">
+<h2>Recalculate</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot))
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot)):::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-3" class="slide level2">
 <h2>Recalculate</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
@@ -1634,7 +1766,27 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </div>
 </section>
-<section id="recalculate-2" class="slide level2">
+<section id="recalculate-4" class="slide level2">
+<h2>Recalculate</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+  C[Checkbox] --&gt; Sc((Scatter\nPlot)):::changed
+  Sl[Slider] --&gt; Sc 
+  Sl --&gt; M((Dist Plot))
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-5" class="slide level2">
 <h2>Recalculate</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
@@ -1798,6 +1950,151 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">Adds a node to the reactive graph.</li>
 </ul>
 </section>
+<section id="initial-state-1" class="slide level2">
+<h2>Initial state</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-table" class="slide level2">
+<h2>Calculate table</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 1 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-table-1" class="slide level2">
+<h2>Calculate table</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-sample" class="slide level2">
+<h2>Calculate sample</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]:::changed
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 0 display:none
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="calculate-sample-1" class="slide level2">
+<h2>Calculate sample</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]:::changed
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-plot" class="slide level2">
+<h2>Recalculate plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]:::changed
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-plot-1" class="slide level2">
+<h2>Recalculate plot</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]
+  S --&gt; T[Table]
+  S --&gt; P[Plot]:::changed
+  
+  classDef changed fill:#f96
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="deep-reactive-graph" class="slide level2">
 <h2>Deep reactive graph</h2>
 <div class="cell" data-reveal="true">
@@ -1849,6 +2146,7 @@ Gordon Shotwell &amp; Joe Cheng
   S --&gt; P[Plot]
   
   classDef changed fill:#f96
+  linkStyle 0 display:none
 </pre>
 </div>
 </div>
@@ -1866,25 +2164,6 @@ Gordon Shotwell &amp; Joe Cheng
   Sl[Slider]:::changed --&gt; S[Sample]:::changed
   S --&gt; T[Table]:::changed
   S --&gt; P[Plot]:::changed
-  
-  classDef changed fill:#f96
-</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="forget-dependencies-2" class="slide level2">
-<h2>Forget dependencies</h2>
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<div>
-
-<pre class="mermaid mermaid-js">flowchart TD
-  Sl[Slider] --&gt; S[Sample]
-  S --&gt; T[Table]
-  S --&gt; P[Plot]
   
   classDef changed fill:#f96
   linkStyle 0 display:none
@@ -1952,6 +2231,7 @@ Gordon Shotwell &amp; Joe Cheng
   S --&gt; P[Plot]
   
   classDef changed fill:#f96
+  linkStyle 0 display:none
   linkStyle 2 display:none
 </pre>
 </div>
@@ -1959,7 +2239,27 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </div>
 </section>
-<section id="recalculate-plot" class="slide level2">
+<section id="recalculate-sample-1" class="slide level2">
+<h2>Recalculate sample</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<div>
+
+<pre class="mermaid mermaid-js">flowchart TD
+  Sl[Slider] --&gt; S[Sample]:::changed
+  S --&gt; T[Table]:::changed
+  S --&gt; P[Plot]
+  
+  classDef changed fill:#f96
+  linkStyle 2 display:none
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="recalculate-plot-2" class="slide level2">
 <h2>Recalculate plot</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
@@ -1979,7 +2279,7 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </div>
 </section>
-<section id="recalculate-plot-1" class="slide level2">
+<section id="recalculate-plot-3" class="slide level2">
 <h2>Recalculate plot</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
@@ -2089,7 +2389,8 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb9-5"><a href="#cb9-5"></a>  <span class="cf">return</span> <span class="st">"Here is my text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li class="fragment">Reactive event is an explicit way to create a reactive link</li>
-<li class="fragment">It tells shiny to invalidate the node whenever a set of inputs change</li>
+<li class="fragment">It can be used in conjunction with rendering functions, <code>reactive.Calc</code> and <code>reactive.Effect</code></li>
+<li class="fragment">It tells shiny to invalidate the node whenever or or more inputs change</li>
 <li class="fragment"><code>reactive.event</code> is often used with action buttons or action links</li>
 </ul>
 </section>
@@ -2097,13 +2398,173 @@ Gordon Shotwell &amp; Joe Cheng
 <h2>Your turn</h2>
 <p>Go to <a href="../exercises/6-reactive-event.html">exercises/6-reactive-event</a> or run <code>apps/problem-sets/2-reactivity/2.3-reactive-event</code> locally.</p>
 </section></section>
+<section>
 <section class="title-slide slide level1">
 <h1>Side effects</h1>
+
+</section>
+<section id="what-weve-learned" class="slide level2">
+<h2>What we’ve learned</h2>
+<ul>
+<li class="fragment">How Shiny rerenders elements</li>
+<li class="fragment">How Shiny detects dependencies between elements (renderers and inputs)</li>
+<li class="fragment">How to add depth to the reactive graph with <code>reactive.Calc</code></li>
+<li class="fragment">How to explicitly specify dependencies with <code>reactive.event</code></li>
+</ul>
+</section>
+<section id="is-that-enough" class="slide level2">
+<h2>Is that enough?</h2>
+<ul>
+<li class="fragment">Shiny has a function <code>ui.show_modal</code> which triggers a modal window.</li>
+<li class="fragment">Using what you know so far, how would you call this function?</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>#| standalone: true</span>
+<span id="cb10-2"><a href="#cb10-2"></a>#| components: [viewer]</span>
+<span id="cb10-3"><a href="#cb10-3"></a>#| layout: horizontal</span>
+<span id="cb10-4"><a href="#cb10-4"></a>#| viewerHeight: 500</span>
+<span id="cb10-5"><a href="#cb10-5"></a>from shiny import App, Inputs, Outputs, Session, reactive, ui, render</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a>app_ui = ui.page_fluid(</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    ui.input_action_button("show", "Show modal dialog"), ui.output_text("txt")</span>
+<span id="cb10-9"><a href="#cb10-9"></a>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a></span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a>def server(input: Inputs, output: Outputs, session: Session):</span>
+<span id="cb10-13"><a href="#cb10-13"></a>    @reactive.Effect</span>
+<span id="cb10-14"><a href="#cb10-14"></a>    @reactive.event(input.show)</span>
+<span id="cb10-15"><a href="#cb10-15"></a>    def show_modal():</span>
+<span id="cb10-16"><a href="#cb10-16"></a>        m = ui.modal(</span>
+<span id="cb10-17"><a href="#cb10-17"></a>            "This is a somewhat important message.",</span>
+<span id="cb10-18"><a href="#cb10-18"></a>            title="Click outside the modal to close",</span>
+<span id="cb10-19"><a href="#cb10-19"></a>            easy_close=True,</span>
+<span id="cb10-20"><a href="#cb10-20"></a>            footer=None,</span>
+<span id="cb10-21"><a href="#cb10-21"></a>        )</span>
+<span id="cb10-22"><a href="#cb10-22"></a>        ui.modal_show(m)</span>
+<span id="cb10-23"><a href="#cb10-23"></a></span>
+<span id="cb10-24"><a href="#cb10-24"></a></span>
+<span id="cb10-25"><a href="#cb10-25"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reactivity-is-for-values" class="slide level2">
+<h2>Reactivity is for values</h2>
+<ul>
+<li class="fragment">Normal reactive elements pass values</li>
+<li class="fragment">A node is invalidated when the last value it received is out of date</li>
+<li class="fragment">Rendering functions and <code>reactive.Calc</code> all expect a return value</li>
+<li class="fragment">We often don’t care about values</li>
+<li class="fragment">When the user clicks a button we care about the fact that they clicked it</li>
+</ul>
+</section>
+<section id="reactive-effects" class="slide level2">
+<h2>Reactive Effects</h2>
+<ul>
+<li class="fragment">The <code>@reactive.Effect</code> decorator allows you to react to an input without returning a value</li>
+<li class="fragment">Usually paird with <code>@reactive.event</code></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="at">@reactive.Effect</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="dv">2</span><span class="op">@</span>reactive.event(<span class="bu">input</span>.show)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="kw">def</span> toggle_modal():</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    m <span class="op">=</span> ui.modal(</span>
+<span id="cb11-5"><a href="#cb11-5"></a>        <span class="st">"This is a somewhat important message."</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>        title<span class="op">=</span><span class="st">"Click outside the modal to close"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>        easy_close<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-8"><a href="#cb11-8"></a>        footer<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    )</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    ui.modal_show(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-rule" class="slide level2">
+<h2>The rule</h2>
+<h3 id="use-reactive.calc-or-render.-when-you-want-a-value-use-reactive.effect-when-you-want-a-side-effect">Use <code>reactive.Calc</code> or <code>render.*</code> when you want a <strong>value</strong> use <code>@reactive.Effect</code> when you want a <strong>side effect</strong></h3>
+</section>
+<section id="whats-a-side-effect" class="slide level2">
+<h2>What’s a side effect?</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Test your understanding</strong></p>
+</div>
+<div class="callout-content">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>#| standalone: true</span>
+<span id="cb12-2"><a href="#cb12-2"></a>#| components: [viewer]</span>
+<span id="cb12-3"><a href="#cb12-3"></a>#| layout: horizontal</span>
+<span id="cb12-4"><a href="#cb12-4"></a>#| viewerHeight: 250</span>
+<span id="cb12-5"><a href="#cb12-5"></a>from shiny import App, render, ui, reactive, req</span>
+<span id="cb12-6"><a href="#cb12-6"></a>import json</span>
+<span id="cb12-7"><a href="#cb12-7"></a>from pathlib import Path</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>with open(Path(__file__).parent / "questions.json", "r") as file:</span>
+<span id="cb12-10"><a href="#cb12-10"></a>    questions = json.load(file)</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a>app_ui = ui.page_fluid(ui.output_ui("question"), ui.output_ui("validation"))</span>
+<span id="cb12-13"><a href="#cb12-13"></a></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a>def server(input, output, session):</span>
+<span id="cb12-16"><a href="#cb12-16"></a>    q_num = reactive.Value(0)</span>
+<span id="cb12-17"><a href="#cb12-17"></a></span>
+<span id="cb12-18"><a href="#cb12-18"></a>    question_keys = list(questions.keys())</span>
+<span id="cb12-19"><a href="#cb12-19"></a></span>
+<span id="cb12-20"><a href="#cb12-20"></a>    @reactive.Calc</span>
+<span id="cb12-21"><a href="#cb12-21"></a>    def current_q():</span>
+<span id="cb12-22"><a href="#cb12-22"></a>        return questions[question_keys[q_num()]]</span>
+<span id="cb12-23"><a href="#cb12-23"></a></span>
+<span id="cb12-24"><a href="#cb12-24"></a>    @output</span>
+<span id="cb12-25"><a href="#cb12-25"></a>    @render.ui</span>
+<span id="cb12-26"><a href="#cb12-26"></a>    def question():</span>
+<span id="cb12-27"><a href="#cb12-27"></a>        return ui.div(</span>
+<span id="cb12-28"><a href="#cb12-28"></a>            ui.h5(question_keys[q_num()], style="margin-bottom: 20px"),</span>
+<span id="cb12-29"><a href="#cb12-29"></a>            ui.input_radio_buttons(</span>
+<span id="cb12-30"><a href="#cb12-30"></a>                "question",</span>
+<span id="cb12-31"><a href="#cb12-31"></a>                "",</span>
+<span id="cb12-32"><a href="#cb12-32"></a>                choices=current_q()["choices"],</span>
+<span id="cb12-33"><a href="#cb12-33"></a>                selected="",</span>
+<span id="cb12-34"><a href="#cb12-34"></a>            ),</span>
+<span id="cb12-35"><a href="#cb12-35"></a>        )</span>
+<span id="cb12-36"><a href="#cb12-36"></a></span>
+<span id="cb12-37"><a href="#cb12-37"></a>    @output</span>
+<span id="cb12-38"><a href="#cb12-38"></a>    @render.ui</span>
+<span id="cb12-39"><a href="#cb12-39"></a>    def validation():</span>
+<span id="cb12-40"><a href="#cb12-40"></a>        req(input.question())</span>
+<span id="cb12-41"><a href="#cb12-41"></a>        if input.question() == current_q()["answer"]:</span>
+<span id="cb12-42"><a href="#cb12-42"></a>            if q_num() == len(question_keys) - 1:</span>
+<span id="cb12-43"><a href="#cb12-43"></a>                return ui.p("Correct! Quiz complete.")</span>
+<span id="cb12-44"><a href="#cb12-44"></a>            else:</span>
+<span id="cb12-45"><a href="#cb12-45"></a>                return ui.div(</span>
+<span id="cb12-46"><a href="#cb12-46"></a>                    ui.p("Correct!"), ui.input_action_button("next", "Next Question")</span>
+<span id="cb12-47"><a href="#cb12-47"></a>                )</span>
+<span id="cb12-48"><a href="#cb12-48"></a>        return ui.p("Not quite right, try again")</span>
+<span id="cb12-49"><a href="#cb12-49"></a></span>
+<span id="cb12-50"><a href="#cb12-50"></a>    @reactive.Effect</span>
+<span id="cb12-51"><a href="#cb12-51"></a>    @reactive.event(input.next)</span>
+<span id="cb12-52"><a href="#cb12-52"></a>    def next_question():</span>
+<span id="cb12-53"><a href="#cb12-53"></a>        q_num.set(q_num.get() + 1)</span>
+<span id="cb12-54"><a href="#cb12-54"></a></span>
+<span id="cb12-55"><a href="#cb12-55"></a></span>
+<span id="cb12-56"><a href="#cb12-56"></a>app = App(app_ui, server)</span>
+<span id="cb12-57"><a href="#cb12-57"></a></span>
+<span id="cb12-58"><a href="#cb12-58"></a>## file: questions.json</span>
+<span id="cb12-59"><a href="#cb12-59"></a>{"Writing a CSV": {"choices": ["value", "side effect"], "answer": "side effect"}, "Querying a database": {"choices": ["value", "side effect"], "answer": "value"}, "Adding two numbers": {"choices": ["value", "side effect"], "answer": "value"}, "A function which prints to the console": {"choices": ["value", "side effect"], "answer": "side effect"}, "Fetching the current temperature from an API": {"choices": ["value", "side effect"], "answer": "value"}, "A function which sorts a list in place": {"choices": ["value", "side effect"], "answer": "side effect"}, "Getting a model score for a set of inputs": {"choices": ["value", "side effect"], "answer": "value"}, "Deploying a model to a hosting service": {"choices": ["value", "side effect"], "answer": "side effect"}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="whats-a-side-effect-1" class="slide level2">
+<h2>What’s a side effect?</h2>
+<ul>
+<li class="fragment">Somewhat context dependent</li>
+<li class="fragment">Multiple strategies can work</li>
+<li class="fragment">If your solution feels complicated and painful, ask whether you should use the other strategy</li>
+</ul>
+</section>
+<section id="your-turn-4" class="slide level2">
+<h2>Your turn</h2>
+<p>Go to <a href="../exercises/7-reactivity.html">exercises/7-reactivity</a> or run <code>apps/problem-sets/3-reactive-effects/3.1-update-slider</code> locally.</p>
 
 <div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
