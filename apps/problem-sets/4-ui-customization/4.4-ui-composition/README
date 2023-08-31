@@ -1,0 +1,1 @@
+Our ui code is getting a little complicated. Try extracting the two tab sections into their own objects.

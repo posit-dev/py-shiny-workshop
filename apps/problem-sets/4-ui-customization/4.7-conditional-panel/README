@@ -1,0 +1,1 @@
+Use `ui.conditional_panel` to show or hide a column selector based on whether the "Data" tab is visible. Note that you'll need to use a JavaScript logical test for conditional panel which should be `input.tabs === 'Data'`.

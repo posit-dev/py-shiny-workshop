@@ -1,0 +1,1 @@
+Shiny has a few great components in the `experimental` module, try wrapping the two graphs in `x.ui.card()`. Note that you first need to import the experimental module with `import shiny.experimental as x`.
