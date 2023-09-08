@@ -77,13 +77,6 @@ Remember you can always refer to the [documentation](https://shiny.posit.co/py/a
 
 ## Problem 4.0, add a sidebar
 
-```{python}
-# | echo: false
-# | output: asis
-
-problem_tabs("apps/problem-sets/4-ui-customization/4.0-add-sidebar")
-```
-
 
 
 # Rows and columns 
@@ -93,15 +86,6 @@ These two functions layout elements in either a row, or a column and can be nest
 For example if you wanted to create an app with a row of two columns and a row of three columns, you would do so like this:
 
 ::: column-screen-inset
-```{python}
-# | echo: false
-# | output: asis
-
-include_shiny_folder(
-    "apps/examples/4.0.1-rows-columns", viewer_height="400"
-)
-```
-:::
 
 Rows and columns can be composed together, or with other ui layout functions to get the behaviour you want.
 For example, you can use `layout_sidebar` for your main application layout, but then break up the `main_panel` into smaller sections with rows and columns.
@@ -120,14 +104,6 @@ The power of this layout system is that since your column widths are always defi
 
 
 ## Problem 4.1 add rows and columns
-
-```{python}
-# | echo: false
-# | output: asis
-
-problem_tabs("apps/problem-sets/4-ui-customization/4.1-rows-and-columns")
-```
-
 
 
 # Dynamic ui elements
@@ -209,13 +185,6 @@ For example you can return several inputs wrapped in a `row`, or even generate t
 
 ## Exercise 4.2
 
-```{python}
-# | echo: false
-# | output: asis
-
-problem_tabs("apps/problem-sets/4-ui-customization/4.2-value-boxes")
-```
-
 
 # Adding CSS
 
@@ -285,18 +254,6 @@ To add a custom class to an element pass a `_class = "myclass"`.
 ui.column(8, ui.output_plot("dist"), _class="fancy_column")
 ```
 
-```{.CSS}
-.fancy_column {
-    padding: 10px;
-}
-```
-
-```{python}
-# | echo: false
-# | output: asis
-
-problem_tabs("apps/problem-sets/4-ui-customization/4.3-style-changes")
-```
 
 # Conclusion
 
