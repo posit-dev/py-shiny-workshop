@@ -1,5 +1,5 @@
 ---
-title: "Session 1: Intro"
+title: "Getting Started"
 author: "Gordon Shotwell & Joe Cheng"
 title-slide-attributes: 
   data-background-color: black

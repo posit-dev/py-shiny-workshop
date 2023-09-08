@@ -1,5 +1,5 @@
 ---
-title: "Session 2: Reactivity"
+title: "Reactivity"
 author: "Gordon Shotwell & Joe Cheng"
 title-slide-attributes: 
   data-background-color: black

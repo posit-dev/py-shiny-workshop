@@ -1,0 +1,32 @@
+---
+title: "Dynamic UI"
+---
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+
+def ui_tabs(file):
+    problem_tabs(f"apps/problem-sets/4-ui-customization/{file}")
+
+
+```
+
+## Exercise 4.6
+
+```{python}
+# | echo: false
+# | output: asis
+ui_tabs("4.6-dynamic-ui")
+```
+
+## Exercise 4.7
+
+```{python}
+# | echo: false
+# | output: asis
+ui_tabs("4.7-conditional-panel")
+```

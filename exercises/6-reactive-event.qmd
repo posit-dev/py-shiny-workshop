@@ -1,4 +1,6 @@
-
+---
+title: "Reactive events"
+---
 ```{python}
 # | echo: false
 import os

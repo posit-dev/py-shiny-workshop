@@ -1,4 +1,6 @@
-
+---
+title: "Reactive effects"
+---
 ```{python}
 # | echo: false
 import os

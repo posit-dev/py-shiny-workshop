@@ -1,0 +1,153 @@
+---
+title: "UI Customization"
+author: "Gordon Shotwell & Joe Cheng"
+title-slide-attributes: 
+  data-background-color: black
+  data-background-image:  images/toc-people-dark.svg
+  data-background-size: contain
+format:
+  positconfslides-revealjs: 
+    incremental: true
+    chalkboard: true
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    code-link: true
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    filters:
+      - positconfslides
+---
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs, include_shiny_folder
+
+```
+
+## Goals
+
+- So far we've learned:
+    - How to build an app
+    - How Shiny renders things
+- This session is all aobut how they look
+
+## Why care about UI design?
+- It's what your stakeholders care about!
+- Good UI design simplifies your application code 
+- Intutive UIs mean fewer questions 
+
+## Anatomy of Shiny's UI
+
+- The UI is separate from the server
+- UI is made up of pure functions
+    - You can break them into objects
+    - You can create them with functions
+- Opinionated
+    - Your inputs get labels
+    - Reasonable look and feel
+- Customizable 
+    - Everything can be styled with CSS
+    - If you know JavaScript, you can use JavaScript
+
+## Anatomy of Shiny's UI
+```{.python}
+app_ui = ui.page_fluid(
+    ui.panel_title("Hello Penguins!"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_slider("mass", "Mass"
+            ),
+            ui.input_action_button("reset", "Reset Slider"),
+        ),
+        ui.panel_main(
+            ui.output_data_frame("table"),
+        ),
+    ),
+)
+```
+
+## Some nomenclature
+
+- **Container functions**: Lay out **child** elements
+- **Element functions**: Generate a UI object like a 
+- **Child**: Elements contained by a container function
+- **Parent**: The container one level up from a particular element 
+
+## Element functions
+
+```{.python code-line-numbers="5,7,10"}
+app_ui = ui.page_fluid(
+    ui.panel_title("Hello Penguins!"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_slider("mass", "Mass"
+            ),
+            ui.input_action_button("reset", "Reset Slider"),
+        ),
+        ui.panel_main(
+            ui.output_data_frame("table"),
+        ),
+    ),
+)
+```
+
+## Container functions
+
+```{.python code-line-numbers="1-4,9"}
+app_ui = ui.page_fluid(
+    ui.panel_title("Hello Penguins!"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_slider("mass", "Mass"
+            ),
+            ui.input_action_button("reset", "Reset Slider"),
+        ),
+        ui.panel_main(
+            ui.output_data_frame("table"),
+        ),
+    ),
+)
+```
+
+## Container functions
+- Some layout functions take any child elements and lay them out in order
+- `layout_sidebar` takes specific children
+    - `panel_sidebar` defines the sidebar
+    - `panel_main` defines the main panel
+
+## Navsets
+- It's common to put apps in tabs
+- We have a set of `navet` functions which lay out `ui.nav` elements in tabs
+- `ui.nav` is itself a container and allows you lay out the things on the tab
+```{.python}
+ui.navset_tab(
+    ui.nav(
+        "Tab1",
+        ui.output_plot("Plot"),
+        ui.output_text("some_text"),
+    ),
+    ui.nav("Tab2", ui.output_data_frame("data")),
+    ui.nav("Tab3", ui.output_image("image")),
+)
+```
+
+## Your turn
+
+Go to [exercises/8-navsets](../exercises/8-navsets.html) or run `apps/problem-sets/exercises/4-ui-customization/4.1-tabs` locally.
+
+
+## TODO:
+
+- Cards explananation
+- Cards exercise
+- Rows and columns explanation
+- Store parts of UI as object
+- Layout exercise
+- Value box exercise
+- Explain render_ui
+- Explain conditional panel
+- Dynamic UI exercize

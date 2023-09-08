@@ -1,0 +1,24 @@
+---
+title: "Cards"
+---
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+
+def ui_tabs(file):
+    problem_tabs(f"apps/problem-sets/4-ui-customization/{file}")
+
+
+```
+
+## Exercise 4.1
+
+```{python}
+# | echo: false
+# | output: asis
+ui_tabs("4.2-cards")
+```
