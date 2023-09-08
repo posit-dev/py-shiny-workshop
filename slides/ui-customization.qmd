@@ -24,7 +24,7 @@ format:
 import os
 
 os.chdir("..")
-from helpers import problem_tabs, include_shiny_folder
+from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_app
 
 ```
 
@@ -72,8 +72,8 @@ app_ui = ui.page_fluid(
 
 ## Some nomenclature
 
-- **Container functions**: Lay out **child** elements
-- **Element functions**: Generate a UI object like a 
+- **Container functions**: Organize **child** elements
+- **Element functions**: Generate a UI object like input and outputs
 - **Child**: Elements contained by a container function
 - **Parent**: The container one level up from a particular element 
 
@@ -121,7 +121,7 @@ app_ui = ui.page_fluid(
 
 ## Navsets
 - It's common to put apps in tabs
-- We have a set of `navet` functions which lay out `ui.nav` elements in tabs
+- We have a set of `navet` functions which organize `ui.nav` containers in tabs
 - `ui.nav` is itself a container and allows you lay out the things on the tab
 ```{.python}
 ui.navset_tab(
@@ -140,14 +140,300 @@ ui.navset_tab(
 Go to [exercises/8-navsets](../exercises/8-navsets.html) or run `apps/problem-sets/exercises/4-ui-customization/4.1-tabs` locally.
 
 
-## TODO:
+## Cards
+- Cards are just small boxes which contain other elements
+- Useful for grouping inputs and outputs
+- Easy to lay out in a grid
+- "Dashboards" are just web apps in boxes
+- Currently in experimental, import with `import shiny.experimental as x`
+- Cards can take `x.ui.card_header` and `x.ui.card_footer`
 
-- Cards explananation
-- Cards exercise
-- Rows and columns explanation
-- Store parts of UI as object
-- Layout exercise
-- Value box exercise
-- Explain render_ui
-- Explain conditional panel
-- Dynamic UI exercize
+## Cards
+
+```{.python code-line-numbers="1,6"}
+import shiny.experimental as x
+
+ui.navset_tab(
+    ui.nav(
+        "Tab1",
+        x.ui.card(ui.output_plot("Plot")),
+        ui.output_text("some_text"),
+    ),
+    ui.nav("Tab2", ui.output_data_frame("data")),
+    ui.nav("Tab3", ui.output_image("image")),
+)
+```
+
+## Your turn
+
+Go to [exercises/9-cards](../exercises/9-cards.html) or run `apps/problem-sets/exercises/4-ui-customization/4.2-cards` locally.
+
+
+## Rows and columns
+- Sidebars, navsets and cards are all special purpose containers
+- What if you want to customize your layout more generally?
+- What about?
+    - Different screen sizes?
+    - Mobile browsers? 
+    - Different zoom levels?
+    - Nested UI containers?
+- What we need is a responsive way to specify the size of things
+- Enter the bootstrap grid
+
+## Bootstap grid
+- Divide the screen into rows and columns 
+- Row height is either fixed or relative to its children 
+- Column width is relative to its parent 
+
+## Rows
+- The shiny `ui.row` container breaks your app into rows
+- Rows almost always contain `ui.column` 
+
+## Columns 
+- Imagine breaking up the parent container into 12 vertical sections
+- Each column gets an interger **width** from 1-12 
+- Relative to the parent so reacts to page size 
+- Why 12?
+
+## Quiz
+```{python}
+# | echo: false
+# | output: asis
+
+from helpers import multiple_choice_app, Quiz
+
+questions = Quiz(
+    {
+        "How much of the parent width does a column of width 6 take up?": {
+            "choices": ["25%", "50%", "60%", "90%"],
+            "answer": "50%",
+        },
+        "How much of the parent width does a column of width 3 take up?": {
+            "choices": ["25%", "50%", "60%", "90%"],
+            "answer": "25%",
+        },
+        "How much of the parent width does a column of width 9 take up?": {
+            "choices": ["25%", "50%", "60%", "75%"],
+            "answer": "75%",
+        },
+        "Imagine an app with just two nested columns each with width 6, how much of the total screen does the child column take up?": {
+            "choices": ["25%", "50%", "60%", "75%"],
+            "answer": "25%",
+        },
+        "Imagine an app with just two nested columns with widths 6 and 9, how much of the total screen does the child column take up?": {
+            "choices": ["25%", "37.5%", "50%", "60%", "75%"],
+            "answer": "37.5%",
+        },
+    }
+)
+
+multiple_choice_app(questions)
+```
+
+## Rows and columns example
+
+```{.python}
+app_ui = ui.page_fluid(
+    ui.row(
+        ui.column(6,
+                ui.row(ui.column(6), ui.column(6))
+            ),
+        ui.column(6),
+    ),
+)
+```
+$$
+\frac{6}{12} \cdot \frac{6}{12} = \frac{36}{144} = \frac{1}{4}
+$$
+
+## Rows and columns example
+
+```{.python}
+app_ui = ui.page_fluid(
+    ui.row(
+        ui.column(6,
+                ui.row(ui.column(9), ui.column(6))
+            ),
+        ui.column(6),
+    ),
+)
+```
+$$
+\frac{6}{12} \cdot \frac{9}{12} = \frac{54}{144} = \frac{3}{8}
+$$
+
+
+## Rows and columns
+
+```{.python}
+ui.row(
+        ui.column(
+            6,
+            ui.output_text("txt"),
+        ),
+        ui.column(
+            6,
+            ui.output_plot("my_plot"),
+            ),
+        ),
+    ),
+```
+
+## This is getting a bit complicated
+
+- We've created a deeply nested function call
+- Too many brackets!
+- Too many indents?!
+
+## UI functions are composable
+- You can store bits of the UI in variables
+- Functions can return sections of the UI
+- Break up your UI into multiple pieces
+
+## UI functions are composable
+
+```{.python}
+import shiny.experimental as x
+
+ui.navset_tab(
+    ui.nav(
+        "Tab1",
+        x.ui.card(ui.output_plot("Plot")),
+        ui.output_text("some_text"),
+    ),
+    ui.nav("Tab2", ui.output_data_frame("data")),
+    ui.nav("Tab3", ui.output_image("image")),
+)
+```
+
+## UI functions are composable
+
+```{.python}
+card1 = x.ui.card(ui.output_plot("Plot"))
+tab1 = ui.nav(
+    "Tab1",
+    card1,
+    ui.output_text("some_text"),
+)
+tab2 = ui.nav("Tab2", ui.output_data_frame("data"))
+tab3 = ui.nav("Tab3", ui.output_image("image"))
+
+ui = ui.fluid_page(ui.navset_tab(tab1, tab2, tab3))
+```
+
+## Your turn
+
+Go to [exercises/10-layout](../exercises/10-layout.html) or run `apps/problem-sets/exercises/4-ui-customization/4.3-layout` locally.
+
+## Review: Value boxes
+
+- Value boxes are another experimental layout container
+- Useful for visually highlighting important numbers or text
+- Usually contain `ui.output_text()` as a child element
+
+## Dynamic user interfaces
+
+- Guide the user along a happy path
+- If you don't want them to click on something, don't show it to them
+- Much better to prevent errors than to handle them 
+
+## Shiny Dynamic UI
+
+1) **`render.ui`**: Generate UI elements on the server
+2) **`ui.conditional_panel`**: Hide things on the browser
+3) **`ui.update_*`: Modify existing UI elements
+
+## Dynamic UI
+
+- UI elements can be generated like any other elements
+- Use `ui.ui_ouput()` in the UI object
+- Use `@render.ui` on the server
+- Function returns any `ui` elemenet
+- Referred to like a regular ui element
+
+## Dynamic UI
+
+```{.python}
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.input_numeric("max_slider", "Slider max", value=100),
+    ui.output_ui("dynamic_slider"),
+)
+
+
+def server(input, output, session):
+    @output
+    @render.ui
+    def dynamic_slider():
+        return ui.input_slider("n", "N", 0, input.max_slider(), input.n())
+
+
+app = App(app_ui, server)
+```
+
+## Dynamic UI
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
+```
+
+## Dynamic UI
+
+- Dynamic UIs can be intimidating, but they follow a familliar pattern:
+    - Insert a UI element with `ui.output_ui`
+    - Create a rendering function which returns a UI chunk
+    - Decorate the function with `@output` and `render.ui`
+- Very powerful, but 
+    - Round trip to the server
+    - You can lose session state
+
+## Conditional panel
+- `ui.panel_conditional` hides UI elements based on conditions
+- Less flexible than `ui.output_ui`
+- Preserves input state
+- Doesn't require trip to the server
+
+## Conditional panel
+
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder("apps/examples/4.1.2-conditional-panel", components="viewer")
+```
+
+## Conditional panel
+
+```{.python, code-line-numbers="4-6"}
+from shiny import App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.input_checkbox("show_slider", "Show Slider"),
+    ui.panel_conditional(
+        "input.show_slider", ui.input_slider("slider", "Slider", 0, 100, 50)
+    ),
+)
+
+app = App(app_ui, None)
+
+```
+
+## Things to note
+- Uses JavaScript condition, not python
+- JavaScript condition will be the same as R, google and chatGPT can help
+- You often want `===` 
+
+## Your turn
+
+Go to [exercises/12-layout](../exercises/12-layout.html) or run problems `4.6` and `4.7` in `apps/problem-sets/exercises/4-ui-customization/`.
+
+
+## That's a lot of stuff!
+
+- Shiny gives you a lot of power to customize your app
+- Important to remember _that_ you can do these things, even if you forget _how_
+- Learning to build intuitive UIs is a journey
+- Ask for advice on Discord
