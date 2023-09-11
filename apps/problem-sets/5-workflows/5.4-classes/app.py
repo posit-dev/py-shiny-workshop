@@ -8,19 +8,35 @@ infile = Path(__file__).parent / "weather.csv"
 weather = pd.read_csv(infile)
 weather["error"] = weather["observed_temp"] - weather["forecast_temp"]
 
-
-card1 = x.ui.card(ui.output_plot("Plot"))
-tab1 = ui.nav(
-    "Tab1",
-    card1,
-    ui.output_text("some_text"),
+data_tab = ui.nav("Data", ui.output_data_frame("data"))
+error_tab = ui.nav(
+    "Error",
+    ui.row(
+        ui.column(4, x.ui.value_box("Hot days", ui.output_text("hot_days"))),
+        ui.column(4, x.ui.value_box("Cold days", ui.output_text("cold_days"))),
+        ui.column(4, x.ui.value_box("Mean Error", ui.output_text("mean_error"))),
+    ),
+    ui.row(
+        ui.column(
+            6,
+            x.ui.card(
+                x.ui.card_header("Distribution"),
+                ui.output_plot("error_distribution"),
+            ),
+        ),
+        ui.column(
+            6,
+            x.ui.card(
+                x.ui.card_header("Error by day"),
+                ui.output_plot("error_by_day"),
+                ui.input_slider("alpha", "Plot Alpha", value=0.5, min=0, max=1),
+            ),
+        ),
+    ),
 )
-tab2 = ui.nav("Tab2", ui.output_data_frame("data"))
-tab3 = ui.nav("Tab3", ui.output_image("image"))
-ui.navset_tab(tab1, tab2, tab3)
-
 
 app_ui = ui.page_fluid(
+    ui.panel_title("Weather errror"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_date_range("dates", "Date", start="2022-01-01", end="2022-01-30"),
@@ -31,21 +47,21 @@ app_ui = ui.page_fluid(
                 selected="BUFFALO",
                 multiple=True,
             ),
-            ui.input_slider("alpha", "Plot Alpha", value=0.5, min=0, max=1),
             width=3,
         ),
         ui.panel_main(
-            ui.output_plot("error_distribution"),
-            ui.output_plot("error_by_day"),
-            ui.output_data_frame("data"),
+            ui.navset_tab(
+                error_tab,
+                data_tab,
+            )
         ),
-    )
+    ),
 )
 
 
 def server(input, output, session):
     @reactive.Calc
-    def filtered_data():
+    def filtered_data() -> pd.DataFrame:
         df = weather.copy()
         df = df[df["city"].isin(input.cities())]
         df["date"] = pd.to_datetime(df["date"])
@@ -67,6 +83,24 @@ def server(input, output, session):
     @render.data_frame
     def data():
         return filtered_data()
+
+    @output
+    @render.text
+    def mean_error():
+        mean_error = filtered_data()["error"].mean()
+        return round(mean_error, 2)
+
+    @output
+    @render.text
+    def hot_days():
+        hot_days = filtered_data()["error"] > 0
+        return sum(hot_days)
+
+    @output
+    @render.text
+    def cold_days():
+        hot_days = filtered_data()["error"] < 0
+        return sum(hot_days)
 
 
 app = App(app_ui, server)

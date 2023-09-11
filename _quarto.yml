@@ -32,6 +32,13 @@ website:
             - exercises/10-layout.qmd
             - exercises/11-value-boxes.qmd
             - exercises/12-dynamic-ui.qmd
+      - section: "Best practices"
+        contents:
+          - slides/best-practices.qmd
+          - section: "Exercises"
+            contents: 
+            - exercises/13-ui-functions.qmd
+            - exercises/14-extract-functions.qmd
   navbar:
     tools: 
       - icon: github

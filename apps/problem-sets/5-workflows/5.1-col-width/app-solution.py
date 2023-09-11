@@ -9,18 +9,19 @@ weather = pd.read_csv(infile)
 weather["error"] = weather["observed_temp"] - weather["forecast_temp"]
 
 
-card1 = x.ui.card(ui.output_plot("Plot"))
-tab1 = ui.nav(
-    "Tab1",
-    card1,
-    ui.output_text("some_text"),
-)
-tab2 = ui.nav("Tab2", ui.output_data_frame("data"))
-tab3 = ui.nav("Tab3", ui.output_image("image"))
-ui.navset_tab(tab1, tab2, tab3)
+def card_col(title, *args):
+    return (
+        (
+            ui.column(
+                6,
+                x.ui.card(x.ui.card_header(title), *args),
+            ),
+        ),
+    )
 
 
 app_ui = ui.page_fluid(
+    ui.panel_title("Weather errror"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_date_range("dates", "Date", start="2022-01-01", end="2022-01-30"),
@@ -31,15 +32,27 @@ app_ui = ui.page_fluid(
                 selected="BUFFALO",
                 multiple=True,
             ),
-            ui.input_slider("alpha", "Plot Alpha", value=0.5, min=0, max=1),
             width=3,
         ),
         ui.panel_main(
-            ui.output_plot("error_distribution"),
-            ui.output_plot("error_by_day"),
-            ui.output_data_frame("data"),
+            ui.navset_tab(
+                ui.nav(
+                    "Error",
+                    ui.row(
+                        card_col("Distribution", ui.output_plot("error_distribution")),
+                        card_col(
+                            "Error by day",
+                            ui.output_plot("error_by_day"),
+                            ui.input_slider(
+                                "alpha", "Plot Alpha", value=0.5, min=0, max=1
+                            ),
+                        ),
+                    ),
+                ),
+                ui.nav("Data", ui.output_data_frame("data")),
+            )
         ),
-    )
+    ),
 )
 
 
