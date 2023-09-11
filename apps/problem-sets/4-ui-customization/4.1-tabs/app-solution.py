@@ -9,7 +9,7 @@ weather["error"] = weather["observed_temp"] - weather["forecast_temp"]
 
 
 app_ui = ui.page_fluid(
-    ui.panel_title("Weather errror"),
+    ui.panel_title("Weather error"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_date_range("dates", "Date", start="2022-01-01", end="2022-01-30"),
