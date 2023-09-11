@@ -14,10 +14,6 @@
     fill: rgb(240, 102, 255);
 }
 
-.panel-tabset {
-    height: calc(100vh - 110px);
-}
-
 .panel-tabset .shinylive-container {
     max-height: calc(80vh - 110px);
     overflow: auto;
