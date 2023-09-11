@@ -403,21 +403,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #| viewerHeight: 800
 from shiny import App, render, ui
 
-app_ui = ui.page_fluid(
-    ui.h2("Hello Shiny!"),
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
-)
+
+def my_slider(id, label):
+    return ui.input_slider(id, label + "Number", 0, 100, 20)
 
 
-def server(input, output, session):
-    @output
-    @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+numbers = ["n1", "n2", "n3", "n4", "n5", "n6"]
+labels = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"]
 
+app_ui = ui.page_fluid([my_slider(x, y) for x, y in zip(numbers, labels)])
 
-app = App(app_ui, server)
+app = App(app_ui, None)
 </code></pre>
 <p>There are four important features that your code needs to have to generate a working Shiny app.</p>
 </section>
@@ -436,15 +432,15 @@ app = App(app_ui, server)
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-2">Identify that this function is an output</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Identify that this function is an output</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-lines="2" data-code-cell="annotated-cell-2">Define output type</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define output type</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-lines="3" data-code-cell="annotated-cell-2">Function name connects it to output id</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Function name connects it to output id</span>
 </dd>
 </dl>
 </section>
