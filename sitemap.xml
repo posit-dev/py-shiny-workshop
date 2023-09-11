@@ -2,86 +2,94 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/slides/ui-customization.html</loc>
-    <lastmod>2023-09-08T19:19:57.996Z</lastmod>
+    <lastmod>2023-09-11T16:47:00.372Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/slides/reactivity.html</loc>
-    <lastmod>2023-09-08T19:19:44.320Z</lastmod>
+    <lastmod>2023-09-11T16:46:49.096Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/11-value-boxes.html</loc>
-    <lastmod>2023-09-08T19:19:31.012Z</lastmod>
+    <lastmod>2023-09-11T16:46:38.876Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/9-cards.html</loc>
-    <lastmod>2023-09-08T19:19:15.292Z</lastmod>
+    <lastmod>2023-09-11T16:46:26.592Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/6-reactive-event.html</loc>
-    <lastmod>2023-09-08T19:18:55.316Z</lastmod>
+    <lastmod>2023-09-11T16:46:10.616Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/5-reactivity.html</loc>
-    <lastmod>2023-09-08T19:18:34.516Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/1-hello-world.html</loc>
-    <lastmod>2023-09-08T19:18:18.892Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/10-layout.html</loc>
-    <lastmod>2023-09-08T19:18:06.048Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/reactive-side-effects.html</loc>
-    <lastmod>2023-09-08T19:17:42.368Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/getting-started.html</loc>
-    <lastmod>2023-09-08T19:17:27.768Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/index.html</loc>
-    <lastmod>2023-09-08T19:16:59.260Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/reactivity.html</loc>
-    <lastmod>2023-09-08T19:17:17.680Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/ui-customization.html</loc>
-    <lastmod>2023-09-08T19:17:34.664Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/3-add-filter.html</loc>
-    <lastmod>2023-09-08T19:17:55.284Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/7-reactive-effects.html</loc>
-    <lastmod>2023-09-08T19:18:12.452Z</lastmod>
+    <lastmod>2023-09-11T16:45:54.444Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/8-navsets.html</loc>
-    <lastmod>2023-09-08T19:18:27.952Z</lastmod>
+    <lastmod>2023-09-11T16:45:40.392Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/13-ui-functions.html</loc>
+    <lastmod>2023-09-11T16:45:28.556Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/10-layout.html</loc>
+    <lastmod>2023-09-11T16:45:14.948Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/reactive-side-effects.html</loc>
+    <lastmod>2023-09-11T16:44:56.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/getting-started.html</loc>
+    <lastmod>2023-09-11T16:44:45.576Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/index.html</loc>
+    <lastmod>2023-09-11T16:44:24.692Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/reactivity.html</loc>
+    <lastmod>2023-09-11T16:44:38.256Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/docs/ui-customization.html</loc>
+    <lastmod>2023-09-11T16:44:50.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/3-add-filter.html</loc>
+    <lastmod>2023-09-11T16:45:06.320Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/7-reactive-effects.html</loc>
+    <lastmod>2023-09-11T16:45:19.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/1-hello-world.html</loc>
+    <lastmod>2023-09-11T16:45:33.148Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/14-extract-functions.html</loc>
+    <lastmod>2023-09-11T16:45:49.396Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/2-debug.html</loc>
-    <lastmod>2023-09-08T19:18:49.136Z</lastmod>
+    <lastmod>2023-09-11T16:46:05.824Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/12-dynamic-ui.html</loc>
-    <lastmod>2023-09-08T19:19:06.356Z</lastmod>
+    <lastmod>2023-09-11T16:46:19.452Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/exercises/4-add-plot.html</loc>
-    <lastmod>2023-09-08T19:19:22.104Z</lastmod>
+    <lastmod>2023-09-11T16:46:31.668Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/import-helpers.html</loc>
-    <lastmod>2023-09-08T19:19:35.268Z</lastmod>
+    <lastmod>2023-09-11T16:46:42.376Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/posit-dev/shiny-python-workshop-2023/slides/getting-started.html</loc>
-    <lastmod>2023-09-08T19:19:50.332Z</lastmod>
+    <lastmod>2023-09-11T16:46:54.560Z</lastmod>
   </url>
 </urlset>

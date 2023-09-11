@@ -305,6 +305,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Best practices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">slides/best-practices.qmd</span>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/13-ui-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">UI functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/14-extract-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract non-reactive functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -396,11 +433,11 @@ Warning
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Identify that this is a reactive effect called for its side effects</span>
+<span data-code-annotation="1" data-code-lines="1" data-code-cell="annotated-cell-2">Identify that this is a reactive effect called for its side effects</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define which inputs should trigger the effect.</span>
+<span data-code-annotation="2" data-code-lines="2" data-code-cell="annotated-cell-2">Define which inputs should trigger the effect.</span>
 </dd>
 </dl>
 <p>The distinction between values and side effects is crucial for using Shiny effectively because it determines which pattern you should use. You should use <code>reactive.Calc</code> when you want the <em>value</em> of a function, and <code>reactive.Effect</code> when you want a <em>side effect</em>. New Shiny developers often make the mistake of using one of these patterns for their entire application, and create needless complexity in their application. It’s a mistake to use <code>reactive.Effect</code> when you’re after the value of a function, and it’s a mistake to try to use <code>reactive.Calc</code> when you want a side effect. This short quiz can help develop an intuition about this distinction:</p>
