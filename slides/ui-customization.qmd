@@ -311,6 +311,15 @@ Go to [exercises/11-value-boxes](../exercises/11-value-boxes.html) or run `apps/
 - If you don't want them to click on something, don't show it to them
 - Much better to prevent errors than to handle them 
 
+## Dynamic UI
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
+```
+
+
 ## Shiny Dynamic UI
 
 1) **`render.ui`**: Generate UI elements on the server
@@ -340,18 +349,10 @@ def server(input, output, session):
     @output
     @render.ui
     def dynamic_slider():
-        return ui.input_slider("n", "N", 0, input.max_slider(), input.n())
+        return ui.input_slider("n", "N", 0, input.max_slider(), 20)
 
 
 app = App(app_ui, server)
-```
-
-## Dynamic UI
-```{python}
-# | echo: false
-# | output: asis
-
-include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 ```
 
 ## Dynamic UI
