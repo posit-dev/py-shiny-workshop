@@ -34,13 +34,13 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
 - Get a sense of how large complicated apps are structured
 - Know when you need to refactor your application
 
-## Avoid premature optimization
+## Avoid premature refactoring
 
 - Start by just getting your app to work
 - Take small steps to avoid repetition
 - Ultimately you're the one who needs to work with the code
 
-## When should you optimize?
+## When should you refactor?
 - You're trying to hold too much in your head
 - Changing the app is difficult
 - Other people don't understand your code
@@ -63,7 +63,7 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
 ## Background on functions
 - Functions are the best way to improve code quality
     - Define logic in one place
-    - Convenient place to document code
+    - Can define variables within the function scope
     - Handle errors 
     - Tests and typing
     - Easy to use with iterators
@@ -102,14 +102,14 @@ app = App(app_ui, None)
 from shiny import App, render, ui
 
 def my_slider(id, label):
-    return ui.input_slider(id, label, 0, 100, 20)
+    return ui.input_slider(id, "N", 0, 100, 20)
 
 app_ui = ui.page_fluid(
-    my_slider("n1", "First number"),
-    my_slider("n2", "Second number"),
-    my_slider("n3", "Third number"),
-    my_slider("n4", "Fourth number"),
-    my_slider("n5", "Fifth number"),
+    my_slider("n1"),
+    my_slider("n2"),
+    my_slider("n3"),
+    my_slider("n4"),
+    my_slider("n5"),
 )
 
 app = App(app_ui, None)
@@ -120,13 +120,32 @@ app = App(app_ui, None)
 ```{.python}
 from shiny import App, render, ui
 
+def my_slider(id):
+    return ui.input_slider(id, "N", 0, 100, 20)
+
+ids = ["n1", "n2", "n3", "n4", "n5"]
+
+app_ui = ui.page_fluid(
+    [my_slider(x) for x in ids]
+)
+
+app = App(app_ui, None)
+```
+
+# Iterating across two lists
+
+```{.python}
+from shiny import App, render, ui
+
 def my_slider(id, label):
     return ui.input_slider(id, label + "Number", 0, 100, 20)
 
 numbers = ["n1", "n2", "n3", "n4", "n5", "n6"]
 labels = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth"]
 
-app_ui = ui.page_fluid([my_slider(x, y) for x, y in zip(numbers, labels)])
+app_ui = ui.page_fluid(
+    [my_slider(x, y) for x, y in zip(numbers, labels)]
+)
 
 app = App(app_ui, None)
 ```
@@ -148,7 +167,7 @@ Go to [exercises/13-ui-functions](../exercises/13-ui-functions.html) or run prob
     - Summarizing data
     - Interacting with databases
 - It's fine to include this code inside reactive functions
-- As your appp improves you should separate them
+- As your appp grows you should separate them
 
 ## Reactivity makes everything harder
 - Reactive context makes them inherently more difficult
@@ -165,15 +184,11 @@ Go to [exercises/13-ui-functions](../exercises/13-ui-functions.html) or run prob
 - You can call them in a notebook
 - You can write unit tests 
 - Makes your reactive code much clearer
-- You can reuse them in other contextx
-
-## Classes are also great
-- Useful when data and methods are closely coupled
-- Makes data validation easy
+- You can reuse them in other contexts
 
 ## Your turn
 
-Go to [exercises/14-extract-functions](../exercises/13-extract-functions.html) or run problems `5.3` and `5.4` in `apps/problem-sets/exercises/5-workflows`.
+Go to [exercises/14-extract-functions](../exercises/13-extract-functions.html) or run problem `5.3` in `apps/problem-sets/exercises/5-workflows`.
 
 
 ## Modules
@@ -181,6 +196,7 @@ Go to [exercises/14-extract-functions](../exercises/13-extract-functions.html) o
 - Used when you have a bit of UI code which goes with a bit of server code
 - Effectively creates a mini Shiny app
 - Allows you to package and re-use parts of your application
-- Great for working with teams on larger apps
+- Great for working with teams of developers
+- Essential for large applications
 
 # Question & Answer

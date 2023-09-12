@@ -20,11 +20,3 @@ def workflow_tabs(file):
 # | output: asis
 workflow_tabs("5.3-extract-function")
 ```
-
-## Exercise 5.2
-
-```{python}
-# | echo: false
-# | output: asis
-workflow_tabs("5.4-classes")
-```

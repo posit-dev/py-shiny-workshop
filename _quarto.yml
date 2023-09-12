@@ -34,7 +34,7 @@ website:
             - exercises/12-dynamic-ui.qmd
       - section: "Best practices"
         contents:
-          - slides/best-practices.qmd
+          - slides/workflow-best-practices.qmd
           - section: "Exercises"
             contents: 
             - exercises/13-ui-functions.qmd

@@ -170,9 +170,9 @@ app = App(app_ui, server)
 
 ## UI functions
 
-- UI functions are in the `ui` submodule
+- UI functions are in the `ui` sub-module
 - Inputs start with `ui.input_*()` and take an id, and options
-- Outputs start with `ui.output_*()` and ususally just take an ID
+- Outputs start with `ui.output_*()` and usually just take an ID
 - Other functions like `ui.h1()` or `ui.p()` add static HTML to the app
 - We'll get to layout functions in session 3
 
