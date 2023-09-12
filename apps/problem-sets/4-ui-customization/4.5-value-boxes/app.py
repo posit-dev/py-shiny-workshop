@@ -79,5 +79,23 @@ def server(input, output, session):
     def data():
         return filtered_data()
 
+    @output
+    @render.text
+    def mean_error():
+        mean_error = filtered_data()["error"].mean()
+        return round(mean_error, 2)
+
+    @output
+    @render.text
+    def hot_days():
+        hot_days = filtered_data()["error"] > 0
+        return sum(hot_days)
+
+    @output
+    @render.text
+    def cold_days():
+        hot_days = filtered_data()["error"] < 0
+        return sum(hot_days)
+
 
 app = App(app_ui, server)

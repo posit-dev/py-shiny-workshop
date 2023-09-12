@@ -1,1 +1,1 @@
-Use the `x.value_box` container function to add three value boxes on their own `ui.row`.
+Use the `x.value_box` container function to add three value boxes on their own `ui.row`. Note that we have provided the server functions for you.

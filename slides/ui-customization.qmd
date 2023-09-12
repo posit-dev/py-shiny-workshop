@@ -34,6 +34,9 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
     - How to build an app
     - How Shiny renders things
 - This session is all about how they look
+- We're going to cover a lot of UI elements quickly
+    - Just know that these exist
+    - Don't worry too much about remembering how they work
 
 ## Why care about UI design?
 - It's what your stakeholders care about!
@@ -72,14 +75,14 @@ app_ui = ui.page_fluid(
 
 ## Some nomenclature
 
-- **Container functions**: Organize **child** elements
-- **Element functions**: Generate a UI object like input and outputs
-- **Child**: Elements contained by a container function
-- **Parent**: The container one level up from a particular element 
+- **Container functions**: organize **child** elements
+- **Element functions**: generate a UI object like input and outputs
+- **Child**: elements contained by a container function
+- **Parent**: the container one level up from a particular element or container
 
 ## Element functions
 
-```{.python code-line-numbers="5,7,10"}
+```{.python code-line-numbers="2,5,7,10"}
 app_ui = ui.page_fluid(
     ui.panel_title("Hello Penguins!"),
     ui.layout_sidebar(
@@ -97,7 +100,7 @@ app_ui = ui.page_fluid(
 
 ## Container functions
 
-```{.python code-line-numbers="1-4,9"}
+```{.python code-line-numbers="1,3,4,9"}
 app_ui = ui.page_fluid(
     ui.panel_title("Hello Penguins!"),
     ui.layout_sidebar(
@@ -115,25 +118,46 @@ app_ui = ui.page_fluid(
 
 ## Container functions
 - Some layout functions take any child elements and lay them out in order
-- `layout_sidebar` takes specific children
+    - `ui.page_fluid`
+    - `ui.panel_sidebar`
+    - `ui.panel_main`
+- Some, like `layout_sidebar`, take specific children
     - `panel_sidebar` defines the sidebar
     - `panel_main` defines the main panel
 
 ## Navsets
 - It's common to put apps in tabs
-- We have a set of `navet` functions which organize `ui.nav` containers in tabs
+- We have a set of `navset` functions which organize `ui.nav` containers in tabs
 - `ui.nav` is itself a container and allows you lay out the things on the tab
+
+## Navsets
+::: {.nonincremental}
+- It's common to put apps in tabs
+- We have a set of `navset` functions which organize `ui.nav` containers in tabs
+- `ui.nav` is itself a container and allows you lay out the things on the tab
+:::
 ```{.python}
 ui.navset_tab(
     ui.nav(
         "Tab1",
-        ui.output_plot("Plot"),
-        ui.output_text("some_text"),
+        ui.input_slider("slider", "Slider", 0, 100, 20),
     ),
-    ui.nav("Tab2", ui.output_data_frame("data")),
-    ui.nav("Tab3", ui.output_image("image")),
+    ui.nav("Tab2", ui.input_action_button("button", "Button")),
+    ui.nav("Tab3", ui.input_action_button("button2", "Button 2")),
 )
 ```
+
+## Navset example
+
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder(
+    "apps/examples/4.0.0-navsets", components="viewer", viewer_height=500
+)
+```
+
 
 ## Your turn
 
@@ -143,24 +167,31 @@ Go to [exercises/8-navsets](../exercises/8-navsets.html) or run `apps/problem-se
 ## Cards
 - Cards are just small boxes which contain other elements
 - Useful for grouping inputs and outputs
-- Easy to lay out in a grid
 - "Dashboards" are just web apps in boxes
 - Currently in experimental, import with `import shiny.experimental as x`
 - Cards can take `x.ui.card_header` and `x.ui.card_footer`
 
 ## Cards
 
-```{.python code-line-numbers="1,6"}
+```{.python code-line-numbers="4-8"}
 import shiny.experimental as x
 
-ui.navset_tab(
-    ui.nav(
-        "Tab1",
-        x.ui.card(ui.output_plot("Plot")),
-        ui.output_text("some_text"),
-    ),
-    ui.nav("Tab2", ui.output_data_frame("data")),
-    ui.nav("Tab3", ui.output_image("image")),
+app_ui = ui.page_fluid(
+    x.ui.card(
+        x.ui.card_header("Slider card"),
+        ui.input_slider("n", "N", 0, 100, 20),
+        ui.output_text_verbatim("txt"),
+    )
+)
+```
+
+## Cards example
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder(
+    "apps/examples/4.0.0.0-cards", components="viewer", viewer_height=500
 )
 ```
 
@@ -182,86 +213,26 @@ Go to [exercises/9-cards](../exercises/9-cards.html) or run `apps/problem-sets/e
 
 ## Bootstap grid
 - Divide the screen into rows and columns 
-- Row height is either fixed or relative to its children 
+- Row height expands to fit its children 
 - Column width is relative to its parent 
 
+## Bootstrap grid
+![](images/bootstrap_image.png)
+
 ## Rows
+![](images/bootstrap_image.png)
+
 - The shiny `ui.row` container breaks your app into rows
-- Rows almost always contain `ui.column` 
+- Rows always contain `ui.column` 
 
 ## Columns 
+![](images/bootstrap_image.png)
+
 - Imagine breaking up the parent container into 12 vertical sections
 - Each column gets an integer **width** from 1-12 
-- Relative to the parent so reacts to page size 
+- This defines how much of the parent the column occupies
+- Reacts to screen size
 - Why 12?
-
-## Quiz
-```{python}
-# | echo: false
-# | output: asis
-
-from helpers import multiple_choice_app, Quiz
-
-questions = Quiz(
-    {
-        "How much of the parent width does a column of width 6 take up?": {
-            "choices": ["25%", "50%", "60%", "90%"],
-            "answer": "50%",
-        },
-        "How much of the parent width does a column of width 3 take up?": {
-            "choices": ["25%", "50%", "60%", "90%"],
-            "answer": "25%",
-        },
-        "How much of the parent width does a column of width 9 take up?": {
-            "choices": ["25%", "50%", "60%", "75%"],
-            "answer": "75%",
-        },
-        "Imagine an app with just two nested columns each with width 6, how much of the total screen does the child column take up?": {
-            "choices": ["25%", "50%", "60%", "75%"],
-            "answer": "25%",
-        },
-        "Imagine an app with just two nested columns with widths 6 and 9, how much of the total screen does the child column take up?": {
-            "choices": ["25%", "37.5%", "50%", "60%", "75%"],
-            "answer": "37.5%",
-        },
-    }
-)
-
-multiple_choice_app(questions)
-```
-
-## Rows and columns example
-
-```{.python}
-app_ui = ui.page_fluid(
-    ui.row(
-        ui.column(6,
-                ui.row(ui.column(6), ui.column(6))
-            ),
-        ui.column(6),
-    ),
-)
-```
-$$
-\frac{6}{12} \cdot \frac{6}{12} = \frac{36}{144} = \frac{1}{4}
-$$
-
-## Rows and columns example
-
-```{.python}
-app_ui = ui.page_fluid(
-    ui.row(
-        ui.column(6,
-                ui.row(ui.column(9), ui.column(6))
-            ),
-        ui.column(6),
-    ),
-)
-```
-$$
-\frac{6}{12} \cdot \frac{9}{12} = \frac{54}{144} = \frac{3}{8}
-$$
-
 
 ## Rows and columns
 
@@ -281,14 +252,11 @@ ui.row(
 
 ## This is getting a bit complicated
 
-- We've created a deeply nested function call
-- Too many brackets!
-- Too many indents?!
-
-## UI functions are composable
-- You can store bits of the UI in variables
-- Functions can return sections of the UI
-- Break up your UI into multiple pieces
+- UIs can start to get complicated
+- You can end up with deeply nested function calls
+- Too many brackets
+- Too many indents
+- Luckily You can break UIs into variables and compose them
 
 ## UI functions are composable
 
@@ -328,8 +296,14 @@ Go to [exercises/10-layout](../exercises/10-layout.html) or run `apps/problem-se
 ## Review: Value boxes
 
 - Value boxes are another experimental layout container
+- Just like `x.ui.card()` 
+- Called with `x.ui.value_box()`
 - Useful for visually highlighting important numbers or text
 - Usually contain `ui.output_text()` as a child element
+
+## Your turn
+
+Go to [exercises/11-value-boxes](../exercises/11-value-boxes.html) or run `apps/problem-sets/exercises/4-ui-customization/4.5-value-boxes` locally.
 
 ## Dynamic user interfaces
 
@@ -341,7 +315,7 @@ Go to [exercises/10-layout](../exercises/10-layout.html) or run `apps/problem-se
 
 1) **`render.ui`**: Generate UI elements on the server
 2) **`ui.conditional_panel`**: Hide things on the browser
-3) **`ui.update_*`: Modify existing UI elements
+3) **`ui.update_*`**: Modify existing UI elements
 
 ## Dynamic UI
 
