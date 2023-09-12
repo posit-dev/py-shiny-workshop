@@ -52,7 +52,7 @@ include_shiny_folder(
 
 ## How do other frameworks work?
 
-- Streamlit: rerender everything everwhere all the time
+- Streamlit: re-render everything everywhere all the time
 - Dash/Panel/Gradio: Define callback functions
 
 ## Event driven programming
@@ -743,8 +743,8 @@ Go to [exercises/6-reactive-event](../exercises/6-reactive-event.html) or run `a
 # Side effects
 
 ## What we've learned
-- How Shiny rerenders elements 
-- How Shiny detects dependencies between elements (renderers and inputs)
+- How Shiny re-renders elements 
+- How Shiny detects dependencies between elements (renders and inputs)
 - How to add depth to the reactive graph with `reactive.Calc`
 - How to explicitly specify dependencies with `reactive.event`
 
@@ -772,7 +772,7 @@ include_shiny_folder(
 
 ## Reactive Effects
 - The `@reactive.Effect` decorator allows you to react to an input without returning a value
-- Usually paird with `@reactive.event` 
+- Usually paired with `@reactive.event` 
 
 ``` {.python}
 @reactive.Effect

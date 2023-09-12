@@ -33,12 +33,12 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
 - So far we've learned:
     - How to build an app
     - How Shiny renders things
-- This session is all aobut how they look
+- This session is all about how they look
 
 ## Why care about UI design?
 - It's what your stakeholders care about!
 - Good UI design simplifies your application code 
-- Intutive UIs mean fewer questions 
+- Intuitive UIs mean fewer questions 
 
 ## Anatomy of Shiny's UI
 
@@ -191,7 +191,7 @@ Go to [exercises/9-cards](../exercises/9-cards.html) or run `apps/problem-sets/e
 
 ## Columns 
 - Imagine breaking up the parent container into 12 vertical sections
-- Each column gets an interger **width** from 1-12 
+- Each column gets an integer **width** from 1-12 
 - Relative to the parent so reacts to page size 
 - Why 12?
 
@@ -348,7 +348,7 @@ Go to [exercises/10-layout](../exercises/10-layout.html) or run `apps/problem-se
 - UI elements can be generated like any other elements
 - Use `ui.ui_ouput()` in the UI object
 - Use `@render.ui` on the server
-- Function returns any `ui` elemenet
+- Function returns any `ui` element
 - Referred to like a regular ui element
 
 ## Dynamic UI
@@ -382,7 +382,7 @@ include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 
 ## Dynamic UI
 
-- Dynamic UIs can be intimidating, but they follow a familliar pattern:
+- Dynamic UIs can be intimidating, but they follow a familiar pattern:
     - Insert a UI element with `ui.output_ui`
     - Create a rendering function which returns a UI chunk
     - Decorate the function with `@output` and `render.ui`
@@ -423,7 +423,7 @@ app = App(app_ui, None)
 
 ## Things to note
 - Uses JavaScript condition, not python
-- JavaScript condition will be the same as R, google and chatGPT can help
+- JavaScript condition will be the same as R, Google and chatGPT can help
 - You often want `===` 
 
 ## Your turn
