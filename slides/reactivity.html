@@ -879,7 +879,7 @@ Gordon Shotwell &amp; Joe Cheng
 <section id="how-do-other-frameworks-work" class="slide level2">
 <h2>How do other frameworks work?</h2>
 <ul>
-<li class="fragment">Streamlit: rerender everything everwhere all the time</li>
+<li class="fragment">Streamlit: re-render everything everywhere all the time</li>
 <li class="fragment">Dash/Panel/Gradio: Define callback functions</li>
 </ul>
 </section>
@@ -2406,8 +2406,8 @@ Gordon Shotwell &amp; Joe Cheng
 <section id="what-weve-learned" class="slide level2">
 <h2>What we’ve learned</h2>
 <ul>
-<li class="fragment">How Shiny rerenders elements</li>
-<li class="fragment">How Shiny detects dependencies between elements (renderers and inputs)</li>
+<li class="fragment">How Shiny re-renders elements</li>
+<li class="fragment">How Shiny detects dependencies between elements (renders and inputs)</li>
 <li class="fragment">How to add depth to the reactive graph with <code>reactive.Calc</code></li>
 <li class="fragment">How to explicitly specify dependencies with <code>reactive.event</code></li>
 </ul>
@@ -2458,7 +2458,7 @@ Gordon Shotwell &amp; Joe Cheng
 <h2>Reactive Effects</h2>
 <ul>
 <li class="fragment">The <code>@reactive.Effect</code> decorator allows you to react to an input without returning a value</li>
-<li class="fragment">Usually paird with <code>@reactive.event</code></li>
+<li class="fragment">Usually paired with <code>@reactive.event</code></li>
 </ul>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="at">@reactive.Effect</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="dv">2</span><span class="op">@</span>reactive.event(<span class="bu">input</span>.show)</span>

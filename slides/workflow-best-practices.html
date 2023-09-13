@@ -413,7 +413,7 @@ Gordon Shotwell &amp; Joe Cheng
 </ul>
 </section>
 <section class="slide level2">
-<h2>Avoid premature optimization</h2>
+<h2>Avoid premature refactoring</h2>
 <ul>
 <li class="fragment">Start by just getting your app to work</li>
 <li class="fragment">Take small steps to avoid repetition</li>
@@ -421,7 +421,7 @@ Gordon Shotwell &amp; Joe Cheng
 </ul>
 </section>
 <section class="slide level2">
-<h2>When should you optimize?</h2>
+<h2>When should you refactor?</h2>
 <ul>
 <li class="fragment">You’re trying to hold too much in your head</li>
 <li class="fragment">Changing the app is difficult</li>
@@ -458,16 +458,20 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">Functions are the best way to improve code quality
 <ul>
 <li class="fragment">Define logic in one place</li>
-<li class="fragment">Convenient place to document code</li>
+<li class="fragment">Can define variables within the function scope</li>
 <li class="fragment">Handle errors</li>
 <li class="fragment">Tests and typing</li>
 <li class="fragment">Easy to use with iterators</li>
 </ul></li>
+<li class="fragment">If you’re lost just start writing functions</li>
 </ul>
 </section>
 <section id="data-science-blind-spot" class="slide level2">
 <h2>Data Science blind spot</h2>
-<p>For some reason data scientists forget all about funcitons when writing Shiny UIs.</p>
+<p><br><br></p>
+<div class="large">
+<p>Data scientists forget funcitons when writing Shiny UIs</p>
+</div>
 </section>
 <section id="uis-are-just-objects" class="slide level2">
 <h2>UIs are just objects</h2>
@@ -500,14 +504,14 @@ Gordon Shotwell &amp; Joe Cheng
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="kw">def</span> my_slider(<span class="bu">id</span>, label):</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="cf">return</span> ui.input_slider(<span class="bu">id</span>, label, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="cf">return</span> ui.input_slider(<span class="bu">id</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
 <span id="cb2-5"><a href="#cb2-5"></a></span>
 <span id="cb2-6"><a href="#cb2-6"></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    my_slider(<span class="st">"n1"</span>, <span class="st">"First number"</span>),</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    my_slider(<span class="st">"n2"</span>, <span class="st">"Second number"</span>),</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    my_slider(<span class="st">"n3"</span>, <span class="st">"Third number"</span>),</span>
-<span id="cb2-10"><a href="#cb2-10"></a>    my_slider(<span class="st">"n4"</span>, <span class="st">"Fourth number"</span>),</span>
-<span id="cb2-11"><a href="#cb2-11"></a>    my_slider(<span class="st">"n5"</span>, <span class="st">"Fifth number"</span>),</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    my_slider(<span class="st">"n1"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    my_slider(<span class="st">"n2"</span>),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    my_slider(<span class="st">"n3"</span>),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    my_slider(<span class="st">"n4"</span>),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    my_slider(<span class="st">"n5"</span>),</span>
 <span id="cb2-12"><a href="#cb2-12"></a>)</span>
 <span id="cb2-13"><a href="#cb2-13"></a></span>
 <span id="cb2-14"><a href="#cb2-14"></a>app <span class="op">=</span> App(app_ui, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -516,15 +520,32 @@ Gordon Shotwell &amp; Joe Cheng
 <h2>Iterating functions</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">def</span> my_slider(<span class="bu">id</span>, label):</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">return</span> ui.input_slider(<span class="bu">id</span>, label <span class="op">+</span> <span class="st">"Number"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">def</span> my_slider(<span class="bu">id</span>):</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">return</span> ui.input_slider(<span class="bu">id</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
 <span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>numbers <span class="op">=</span> [<span class="st">"n1"</span>, <span class="st">"n2"</span>, <span class="st">"n3"</span>, <span class="st">"n4"</span>, <span class="st">"n5"</span>, <span class="st">"n6"</span>]</span>
-<span id="cb3-7"><a href="#cb3-7"></a>labels <span class="op">=</span> [<span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>, <span class="st">"Fourth"</span>, <span class="st">"Fifth"</span>, <span class="st">"Sixth"</span>]</span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a>app_ui <span class="op">=</span> ui.page_fluid([my_slider(x, y) <span class="cf">for</span> x, y <span class="kw">in</span> <span class="bu">zip</span>(numbers, labels)])</span>
-<span id="cb3-10"><a href="#cb3-10"></a></span>
-<span id="cb3-11"><a href="#cb3-11"></a>app <span class="op">=</span> App(app_ui, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6"></a>ids <span class="op">=</span> [<span class="st">"n1"</span>, <span class="st">"n2"</span>, <span class="st">"n3"</span>, <span class="st">"n4"</span>, <span class="st">"n5"</span>]</span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    [my_slider(x) <span class="cf">for</span> x <span class="kw">in</span> ids]</span>
+<span id="cb3-10"><a href="#cb3-10"></a>)</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>app <span class="op">=</span> App(app_ui, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="iterating-across-two-lists" class="slide level2">
+<h2>Iterating across two lists</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> shiny <span class="im">import</span> App, render, ui</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">def</span> my_slider(<span class="bu">id</span>, label):</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="cf">return</span> ui.input_slider(<span class="bu">id</span>, label <span class="op">+</span> <span class="st">"Number"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a>numbers <span class="op">=</span> [<span class="st">"n1"</span>, <span class="st">"n2"</span>, <span class="st">"n3"</span>, <span class="st">"n4"</span>, <span class="st">"n5"</span>, <span class="st">"n6"</span>]</span>
+<span id="cb4-7"><a href="#cb4-7"></a>labels <span class="op">=</span> [<span class="st">"First"</span>, <span class="st">"Second"</span>, <span class="st">"Third"</span>, <span class="st">"Fourth"</span>, <span class="st">"Fifth"</span>, <span class="st">"Sixth"</span>]</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    [my_slider(x, y) <span class="cf">for</span> x, y <span class="kw">in</span> <span class="bu">zip</span>(numbers, labels)]</span>
+<span id="cb4-11"><a href="#cb4-11"></a>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a>app <span class="op">=</span> App(app_ui, <span class="va">None</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="benefits-of-functions" class="slide level2">
 <h2>Benefits of functions</h2>
@@ -548,7 +569,7 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">Interacting with databases</li>
 </ul></li>
 <li class="fragment">It’s fine to include this code inside reactive functions</li>
-<li class="fragment">As your appp improves you should separate them</li>
+<li class="fragment">As your appp grows you should separate them</li>
 </ul>
 </section>
 <section id="reactivity-makes-everything-harder" class="slide level2">
@@ -563,39 +584,28 @@ Gordon Shotwell &amp; Joe Cheng
 </ul></li>
 </ul>
 </section>
-<section id="the-rule" class="slide level2">
-<h2>The rule</h2>
-<p><strong>Pull as much logic as possible out of the reactive context</strong></p>
-</section>
-<section id="why" class="slide level2">
-<h2>Why?</h2>
+<section id="pull-logic-out-of-the-reactive-context" class="slide level2">
+<h2>Pull logic out of the reactive context</h2>
 <ul>
 <li class="fragment">Non-reactive functions are familliar and predictable</li>
 <li class="fragment">You can call them in a notebook</li>
 <li class="fragment">You can write unit tests</li>
 <li class="fragment">Makes your reactive code much clearer</li>
-<li class="fragment">You can reuse them in other contextx</li>
-</ul>
-</section>
-<section id="classes-are-also-great" class="slide level2">
-<h2>Classes are also great</h2>
-<ul>
-<li class="fragment">Useful when data and methods are closely coupled</li>
-<li class="fragment">Makes data validation easy</li>
+<li class="fragment">You can reuse them in other contexts</li>
 </ul>
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
-<p>Go to <a href="../exercises/13-extract-functions.html">exercises/14-extract-functions</a> or run problems <code>5.3</code> and <code>5.4</code> in <code>apps/problem-sets/exercises/5-workflows</code>.</p>
+<p>Go to <a href="../exercises/13-extract-functions.html">exercises/14-extract-functions</a> or run problem <code>5.3</code> in <code>apps/problem-sets/exercises/5-workflows</code>.</p>
 </section>
 <section id="modules" class="slide level2">
 <h2>Modules</h2>
 <ul>
 <li class="fragment">Not going to teach them, but you should know about them</li>
-<li class="fragment">Used when you have a bit of UI code which goes with a bit of server code</li>
-<li class="fragment">Effectively creates a mini Shiny app</li>
+<li class="fragment">Used when you want a function with both UI and Server components</li>
 <li class="fragment">Allows you to package and re-use parts of your application</li>
-<li class="fragment">Great for working with teams on larger apps</li>
+<li class="fragment">Great for working with teams of developers</li>
+<li class="fragment">Essential for large applications</li>
 </ul>
 </section></section>
 <section class="title-slide slide level1">

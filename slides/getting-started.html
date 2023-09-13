@@ -414,6 +414,23 @@ Gordon Shotwell &amp; Joe Cheng
 <h1>Housekeeping</h1>
 
 </section>
+<section id="workshop-info" class="slide level2">
+<h2>Workshop info</h2>
+<div>
+<ul>
+<li>WiFi:
+<ul>
+<li>Network: <strong>Posit Conf 2023</strong></li>
+<li>Password: <strong>conf2023</strong></li>
+</ul></li>
+<li>There are gender-neutral bathrooms located are among the Grand Suite Bathrooms.</li>
+<li>There are two meditation/prayer rooms: Grand Suite 2A and Grand Suite 2B. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.</li>
+<li>The lactation room is located in Grand Suite 1. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.</li>
+<li>Don’t photograph people with red lanyards</li>
+<li>The Code of Conduct and COVID policies can be found at https://posit.co/code-of-conduct/.</li>
+</ul>
+</div>
+</section>
 <section id="outline-for-the-day" class="slide level2">
 <h2>Outline for the day</h2>
 <p>9:00-10:30 : Getting started with Shiny</p>
@@ -432,8 +449,8 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">You know where to go for help</li>
 </ol>
 </section>
-<section id="pedagogy" class="slide level2">
-<h2>Pedagogy</h2>
+<section id="how-this-session-works" class="slide level2">
+<h2>How this session works</h2>
 <ul>
 <li class="fragment">This session is going to be exercise based</li>
 <li class="fragment">We want to get into trouble</li>
@@ -444,7 +461,7 @@ Gordon Shotwell &amp; Joe Cheng
 <section id="exercises" class="slide level2">
 <h2>Exercises</h2>
 <ul>
-<li class="fragment">All of the exercises and slides are running live on the <a href="https://rstudio.github.io/shiny-python-workshop-2023/">website</a></li>
+<li class="fragment">All of the exercises and slides are running live on the <a href="https://posit-dev.github.io/shiny-python-workshop-2023/">website</a></li>
 <li class="fragment">You can do them on the website or open the apps in the <code>apps/problem-sets</code> folder</li>
 <li class="fragment">If you need help put a red sticker on your laptop, when you’re done put up a green sticker</li>
 </ul>
@@ -975,9 +992,9 @@ Gordon Shotwell &amp; Joe Cheng
 <section id="ui-functions" class="slide level2">
 <h2>UI functions</h2>
 <ul>
-<li class="fragment">UI functions are in the <code>ui</code> submodule</li>
+<li class="fragment">UI functions are in the <code>ui</code> sub-module</li>
 <li class="fragment">Inputs start with <code>ui.input_*()</code> and take an id, and options</li>
-<li class="fragment">Outputs start with <code>ui.output_*()</code> and ususally just take an ID</li>
+<li class="fragment">Outputs start with <code>ui.output_*()</code> and usually just take an ID</li>
 <li class="fragment">Other functions like <code>ui.h1()</code> or <code>ui.p()</code> add static HTML to the app</li>
 <li class="fragment">We’ll get to layout functions in session 3</li>
 </ul>
@@ -1013,17 +1030,36 @@ Gordon Shotwell &amp; Joe Cheng
 </section>
 <section id="decorators-are-just-functions" class="slide level2">
 <h2>Decorators are just functions</h2>
-<ul>
-<li class="fragment">Decorators are functions which take other functions</li>
-<li class="fragment">Shiny uses them to identify reactive functions</li>
-<li class="fragment">They can take arguments:</li>
-</ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>    <span class="at">@output</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>    <span class="at">@render.plot</span>(alt<span class="op">=</span><span class="st">"A body mass plot of penguins"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="kw">def</span> mass_plot():</span>
 <span id="cb6-4"><a href="#cb6-4"></a>        df <span class="op">=</span> sample_data(penguins.copy(), <span class="bu">input</span>.sample())</span>
 <span id="cb6-5"><a href="#cb6-5"></a>        df <span class="op">=</span> df.loc[df[<span class="st">"body_mass"</span>] <span class="op">&lt;</span> <span class="bu">input</span>.mass()]</span>
 <span id="cb6-6"><a href="#cb6-6"></a>        <span class="cf">return</span> dist_plot(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li class="fragment">Decorators are functions which take other functions</li>
+<li class="fragment">Shiny uses them to identify reactive functions</li>
+<li class="fragment">They can take arguments</li>
+</ul>
+</section>
+<section id="simple-app-example" class="slide level2">
+<h2>Simple app example</h2>
+<div class="sourceCode" id="cb7" data-code-line-numbers="5,10-13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> shiny <span class="im">import</span> Inputs, Outputs, Session, App, render, ui</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>app_ui <span class="op">=</span> ui.page_fluid(</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    ui.input_slider(<span class="st">"n"</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>),</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    ui.output_text_verbatim(<span class="st">"txt"</span>),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a></span>
+<span id="cb7-8"><a href="#cb7-8"></a></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="kw">def</span> server(<span class="bu">input</span>, output, session):</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="at">@output</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="at">@render.text</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    <span class="kw">def</span> txt():</span>
+<span id="cb7-13"><a href="#cb7-13"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a></span>
+<span id="cb7-15"><a href="#cb7-15"></a></span>
+<span id="cb7-16"><a href="#cb7-16"></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="common-problems" class="slide level2">
 <h2>Common problems</h2>
@@ -1035,18 +1071,15 @@ Gordon Shotwell &amp; Joe Cheng
 </section>
 <section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
-<p>Go to <a href="../exercises/2-debugging.html">exercises/2-debugging-outputs</a> or work through exercises 1.1-1.5 locally.</p>
+<p>Go to <a href="../exercises/2-debug.html">exercises/2-debug</a> or work through exercises 1.1-1.5 locally.</p>
 </section>
 <section id="connecting-inputs-to-outputs" class="slide level2">
 <h2>Connecting inputs to outputs</h2>
-<div class="sourceCode" id="cb7" data-code-line-numbers="5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    <span class="at">@output</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>    <span class="at">@render.text</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>    <span class="kw">def</span> txt():</span>
-<span id="cb7-5"><a href="#cb7-5"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="connecting-inputs-to-outputs-1" class="slide level2">
-<h2>Connecting inputs to outputs</h2>
+<div class="sourceCode" id="cb8" data-code-line-numbers="5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> server(<span class="bu">input</span>: Inputs, output: Outputs, session: Session):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="at">@output</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="at">@render.text</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="kw">def</span> txt():</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li class="fragment">Inputs are called <code>input.n()</code> not <code>input.n</code></li>
 <li class="fragment">Referring to an input creates a reactive link between the input and output</li>

@@ -281,8 +281,11 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">slides/best-practices.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../slides/workflow-best-practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow best practices</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
@@ -361,7 +364,7 @@ Exercise
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>.</p>
+<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>. Note that we have provided the server functions for you.</p>
 </div>
 </div>
 </div>
@@ -2449,7 +2452,7 @@ Exercise
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>.</p>
+<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>. Note that we have provided the server functions for you.</p>
 </div>
 </div>
 </div>
@@ -2537,6 +2540,24 @@ def server(input, output, session):
     @render.data_frame
     def data():
         return filtered_data()
+
+    @output
+    @render.text
+    def mean_error():
+        mean_error = filtered_data()["error"].mean()
+        return round(mean_error, 2)
+
+    @output
+    @render.text
+    def hot_days():
+        hot_days = filtered_data()["error"] &gt; 0
+        return sum(hot_days)
+
+    @output
+    @render.text
+    def cold_days():
+        hot_days = filtered_data()["error"] &lt; 0
+        return sum(hot_days)
 
 
 app = App(app_ui, server)
@@ -4514,7 +4535,7 @@ Exercise
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>.</p>
+<p>Use the <code>x.value_box</code> container function to add three value boxes on their own <code>ui.row</code>. Note that we have provided the server functions for you.</p>
 </div>
 </div>
 </div>

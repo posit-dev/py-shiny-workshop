@@ -318,8 +318,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">slides/best-practices.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../slides/workflow-best-practices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflow best practices</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="false">
@@ -480,7 +483,11 @@ Caution
 from shiny import App, render, ui
 
 app_ui = ui.page_fluid(
-    ui.input_numeric("max_slider", "Slider max", value=100),
+    ui.input_checkbox("show_checkbox", "Show Checkbox"),
+    ui.panel_conditional(
+        "input.show_checkbox",
+        ui.input_checkbox("show_slider", "Show Slider"),
+    ),
     ui.output_ui("dynamic_slider"),
 )
 
@@ -489,7 +496,9 @@ def server(input, output, session):
     @output
     @render.ui
     def dynamic_slider():
-        return ui.input_slider("n", "N", 0, input.max_slider(), 20)
+        print(input.show_slider())
+        if input.show_slider():
+            return ui.input_slider("n", "N", 0, 100, 20)
 
 
 app = App(app_ui, server)
