@@ -67,10 +67,14 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
     - Handle errors 
     - Tests and typing
     - Easy to use with iterators
+- If you're lost just start writing functions
 
 ## Data Science blind spot
+<br><br>
 
-For some reason data scientists forget all about funcitons when writing Shiny UIs.
+:::{.large}
+Data scientists forget funcitons when writing Shiny UIs
+:::
 
 ## UIs are just objects
 
@@ -132,7 +136,7 @@ app_ui = ui.page_fluid(
 app = App(app_ui, None)
 ```
 
-# Iterating across two lists
+## Iterating across two lists
 
 ```{.python}
 from shiny import App, render, ui
@@ -176,10 +180,7 @@ Go to [exercises/13-ui-functions](../exercises/13-ui-functions.html) or run prob
     - Harder to document
     - Harder to reason about
 
-## The rule
-**Pull as much logic as possible out of the reactive context**
-
-## Why?
+## Pull logic out of the reactive context
 - Non-reactive functions are familliar and predictable
 - You can call them in a notebook
 - You can write unit tests 
@@ -193,8 +194,7 @@ Go to [exercises/14-extract-functions](../exercises/13-extract-functions.html) o
 
 ## Modules
 - Not going to teach them, but you should know about them
-- Used when you have a bit of UI code which goes with a bit of server code
-- Effectively creates a mini Shiny app
+- Used when you want a function with both UI and Server components
 - Allows you to package and re-use parts of your application
 - Great for working with teams of developers
 - Essential for large applications

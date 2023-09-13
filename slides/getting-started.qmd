@@ -30,6 +30,17 @@ from helpers import problem_tabs, include_shiny_folder
 
 # Housekeeping 
 
+## Workshop info
+::: {.nonincremental}
+- WiFi:
+  - Network: **Posit Conf 2023**
+  - Password: **conf2023**
+- There are gender-neutral bathrooms located are among the Grand Suite Bathrooms.
+- There are two meditation/prayer rooms: Grand Suite 2A and Grand Suite 2B. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.
+- The lactation room is located in Grand Suite 1. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.
+- Don't photograph people with red lanyards
+- The Code of Conduct and COVID policies can be found at https://posit.co/code-of-conduct/.
+:::
 ## Outline for the day
 
 9:00-10:30 : Getting started with Shiny
@@ -52,7 +63,7 @@ from helpers import problem_tabs, include_shiny_folder
 2) Develop comfort with failure and debugging
 3) You know where to go for help 
 
-## Pedagogy
+## How this session works
 
 - This session is going to be exercise based
 - We want to get into trouble
@@ -61,7 +72,7 @@ from helpers import problem_tabs, include_shiny_folder
 
 
 ## Exercises
-- All of the exercises and slides are running live on the [website](https://rstudio.github.io/shiny-python-workshop-2023/)
+- All of the exercises and slides are running live on the [website](https://posit-dev.github.io/shiny-python-workshop-2023/)
 - You can do them on the website or open the apps in the `apps/problem-sets` folder
 - If you need help put a red sticker on your laptop, when you're done put up a green sticker
 
@@ -204,10 +215,6 @@ def server(input, output, session):
 - The return value is sent to the Shiny UI
 
 ## Decorators are just functions
-- Decorators are functions which take other functions
-- Shiny uses them to identify reactive functions
-- They can take arguments:
-
 ```{.python}
     @output
     @render.plot(alt="A body mass plot of penguins")
@@ -216,6 +223,32 @@ def server(input, output, session):
         df = df.loc[df["body_mass"] < input.mass()]
         return dist_plot(df)
 ```
+- Decorators are functions which take other functions
+- Shiny uses them to identify reactive functions
+- They can take arguments
+
+
+## Simple app example
+
+```{.python code-line-numbers="5,10-13"}
+from shiny import Inputs, Outputs, Session, App, render, ui
+
+app_ui = ui.page_fluid(
+    ui.input_slider("n", "N", 0, 100, 20),
+    ui.output_text_verbatim("txt"),
+)
+
+
+def server(input, output, session):
+    @output
+    @render.text
+    def txt():
+        return f"n*2 is {input.n() * 2}"
+
+
+app = App(app_ui, server)
+```
+
 
 ## Common problems
 
@@ -225,7 +258,7 @@ def server(input, output, session):
 
 ## Your turn
 
-Go to [exercises/2-debugging-outputs](../exercises/2-debugging.html) or work through exercises 1.1-1.5 locally.
+Go to [exercises/2-debug](../exercises/2-debug.html) or work through exercises 1.1-1.5 locally.
 
 ## Connecting inputs to outputs
 
@@ -236,8 +269,6 @@ def server(input: Inputs, output: Outputs, session: Session):
     def txt():
         return f"n*2 is {input.n() * 2}"
 ```
-
-## Connecting inputs to outputs
 
 - Inputs are called `input.n()` not `input.n`
 - Referring to an input creates a reactive link between the input and output

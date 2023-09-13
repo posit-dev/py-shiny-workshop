@@ -116,6 +116,7 @@ app_ui = ui.page_fluid(
 )
 ```
 
+
 ## Container functions
 - Some layout functions take any child elements and lay them out in order
     - `ui.page_fluid`
@@ -337,10 +338,12 @@ include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 ## Dynamic UI
 
 ```{.python}
-from shiny import App, render, ui
-
 app_ui = ui.page_fluid(
-    ui.input_numeric("max_slider", "Slider max", value=100),
+    ui.input_checkbox("show_checkbox", "Show Checkbox"),
+    ui.panel_conditional(
+        "input.show_checkbox",
+        ui.input_checkbox("show_slider", "Show Slider"),
+    ),
     ui.output_ui("dynamic_slider"),
 )
 
@@ -349,7 +352,34 @@ def server(input, output, session):
     @output
     @render.ui
     def dynamic_slider():
-        return ui.input_slider("n", "N", 0, input.max_slider(), 20)
+        print(input.show_slider())
+        if input.show_slider():
+            return ui.input_slider("n", "N", 0, 100, 20)
+
+
+app = App(app_ui, server)
+```
+
+## Dynamic UI
+
+```{.python code-line-numbers="7,12-17"}
+app_ui = ui.page_fluid(
+    ui.input_checkbox("show_checkbox", "Show Checkbox"),
+    ui.panel_conditional(
+        "input.show_checkbox",
+        ui.input_checkbox("show_slider", "Show Slider"),
+    ),
+    ui.output_ui("dynamic_slider"),
+)
+
+
+def server(input, output, session):
+    @output
+    @render.ui
+    def dynamic_slider():
+        print(input.show_slider())
+        if input.show_slider():
+            return ui.input_slider("n", "N", 0, 100, 20)
 
 
 app = App(app_ui, server)
@@ -365,6 +395,14 @@ app = App(app_ui, server)
     - Round trip to the server
     - You can lose session state
 
+## Dynamic UI
+```{python}
+# | echo: false
+# | output: asis
+
+include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
+```
+
 ## Conditional panel
 - `ui.panel_conditional` hides UI elements based on conditions
 - Less flexible than `ui.output_ui`
@@ -377,23 +415,32 @@ app = App(app_ui, server)
 # | echo: false
 # | output: asis
 
-include_shiny_folder("apps/examples/4.1.2-conditional-panel", components="viewer")
+include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 ```
 
 ## Conditional panel
 
-```{.python, code-line-numbers="4-6"}
-from shiny import App, render, ui
-
+```{.python code-line-numbers="3-6"}
 app_ui = ui.page_fluid(
-    ui.input_checkbox("show_slider", "Show Slider"),
+    ui.input_checkbox("show_checkbox", "Show Checkbox"),
     ui.panel_conditional(
-        "input.show_slider", ui.input_slider("slider", "Slider", 0, 100, 50)
+        "input.show_checkbox",
+        ui.input_checkbox("show_slider", "Show Slider"),
     ),
+    ui.output_ui("dynamic_slider"),
 )
 
-app = App(app_ui, None)
 
+def server(input, output, session):
+    @output
+    @render.ui
+    def dynamic_slider():
+        print(input.show_slider())
+        if input.show_slider():
+            return ui.input_slider("n", "N", 0, 100, 20)
+
+
+app = App(app_ui, server)
 ```
 
 ## Things to note
