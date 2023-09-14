@@ -320,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-  <li><a href="#shinylive" id="toc-shinylive" class="nav-link" data-scroll-target="#shinylive">1) Shinylive</a></li>
+  <li><a href="#in-your-web-browser-with-shinylive" id="toc-in-your-web-browser-with-shinylive" class="nav-link" data-scroll-target="#in-your-web-browser-with-shinylive">1) In your web browser with Shinylive</a></li>
   <li><a href="#locally-with-vs-code" id="toc-locally-with-vs-code" class="nav-link" data-scroll-target="#locally-with-vs-code">2) Locally with VS Code</a></li>
   </ul></li>
   </ul>
@@ -348,14 +348,14 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This is the workshop website for the Shiny for Python Workshop at the 2023 Posit Conference. While most of these materials are designed to be used in conjunction with the workshop, they also stand alone as an educational resource. If you have questions or comments, please raise a Github issue, and if you would like to attend the in-person workshop, please <a href="https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog?search=&amp;search.sessiontype=1675316728702001wr6r">register today</a>.</p>
+<p>This is the workshop website for the Shiny for Python Workshop at <a href="https://posit.co/conference/">posit::conf 2023</a>. While most of these materials are designed to be used in conjunction with the workshop, they also stand alone as an educational resource. If you have questions or comments, please raise a Github issue, and if you would like to attend the in-person workshop, please <a href="https://reg.conf.posit.co/flow/posit/positconf23/attendee-portal/page/sessioncatalog?search=&amp;search.sessiontype=1675316728702001wr6r">register today</a>.</p>
 <p>If you would like help hosting a Shiny for Python workshop of your own or would like to book a webinar, please contact us on <a href="https://discord.gg/AQVJzG2bnN">Discord</a>.</p>
 </section>
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>This workshop is aimed at people who are somewhat familliar with doing data analysis in Python, but do not have much of a background in Shiny. If you are brand new to Python we recommend spending a bit of time familliarizing yourself with the following topics before the workshop:</p>
+<p>This workshop is aimed at people who are somewhat familiar with doing data analysis in Python, but do not have much of a background in Shiny. If you are brand new to Python we recommend spending a bit of time familiarizing yourself with the following topics before the workshop:</p>
 <ul>
-<li>How to install python packages in a virtual environment</li>
+<li>How to install Python packages in a virtual environment</li>
 <li>How to do basic data manipulation with pandas or polars</li>
 <li>How to draw plots</li>
 <li>How to clone a repository with git</li>
@@ -364,8 +364,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="setup" class="level1">
 <h1>Setup</h1>
 <p>There are two ways to work through the examples and exercises in this workshop.</p>
-<section id="shinylive" class="level2">
-<h2 class="anchored" data-anchor-id="shinylive">1) Shinylive</h2>
+<section id="in-your-web-browser-with-shinylive" class="level2">
+<h2 class="anchored" data-anchor-id="in-your-web-browser-with-shinylive">1) In your web browser with Shinylive</h2>
 <p>Shinylive allows you to run full-featured shiny apps in your browser, and includes a basic editor which is good enough to run examples. As a result you should be able to work through all of the examples in the workshop using just the browser without installing anything locally.</p>
 </section>
 <section id="locally-with-vs-code" class="level2">
@@ -376,12 +376,13 @@ ul.task-list li input[type="checkbox"] {
 <li>Install the Shiny for Python <a href="https://marketplace.visualstudio.com/items?itemName=posit.shiny-python">VS Code extension</a></li>
 <li>Clone the repository with <code>git clone https://github.com/rstudio/shiny-python-workshop-2023.git</code>, or alternately download the repository as a zip file:<br>
 <img src="images/git-download-button.png" class="img-fluid" width="287"></li>
-<li>Navigate to the project directory and create a new virtual environment with <code>python3 -m venv .vevn</code></li>
+<li>Navigate to the project directory and create a new virtual environment with <code>python3 -m venv .venv</code></li>
 <li>Set your python interpreter to the virtual environment with <code>CMD + SHIFT + P</code> &gt; <code>Select Interpreter</code></li>
 <li>Open a new terminal prompt, which should switch to <code>(.venv)</code></li>
 <li>Install the relevant packages with <code>pip install -r requirements.txt</code></li>
 </ol>
-<p>All of the example apps are stored in the <code>/apps</code> directory. The examples are in <code>apps/examples</code> and the problem sets are in <code>apps/problem-sets</code>. If you’ve installed the VS Code extention can run any of the apps by opening the <code>app.py</code> file and clicking the play button in the top right. Alternately, run them from the command line with <code>shiny run &lt;path-to-app.py&gt; --reload</code>.</p>
+<p>All of the example apps are stored in the <code>/apps</code> directory. The examples are in <code>apps/examples</code> and the problem sets are in <code>apps/problem-sets</code>. If you’ve installed the Shiny for Python VS Code extension, you can run any of the apps by opening the <code>app.py</code> file and clicking the play button in the top right. (<a href="https://camo.githubusercontent.com/5d947e6dff7d74fd1cf221e79583105c42e4986ae673ce79733ce5edbfdcdda5/68747470733a2f2f7368696e792e7273747564696f2e636f6d2f70792f646f63732f6173736574732f7673636f64652e706e67">See screenshot</a>)</p>
+<p>Alternatively, run them from the command line with <code>shiny run &lt;path-to-app.py&gt; --reload</code>.</p>
 
 
 </section>

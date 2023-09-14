@@ -470,6 +470,9 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
+## file: README
+1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.
+2) Add a checkbox which adds a line of best fit to the plot. 
 ## file: plots.py
 from plotnine import ggplot, geom_density, aes, theme_light, geom_point, stat_smooth
 
@@ -849,10 +852,7 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
-
-## file: README
-1) Add a second plot output to the apps which shows a scatter plot of Bill Depth to Bill Length, there's a plotting function in `plots.py` which provides one implementation.
-2) Add a checkbox which adds a line of best fit to the plot. </code></pre>
+</code></pre>
 </div>
 <div id="vcenter" class="g-col-12 g-col-md-3">
 <div class="cell">
@@ -1677,8 +1677,6 @@ def scatter_plot(df, trend_line=False):
 
     return plot
 
-## file: sample
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2025,6 +2023,8 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+## file: sample
 </code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -2152,8 +2152,6 @@ def scatter_plot(df, trend_line=False):
 
     return plot
 
-## file: sample
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2500,6 +2498,8 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+## file: sample
 </code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -2630,8 +2630,6 @@ def scatter_plot(df, trend_line=False):
 
     return plot
 
-## file: sample
-
 ## file: penguins.csv
 species,island,bill_length,bill_depth,flipper_length,body_mass,sex,year
 Adelie,Torgersen,39.1,18.7,181,3750,male,2007
@@ -2978,6 +2976,8 @@ Chinstrap,Dream,43.5,18.1,202,3400,female,2009
 Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
+
+## file: sample
 </code></pre>
 </div>
 </div>

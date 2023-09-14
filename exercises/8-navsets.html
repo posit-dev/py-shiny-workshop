@@ -439,6 +439,42 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
+## file: plots.py
+import pandas as pd
+from plotnine import (
+    ggplot,
+    aes,
+    geom_density,
+    theme_light,
+    labs,
+    geom_point,
+    theme,
+    element_text,
+)
+
+
+def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
+    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
+    plot_df = pd.melt(
+        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
+    )
+    out = (
+        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
+        + geom_density()
+        + theme_light()
+    )
+    return out
+
+
+def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
+    out = (
+        ggplot(plot_df, aes(x="date", y="error"))
+        + geom_point(alpha=alpha)
+        + theme_light()
+        + theme(axis_text_x=element_text(rotation=45, hjust=1))
+    )
+    return out
+
 ## file: weather.csv
 date,city,state,observed_temp,forecast_temp
 2022-01-02,ALBANY,NY,35,39
@@ -2361,42 +2397,6 @@ date,city,state,observed_temp,forecast_temp
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,20
-
-## file: plots.py
-import pandas as pd
-from plotnine import (
-    ggplot,
-    aes,
-    geom_density,
-    theme_light,
-    labs,
-    geom_point,
-    theme,
-    element_text,
-)
-
-
-def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
-    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
-    plot_df = pd.melt(
-        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
-    )
-    out = (
-        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
-        + geom_density()
-        + theme_light()
-    )
-    return out
-
-
-def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
-    out = (
-        ggplot(plot_df, aes(x="date", y="error"))
-        + geom_point(alpha=alpha)
-        + theme_light()
-        + theme(axis_text_x=element_text(rotation=45, hjust=1))
-    )
-    return out
 </code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -2493,6 +2493,42 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
+## file: plots.py
+import pandas as pd
+from plotnine import (
+    ggplot,
+    aes,
+    geom_density,
+    theme_light,
+    labs,
+    geom_point,
+    theme,
+    element_text,
+)
+
+
+def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
+    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
+    plot_df = pd.melt(
+        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
+    )
+    out = (
+        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
+        + geom_density()
+        + theme_light()
+    )
+    return out
+
+
+def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
+    out = (
+        ggplot(plot_df, aes(x="date", y="error"))
+        + geom_point(alpha=alpha)
+        + theme_light()
+        + theme(axis_text_x=element_text(rotation=45, hjust=1))
+    )
+    return out
+
 ## file: weather.csv
 date,city,state,observed_temp,forecast_temp
 2022-01-02,ALBANY,NY,35,39
@@ -4415,42 +4451,6 @@ date,city,state,observed_temp,forecast_temp
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,20
-
-## file: plots.py
-import pandas as pd
-from plotnine import (
-    ggplot,
-    aes,
-    geom_density,
-    theme_light,
-    labs,
-    geom_point,
-    theme,
-    element_text,
-)
-
-
-def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
-    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
-    plot_df = pd.melt(
-        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
-    )
-    out = (
-        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
-        + geom_density()
-        + theme_light()
-    )
-    return out
-
-
-def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
-    out = (
-        ggplot(plot_df, aes(x="date", y="error"))
-        + geom_point(alpha=alpha)
-        + theme_light()
-        + theme(axis_text_x=element_text(rotation=45, hjust=1))
-    )
-    return out
 </code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
@@ -4541,6 +4541,42 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 
+## file: plots.py
+import pandas as pd
+from plotnine import (
+    ggplot,
+    aes,
+    geom_density,
+    theme_light,
+    labs,
+    geom_point,
+    theme,
+    element_text,
+)
+
+
+def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
+    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
+    plot_df = pd.melt(
+        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
+    )
+    out = (
+        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
+        + geom_density()
+        + theme_light()
+    )
+    return out
+
+
+def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
+    out = (
+        ggplot(plot_df, aes(x="date", y="error"))
+        + geom_point(alpha=alpha)
+        + theme_light()
+        + theme(axis_text_x=element_text(rotation=45, hjust=1))
+    )
+    return out
+
 ## file: weather.csv
 date,city,state,observed_temp,forecast_temp
 2022-01-02,ALBANY,NY,35,39
@@ -6463,42 +6499,6 @@ date,city,state,observed_temp,forecast_temp
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,19
 2022-01-31,FLINT,MI,20,20
-
-## file: plots.py
-import pandas as pd
-from plotnine import (
-    ggplot,
-    aes,
-    geom_density,
-    theme_light,
-    labs,
-    geom_point,
-    theme,
-    element_text,
-)
-
-
-def temp_distirbution(plot_df: pd.DataFrame) -&gt; ggplot:
-    plot_df = plot_df[["observed_temp", "forecast_temp", "date"]]
-    plot_df = pd.melt(
-        plot_df, id_vars="date", value_vars=["observed_temp", "forecast_temp"]
-    )
-    out = (
-        ggplot(plot_df, aes(x="value", group="variable", color="variable"))
-        + geom_density()
-        + theme_light()
-    )
-    return out
-
-
-def daily_error(plot_df: pd.DataFrame, alpha: float) -&gt; ggplot:
-    out = (
-        ggplot(plot_df, aes(x="date", y="error"))
-        + geom_point(alpha=alpha)
-        + theme_light()
-        + theme(axis_text_x=element_text(rotation=45, hjust=1))
-    )
-    return out
 </code></pre>
 </div>
 </div>
