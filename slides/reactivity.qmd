@@ -71,14 +71,15 @@ include_shiny_folder(
 ## Does that really work?
 
 - You're not wrong to find this suspicious
-- Magic automatic rendering often goes badly wrong
+- "Does Shiny infer relationships by analyizing the source code?" No--lots of ways that would break down!
 - For this to work, the inference has to be 100% reliable
 
 ## It really works
 
-- We have 10 years of experience with this pattern
-- R users have found the bugs and illuminated the edge cases
-- Shiny will always infer the correct computation graph
+- We have 10 years of real-world experience with this form of reactivity
+- The underlying mechanism is simple, reliable, and intuitive
+- Not static analysis, but rather, runtime tracing
+- Originally inspired by Meteor.js
 
 ## Outputs and recipes
 
@@ -140,7 +141,7 @@ flowchart TD
 
 ## Declarative programming
 
-- Tell Shiny what you want to happen
+- Tell Shiny how each output should be filled
 - Trust that the framework will keep everything up-to-date
 - You're setting the menu, not doing the cooking
 
@@ -162,7 +163,7 @@ include_shiny_folder(
     file_name="app-solution.py",
     exclusions=["app.py"],
     components="viewer",
-    viewer_height=500,
+    viewer_height=600,
 )
 ```
 
@@ -178,7 +179,7 @@ flowchart TD
   linkStyle 2 display:none
 ```
 
-## Calculate Scatter plot
+## Calculate scatter plot
 
 ```{mermaid}
 flowchart TD
@@ -407,7 +408,7 @@ TODO: Insert reactivity exercise here
 - Each input is passed to a rendering function which produces an output
 - Input -> Recipe -> Output can produce repetitive, inefficient applications
 - `@reactive.Calc` lets you define calculations which are consumed by downstream functions
-- This adds intermediary nodes to the reactive graph
+- This adds intermediate nodes to the reactive graph
 
 ## Reactive Calc example
 
@@ -418,7 +419,7 @@ TODO: Insert reactivity exercise here
 include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 ```
 
-## Identify repition
+## Identify repetition
 ```{.python code-line-numbers="4,5,11,12"}
     @output
     @render.table
@@ -472,8 +473,11 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 ## Reactive calculations
 - Defined with the `@reactive.Calc` decorator
 - Called like other inputs
-- Can consume inputs, reactive values, or other reactive calculations
-- Adds a node to the reactive graph.
+- Can read inputs, reactive values, or other reactive calculations
+- Caches its value, so it's cheap to call repeatedly
+- Adds a node to the reactive graph
+  - Discards cached value when upstream nodes invalidate
+  - Notifies downstream nodes when it invalidates
 
 ## Initial state
 ```{mermaid}
@@ -536,7 +540,7 @@ flowchart TD
   linkStyle 2 display:none
 ```
 
-## Recalculate plot
+## Calculate plot
 ```{mermaid}
 flowchart TD
   Sl[Slider] --> S[Sample]
@@ -547,7 +551,7 @@ flowchart TD
   linkStyle 2 display:none
 ```
 
-## Recalculate plot
+## Calculate plot
 ```{mermaid}
 flowchart TD
   Sl[Slider] --> S[Sample]
@@ -700,15 +704,18 @@ flowchart TD
 
 ## Escaping reactivity
 
-- By default any change in a shiny input will trigger a recalculation
+- By default, any change in an input will trigger immediate recalculation in all outputs that use it
 - This isn't always the user interaction you want
     - Database queries
     - Expensive modeling
     - Grouping multiple filters together
     - Side effects
-- `reactive.event` and `reactive.Effect` allow you to interrupt reactive calculations.
+- Use `reactive.event` to explicitly specify what should trigger recalculation for an output or calc
 
 ## Example
+
+TODO: Shouldn't this be showing app-solution.py, not app.py?
+
 ```{python}
 # | echo: false
 # | output: asis
@@ -776,7 +783,7 @@ include_shiny_folder(
 
 ``` {.python}
 @reactive.Effect
-2@reactive.event(input.show)
+@reactive.event(input.show)
 def toggle_modal():
     m = ui.modal(
         "This is a somewhat important message.",
