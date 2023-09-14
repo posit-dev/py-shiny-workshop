@@ -1,1 +1,1 @@
-Add a slider input to the app, the minimum value should be 2000, the maximum value should be 8000 and the selected value should be 6000.
+Add a slider input to the app. The minimum value should be 2000, the maximum value should be 8000, and the initial value should be 6000.
