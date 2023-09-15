@@ -207,8 +207,6 @@ def server(input, output, session):
         return f"n*2 is {input.n() * 2}"
 ```
 
-## Rendering functions
-
 - Functions are defined inside the main `server` function
 - They need to be **decorated** with `@output` and `@render.*` in that order
 - The function **name** should match the output id
