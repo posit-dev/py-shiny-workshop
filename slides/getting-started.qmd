@@ -71,12 +71,6 @@ from helpers import problem_tabs, include_shiny_folder
 ## How this session works
 
 - This session is going to be exercise based
-- We want to get into trouble
-- Don't worry about understanding at this point, just get things working 
-- Expect frustration
-
-
-## Exercises
 - All of the exercises and slides are running live on the [website](https://posit-dev.github.io/shiny-python-workshop-2023/)
 - You can do them on the website or open the apps in the `apps/problem-sets` folder
 - If you need help, put a red sticker on your laptop; when you're done, put up a green sticker
@@ -88,6 +82,15 @@ from helpers import problem_tabs, include_shiny_folder
 3) Click the "Run app" button in the top right of VS Code ([screenshot](https://camo.githubusercontent.com/5d947e6dff7d74fd1cf221e79583105c42e4986ae673ce79733ce5edbfdcdda5/68747470733a2f2f7368696e792e7273747564696f2e636f6d2f70792f646f63732f6173736574732f7673636f64652e706e67))
 4) If your local setup doesn't work, switch to Posit Workbench and try again
 
+## Posit workbench information
+::: {.nonincremental}
+1) Go to https://colorado.posit.co/rsc/class/
+2) Enter identifier "shinypython"
+3) Copy the url and credentials somewhere on your computer
+4) Login to workbench
+5) Clone the repo `git clone https://github.com/posit-dev/shiny-python-workshop-2023.git`
+6) Open the workshop folder in VS Code
+:::
 
 # Hello Shiny
 
@@ -274,7 +277,7 @@ def server(input: Inputs, output: Outputs, session: Session):
 ```
 
 - Inputs are read by calling them like a function: `input.n()`, not `input.n`
-- The act of reading an input creates a reactive link between that input and the rendering function that's currently executing
+- Referring to an input creates a reactive link between that input and the rendering function
 - When the input changes, the rendering function will re-execute
 - You can use multiple inputs in the same rendering function
 
