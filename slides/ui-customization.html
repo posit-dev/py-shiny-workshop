@@ -4823,7 +4823,7 @@ Gordon Shotwell &amp; Joe Cheng
 <section class="slide level2">
 <h2>Dynamic UI</h2>
 <ul>
-<li class="fragment">UI elements can be generated like any other elements</li>
+<li class="fragment">UI elements can be generated like any other element</li>
 <li class="fragment">Use <code>ui.ui_ouput()</code> in the UI object</li>
 <li class="fragment">Use <code>@render.ui</code> on the server</li>
 <li class="fragment">Function returns any <code>ui</code> element</li>
@@ -4846,12 +4846,11 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb13-12"><a href="#cb13-12"></a>    <span class="at">@output</span></span>
 <span id="cb13-13"><a href="#cb13-13"></a>    <span class="at">@render.ui</span></span>
 <span id="cb13-14"><a href="#cb13-14"></a>    <span class="kw">def</span> dynamic_slider():</span>
-<span id="cb13-15"><a href="#cb13-15"></a>        <span class="bu">print</span>(<span class="bu">input</span>.show_slider())</span>
-<span id="cb13-16"><a href="#cb13-16"></a>        <span class="cf">if</span> <span class="bu">input</span>.show_slider():</span>
-<span id="cb13-17"><a href="#cb13-17"></a>            <span class="cf">return</span> ui.input_slider(<span class="st">"n"</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
+<span id="cb13-15"><a href="#cb13-15"></a>        <span class="cf">if</span> <span class="bu">input</span>.show_slider():</span>
+<span id="cb13-16"><a href="#cb13-16"></a>            <span class="cf">return</span> ui.input_slider(<span class="st">"n"</span>, <span class="st">"N"</span>, <span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">20</span>)</span>
+<span id="cb13-17"><a href="#cb13-17"></a></span>
 <span id="cb13-18"><a href="#cb13-18"></a></span>
-<span id="cb13-19"><a href="#cb13-19"></a></span>
-<span id="cb13-20"><a href="#cb13-20"></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-19"><a href="#cb13-19"></a>app <span class="op">=</span> App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2">
 <h2>Dynamic UI</h2>

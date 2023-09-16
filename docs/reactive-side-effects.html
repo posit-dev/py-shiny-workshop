@@ -436,11 +436,11 @@ Warning
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Identify that this is a reactive effect called for its side effects</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="1">Identify that this is a reactive effect called for its side effects</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="2">Define which inputs should trigger the effect.</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="2">Define which inputs should trigger the effect.</span>
 </dd>
 </dl>
 <p>The distinction between values and side effects is crucial for using Shiny effectively because it determines which pattern you should use. You should use <code>reactive.Calc</code> when you want the <em>value</em> of a function, and <code>reactive.Effect</code> when you want a <em>side effect</em>. New Shiny developers often make the mistake of using one of these patterns for their entire application, and create needless complexity in their application. It’s a mistake to use <code>reactive.Effect</code> when you’re after the value of a function, and it’s a mistake to try to use <code>reactive.Calc</code> when you want a side effect. This short quiz can help develop an intuition about this distinction:</p>
