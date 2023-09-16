@@ -35,27 +35,32 @@ from helpers import problem_tabs, include_shiny_folder
 - WiFi:
   - Network: **Posit Conf 2023**
   - Password: **conf2023**
-- There are gender-neutral bathrooms located are among the Grand Suite Bathrooms.
+- There are gender-neutral bathrooms located among the Grand Suite Bathrooms.
 - There are two meditation/prayer rooms: Grand Suite 2A and Grand Suite 2B. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.
 - The lactation room is located in Grand Suite 1. Open Sunday - Tuesday 7:30 a.m. - 7:00 p.m., Wednesday 8:00 a.m. - 6:00 p.m.
-- Don't photograph people with red lanyards
+- Don't photograph people with red lanyards.
 - The Code of Conduct and COVID policies can be found at https://posit.co/code-of-conduct/.
 :::
 ## Outline for the day
 
-9:00-10:30 : Getting started with Shiny
+| Start | End   | Title                         |
+|-------|-------|-------------------------------|
+| 9:00  | 10:30 | Getting started with Shiny    |
+| 10:30 | 11:00 | Coffee break                  |
+| 11:00 | 12:30 | Reactivity                    |
+| 12:30 | 1:30  | Lunch                         |
+| 1:30  | 3:00  | UI Customization              |
+| 3:00  | 3:30  | Coffee break                  |
+| 3:30  | 5:00  | Workflow best practices / Q&A |
 
-10:30-11:00: Coffee break
-
-11:00-12:30 : Reactivity
-
-12:30 - 13:30: Lunch
-
-13:30 - 14:00: UI Customization
-
-15:00 - 15:30: Coffee break
-
-15:30 - 17:00: Workflow best practices / Q&A
+```{=html}
+<style>
+#outline-for-the-day table {
+  margin: 0;
+  margin-top: 2em;
+}
+</style>
+```
 
 ## Goals of Session 1
 
@@ -74,13 +79,13 @@ from helpers import problem_tabs, include_shiny_folder
 ## Exercises
 - All of the exercises and slides are running live on the [website](https://posit-dev.github.io/shiny-python-workshop-2023/)
 - You can do them on the website or open the apps in the `apps/problem-sets` folder
-- If you need help put a red sticker on your laptop, when you're done put up a green sticker
+- If you need help, put a red sticker on your laptop; when you're done, put up a green sticker
 
 ## Testing your setup
 
-1) In a terminal type `shiny create my-app`
+1) In a terminal, type `shiny create my-app`
 2) Open `my-app/app.py`
-3) Click the "run app" button in the top right of VS Code
+3) Click the "Run app" button in the top right of VS Code ([screenshot](https://camo.githubusercontent.com/5d947e6dff7d74fd1cf221e79583105c42e4986ae673ce79733ce5edbfdcdda5/68747470733a2f2f7368696e792e7273747564696f2e636f6d2f70792f646f63732f6173736574732f7673636f64652e706e67))
 4) If your local setup doesn't work, switch to Posit Workbench and try again
 
 
@@ -92,7 +97,7 @@ from helpers import problem_tabs, include_shiny_folder
 # | output: asis
 
 include_shiny_folder(
-    "apps/examples/0.0-penguins", components="viewer", viewer_height=500
+    "apps/examples/0.0-penguins", components="viewer", viewer_height=700
 )
 ```
 
@@ -103,7 +108,7 @@ include_shiny_folder(
 - Efficient
 
 ## Why Shiny for Python?
-- Shiny is designed to take you from prototype to product
+- Shiny is designed to take you from prototype to production
 - Easy enough to use for prototypes
 - Efficient enough to handle complexity
 - Everything you need to build production quality apps
@@ -181,11 +186,11 @@ app = App(app_ui, server)
 
 ## UI functions
 
-- UI functions are in the `ui` sub-module
+- UI functions are in the `ui` submodule
 - Inputs start with `ui.input_*()` and take an id, and options
-- Outputs start with `ui.output_*()` and usually just take an ID
+- Outputs start with `ui.output_*()` and usually just take an id
 - Other functions like `ui.h1()` or `ui.p()` add static HTML to the app
-- We'll get to layout functions in session 3
+- We'll get to layout functions in Session 3
 
 ## Your turn
 
@@ -193,7 +198,7 @@ Go to [exercises/1-hello-world](../exercises/1-hello-world.html) or run `apps/pr
 
 ## Server function
 
-- Every shiny app needs a `server` function
+- Every Shiny app needs a `server` function
 - The server function executes for each user session
 - This function contains **rendering functions** which define how to turn inputs into outputs
 
@@ -268,9 +273,9 @@ def server(input: Inputs, output: Outputs, session: Session):
         return f"n*2 is {input.n() * 2}"
 ```
 
-- Inputs are called `input.n()` not `input.n`
-- Referring to an input creates a reactive link between the input and output
-- When the input changes the rendering function will re-execute
+- Inputs are read by calling them like a function: `input.n()`, not `input.n`
+- The act of reading an input creates a reactive link between that input and the rendering function that's currently executing
+- When the input changes, the rendering function will re-execute
 - You can use multiple inputs in the same rendering function
 
 ## Your turn
@@ -279,13 +284,13 @@ Go to [exercises/3-add-filter](../exercises/3-add-filter.html) or work through e
 
 ## Recap
 
-Most shiny app development consists of variations of these three things:
+Most Shiny app development consists of variations of these three things:
 
-1) Add ui elements
+1) Add UI elements
 1) Add rendering functions
 1) Connect inputs and outputs
 
 
 ## Your turn
 
-Go to [exercises/4-add-plot](../exercises/4-add-plot.html) or work through exercises 1.10 locally.
+Go to [exercises/4-add-plot](../exercises/4-add-plot.html) or work through exercise 1.10 locally.
