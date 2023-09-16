@@ -116,14 +116,7 @@
     "href": "slides/getting-started.html#rendering-functions",
     "title": "Getting Started",
     "section": "Rendering functions",
-    "text": "Rendering functions\ndef server(input, output, session):\n    @output\n    @render.text\n    def txt():\n        return f\"n*2 is {input.n() * 2}\""
-  },
-  {
-    "objectID": "slides/getting-started.html#rendering-functions-1",
-    "href": "slides/getting-started.html#rendering-functions-1",
-    "title": "Getting Started",
-    "section": "Rendering functions",
-    "text": "Rendering functions\n\nFunctions are defined inside the main server function\nThey need to be decorated with @output and @render.* in that order\nThe function name should match the output id\nThe return value is sent to the Shiny UI"
+    "text": "Rendering functions\ndef server(input, output, session):\n    @output\n    @render.text\n    def txt():\n        return f\"n*2 is {input.n() * 2}\"\n\nFunctions are defined inside the main server function\nThey need to be decorated with @output and @render.* in that order\nThe function name should match the output id\nThe return value is sent to the Shiny UI"
   },
   {
     "objectID": "slides/getting-started.html#decorators-are-just-functions",

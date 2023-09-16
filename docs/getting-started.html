@@ -404,21 +404,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
-from shiny import App, render, ui
+from pathlib import Path
 
+from shiny import App, render, ui, reactive
 
 app_ui = ui.page_fluid(
-    ui.h2("Hello Shiny!"),
-    ui.input_slider("n", "N", 0, 100, 20),
-    ui.output_text_verbatim("txt"),
+    ui.input_radio_buttons(
+        "command_choice", "Choose a command", choices=["Option 1", "Option 2"]
+    ),
+    ui.output_ui("dynamic_text"),
+    ui.input_action_button("compute_button", "COMPUTE"),
 )
 
 
 def server(input, output, session):
     @output
+    @render.ui
+    def dynamic_text():
+        if input.command_choice() == "Option 1":
+            id = "output_text_1"
+        else:
+            id = "output_text_2"
+        return ui.output_text(id)
+
+    @output
     @render.text
-    def txt():
-        return f"n*2 is {input.n() * 2}"
+    @reactive.event(input.compute_button)
+    def output_text_1():
+        return "Result from option 1"
+
+    @output
+    @render.text
+    @reactive.event(input.compute_button)
+    def output_text_2():
+        return "Result from option 2"
 
 
 app = App(app_ui, server)
@@ -440,15 +459,15 @@ app = App(app_ui, server)
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Identify that this function is an output</span>
+<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-2">Identify that this function is an output</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Define output type</span>
+<span data-code-lines="2" data-code-annotation="2" data-code-cell="annotated-cell-2">Define output type</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="3">Function name connects it to output id</span>
+<span data-code-lines="3" data-code-annotation="3" data-code-cell="annotated-cell-2">Function name connects it to output id</span>
 </dd>
 </dl>
 </section>
