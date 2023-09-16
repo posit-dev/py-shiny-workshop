@@ -73,7 +73,7 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
 <br><br>
 
 :::{.large}
-Data scientists forget funcitons when writing Shiny UIs
+Data scientists forget functions when writing Shiny UIs
 :::
 
 ## UIs are just objects
@@ -157,7 +157,7 @@ app = App(app_ui, None)
 ## Benefits of functions
 - Defines the the logic in one place
 - First step on the abstraction ladder
-- Clarifies how components interact with eachother
+- Clarifies how components interact with each other
 
 
 ## Your turn
@@ -171,7 +171,7 @@ Go to [exercises/13-ui-functions](../exercises/13-ui-functions.html) or run prob
     - Summarizing data
     - Interacting with databases
 - It's fine to include this code inside reactive functions
-- As your appp grows you should separate them
+- As your app grows you should separate them
 
 ## Reactivity makes everything harder
 - Reactive context makes them inherently more difficult
@@ -181,7 +181,7 @@ Go to [exercises/13-ui-functions](../exercises/13-ui-functions.html) or run prob
     - Harder to reason about
 
 ## Pull logic out of the reactive context
-- Non-reactive functions are familliar and predictable
+- Non-reactive functions are familiar and predictable
 - You can call them in a notebook
 - You can write unit tests 
 - Makes your reactive code much clearer

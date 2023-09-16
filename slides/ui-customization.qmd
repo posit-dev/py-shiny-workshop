@@ -53,7 +53,7 @@ include_shiny_folder(
     file_name="app-solution.py",
     exclusions=["app.py"],
     components="viewer",
-    viewer_height=500,
+    viewer_height=650,
 )
 ```
 
@@ -149,12 +149,8 @@ app_ui = ui.page_fluid(
 - We have a `navset_tab` function which organizes `ui.nav` containers into tabs
 - `ui.nav` is itself a container and allows you lay out the things on the tab
 
-## Navsets
-::: {.nonincremental}
-- It's common to put apps in tabs
-- We have a set of `navset` functions which organize `ui.nav` containers in tabs
-- `ui.nav` is itself a container and allows you lay out the things on the tab
-:::
+. . .
+
 ```{.python}
 ui.navset_tab(
     ui.nav(
@@ -258,16 +254,15 @@ Go to [exercises/9-cards](../exercises/9-cards.html) or run `apps/problem-sets/e
 
 ```{.python}
 ui.row(
-        ui.column(
-            6,
-            ui.output_text("txt"),
-        ),
-        ui.column(
-            6,
-            ui.output_plot("my_plot"),
-            ),
-        ),
+    ui.column(
+        6,
+        ui.output_text("txt"),
     ),
+    ui.column(
+        6,
+        ui.output_plot("my_plot"),
+    ),
+),
 ```
 
 ## This is getting a bit complicated
@@ -276,7 +271,7 @@ ui.row(
 - You can end up with deeply nested function calls
 - Too many brackets
 - Too many indents
-- Luckily You can break UIs into variables and compose them
+- Luckily you can break UIs into variables and compose them
 
 ## UI functions are composable
 

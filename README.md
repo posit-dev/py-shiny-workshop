@@ -56,7 +56,7 @@ questions = Quiz(
             "choices": ["ui.input_plot", "ui.plot_input", "ui.plotInput"],
             "answer": "ui.Input_plot",
         },
-        "How do you remove a reacitve link??": {
+        "How do you remove a reactive link??": {
             "choices": ["reactive.isolate", "req", "reactive.Effect"],
             "answer": "reactive.isolate",
         },
