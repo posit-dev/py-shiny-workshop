@@ -348,7 +348,7 @@ include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 
 ## Dynamic UI
 
-- UI elements can be generated like any other elements
+- UI elements can be generated like any other element
 - Use `ui.ui_ouput()` in the UI object
 - Use `@render.ui` on the server
 - Function returns any `ui` element
@@ -371,7 +371,6 @@ def server(input, output, session):
     @output
     @render.ui
     def dynamic_slider():
-        print(input.show_slider())
         if input.show_slider():
             return ui.input_slider("n", "N", 0, 100, 20)
 
