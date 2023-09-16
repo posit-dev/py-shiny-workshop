@@ -499,14 +499,6 @@ Gordon Shotwell &amp; Joe Cheng
 <h2>How this session works</h2>
 <ul>
 <li class="fragment">This session is going to be exercise based</li>
-<li class="fragment">We want to get into trouble</li>
-<li class="fragment">Don’t worry about understanding at this point, just get things working</li>
-<li class="fragment">Expect frustration</li>
-</ul>
-</section>
-<section id="exercises" class="slide level2">
-<h2>Exercises</h2>
-<ul>
 <li class="fragment">All of the exercises and slides are running live on the <a href="https://posit-dev.github.io/shiny-python-workshop-2023/">website</a></li>
 <li class="fragment">You can do them on the website or open the apps in the <code>apps/problem-sets</code> folder</li>
 <li class="fragment">If you need help, put a red sticker on your laptop; when you’re done, put up a green sticker</li>
@@ -520,6 +512,19 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">Click the “Run app” button in the top right of VS Code (<a href="https://camo.githubusercontent.com/5d947e6dff7d74fd1cf221e79583105c42e4986ae673ce79733ce5edbfdcdda5/68747470733a2f2f7368696e792e7273747564696f2e636f6d2f70792f646f63732f6173736574732f7673636f64652e706e67">screenshot</a>)</li>
 <li class="fragment">If your local setup doesn’t work, switch to Posit Workbench and try again</li>
 </ol>
+</section>
+<section id="posit-workbench-information" class="slide level2">
+<h2>Posit workbench information</h2>
+<div>
+<ol type="1">
+<li>Go to https://colorado.posit.co/rsc/class/</li>
+<li>Enter identifier “shinypython”</li>
+<li>Copy the url and credentials somewhere on your computer</li>
+<li>Login to workbench</li>
+<li>Clone the repo <code>git clone https://github.com/posit-dev/shiny-python-workshop-2023.git</code></li>
+<li>Open the workshop folder in VS Code</li>
+</ol>
+</div>
 </section></section>
 <section>
 <section class="title-slide slide level1">
@@ -1126,7 +1131,7 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb8-5"><a href="#cb8-5"></a>        <span class="cf">return</span> <span class="ss">f"n*2 is </span><span class="sc">{</span><span class="bu">input</span><span class="sc">.</span>n() <span class="op">*</span> <span class="dv">2</span><span class="sc">}</span><span class="ss">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li class="fragment">Inputs are read by calling them like a function: <code>input.n()</code>, not <code>input.n</code></li>
-<li class="fragment">The act of reading an input creates a reactive link between that input and the rendering function that’s currently executing</li>
+<li class="fragment">Referring to an input creates a reactive link between that input and the rendering function</li>
 <li class="fragment">When the input changes, the rendering function will re-execute</li>
 <li class="fragment">You can use multiple inputs in the same rendering function</li>
 </ul>

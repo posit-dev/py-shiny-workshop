@@ -25,14 +25,7 @@
     "href": "slides/getting-started.html#how-this-session-works",
     "title": "Getting Started",
     "section": "How this session works",
-    "text": "How this session works\n\nThis session is going to be exercise based\nWe want to get into trouble\nDon’t worry about understanding at this point, just get things working\nExpect frustration"
-  },
-  {
-    "objectID": "slides/getting-started.html#exercises",
-    "href": "slides/getting-started.html#exercises",
-    "title": "Getting Started",
-    "section": "Exercises",
-    "text": "Exercises\n\nAll of the exercises and slides are running live on the website\nYou can do them on the website or open the apps in the apps/problem-sets folder\nIf you need help, put a red sticker on your laptop; when you’re done, put up a green sticker"
+    "text": "How this session works\n\nThis session is going to be exercise based\nAll of the exercises and slides are running live on the website\nYou can do them on the website or open the apps in the apps/problem-sets folder\nIf you need help, put a red sticker on your laptop; when you’re done, put up a green sticker"
   },
   {
     "objectID": "slides/getting-started.html#testing-your-setup",
@@ -40,6 +33,13 @@
     "title": "Getting Started",
     "section": "Testing your setup",
     "text": "Testing your setup\n\nIn a terminal, type shiny create my-app\nOpen my-app/app.py\nClick the “Run app” button in the top right of VS Code (screenshot)\nIf your local setup doesn’t work, switch to Posit Workbench and try again"
+  },
+  {
+    "objectID": "slides/getting-started.html#posit-workbench-information",
+    "href": "slides/getting-started.html#posit-workbench-information",
+    "title": "Getting Started",
+    "section": "Posit workbench information",
+    "text": "Posit workbench information\n\n\nGo to https://colorado.posit.co/rsc/class/\nEnter identifier “shinypython”\nCopy the url and credentials somewhere on your computer\nLogin to workbench\nClone the repo git clone https://github.com/posit-dev/shiny-python-workshop-2023.git\nOpen the workshop folder in VS Code"
   },
   {
     "objectID": "slides/getting-started.html#whats-a-shiny-app",
@@ -151,7 +151,7 @@
     "href": "slides/getting-started.html#connecting-inputs-to-outputs",
     "title": "Getting Started",
     "section": "Connecting inputs to outputs",
-    "text": "Connecting inputs to outputs\ndef server(input: Inputs, output: Outputs, session: Session):\n    @output\n    @render.text\n    def txt():\n        return f\"n*2 is {input.n() * 2}\"\n\nInputs are read by calling them like a function: input.n(), not input.n\nThe act of reading an input creates a reactive link between that input and the rendering function that’s currently executing\nWhen the input changes, the rendering function will re-execute\nYou can use multiple inputs in the same rendering function"
+    "text": "Connecting inputs to outputs\ndef server(input: Inputs, output: Outputs, session: Session):\n    @output\n    @render.text\n    def txt():\n        return f\"n*2 is {input.n() * 2}\"\n\nInputs are read by calling them like a function: input.n(), not input.n\nReferring to an input creates a reactive link between that input and the rendering function\nWhen the input changes, the rendering function will re-execute\nYou can use multiple inputs in the same rendering function"
   },
   {
     "objectID": "slides/getting-started.html#your-turn-2",
