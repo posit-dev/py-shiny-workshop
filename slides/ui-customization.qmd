@@ -43,20 +43,24 @@ from helpers import problem_tabs, include_shiny_folder, Quiz, multiple_choice_ap
 - Good UI design simplifies your application code 
 - Intuitive UIs mean fewer questions 
 
+## Where we're headed
+
+```{python}
+# | echo: false
+# | output: asis
+include_shiny_folder(
+    "apps/problem-sets/4-ui-customization/4.7-conditional-panel",
+    file_name="app-solution.py",
+    exclusions=["app.py"],
+    components="viewer",
+    viewer_height=500,
+)
+```
+
 ## Anatomy of Shiny's UI
 
-- The UI is separate from the server
-- UI is made up of pure functions
-    - You can break them into objects
-    - You can create them with functions
-- Opinionated
-    - Your inputs get labels
-    - Reasonable look and feel
-- Customizable 
-    - Everything can be styled with CSS
-    - If you know JavaScript, you can use JavaScript
-
-## Anatomy of Shiny's UI
+:::: {.columns}
+::: column
 ```{.python}
 app_ui = ui.page_fluid(
     ui.panel_title("Hello Penguins!"),
@@ -72,6 +76,20 @@ app_ui = ui.page_fluid(
     ),
 )
 ```
+:::
+::: column
+- The UI is separate from the server
+- UI is made up of pure functions
+    - You can break them into objects
+    - You can create them with functions
+- Opinionated
+    - Your inputs get labels
+    - Reasonable look and feel
+- Customizable 
+    - Everything can be styled with CSS
+    - If you know JavaScript, you can use JavaScript
+:::
+::::
 
 ## Some nomenclature
 
@@ -128,7 +146,7 @@ app_ui = ui.page_fluid(
 
 ## Navsets
 - It's common to put apps in tabs
-- We have a set of `navset` functions which organize `ui.nav` containers in tabs
+- We have a `navset_tab` function which organizes `ui.nav` containers into tabs
 - `ui.nav` is itself a container and allows you lay out the things on the tab
 
 ## Navsets
@@ -170,6 +188,7 @@ Go to [exercises/8-navsets](../exercises/8-navsets.html) or run `apps/problem-se
 - Useful for grouping inputs and outputs
 - "Dashboards" are just web apps in boxes
 - Currently in experimental, import with `import shiny.experimental as x`
+- Called with `x.ui.card`
 - Cards can take `x.ui.card_header` and `x.ui.card_footer`
 
 ## Cards
@@ -329,7 +348,7 @@ include_shiny_folder("apps/examples/4.1.1-dynamic-ui", components="viewer")
 
 ## Dynamic UI
 
-- UI elements can be generated like any other elements
+- UI elements can be generated like any other element
 - Use `ui.ui_ouput()` in the UI object
 - Use `@render.ui` on the server
 - Function returns any `ui` element
@@ -352,7 +371,6 @@ def server(input, output, session):
     @output
     @render.ui
     def dynamic_slider():
-        print(input.show_slider())
         if input.show_slider():
             return ui.input_slider("n", "N", 0, 100, 20)
 

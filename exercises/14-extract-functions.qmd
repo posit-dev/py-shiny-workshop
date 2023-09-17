@@ -13,7 +13,7 @@ def workflow_tabs(file):
     problem_tabs(f"apps/problem-sets/5-workflows/{file}")
 ```
 
-## Exercise 5.1
+## Exercise 5.3
 
 ```{python}
 # | echo: false
