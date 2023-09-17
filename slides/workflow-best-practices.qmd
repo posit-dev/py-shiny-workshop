@@ -203,3 +203,8 @@ Go to [exercises/14-extract-functions](../exercises/14-extract-functions.html) o
 - Essential for large applications
 
 # Question & Answer
+
+<br><br><br>
+
+Also, please fill out the survey:  
+[https://pos.it/conf-workshop-survey](https://pos.it/conf-workshop-survey)
