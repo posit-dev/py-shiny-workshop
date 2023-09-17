@@ -396,18 +396,14 @@ flowchart TD
 - Works for dynamic UIs
 - Shiny is lazy 
 
-## Your turn
-
-TODO: Insert reactivity exercise here
-
 # Reactive calculations
 
-## Handling repetition
+## Saving and reusing calculated values
 
 - So far we've been working with shallow reactive graphs
 - Each input is passed to a rendering function which produces an output
 - Input -> Recipe -> Output can produce repetitive, inefficient applications
-- `@reactive.Calc` lets you define calculations which are consumed by downstream functions
+- `@reactive.Calc` creates calculations whose results can be used by one _or more_ outputs
 - This adds intermediate nodes to the reactive graph
 
 ## Reactive Calc example
@@ -449,7 +445,7 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 
 ## Reactive Calculation to the rescue
 ```{.python code-line-numbers="1-4,9,15"}
-    @reactive.Cale
+    @reactive.Calc
     def sampled_df():
         rand = np.random.rand(input.n_rows(), 1)
         df = pd.DataFrame(rand, columns=["col_1"])
@@ -690,7 +686,7 @@ flowchart TD
 Go to [exercises/5-reactivity](../exercises/5-reactivity.html) or run `apps/problem-sets/exercises/5-reactivity` locally.
 
 
-## Exercise 2.2 answer 
+## Exercise 2.3 answer 
 
 ```{mermaid}
 flowchart TD
@@ -702,9 +698,9 @@ flowchart TD
   classDef changed fill:#f96
 ```
 
-## Escaping reactivity
+# Overriding reactivity
 
-- By default, any change in an input will trigger immediate recalculation in all outputs that use it
+- By default, when an input changes, any outputs that use it will recalculate
 - This isn't always the user interaction you want
     - Database queries
     - Expensive modeling
@@ -714,15 +710,13 @@ flowchart TD
 
 ## Example
 
-TODO: Shouldn't this be showing app-solution.py, not app.py?
-
 ```{python}
 # | echo: false
 # | output: asis
 include_shiny_folder(
     "apps/problem-sets/2-reactivity/2.3-reactive-event",
-    file_name="app.py",
-    exclusions=["app-solution.py"],
+    file_name="app-solution.py",
+    exclusions=["app.py"],
     components="viewer",
     viewer_height=500,
 )
@@ -737,10 +731,10 @@ def txt():
   return "Here is my text"
 ```
 
-- Reactive event is an explicit way to create a reactive link
-- It can be used in conjunction with rendering functions, `reactive.Calc` and `reactive.Effect`
-- It tells shiny to invalidate the node whenever or or more inputs change
-- `reactive.event` is often used with action buttons or action links
+- `@reactive.event` overrides the usual _implicit_ dependency detection with an _explicit_ trigger
+- It can be applied to rendering functions or to `@reactive.Calc`
+- It tells Shiny to invalidate the object whenever or more inputs change
+- `@reactive.event` is often used with action buttons or action links
 
 ## Your turn
 
@@ -751,10 +745,9 @@ Go to [exercises/6-reactive-event](../exercises/6-reactive-event.html) or run `a
 
 ## What we've learned
 - How Shiny re-renders elements 
-- How Shiny detects dependencies between elements (renders and inputs)
-- How to add depth to the reactive graph with `reactive.Calc`
-- How to explicitly specify dependencies with `reactive.event`
-
+- How Shiny detects dependencies between elements (inputs and outputs)
+- How to create reusable calculations with `@reactive.Calc`
+- How to explicitly control reactivity with `@reactive.event`
 
 ## Is that enough?
 - Shiny has a function `ui.show_modal` which triggers a modal window. 
@@ -770,12 +763,11 @@ include_shiny_folder(
 )
 ```
 
-## Reactivity is for values
-- Normal reactive elements pass values 
-- A node is invalidated when the last value it received is out of date
-- Rendering functions and `reactive.Calc` all expect a return value
-- We often don't care about values
-- When the user clicks a button we care about the fact that they clicked it
+## Return values vs. side effects
+- Inputs, outputs, and calculations all produce values
+- When an input value changes, downstream calculations and outputs might need to have their values updated as well
+- But sometimes we want to execute some code that doesn't produce a value
+  - Doesn't fit in the categories of "calculation" or "output"
 
 ## Reactive Effects
 - The `@reactive.Effect` decorator allows you to react to an input without returning a value
@@ -796,7 +788,16 @@ def toggle_modal():
 
 ## The rule
 
-### Use `reactive.Calc` or `render.*` when you want a **value** use `@reactive.Effect` when you want a **side effect**
+* Code that produces an output: `@output` + `@render.*`
+* Code that produces an intermediate value: `@reactive.Calc`
+* **Code that produces only side effects: `@reactive.Effect`**
+
+. . .
+
+::: nonincremental
+* Code that produces a value _and_ a side effect: _Don't do this!_
+  * The "command-query separation" principle
+:::
 
 ## What's a side effect?
 ```{python}
@@ -853,4 +854,4 @@ multiple_choice_app(questions)
 
 ## Your turn
 
-Go to [exercises/7-reactivity](../exercises/7-reactivity.html) or run `apps/problem-sets/3-reactive-effects/3.1-update-slider` locally.
+Go to [exercises/7-reactive-effects](../exercises/7-reactive-effects.html) or run `apps/problem-sets/3-reactive-effects/3.1-update-slider` locally.
