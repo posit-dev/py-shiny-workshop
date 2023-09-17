@@ -1828,23 +1828,19 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">Works for dynamic UIs</li>
 <li class="fragment">Shiny is lazy</li>
 </ul>
-</section>
-<section id="your-turn-1" class="slide level2">
-<h2>Your turn</h2>
-<p>TODO: Insert reactivity exercise here</p>
 </section></section>
 <section>
 <section class="title-slide slide level1">
 <h1>Reactive calculations</h1>
 
 </section>
-<section id="handling-repetition" class="slide level2">
-<h2>Handling repetition</h2>
+<section id="saving-and-reusing-calculated-values" class="slide level2">
+<h2>Saving and reusing calculated values</h2>
 <ul>
 <li class="fragment">So far we’ve been working with shallow reactive graphs</li>
 <li class="fragment">Each input is passed to a rendering function which produces an output</li>
 <li class="fragment">Input -&gt; Recipe -&gt; Output can produce repetitive, inefficient applications</li>
-<li class="fragment"><code>@reactive.Calc</code> lets you define calculations which are consumed by downstream functions</li>
+<li class="fragment"><code>@reactive.Calc</code> creates calculations whose results can be used by one <em>or more</em> outputs</li>
 <li class="fragment">This adds intermediate nodes to the reactive graph</li>
 </ul>
 </section>
@@ -1920,7 +1916,7 @@ Gordon Shotwell &amp; Joe Cheng
 </section>
 <section id="reactive-calculation-to-the-rescue" class="slide level2">
 <h2>Reactive Calculation to the rescue</h2>
-<div class="sourceCode" id="cb7" data-code-line-numbers="1-4,9,15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="at">@reactive.Cale</span></span>
+<div class="sourceCode" id="cb7" data-code-line-numbers="1-4,9,15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>    <span class="at">@reactive.Calc</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>    <span class="kw">def</span> sampled_df():</span>
 <span id="cb7-3"><a href="#cb7-3"></a>        rand <span class="op">=</span> np.random.rand(<span class="bu">input</span>.n_rows(), <span class="dv">1</span>)</span>
 <span id="cb7-4"><a href="#cb7-4"></a>        df <span class="op">=</span> pd.DataFrame(rand, columns<span class="op">=</span>[<span class="st">"col_1"</span>])</span>
@@ -2320,12 +2316,12 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </div>
 </section>
-<section id="your-turn-2" class="slide level2">
+<section id="your-turn-1" class="slide level2">
 <h2>Your turn</h2>
 <p>Go to <a href="../exercises/5-reactivity.html">exercises/5-reactivity</a> or run <code>apps/problem-sets/exercises/5-reactivity</code> locally.</p>
 </section>
-<section id="exercise-2.2-answer" class="slide level2">
-<h2>Exercise 2.2 answer</h2>
+<section id="exercise-2.3-answer" class="slide level2">
+<h2>Exercise 2.3 answer</h2>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2343,11 +2339,12 @@ Gordon Shotwell &amp; Joe Cheng
 </div>
 </div>
 </div>
-</section>
-<section id="escaping-reactivity" class="slide level2">
-<h2>Escaping reactivity</h2>
+</section></section>
+<section>
+<section class="title-slide slide level1">
+<h1>Overriding reactivity</h1>
 <ul>
-<li class="fragment">By default, any change in an input will trigger immediate recalculation in all outputs that use it</li>
+<li class="fragment">By default, when an input changes, any outputs that use it will recalculate</li>
 <li class="fragment">This isn’t always the user interaction you want
 <ul>
 <li class="fragment">Database queries</li>
@@ -2360,7 +2357,6 @@ Gordon Shotwell &amp; Joe Cheng
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<p>TODO: Shouldn’t this be showing app-solution.py, not app.py?</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>#| standalone: true</span>
 <span id="cb8-2"><a href="#cb8-2"></a>#| components: [viewer]</span>
 <span id="cb8-3"><a href="#cb8-3"></a>#| layout: horizontal</span>
@@ -2369,21 +2365,23 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb8-6"><a href="#cb8-6"></a></span>
 <span id="cb8-7"><a href="#cb8-7"></a>app_ui = ui.page_fluid(</span>
 <span id="cb8-8"><a href="#cb8-8"></a>    ui.input_text("input_txt", "Enter text"),</span>
-<span id="cb8-9"><a href="#cb8-9"></a>    ui.output_text_verbatim("output_txt"),</span>
-<span id="cb8-10"><a href="#cb8-10"></a>)</span>
-<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a>    ui.input_action_button("send", "Enter"),</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    ui.output_text_verbatim("output_txt"),</span>
+<span id="cb8-11"><a href="#cb8-11"></a>)</span>
 <span id="cb8-12"><a href="#cb8-12"></a></span>
-<span id="cb8-13"><a href="#cb8-13"></a>def server(input, output, session):</span>
-<span id="cb8-14"><a href="#cb8-14"></a>    @output</span>
-<span id="cb8-15"><a href="#cb8-15"></a>    @render.text</span>
-<span id="cb8-16"><a href="#cb8-16"></a>    def output_txt():</span>
-<span id="cb8-17"><a href="#cb8-17"></a>        return input.input_txt()</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a></span>
-<span id="cb8-20"><a href="#cb8-20"></a>app = App(app_ui, server)</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a>def server(input, output, session):</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    @output</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    @render.text</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    @reactive.event(input.send)</span>
+<span id="cb8-18"><a href="#cb8-18"></a>    def output_txt():</span>
+<span id="cb8-19"><a href="#cb8-19"></a>        return input.input_txt()</span>
+<span id="cb8-20"><a href="#cb8-20"></a></span>
 <span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a>## file: README</span>
-<span id="cb8-23"><a href="#cb8-23"></a>Add an `input.action_button` to the app, and use `@reactive.event` to prevent the text from printing until the user presses the button.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-22"><a href="#cb8-22"></a>app = App(app_ui, server)</span>
+<span id="cb8-23"><a href="#cb8-23"></a></span>
+<span id="cb8-24"><a href="#cb8-24"></a>## file: README</span>
+<span id="cb8-25"><a href="#cb8-25"></a>Add an `input.action_button` to the app, and use `@reactive.event` to prevent the text from printing until the user presses the button.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="reactive.event" class="slide level2">
 <h2>reactive.event</h2>
@@ -2393,13 +2391,13 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb9-4"><a href="#cb9-4"></a><span class="kw">def</span> txt():</span>
 <span id="cb9-5"><a href="#cb9-5"></a>  <span class="cf">return</span> <span class="st">"Here is my text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li class="fragment">Reactive event is an explicit way to create a reactive link</li>
-<li class="fragment">It can be used in conjunction with rendering functions, <code>reactive.Calc</code> and <code>reactive.Effect</code></li>
-<li class="fragment">It tells shiny to invalidate the node whenever or or more inputs change</li>
-<li class="fragment"><code>reactive.event</code> is often used with action buttons or action links</li>
+<li class="fragment"><code>@reactive.event</code> overrides the usual <em>implicit</em> dependency detection with an <em>explicit</em> trigger</li>
+<li class="fragment">It can be applied to rendering functions or to <code>@reactive.Calc</code></li>
+<li class="fragment">It tells Shiny to invalidate the object whenever or more inputs change</li>
+<li class="fragment"><code>@reactive.event</code> is often used with action buttons or action links</li>
 </ul>
 </section>
-<section id="your-turn-3" class="slide level2">
+<section id="your-turn-2" class="slide level2">
 <h2>Your turn</h2>
 <p>Go to <a href="../exercises/6-reactive-event.html">exercises/6-reactive-event</a> or run <code>apps/problem-sets/2-reactivity/2.3-reactive-event</code> locally.</p>
 </section></section>
@@ -2412,9 +2410,9 @@ Gordon Shotwell &amp; Joe Cheng
 <h2>What we’ve learned</h2>
 <ul>
 <li class="fragment">How Shiny re-renders elements</li>
-<li class="fragment">How Shiny detects dependencies between elements (renders and inputs)</li>
-<li class="fragment">How to add depth to the reactive graph with <code>reactive.Calc</code></li>
-<li class="fragment">How to explicitly specify dependencies with <code>reactive.event</code></li>
+<li class="fragment">How Shiny detects dependencies between elements (inputs and outputs)</li>
+<li class="fragment">How to create reusable calculations with <code>@reactive.Calc</code></li>
+<li class="fragment">How to explicitly control reactivity with <code>@reactive.event</code></li>
 </ul>
 </section>
 <section id="is-that-enough" class="slide level2">
@@ -2449,14 +2447,15 @@ Gordon Shotwell &amp; Joe Cheng
 <span id="cb10-24"><a href="#cb10-24"></a></span>
 <span id="cb10-25"><a href="#cb10-25"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="reactivity-is-for-values" class="slide level2">
-<h2>Reactivity is for values</h2>
+<section id="return-values-vs.-side-effects" class="slide level2">
+<h2>Return values vs.&nbsp;side effects</h2>
 <ul>
-<li class="fragment">Normal reactive elements pass values</li>
-<li class="fragment">A node is invalidated when the last value it received is out of date</li>
-<li class="fragment">Rendering functions and <code>reactive.Calc</code> all expect a return value</li>
-<li class="fragment">We often don’t care about values</li>
-<li class="fragment">When the user clicks a button we care about the fact that they clicked it</li>
+<li class="fragment">Inputs, outputs, and calculations all produce values</li>
+<li class="fragment">When an input value changes, downstream calculations and outputs might need to have their values updated as well</li>
+<li class="fragment">But sometimes we want to execute some code that doesn’t produce a value
+<ul>
+<li class="fragment">Doesn’t fit in the categories of “calculation” or “output”</li>
+</ul></li>
 </ul>
 </section>
 <section id="reactive-effects" class="slide level2">
@@ -2478,7 +2477,21 @@ Gordon Shotwell &amp; Joe Cheng
 </section>
 <section id="the-rule" class="slide level2">
 <h2>The rule</h2>
-<h3 id="use-reactive.calc-or-render.-when-you-want-a-value-use-reactive.effect-when-you-want-a-side-effect">Use <code>reactive.Calc</code> or <code>render.*</code> when you want a <strong>value</strong> use <code>@reactive.Effect</code> when you want a <strong>side effect</strong></h3>
+<ul>
+<li class="fragment">Code that produces an output: <code>@output</code> + <code>@render.*</code></li>
+<li class="fragment">Code that produces an intermediate value: <code>@reactive.Calc</code></li>
+<li class="fragment"><strong>Code that produces only side effects: <code>@reactive.Effect</code></strong></li>
+</ul>
+<div class="fragment">
+<div>
+<ul>
+<li>Code that produces a value <em>and</em> a side effect: <em>Don’t do this!</em>
+<ul>
+<li>The “command-query separation” principle</li>
+</ul></li>
+</ul>
+</div>
+</div>
 </section>
 <section id="whats-a-side-effect" class="slide level2">
 <h2>What’s a side effect?</h2>
@@ -2562,9 +2575,9 @@ Gordon Shotwell &amp; Joe Cheng
 <li class="fragment">If your solution feels complicated and painful, ask whether you should use the other strategy</li>
 </ul>
 </section>
-<section id="your-turn-4" class="slide level2">
+<section id="your-turn-3" class="slide level2">
 <h2>Your turn</h2>
-<p>Go to <a href="../exercises/7-reactivity.html">exercises/7-reactivity</a> or run <code>apps/problem-sets/3-reactive-effects/3.1-update-slider</code> locally.</p>
+<p>Go to <a href="../exercises/7-reactive-effects.html">exercises/7-reactive-effects</a> or run <code>apps/problem-sets/3-reactive-effects/3.1-update-slider</code> locally.</p>
 
 <div class="footer footer-default">
 
