@@ -21,7 +21,6 @@ app_ui = ui.page_fluid(
         ),
         ui.panel_main(
             ui.output_plot("scatter"),
-            ui.output_data_frame("table"),
             ui.output_plot("dist"),
         ),
     ),
@@ -29,19 +28,6 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    @output
-    @render.data_frame
-    def table():
-        df = penguins.copy()
-        filtered = df.loc[df["body_mass"] < input.mass()]
-        summary = (
-            filtered.set_index("species")
-            .groupby(level="species")
-            .agg({"bill_length": "mean", "bill_depth": "mean"})
-            .reset_index()
-        )
-        return summary
-
     @output
     @render.plot
     def dist():

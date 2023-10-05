@@ -5,8 +5,7 @@ import numpy as np
 
 app_ui = ui.page_fluid(
     ui.input_slider("n_rows", "Sample rows", 0, 100, 20),
-    ui.output_plot("hist"),
-    ui.output_table("df"),
+    ui.row(ui.column(4, ui.output_table("df")), ui.column(8, ui.output_plot("hist"))),
 )
 
 
