@@ -1,23 +1,8 @@
 ---
 title: "Reactivity"
-author: "Gordon Shotwell & Joe Cheng"
-title-slide-attributes: 
-  data-background-color: black
-  data-background-image:  images/toc-people-dark.svg
-  data-background-size: contain
-format:
-  positconfslides-revealjs: 
+format: 
+  revealjs:
     incremental: true
-    chalkboard: true
-    slide-number: c/t
-    code-copy: true
-    center-title-slide: false
-    highlight-style: a11y
-    width: "1600"
-    height: "900"
-    css: "styles.css"
-    filters:
-      - positconfslides
 ---
 ```{python}
 # | echo: false
@@ -127,6 +112,7 @@ app = App(app_ui, server)
 ## Reactive graph
 
 ```{mermaid}
+%%| fig-width: 2
 flowchart TD
   S[Slider] --> R{Recipe}
   R --> Sc((Text))
@@ -135,6 +121,7 @@ flowchart TD
 ## Reactive graph
 
 ```{mermaid}
+%%| fig-width: 2
 flowchart TD
   S[Slider] --> Sc((Text))
 ```
@@ -170,6 +157,7 @@ include_shiny_folder(
 ## Initial state
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
     Sl[Slider]  --> Sc 
@@ -182,6 +170,7 @@ flowchart TD
 ## Calculate scatter plot
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
     Sl[Slider]  --> Sc 
@@ -195,6 +184,7 @@ flowchart TD
 ## Calculate scatter plot
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
     Sl[Slider]  --> Sc 
@@ -206,6 +196,7 @@ flowchart TD
 ## Calculate distribution
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
     Sl[Slider]  --> Sc 
@@ -216,6 +207,7 @@ flowchart TD
 
 ## Calculate distribution
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
     Sl[Slider]  --> Sc 
@@ -227,6 +219,7 @@ flowchart TD
 ## Reactive graph
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
     Sl[Slider]  --> Sc 
@@ -237,6 +230,7 @@ flowchart TD
 ## Slider changes
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider]:::changed --> Sc 
@@ -248,6 +242,7 @@ flowchart TD
 ## Invalidated
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider]:::changed --> Sc 
@@ -258,6 +253,7 @@ flowchart TD
 
 ## Forget dependencies
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -271,6 +267,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -284,6 +281,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -296,6 +294,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -307,6 +306,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -317,6 +317,7 @@ flowchart TD
 
 ## Updated
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -327,6 +328,7 @@ flowchart TD
 
 ## Checkbox changes
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox]:::changed --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -338,6 +340,7 @@ flowchart TD
 ## Invalidated
 
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox]:::changed --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -348,6 +351,7 @@ flowchart TD
 
 ## Forget dependencies
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -360,6 +364,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -372,6 +377,7 @@ flowchart TD
 
 ## Recalculate
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot)):::changed
   Sl[Slider] --> Sc 
@@ -382,6 +388,7 @@ flowchart TD
 
 ## Updated
 ```{mermaid}
+%%| fig-width: 6
 flowchart TD
   C[Checkbox] --> Sc((Scatter\nPlot))
   Sl[Slider] --> Sc 
@@ -412,8 +419,9 @@ flowchart TD
 # | echo: false
 # | output: asis
 
-include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
+include_shiny_folder("apps/examples/2.0-simple-reactive-calc", components="viewer")
 ```
+
 
 ## Identify repetition
 ```{.python code-line-numbers="4,5,11,12"}
@@ -449,6 +457,7 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
     def sampled_df():
         rand = np.random.rand(input.n_rows(), 1)
         df = pd.DataFrame(rand, columns=["col_1"])
+        return df
 
     @output
     @render.table
@@ -477,6 +486,7 @@ include_shiny_folder("apps/examples/2.0-simple-reactive-calc")
 
 ## Initial state
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -490,6 +500,7 @@ flowchart TD
 
 ## Calculate table
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]:::changed
@@ -503,6 +514,7 @@ flowchart TD
 
 ## Calculate table
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]:::changed
@@ -515,6 +527,7 @@ flowchart TD
 
 ## Calculate sample
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]:::changed
   S --> T[Table]:::changed
@@ -527,6 +540,7 @@ flowchart TD
 
 ## Calculate sample
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]:::changed
   S --> T[Table]:::changed
@@ -538,6 +552,7 @@ flowchart TD
 
 ## Calculate plot
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -549,6 +564,7 @@ flowchart TD
 
 ## Calculate plot
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -559,6 +575,7 @@ flowchart TD
 
 ## Deep reactive graph
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -570,6 +587,7 @@ flowchart TD
 ## Slider changes
 
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider]:::changed --> S[Sample]
   S --> T[Table]
@@ -580,6 +598,7 @@ flowchart TD
 
 ## Invalidated
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider]:::changed --> S[Sample]:::changed
   S --> T[Table]
@@ -591,6 +610,7 @@ flowchart TD
 
 ## Invalidated
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider]:::changed --> S[Sample]:::changed
   S --> T[Table]:::changed
@@ -604,6 +624,7 @@ flowchart TD
 
 ## Recalculate table
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]:::changed
@@ -617,6 +638,7 @@ flowchart TD
 
 ## Recalculate table
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]:::changed
@@ -629,6 +651,7 @@ flowchart TD
 
 ## Recalculate sample
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]:::changed
   S --> T[Table]:::changed
@@ -641,6 +664,7 @@ flowchart TD
 
 ## Recalculate sample
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]:::changed
   S --> T[Table]:::changed
@@ -652,6 +676,7 @@ flowchart TD
 
 ## Recalculate plot
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -663,6 +688,7 @@ flowchart TD
 
 ## Recalculate plot
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -673,6 +699,7 @@ flowchart TD
 
 ## Updated
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S --> T[Table]
@@ -689,9 +716,11 @@ Go to [exercises/5-reactivity](../exercises/5-reactivity.html) or run `apps/prob
 ## Exercise 2.3 answer 
 
 ```{mermaid}
+%%| fig-width: 4
 flowchart TD
   Sl[Slider] --> S[Sample]
   S[Sample] --> F[Filter]
+  M[Mass] --> F
   F --> T((Table))
   S --> P((Plot))
   F --> Tx((Text))
@@ -855,3 +884,4 @@ multiple_choice_app(questions)
 ## Your turn
 
 Go to [exercises/7-reactive-effects](../exercises/7-reactive-effects.html) or run `apps/problem-sets/3-reactive-effects/3.1-update-slider` locally.
+
