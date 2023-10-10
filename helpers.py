@@ -136,6 +136,11 @@ def problem_tabs(path: str) -> None:
     block.extend(
         _include_shiny_folder(path, "app-solution.py", exclusions=["app.py", "README"])
     )
+    block.append("## {{< bi github >}}")
+    block.append(
+        f"The source code for this exercise is [here](https://github.com/posit-dev/shiny-python-workshop-2023/tree/main/{path})."
+    )
+
     block.append(":::")
     block.append(":::::")
     print(block)
