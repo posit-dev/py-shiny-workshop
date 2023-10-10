@@ -74,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.9.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -400,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Shiny apps are divided into two parts. The app <em>UI</em> consists of various input and output components, and the <em>server</em> expresses how those inputs and outputs should interact. Let’s start by creating a basic shiny app. To do this, you can call <code>shiny create .</code> in a project folder, or open up <code>apps/basic-app/app.py</code> in the repo. This is the simplest possible Shiny application with one input and one output.</p>
 <section id="section" class="level4">
 <h4 class="anchored" data-anchor-id="section"></h4>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -459,15 +460,15 @@ app = App(app_ui, server)
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Identify that this function is an output</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="1">Identify that this function is an output</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="2">Define output type</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="2" data-code-lines="2">Define output type</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-annotation="3" data-code-cell="annotated-cell-2" data-code-lines="3">Function name connects it to output id</span>
+<span data-code-cell="annotated-cell-2" data-code-annotation="3" data-code-lines="3">Function name connects it to output id</span>
 </dd>
 </dl>
 </section>
@@ -505,7 +506,7 @@ Tip
 <p>When reading in data it’s usually good to use pathlib <code>Path(__file__).parent</code> to reference the data relative to the current file. This makes it easier to call <code>shiny run</code> from other direcotries without error.</p>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -891,7 +892,7 @@ Test your understanding
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
 #| viewerHeight: 250
@@ -973,7 +974,7 @@ Warning
 <p>Be careful of mutability when manipulating objects in a data frame. Use <code>.copy</code> to make sure that you’re not changing the original object.</p>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -1365,7 +1366,7 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 <section id="add-a-plot" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="add-a-plot">Add a plot</h2>
 <p>We can add a plot to the app in the same way that we added a table. The steps are: 1) Add <code>ui.output_plot()</code> to the ui 2) Add a function whose name matches the id of the output 3) Decorate that function with <code>@output</code> and <code>@reactive.plot</code></p>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -1797,7 +1798,7 @@ Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
 <div class="column-screen-inset">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1819,7 +1820,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -2271,7 +2272,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -2728,7 +2729,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -3159,6 +3160,9 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>The source code for this exercise is <a href="https://github.com/posit-dev/shiny-python-workshop-2023/tree/main/apps/problem-sets/1-getting-started/1.10-add-plot">here</a>.</p>
 </div>
 </div>
 </div>

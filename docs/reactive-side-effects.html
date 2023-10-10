@@ -74,10 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.1.6/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/bootstrap-icons-1.9.1/all.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -382,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In the last section we learned about reactivity and reactive caluaitons. In general your default behaviour when developing Shiny apps is to not worry about when your calculations will be run in response to a users actions. Most of the time Shiny will infer the optimal render behaviour when you call inputs or reactive calculations in your code. There are, however, cases where you <em>do</em> want to intervene and tell Shiny when a piece of code should run, and the <code>@reactive.Effect</code> and <code>@reactive.event</code> decorators allow you to do this.</p>
 <p>Consider this application which opens and closes a model. There’s an input button which the user can click which opens a modal window, and clicking outside of that window closes it. How would you accomplish this behaviour using the Shiny tools you know so far?</p>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
 #| viewerHeight: 400
@@ -436,11 +437,11 @@ Warning
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="1" data-code-annotation="1" data-code-cell="annotated-cell-2">Identify that this is a reactive effect called for its side effects</span>
+<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="1">Identify that this is a reactive effect called for its side effects</span>
 </dd>
 <dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="2" data-code-annotation="2" data-code-cell="annotated-cell-2">Define which inputs should trigger the effect.</span>
+<span data-code-annotation="2" data-code-cell="annotated-cell-2" data-code-lines="2">Define which inputs should trigger the effect.</span>
 </dd>
 </dl>
 <p>The distinction between values and side effects is crucial for using Shiny effectively because it determines which pattern you should use. You should use <code>reactive.Calc</code> when you want the <em>value</em> of a function, and <code>reactive.Effect</code> when you want a <em>side effect</em>. New Shiny developers often make the mistake of using one of these patterns for their entire application, and create needless complexity in their application. It’s a mistake to use <code>reactive.Effect</code> when you’re after the value of a function, and it’s a mistake to try to use <code>reactive.Calc</code> when you want a side effect. This short quiz can help develop an intuition about this distinction:</p>
@@ -456,7 +457,7 @@ Test your understanding
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
 #| viewerHeight: 250
@@ -522,7 +523,7 @@ app = App(app_ui, server)
 <h1>Exercise</h1>
 <div class="column-screen-inset">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="callout callout-style-default callout-note callout-titled">
@@ -542,7 +543,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -961,7 +962,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -1374,7 +1375,7 @@ Exercise
 </div>
 </div>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [editor, viewer]
 #| layout: horizontal
 #| viewerHeight: 800
@@ -1774,6 +1775,9 @@ Chinstrap,Dream,49.6,18.2,193,3775,male,2009
 Chinstrap,Dream,50.8,19,210,4100,male,2009
 Chinstrap,Dream,50.2,18.7,198,3775,female,2009
 </code></pre>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>The source code for this exercise is <a href="https://github.com/posit-dev/shiny-python-workshop-2023/tree/main/apps/problem-sets/3-reactive-effects/3.1-update-slider">here</a>.</p>
 </div>
 </div>
 </div>
