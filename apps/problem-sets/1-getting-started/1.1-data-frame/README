@@ -1,1 +1,1 @@
-The app code is almost complete, but the server function is not connected to the UI element. Modify the code so the data frame actually appears.
+Add the right `@render` decorator to the `penguins_df` function to get the data frame to render.
