@@ -1,5 +1,5 @@
 from shiny.express import ui, input, render
-from shiny import req, reactive
+from shiny import render_plot, req, reactive
 import pandas as pd
 from pathlib import Path
 from plots import (
@@ -10,6 +10,7 @@ from plots import (
 )
 import faicons as fa
 import io
+from shinywidgets import render_plotly
 
 file_path = Path(__file__).parent / "simulated-data.csv"
 
@@ -68,7 +69,7 @@ with ui.navset_bar(id="tabs", title="Monitoring"):
             with ui.card():
                 ui.card_header("Model Metrics")
 
-                @render.plot
+                @render_plotly
                 def metric():
                     df_value = df()
                     df_filtered = df_value[df_value["account"] == input.account()]
@@ -89,7 +90,7 @@ with ui.navset_bar(id="tabs", title="Monitoring"):
             with ui.card():
                 ui.card_header("Training Scores")
 
-                @render.plot
+                @render_plotly
                 def score_dist():
                     df_value = df()
                     df_filtered = df_value[df_value["account"] == input.account()]
@@ -117,16 +118,13 @@ with ui.navset_bar(id="tabs", title="Monitoring"):
             with ui.card():
                 ui.card_header("API Response Time")
 
-                @render.plot
+                @render_plotly
                 def api_response():
                     return plot_api_response(filtered_data())
 
             with ui.card():
                 ui.card_header("Production Scores")
 
-                with ui.navset_tab():
-                    with ui.nav_panel("Score Distribution"):
-
-                        @render.plot
-                        def prod_score_dist():
-                            return plot_score_distribution(filtered_data())
+                @render_plotly
+                def prod_score_dist():
+                    return plot_score_distribution(filtered_data())
