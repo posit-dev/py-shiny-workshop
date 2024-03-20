@@ -14,6 +14,8 @@ from shinywidgets import render_plotly
 
 file_path = Path(__file__).parent / "simulated-data.csv"
 
+ui.page_opts(title="Monitoring")
+
 
 @reactive.file_reader(file_path, interval_secs=0.2)
 def df():
@@ -62,44 +64,44 @@ def filtered_data() -> pd.DataFrame:
     sample_df = sample_df.loc[sample_df["account"] == input.account()]
     return sample_df.reset_index(drop=True)
 
+ui.nav_spacer()
 
-with ui.navset_bar(id="tabs", title="Monitoring"):
-    with ui.nav_panel("Training Dashboard"):
-        with ui.layout_columns():
-            with ui.card():
-                ui.card_header("Model Metrics")
+with ui.nav_panel("Training Dashboard"):
+    with ui.layout_columns():
+        with ui.card():
+            ui.card_header("Model Metrics")
 
-                @render_plotly
-                def metric():
-                    df_value = df()
-                    df_filtered = df_value[df_value["account"] == input.account()]
-                    if input.metric() == "ROC Curve":
-                        return plot_auc_curve(
-                            df_filtered, "is_electronics", "training_score"
-                        )
-                    else:
-                        return plot_precision_recall_curve(
-                            df_filtered, "is_electronics", "training_score"
-                        )
+            @render_plotly
+            def metric():
+                df_value = df()
+                df_filtered = df_value[df_value["account"] == input.account()]
+                if input.metric() == "ROC Curve":
+                    return plot_auc_curve(
+                        df_filtered, "is_electronics", "training_score"
+                    )
+                else:
+                    return plot_precision_recall_curve(
+                        df_filtered, "is_electronics", "training_score"
+                    )
 
-                ui.input_select(
-                    "metric",
-                    "Metric",
-                    choices=["ROC Curve", "Precision-Recall"],
-                )
-            with ui.card():
-                ui.card_header("Training Scores")
+            ui.input_select(
+                "metric",
+                "Metric",
+                choices=["ROC Curve", "Precision-Recall"],
+            )
+        with ui.card():
+            ui.card_header("Training Scores")
 
-                @render_plotly
-                def score_dist():
-                    df_value = df()
-                    df_filtered = df_value[df_value["account"] == input.account()]
-                    return plot_score_distribution(df_filtered)
+            @render_plotly
+            def score_dist():
+                df_value = df()
+                df_filtered = df_value[df_value["account"] == input.account()]
+                return plot_score_distribution(df_filtered)
 
-        with ui.card(full_screen=True):
-            with ui.card_header():
-                "Data"
-            with ui.popover(title="Download"):
+    with ui.card(full_screen=True):
+        with ui.card_header():
+            "Data"
+            with ui.popover(title="Download", style="display: inline-block; float: right;"):
                 fa.icon_svg("download")
 
                 @render.download()
@@ -109,22 +111,22 @@ with ui.navset_bar(id="tabs", title="Monitoring"):
                         buf.seek(0)
                         yield buf.getvalue()
 
-            @render.data_frame
-            def data_output():
-                return filtered_data().drop(columns=["text"])
+        @render.data_frame
+        def data_output():
+            return filtered_data().drop(columns=["text"])
 
-    with ui.nav_panel("Model Monitoring"):
-        with ui.layout_columns():
-            with ui.card():
-                ui.card_header("API Response Time")
+with ui.nav_panel("Model Monitoring"):
+    with ui.layout_columns():
+        with ui.card():
+            ui.card_header("API Response Time")
 
-                @render_plotly
-                def api_response():
-                    return plot_api_response(filtered_data())
+            @render_plotly
+            def api_response():
+                return plot_api_response(filtered_data())
 
-            with ui.card():
-                ui.card_header("Production Scores")
+        with ui.card():
+            ui.card_header("Production Scores")
 
-                @render_plotly
-                def prod_score_dist():
-                    return plot_score_distribution(filtered_data())
+            @render_plotly
+            def prod_score_dist():
+                return plot_score_distribution(filtered_data())
