@@ -1,0 +1,11 @@
+{
+    "https://api.shinyapps.io": {
+        "server_url": "https://api.shinyapps.io",
+        "filename": "/Users/gordon/Documents/presentations/shiny-python-workshop-2023/apps/target-app",
+        "app_url": "https://gordonposit.shinyapps.io/target-app/",
+        "app_id": 11534265,
+        "app_guid": null,
+        "title": "target-app",
+        "app_mode": "python-shiny"
+    }
+}
