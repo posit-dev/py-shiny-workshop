@@ -1,6 +1,6 @@
-shiny 
+shiny==0.8.1
 pandas
 plotly
-shinywidgets
+shinywidgets==0.3.1
 scikit-learn
 faicons
