@@ -64,6 +64,7 @@ def filtered_data() -> pd.DataFrame:
     sample_df = sample_df.loc[sample_df["account"] == input.account()]
     return sample_df.reset_index(drop=True)
 
+
 ui.nav_spacer()
 
 with ui.nav_panel("Training Dashboard"):
@@ -101,7 +102,10 @@ with ui.nav_panel("Training Dashboard"):
     with ui.card(full_screen=True):
         with ui.card_header():
             "Data"
-            with ui.popover(title="Download", style="display: inline-block; float: right;"):
+            with ui.popover(
+                title="Download",
+                class_="d-inline-block pull-right",
+            ):
                 fa.icon_svg("download")
 
                 @render.download(filename="scores_data.csv")
@@ -114,6 +118,7 @@ with ui.nav_panel("Training Dashboard"):
         @render.data_frame
         def data_output():
             return filtered_data().drop(columns=["text"])
+
 
 with ui.nav_panel("Model Monitoring"):
     with ui.layout_columns():
