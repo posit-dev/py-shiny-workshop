@@ -104,8 +104,8 @@ with ui.nav_panel("Training Dashboard"):
             with ui.popover(title="Download", style="display: inline-block; float: right;"):
                 fa.icon_svg("download")
 
-                @render.download()
-                def download_data(filename="scores_data.csv"):
+                @render.download(filename="scores_data.csv")
+                def download_data():
                     with io.BytesIO() as buf:
                         filtered_data().to_csv(buf, index=False)
                         buf.seek(0)
