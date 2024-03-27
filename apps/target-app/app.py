@@ -1,23 +1,16 @@
 from numpy import char, place
 from shiny.express import ui, input, render
 from shiny import reactive
-import pandas as pd
-from pathlib import Path
+
 from plots import (
     plot_score_distribution,
     plot_auc_curve,
     plot_precision_recall_curve,
-    plot_api_response,
 )
 import faicons as fa
 import io
 from shinywidgets import render_plotly
-import time
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
+from data_import import df
 
 
 @reactive.calc()

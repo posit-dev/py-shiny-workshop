@@ -1,29 +1,25 @@
 from shiny.express import render, ui, input
 import pandas as pd
 from pathlib import Path
+from data_import import df
 
-infile = Path(__file__).parent / "penguins.csv"
-penguins = pd.read_csv(infile)
-
-ui.h2("Hello Penguins!")
-
-ui.input_slider(
-    "mass",
-    "Mass",
-    2000,
-    8000,
-    6000,
+ui.input_select(
+    "account",
+    "Account",
+    choices=[
+        "Berge & Berge",
+        "Fritsch & Fritsch",
+        "Hintz & Hintz",
+        "Mosciski and Sons",
+        "Wolff Ltd",
+    ],
 )
 
 
 @render.data_frame
 def table():
-    df = penguins.copy()
-    filtered = df.loc[df["body_mass"] < input.mass]
-    summary = (
-        filtered.set_index("species")
-        .groupby(level="species")
-        .agg({"bill_length": "mean", "bill_depth": "mean"})
-        .reset_index()
+    account_subset = df[df["account"] == input.account]
+    account_counts = (
+        account_subset.groupby("sub_account").size().reset_index(name="counts")
     )
-    return summary
+    return account_counts

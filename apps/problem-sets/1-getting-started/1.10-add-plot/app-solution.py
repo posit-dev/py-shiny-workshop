@@ -1,44 +1,39 @@
 from shiny.express import render, ui, input
-import pandas as pd
-from pathlib import Path
-from plots import dist_plot, scatter_plot
+from data_import import df
+from plots import plot_auc_curve, plot_precision_recall_curve
+from shinywidgets import render_plotly
 
-infile = Path(__file__).parent / "penguins.csv"
-penguins = pd.read_csv(infile)
-
-with ui.sidebar():
-    ui.input_slider(
-        "mass",
-        "Mass",
-        2000,
-        8000,
-        6000,
-    )
-    ui.input_checkbox("trend", "Add trendline")
+ui.input_select(
+    "account",
+    "Account",
+    choices=[
+        "Berge & Berge",
+        "Fritsch & Fritsch",
+        "Hintz & Hintz",
+        "Mosciski and Sons",
+        "Wolff Ltd",
+    ],
+)
 
 
 @render.data_frame
 def table():
-    df = penguins.copy()
-    filtered = df.loc[df["body_mass"] < input.mass()]
-    summary = (
-        filtered.set_index("species")
-        .groupby(level="species")
-        .agg({"bill_length": "mean", "bill_depth": "mean"})
-        .reset_index()
+    account_subset = df[df["account"] == input.account()]
+    account_counts = (
+        account_subset.groupby("sub_account").size().reset_index(name="counts")
     )
-    return summary
+    return account_counts
 
 
-@render.plot
-def dist():
-    df = penguins.copy()
-    filtered = df.loc[df["body_mass"] < input.mass()]
-    return dist_plot(filtered)
+@render_plotly
+def precision_recall_plot():
+    account_subset = df[df["account"] == input.account()]
+    return plot_precision_recall_curve(
+        account_subset, "is_electronics", "training_score"
+    )
 
 
-@render.plot
-def scatter():
-    df = penguins.copy()
-    filtered = df.loc[df["body_mass"] < input.mass()]
-    return scatter_plot(filtered, input.trend())
+@render_plotly
+def auc_plot():
+    account_subset = df[df["account"] == input.account()]
+    return plot_auc_curve(account_subset, "is_electronics", "training_score")
