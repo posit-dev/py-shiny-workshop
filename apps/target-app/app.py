@@ -1,5 +1,5 @@
 from shiny.express import ui, input, render
-from shiny import render_plot, req, reactive
+from shiny import reactive
 import pandas as pd
 from pathlib import Path
 from plots import (
@@ -14,7 +14,6 @@ from shinywidgets import render_plotly
 
 file_path = Path(__file__).parent / "simulated-data.csv"
 
-ui.page_opts(title="Monitoring")
 df = pd.read_csv(file_path, dtype={"sub_account": str})
 df["date"] = pd.to_datetime(df["date"], errors="coerce")
 
@@ -71,56 +70,41 @@ with ui.sidebar():
         choices = choice_data["sub_account"].unique().tolist()
         ui.input_select("sub_account", "Sub Account", choices=choices)
 
-    with ui.panel_conditional("input.tabs !== 'Training Dashboard'"):
-        ui.input_date_range(
-            "dates",
-            "Dates",
-            start="2023-01-01",
-            end="2023-04-01",
-        )
-        ui.input_numeric("sample", "Sample Size", value=10000, step=5000)
-        ui.input_action_button("reset", "Reset Values", class_="btn-primary")
+    ui.input_date_range(
+        "dates",
+        "Dates",
+        start="2023-01-01",
+        end="2023-04-01",
+    )
+    ui.input_numeric("sample", "Sample Size", value=10000, step=5000)
+    ui.input_action_button("reset", "Reset Values", class_="btn-primary")
 
-
-with ui.navset_bar(id="tabs", title="Monitoring"):
-    with ui.nav_panel("Training Dashboard"):
-        with ui.layout_columns():
-            with ui.card():
-                ui.card_header("Model Metrics")
-
-                @render_plotly
-                def metric():
-                    if input.metric() == "ROC Curve":
-                        return plot_auc_curve(
-                            training_data(), "is_electronics", "training_score"
-                        )
-                    else:
-                        return plot_precision_recall_curve(
-                            training_data(), "is_electronics", "training_score"
-                        )
+with ui.nav_panel("Training Dashboard"):
+    with ui.layout_columns():
+        with ui.card():
+            ui.card_header("Model Metrics")
 
             @render_plotly
             def metric():
-                df_value = df()
-                df_filtered = df_value[df_value["account"] == input.account()]
                 if input.metric() == "ROC Curve":
                     return plot_auc_curve(
-                        df_filtered, "is_electronics", "training_score"
+                        training_data(), "is_electronics", "training_score"
                     )
                 else:
                     return plot_precision_recall_curve(
-                        df_filtered, "is_electronics", "training_score"
+                        training_data(), "is_electronics", "training_score"
                     )
 
-                @render_plotly
-                def score_dist():
-                    return plot_score_distribution(training_data())
+            ui.input_select(
+                "metric", "Metric", choices=["ROC Curve", "Precision Recall"]
+            )
+
+        with ui.card():
+            ui.card_header("Model Scores")
 
             @render_plotly
             def score_dist():
-                df_value = df()
-                df_filtered = df_value[df_value["account"] == input.account()]
-                return plot_score_distribution(df_filtered)
+                return plot_score_distribution(training_data())
 
     with ui.card(full_screen=True):
         with ui.card_header():
@@ -140,7 +124,7 @@ with ui.navset_bar(id="tabs", title="Monitoring"):
 
         @render.data_frame
         def data_output():
-            return filtered_data().drop(columns=["text"])
+            return training_data().drop(columns=["text"])
 
 
 with ui.nav_panel("Model Monitoring"):
@@ -150,11 +134,11 @@ with ui.nav_panel("Model Monitoring"):
 
             @render_plotly
             def api_response():
-                return plot_api_response(filtered_data())
+                return plot_api_response(monitor_filtered_data())
 
         with ui.card():
             ui.card_header("Production Scores")
 
             @render_plotly
             def prod_score_dist():
-                return plot_score_distribution(filtered_data())
+                return plot_score_distribution(monitor_filtered_data())
