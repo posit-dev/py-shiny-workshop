@@ -1,1 +1,0 @@
-Write a function which creates a value box column, and use list-comprehension or a for loop to iterate across a list of ids to generate the value boxes. Bonus points if your function automatically specifies the column width. 
