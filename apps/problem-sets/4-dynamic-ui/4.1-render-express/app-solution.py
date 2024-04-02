@@ -5,9 +5,11 @@ from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distri
 from shinywidgets import render_plotly
 
 
-@reactive.calc
+@reactive.calc()
 def account_data():
-    return df[df["account"] == input.account()]
+    return df[
+        (df["account"] == input.account()) & (df["sub_account"] == input.sub_account())
+    ]
 
 
 @reactive.calc()
@@ -27,6 +29,14 @@ with ui.sidebar():
             "Wolff Ltd",
         ],
     )
+
+    @render.express
+    def sub_selector():
+        # We can't use the account_data reactive here because we are using the
+        # sub_account input as part of that reactive.
+        choice_data = df[df["account"] == input.account()]
+        choices = choice_data["sub_account"].unique().tolist()
+        ui.input_select("sub_account", "Sub Account", choices=choices)
 
     ui.input_slider(
         "chars",

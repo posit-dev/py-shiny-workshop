@@ -1,5 +1,6 @@
 from shiny.express import render, ui, input
 from data_import import df
+from shiny import reactive
 from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distribution
 from shinywidgets import render_plotly
 
