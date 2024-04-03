@@ -1,0 +1,5 @@
+Lets add a dropdown to let the user select the model metrics, this involves a few steps:
+1) Add a `ui.input_select` item to the card with two options
+2) Modify the `@render.plotly` to conditionally display one plot or the other based on that dropdown
+
+You will only need one `@render.plotly` function.

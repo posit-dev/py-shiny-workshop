@@ -1,2 +1,0 @@
-Extract reactive calculations from this app to reduce repetition and speed up the app.
-There are several good solutions to this problem, but the majority of people end up with two reactive calculations.

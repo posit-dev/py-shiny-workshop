@@ -1,1 +1,0 @@
-Add an `input.action_button` to the app, and use `@reactive.event` to prevent the text from printing until the user presses the button.
