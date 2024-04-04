@@ -1,0 +1,40 @@
+---
+title: "Basic UI"
+---
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("2.1-sidebar")
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("2.2-cards")
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("2.3-cards-switch")
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("2.4-layout-columns")
+```

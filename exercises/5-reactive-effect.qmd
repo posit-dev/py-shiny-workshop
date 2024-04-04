@@ -1,5 +1,5 @@
 ---
-title: "Basic UI"
+title: "Reactive Effects"
 ---
 
 ```{python}
@@ -15,5 +15,13 @@ from helpers import problem_tabs
 # | echo: false
 # | output: asis
 
-problem_tabs("apps/problem-sets/5")
+problem_tabs("5.1-reactive-event")
+```
+
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("5.2-reactive-effect")
 ```

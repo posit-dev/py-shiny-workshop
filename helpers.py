@@ -108,7 +108,22 @@ def parse_readme(path: str) -> str:
     return file_contents
 
 
-def problem_tabs(path: str) -> None:
+def problem_tabs(folder_name: str) -> None:
+
+    import os
+
+    def find_problem_set_folder(base_path, target_path):
+        for root, dirs, files in os.walk(base_path):
+            for name in dirs:
+                full_path = os.path.join(root, name)
+                if target_path in full_path:
+                    return full_path
+        raise FileNotFoundError(
+            f"Folder matching path '{target_path}' not found in '{base_path}'."
+        )
+
+    path = find_problem_set_folder("apps/problem-sets", folder_name)
+
     block = QuartoPrint(
         [
             "::::: {.column-screen-inset}",
