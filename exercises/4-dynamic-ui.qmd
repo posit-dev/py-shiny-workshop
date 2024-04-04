@@ -1,0 +1,19 @@
+---
+title: "Dynamic UI"
+---
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("4.1-render-express")
+```

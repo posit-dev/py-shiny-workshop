@@ -1,0 +1,26 @@
+---
+title: "Reactivity"
+---
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("3.1-reactive-calc")
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("3.2-stacking-reactives")
+```

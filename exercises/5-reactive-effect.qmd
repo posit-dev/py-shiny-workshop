@@ -1,0 +1,27 @@
+---
+title: "Reactive Effects"
+---
+
+```{python}
+# | echo: false
+import os
+
+os.chdir("..")
+from helpers import problem_tabs
+
+```
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("5.1-reactive-event")
+```
+
+
+```{python}
+# | echo: false
+# | output: asis
+
+problem_tabs("5.2-reactive-effect")
+```

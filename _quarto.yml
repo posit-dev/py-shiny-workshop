@@ -5,7 +5,13 @@ website:
   title: "Shiny for Python Workshop"
   sidebar:
     contents:
-      - exercises/1-hello-world.qmd
+    - section: "Exercises"
+      contents:
+        - exercises/1-hello-world.qmd
+        - exercises/2-basic-ui.qmd
+        - exercises/3-reactivity.qmd
+        - exercises/4-dynamic-ui.qmd
+        - exercises/5-reactive-effect.qmd
 
   navbar:
     tools: 
