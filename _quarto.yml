@@ -5,40 +5,8 @@ website:
   title: "Shiny for Python Workshop"
   sidebar:
     contents:
-      - section: "Getting Started"
-        contents:
-          - slides/getting-started.qmd
-          - section: "Exercises"
-            contents: 
-            - exercises/1-hello-world.qmd
-            - exercises/2-debug.qmd
-            - exercises/3-add-filter.qmd
-            - exercises/4-add-plot.qmd
-      - section: "Reactivity"
-        contents:
-          - slides/reactivity.qmd
-          - section: "Exercises"
-            contents: 
-            - exercises/5-reactivity.qmd
-            - exercises/6-reactive-event.qmd
-            - exercises/7-reactive-effects.qmd
-      - section: "UI Customization"
-        contents:
-          - slides/ui-customization.qmd
-          - section: "Exercises"
-            contents: 
-            - exercises/8-navsets.qmd
-            - exercises/9-cards.qmd
-            - exercises/10-layout.qmd
-            - exercises/11-value-boxes.qmd
-            - exercises/12-dynamic-ui.qmd
-      - section: "Best practices"
-        contents:
-          - slides/workflow-best-practices.qmd
-          - section: "Exercises"
-            contents: 
-            - exercises/13-ui-functions.qmd
-            - exercises/14-extract-functions.qmd
+      - exercises/1-hello-world.qmd
+
   navbar:
     tools: 
       - icon: github

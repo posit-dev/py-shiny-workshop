@@ -1,1 +1,1 @@
-Add the right `@render` decorator to the `penguins_df` function to get the data frame to render.
+This app is not rendering properly, can you figure out what's wrong?

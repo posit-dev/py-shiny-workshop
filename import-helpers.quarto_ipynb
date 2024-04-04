@@ -1,0 +1,30 @@
+{
+  "cells": [
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# | echo: false\n",
+        "import os\n",
+        "\n",
+        "os.chdir(\"..\")\n",
+        "from helpers import problem_tabs, include_shiny_folder\n",
+        "\n",
+        "print(\"foo!\")"
+      ],
+      "id": "018ca038",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/gordon/Documents/presentations/shiny-python-workshop-2023/.venv/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

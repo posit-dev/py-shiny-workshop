@@ -4,6 +4,7 @@ from pathlib import Path
 
 infile = Path(__file__).parent / "model_data.csv"
 df = pd.read_csv(infile)
+df = df.drop(columns=["text"])
 
 
 @render.plot
