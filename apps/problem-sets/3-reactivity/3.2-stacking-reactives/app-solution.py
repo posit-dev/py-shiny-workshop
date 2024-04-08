@@ -12,7 +12,7 @@ def account_data():
 
 @reactive.calc()
 def character_filter():
-    return account_data()[(account_data()["text"].str.len().between(*input.chars()))]
+    return account_data()[account_data()["text"].str.len().between(*input.chars())]
 
 
 with ui.sidebar():

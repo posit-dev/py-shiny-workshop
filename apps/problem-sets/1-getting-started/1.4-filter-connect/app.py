@@ -1,4 +1,4 @@
-from shiny.express import render, ui
+from shiny.express import render, ui, input
 import pandas as pd
 from pathlib import Path
 from data_import import df
@@ -18,5 +18,8 @@ ui.input_select(
 
 @render.data_frame
 def table():
-    account_counts = df.groupby("sub_account").size().reset_index(name="counts")
+    account_subset = df
+    account_counts = (
+        account_subset.groupby("sub_account").size().reset_index(name="counts")
+    )
     return account_counts

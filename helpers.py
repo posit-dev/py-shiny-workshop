@@ -124,8 +124,11 @@ def problem_tabs(folder_name: str) -> None:
 
     path = find_problem_set_folder("apps/problem-sets", folder_name)
 
+    formatted_title = "## " + folder_name.replace("-", " ").title()
+
     block = QuartoPrint(
         [
+            formatted_title,
             "::::: {.column-screen-inset}",
             "::: {.panel-tabset}",
             "## Goal",
