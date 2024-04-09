@@ -170,7 +170,13 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#render-express" id="toc-render-express" class="nav-link active" data-scroll-target="#render-express">4.1 Render Express</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -194,6 +200,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="render-express" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="render-express">4.1 Render Express</h2>
 <div class="column-screen-inset">
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Goal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Problem</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false"><i class="bi-github " style="" role="img" aria-hidden="true"></i></a></li></ul>
@@ -292,6 +300,16 @@ with ui.layout_columns():
         def score_dist():
             return plot_score_distribution(character_filter())
 
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -356,19 +374,6 @@ def plot_api_response(df):
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
 
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-## file: requirements.txt
-pandas
-plotly
 ## file: simulated-data.csv
 id,account,text,date,is_electronics,training_score,prod_score,sub_account
 0,Berge &amp; Berge,"Forestone 2nd Gen MP4 Player with Voice Recorder/FM Radio/Video/Music Player for Android/iOS Devices Product Description&nbsp; Portable Mp3 Mp4 player, video player, music player, media player, audio player with photo viewer, E-book reader, voice recorder, games and movies. This is not an apple product and does not support iTunes. 1. 8 inch TFT LCD, full color display support AMV video, built-in game, digital record function, flash disk storage function, E-book function, support text file. 1. 78 inch high resolution real color LCD screen. This has no inbuilt memory so please use one external memory card of any size upto 32 GB. 2nd mp4 inspire you to listen music on it and it is very easy to play music having many functions which you can set by your choice like touch the key to play the songs then you can run this program smoothly without selecting one after other for this just make a playlist and add your favorite songs in it to play then you can enjoy your work without any disturbance. Highlight Built-in polymer Lithium batterY &gt;A-B repeat function &gt;Comes with FM radio stereo radio &gt;Built-in loudspeaker (optional) &gt;Supports audio formats: MP3 player, WMA, WMV and WAV &gt;Supports video formats: 3GP, MP4 player, AVI ONE YEAR REPLACEMENT WARRANTY ON DEFECTIVE PRODUCTS",2023-02-17,1,0.16943726,1.1618205506162425,Code Wranglers
@@ -1371,7 +1376,10 @@ id,account,text,date,is_electronics,training_score,prod_score,sub_account
 997,Wolff Ltd,Truvic Plastic 250 ml Spray Bottle (Multicolour) GT Gloptook Providing you the high Quality product to you which will give you better experience in Amazon for shopping.,2023-01-09,0,0.11105577,0.0423771715844685,Server Surfers
 998,Wolff Ltd,"Cloth Fusion Microfiber Pack of 2 Plain Cushions - (18 x 18) Inches, White Item Package Quantity:2                                                                                &nbsp;|&nbsp;                           Size:2) 18""x18""/ 45x45 cm   Cloth Fusion Bring Premium Quality Cushion Fillers. Be It In Your Living Room Decor, These Cushion Fillers From Cloth Fusion Will Be A Perfect Pick. Made From Micro Fiber, These Cushion Fillers Are Fine In Quality And A Worthy Investment For Sure. Decorate Your Bed, Couch Or Sofa With These Cushion Fillers And Augment The Unique Style Of Your Home In An Instant. These Cushion Fillers By Cloth Fusion Is Sure To Brighten Up Your Home Decor.. These Cushion Filler Suits Both Of The Modern Decors And The Sophistication Of Traditional Ones. Cloth Fusion Cotton Cushion Fillers Are The Perfect Gift To Use In Sofa, Couch, Chair, Bed, School, For Travel And Naps. The Cushion Comes In A Vacuum Packing, It Automatically Inflates And Retain Its Shape In A Few Mins After Opening The Packet.   Cloth Fusion Is A Well-Known Brand For Quality Product. Material : Cotton, Filling : Hollow Siliconized Polyester Fiber For Durability And Softness. Comfortable, Soft, Stylish Cousin Fillers. The Cushion Filler Would Be Compressed Packed.  Soft Luxury Cushion Filler.  It's Give The Graceful And Modern Look For Your Home.  Cloth Fusion Cushion Fillers Are Designed For Comfort.  These Cushion Fillers Are Also Having A Smooth, Luxurious Feel.  Cloth Fusion Is A Premium Brand That Manufactures And Supplies High Quality Luxury And Hotel Quality Products.",2023-01-24,0,0.017293109,1.11101882511548,Server Surfers
 999,Wolff Ltd,"InstaCuppa Steel French Press Travel Mug, 400ml, Black Color Name:Black   Enjoy Fresher, More Delicious Coffee and Tea with Your Own InstaCuppa Coffee Press! If you love coffee or tea, there’s nothing like enjoying a fresh, delicious cup crafted in your own InstaCuppa Travel Press!  Ideal for pressing coffee grounds or loose-leaf tea on the go, you can brew and drink delicious blends wherever life takes you.   Complete with temperature-retaining, vacuumed sealed walls that eliminates condensation and keep your beverage the perfect freshness for hours on end.   This is the ultimate French press mug for people who value pure, natural quality.   Product Details:    Coffee and Tea French Press. Double-Walled Vacuum Insulation. Sweat and Condensation Free. Spill Proof, Airtight Seal. Holds Heat for 6 Hours. Holds Cold for 12 Hours.",2023-01-26,0,0.33065912,1.0886532899948944,Server Surfers
-</code></pre>
+
+## file: requirements.txt
+pandas
+plotly</code></pre>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1457,6 +1465,16 @@ with ui.layout_columns():
         def score_dist():
             return plot_score_distribution(character_filter())
 
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -1521,19 +1539,6 @@ def plot_api_response(df):
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
 
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-## file: requirements.txt
-pandas
-plotly
 ## file: simulated-data.csv
 id,account,text,date,is_electronics,training_score,prod_score,sub_account
 0,Berge &amp; Berge,"Forestone 2nd Gen MP4 Player with Voice Recorder/FM Radio/Video/Music Player for Android/iOS Devices Product Description&nbsp; Portable Mp3 Mp4 player, video player, music player, media player, audio player with photo viewer, E-book reader, voice recorder, games and movies. This is not an apple product and does not support iTunes. 1. 8 inch TFT LCD, full color display support AMV video, built-in game, digital record function, flash disk storage function, E-book function, support text file. 1. 78 inch high resolution real color LCD screen. This has no inbuilt memory so please use one external memory card of any size upto 32 GB. 2nd mp4 inspire you to listen music on it and it is very easy to play music having many functions which you can set by your choice like touch the key to play the songs then you can run this program smoothly without selecting one after other for this just make a playlist and add your favorite songs in it to play then you can enjoy your work without any disturbance. Highlight Built-in polymer Lithium batterY &gt;A-B repeat function &gt;Comes with FM radio stereo radio &gt;Built-in loudspeaker (optional) &gt;Supports audio formats: MP3 player, WMA, WMV and WAV &gt;Supports video formats: 3GP, MP4 player, AVI ONE YEAR REPLACEMENT WARRANTY ON DEFECTIVE PRODUCTS",2023-02-17,1,0.16943726,1.1618205506162425,Code Wranglers
@@ -2536,7 +2541,10 @@ id,account,text,date,is_electronics,training_score,prod_score,sub_account
 997,Wolff Ltd,Truvic Plastic 250 ml Spray Bottle (Multicolour) GT Gloptook Providing you the high Quality product to you which will give you better experience in Amazon for shopping.,2023-01-09,0,0.11105577,0.0423771715844685,Server Surfers
 998,Wolff Ltd,"Cloth Fusion Microfiber Pack of 2 Plain Cushions - (18 x 18) Inches, White Item Package Quantity:2                                                                                &nbsp;|&nbsp;                           Size:2) 18""x18""/ 45x45 cm   Cloth Fusion Bring Premium Quality Cushion Fillers. Be It In Your Living Room Decor, These Cushion Fillers From Cloth Fusion Will Be A Perfect Pick. Made From Micro Fiber, These Cushion Fillers Are Fine In Quality And A Worthy Investment For Sure. Decorate Your Bed, Couch Or Sofa With These Cushion Fillers And Augment The Unique Style Of Your Home In An Instant. These Cushion Fillers By Cloth Fusion Is Sure To Brighten Up Your Home Decor.. These Cushion Filler Suits Both Of The Modern Decors And The Sophistication Of Traditional Ones. Cloth Fusion Cotton Cushion Fillers Are The Perfect Gift To Use In Sofa, Couch, Chair, Bed, School, For Travel And Naps. The Cushion Comes In A Vacuum Packing, It Automatically Inflates And Retain Its Shape In A Few Mins After Opening The Packet.   Cloth Fusion Is A Well-Known Brand For Quality Product. Material : Cotton, Filling : Hollow Siliconized Polyester Fiber For Durability And Softness. Comfortable, Soft, Stylish Cousin Fillers. The Cushion Filler Would Be Compressed Packed.  Soft Luxury Cushion Filler.  It's Give The Graceful And Modern Look For Your Home.  Cloth Fusion Cushion Fillers Are Designed For Comfort.  These Cushion Fillers Are Also Having A Smooth, Luxurious Feel.  Cloth Fusion Is A Premium Brand That Manufactures And Supplies High Quality Luxury And Hotel Quality Products.",2023-01-24,0,0.017293109,1.11101882511548,Server Surfers
 999,Wolff Ltd,"InstaCuppa Steel French Press Travel Mug, 400ml, Black Color Name:Black   Enjoy Fresher, More Delicious Coffee and Tea with Your Own InstaCuppa Coffee Press! If you love coffee or tea, there’s nothing like enjoying a fresh, delicious cup crafted in your own InstaCuppa Travel Press!  Ideal for pressing coffee grounds or loose-leaf tea on the go, you can brew and drink delicious blends wherever life takes you.   Complete with temperature-retaining, vacuumed sealed walls that eliminates condensation and keep your beverage the perfect freshness for hours on end.   This is the ultimate French press mug for people who value pure, natural quality.   Product Details:    Coffee and Tea French Press. Double-Walled Vacuum Insulation. Sweat and Condensation Free. Spill Proof, Airtight Seal. Holds Heat for 6 Hours. Holds Cold for 12 Hours.",2023-01-26,0,0.33065912,1.0886532899948944,Server Surfers
-</code></pre>
+
+## file: requirements.txt
+pandas
+plotly</code></pre>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2632,6 +2640,16 @@ with ui.layout_columns():
         def score_dist():
             return plot_score_distribution(character_filter())
 
+## file: data_import.py
+from pathlib import Path
+import pandas as pd
+import numpy as np
+
+file_path = Path(__file__).parent / "simulated-data.csv"
+
+df = pd.read_csv(file_path, dtype={"sub_account": str})
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
 ## file: plots.py
 import plotly.express as px
 from pandas import DataFrame
@@ -2696,19 +2714,6 @@ def plot_api_response(df):
     fig.update_layout(xaxis_title="Seconds", yaxis_title="Density")
     return fig
 
-## file: data_import.py
-from pathlib import Path
-import pandas as pd
-import numpy as np
-
-file_path = Path(__file__).parent / "simulated-data.csv"
-
-df = pd.read_csv(file_path, dtype={"sub_account": str})
-df["date"] = pd.to_datetime(df["date"], errors="coerce")
-
-## file: requirements.txt
-pandas
-plotly
 ## file: simulated-data.csv
 id,account,text,date,is_electronics,training_score,prod_score,sub_account
 0,Berge &amp; Berge,"Forestone 2nd Gen MP4 Player with Voice Recorder/FM Radio/Video/Music Player for Android/iOS Devices Product Description&nbsp; Portable Mp3 Mp4 player, video player, music player, media player, audio player with photo viewer, E-book reader, voice recorder, games and movies. This is not an apple product and does not support iTunes. 1. 8 inch TFT LCD, full color display support AMV video, built-in game, digital record function, flash disk storage function, E-book function, support text file. 1. 78 inch high resolution real color LCD screen. This has no inbuilt memory so please use one external memory card of any size upto 32 GB. 2nd mp4 inspire you to listen music on it and it is very easy to play music having many functions which you can set by your choice like touch the key to play the songs then you can run this program smoothly without selecting one after other for this just make a playlist and add your favorite songs in it to play then you can enjoy your work without any disturbance. Highlight Built-in polymer Lithium batterY &gt;A-B repeat function &gt;Comes with FM radio stereo radio &gt;Built-in loudspeaker (optional) &gt;Supports audio formats: MP3 player, WMA, WMV and WAV &gt;Supports video formats: 3GP, MP4 player, AVI ONE YEAR REPLACEMENT WARRANTY ON DEFECTIVE PRODUCTS",2023-02-17,1,0.16943726,1.1618205506162425,Code Wranglers
@@ -3711,7 +3716,10 @@ id,account,text,date,is_electronics,training_score,prod_score,sub_account
 997,Wolff Ltd,Truvic Plastic 250 ml Spray Bottle (Multicolour) GT Gloptook Providing you the high Quality product to you which will give you better experience in Amazon for shopping.,2023-01-09,0,0.11105577,0.0423771715844685,Server Surfers
 998,Wolff Ltd,"Cloth Fusion Microfiber Pack of 2 Plain Cushions - (18 x 18) Inches, White Item Package Quantity:2                                                                                &nbsp;|&nbsp;                           Size:2) 18""x18""/ 45x45 cm   Cloth Fusion Bring Premium Quality Cushion Fillers. Be It In Your Living Room Decor, These Cushion Fillers From Cloth Fusion Will Be A Perfect Pick. Made From Micro Fiber, These Cushion Fillers Are Fine In Quality And A Worthy Investment For Sure. Decorate Your Bed, Couch Or Sofa With These Cushion Fillers And Augment The Unique Style Of Your Home In An Instant. These Cushion Fillers By Cloth Fusion Is Sure To Brighten Up Your Home Decor.. These Cushion Filler Suits Both Of The Modern Decors And The Sophistication Of Traditional Ones. Cloth Fusion Cotton Cushion Fillers Are The Perfect Gift To Use In Sofa, Couch, Chair, Bed, School, For Travel And Naps. The Cushion Comes In A Vacuum Packing, It Automatically Inflates And Retain Its Shape In A Few Mins After Opening The Packet.   Cloth Fusion Is A Well-Known Brand For Quality Product. Material : Cotton, Filling : Hollow Siliconized Polyester Fiber For Durability And Softness. Comfortable, Soft, Stylish Cousin Fillers. The Cushion Filler Would Be Compressed Packed.  Soft Luxury Cushion Filler.  It's Give The Graceful And Modern Look For Your Home.  Cloth Fusion Cushion Fillers Are Designed For Comfort.  These Cushion Fillers Are Also Having A Smooth, Luxurious Feel.  Cloth Fusion Is A Premium Brand That Manufactures And Supplies High Quality Luxury And Hotel Quality Products.",2023-01-24,0,0.017293109,1.11101882511548,Server Surfers
 999,Wolff Ltd,"InstaCuppa Steel French Press Travel Mug, 400ml, Black Color Name:Black   Enjoy Fresher, More Delicious Coffee and Tea with Your Own InstaCuppa Coffee Press! If you love coffee or tea, there’s nothing like enjoying a fresh, delicious cup crafted in your own InstaCuppa Travel Press!  Ideal for pressing coffee grounds or loose-leaf tea on the go, you can brew and drink delicious blends wherever life takes you.   Complete with temperature-retaining, vacuumed sealed walls that eliminates condensation and keep your beverage the perfect freshness for hours on end.   This is the ultimate French press mug for people who value pure, natural quality.   Product Details:    Coffee and Tea French Press. Double-Walled Vacuum Insulation. Sweat and Condensation Free. Spill Proof, Airtight Seal. Holds Heat for 6 Hours. Holds Cold for 12 Hours.",2023-01-26,0,0.33065912,1.0886532899948944,Server Surfers
-</code></pre>
+
+## file: requirements.txt
+pandas
+plotly</code></pre>
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p>The source code for this exercise is <a href="https://github.com/posit-dev/shiny-python-workshop-2023/tree/main/apps/problem-sets/4-dynamic-ui/4.1-render-express">here</a>.</p>
@@ -3721,6 +3729,7 @@ id,account,text,date,is_electronics,training_score,prod_score,sub_account
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
