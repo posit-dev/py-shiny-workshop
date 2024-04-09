@@ -16,15 +16,6 @@ ui.input_select(
 )
 
 
-@render.data_frame
-def table():
-    account_subset = df[df["account"] == input.account()]
-    account_counts = (
-        account_subset.groupby("sub_account").size().reset_index(name="counts")
-    )
-    return account_counts
-
-
 @render_plotly
 def precision_recall_plot():
     account_subset = df[df["account"] == input.account()]

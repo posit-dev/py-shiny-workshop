@@ -4,6 +4,12 @@ from shiny import reactive
 from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distribution
 from shinywidgets import render_plotly
 
+
+@reactive.calc
+def account_data():
+    return df[df["account"] == input.account()]
+
+
 with ui.sidebar():
     ui.input_select(
         "account",
@@ -32,14 +38,11 @@ with ui.layout_columns():
 
         @render_plotly
         def metric():
-            account_subset = df[df["account"] == input.account()]
             if input.metric() == "ROC Curve":
-                return plot_auc_curve(
-                    account_subset, "is_electronics", "training_score"
-                )
+                return plot_auc_curve(account_data, "is_electronics", "training_score")
             else:
                 return plot_precision_recall_curve(
-                    account_subset, "is_electronics", "training_score"
+                    account_data(), "is_electronics", "training_score"
                 )
 
         ui.input_select("metric", "Metric", choices=["ROC Curve", "Precision Recall"])
@@ -49,5 +52,4 @@ with ui.layout_columns():
 
         @render_plotly
         def score_dist():
-            account_subset = df[df["account"] == input.account()]
-            return plot_score_distribution(account_subset)
+            return plot_score_distribution(account_data())

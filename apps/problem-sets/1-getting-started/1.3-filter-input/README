@@ -1,3 +1,2 @@
 Add a select input to the app which lets the user select one of the accounts. For reference the account list is:
-`["Berge & Berge",  "Fritsch & Fritsch", "Hintz & Hintz", "Mosciski and Sons", "Wolff Ltd"`
-    ]`
+`["Berge & Berge",  "Fritsch & Fritsch", "Hintz & Hintz", "Mosciski and Sons", "Wolff Ltd"]`
