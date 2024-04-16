@@ -10,6 +10,9 @@ def account_data():
     return df[df["account"] == input.account()]
 
 
+# You can call reactive calculations from other reactive calculations.
+# This is very useful for performance because the calculation will be
+# minimally rerun.
 @reactive.calc()
 def character_filter():
     return account_data()[account_data()["text"].str.len().between(*input.chars())]

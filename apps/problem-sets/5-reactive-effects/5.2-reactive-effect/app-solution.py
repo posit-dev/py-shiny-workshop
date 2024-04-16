@@ -17,6 +17,8 @@ def character_filter():
     return account_data()[(account_data()["text"].str.len().between(*input.chars()))]
 
 
+# Reactive effects are used for side effects, not values.
+# They are similar to callback functions in other frameworks.
 @reactive.effect
 @reactive.event(input.reset)
 def reset_slider():

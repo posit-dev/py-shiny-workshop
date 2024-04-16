@@ -15,7 +15,9 @@ ui.input_select(
     ],
 )
 
-
+# It's a good idea to use helper functions for things like drawing plots
+# or displaying data frames because it makes your app more modular and easy to
+# read.
 @render_plotly
 def precision_recall_plot():
     account_subset = df[df["account"] == input.account()]

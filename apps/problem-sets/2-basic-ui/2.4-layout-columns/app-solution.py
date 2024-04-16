@@ -16,6 +16,9 @@ with ui.sidebar():
         ],
     )
 
+# `layout_columns` lays child elements out side by side.
+# You can add anything to the layout columns context manager, but it
+# works best with cards and value boxes.
 with ui.layout_columns():
 
     with ui.card():

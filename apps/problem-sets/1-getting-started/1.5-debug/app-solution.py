@@ -18,6 +18,8 @@ ui.input_select(
 
 @render.data_frame
 def table():
+    # Remember that inputs are callable values, so whenever you refer to them
+    # in rendering functions you need to call them (`input.account()` not `input.account`)
     account_subset = df[df["account"] == input.account()]
     account_counts = (
         account_subset.groupby("sub_account").size().reset_index(name="counts")

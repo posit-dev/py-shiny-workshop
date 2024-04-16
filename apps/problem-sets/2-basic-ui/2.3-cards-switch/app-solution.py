@@ -16,6 +16,7 @@ with ui.sidebar():
         ],
     )
 
+# Cards are great for grouping related elements together.
 with ui.card():
     ui.card_header("Model Metrics")
 

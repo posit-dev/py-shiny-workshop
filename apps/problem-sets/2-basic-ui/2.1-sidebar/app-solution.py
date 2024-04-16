@@ -3,6 +3,8 @@ from data_import import df
 from plots import plot_auc_curve, plot_precision_recall_curve
 from shinywidgets import render_plotly
 
+# The ui.sidebar can be included anywhere in your app script,
+# but by convention it usually goes near the top.
 with ui.sidebar():
     ui.input_select(
         "account",

@@ -3,9 +3,13 @@ import pandas as pd
 from pathlib import Path
 from data_import import df
 
+# All the inputs start with `ui.input_*`, which adds an input to the app.
+# Note that this input doesn't do anything because we haven't connected it
+# to a rendering function.
+
 ui.input_select(
-    "account",
-    "Account",
+    id="account",
+    label="Account",
     choices=[
         "Berge & Berge",
         "Fritsch & Fritsch",

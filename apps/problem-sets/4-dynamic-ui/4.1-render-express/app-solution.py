@@ -30,6 +30,8 @@ with ui.sidebar():
         ],
     )
 
+    # You shouldn't use return values with `render.express` instead just call the inputs
+    # and rendering funcitons and they will be added to the app.
     @render.express
     def sub_selector():
         # We can't use the account_data reactive here because we are using the

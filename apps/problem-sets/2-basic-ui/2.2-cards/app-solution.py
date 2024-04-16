@@ -16,6 +16,10 @@ with ui.sidebar():
         ],
     )
 
+
+# Adding a ui.card context manager will add a card to the UI.
+# This is useful for grouping related elements together.
+# You can add as many ui elements as you like to the card.
 with ui.card():
 
     @render_plotly

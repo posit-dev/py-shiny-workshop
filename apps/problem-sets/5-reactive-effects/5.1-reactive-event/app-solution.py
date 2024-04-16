@@ -13,6 +13,10 @@ def account_data():
     ]
 
 
+# You can control execution by adding `@reactive.event` to any reactive function.
+# This tells Shiny to only trigger this renderer when a particular input changes.
+# Note that when inputs are used in reactive.events they are not called (input.update not input.update())
+# This is because we are watching the reactive itself for changes, not making use of the current value.
 @reactive.calc()
 @reactive.event(input.update, ignore_init=True)
 def character_filter():

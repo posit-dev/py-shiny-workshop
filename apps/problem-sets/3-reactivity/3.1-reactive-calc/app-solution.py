@@ -5,6 +5,10 @@ from plots import plot_auc_curve, plot_precision_recall_curve, plot_score_distri
 from shinywidgets import render_plotly
 
 
+# You should always extract repeated logic into a reactive.cacl
+# in addition to making your app easier to read it will also
+# make it run faster because the reactive calc is calculated once
+# even if many other rendering functions retrieve its value.
 @reactive.calc
 def account_data():
     return df[df["account"] == input.account()]
@@ -30,6 +34,7 @@ with ui.layout_columns():
 
         @render_plotly
         def metric():
+            # `account_data` is called similar to an input.
             if input.metric() == "ROC Curve":
                 return plot_auc_curve(
                     account_data(), "is_electronics", "training_score"
@@ -46,4 +51,5 @@ with ui.layout_columns():
 
         @render_plotly
         def score_dist():
+            # `account_data` is called similar to an input.
             return plot_score_distribution(account_data())
