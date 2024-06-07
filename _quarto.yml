@@ -4,6 +4,7 @@ project:
 website:
   title: "Shiny for Python Workshop"
   sidebar:
+    style: docked
     contents:
     - section: "Exercises"
       contents:
@@ -29,8 +30,10 @@ filters:
 format:
   html:
     theme: cosmo
+    margin-right: 0px
     css: styles.css
     toc: true
+    toc-location: left
 
 
 

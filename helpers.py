@@ -129,7 +129,7 @@ def problem_tabs(folder_name: str) -> None:
     block = QuartoPrint(
         [
             formatted_title,
-            "::::: {.column-screen-inset}",
+            "::::: {.column-screen-inset-right}",
             "::: {.panel-tabset}",
             "## Goal",
         ]
