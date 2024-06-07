@@ -3,3 +3,4 @@ shinylive
 pandas
 plotnine
 seaborn
+jupyter
