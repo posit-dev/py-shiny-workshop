@@ -1,6 +1,6 @@
-# shiny-python-workshop-2023
+# Reactive Web Dashboards with Shiny Course
 
-This is the repository for the 2023 Shiny for Python workshop.
+This is the repository for Talk Python's [Reactive Web Dashboards with Shiny course](https://training.talkpython.fm/courses/reactive-web-dashboards-with-shiny-for-data-science). This 2-hour video course is 100% free so [visit the course page and sign up](https://training.talkpython.fm/courses/reactive-web-dashboards-with-shiny-for-data-science) if you're interested.
 
 # Installation
 
