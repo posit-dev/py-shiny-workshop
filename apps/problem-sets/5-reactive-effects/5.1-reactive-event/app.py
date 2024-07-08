@@ -51,7 +51,8 @@ with ui.layout_columns():
     with ui.card():
         ui.card_header("Model Metrics")
 
-        def metric_plot():
+        @render_plotly
+        def metric():
             if input.metric() == "ROC Curve":
                 return plot_auc_curve(
                     character_filter(), "is_electronics", "training_score"
