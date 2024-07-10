@@ -2,6 +2,8 @@
 title: "Hello Shiny"
 ---
 
+These exercises should be done after Chapter 2 of the course.
+
 ```{python}
 # | echo: false
 import os

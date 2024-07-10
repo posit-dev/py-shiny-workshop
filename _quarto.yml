@@ -4,21 +4,20 @@ project:
 website:
   title: "Shiny for Python Workshop"
   sidebar:
+    style: docked
     contents:
     - section: "Exercises"
       contents:
         - exercises/1-hello-world.qmd
         - exercises/2-basic-ui.qmd
         - exercises/3-reactivity.qmd
-        - exercises/4-dynamic-ui.qmd
         - exercises/5-reactive-effect.qmd
+        - exercises/4-dynamic-ui.qmd
 
   navbar:
     tools: 
       - icon: github
-        href: https://github.com/posit-dev/shiny-python-workshop-2023
-      - icon: fa-dicord
-        href: https://discord.gg/AQVJzG2bnN
+        href: https://github.com/talkpython/reactive-web-dashboards-with-shiny-course
     left:
       - href: index.qmd
         text: Home
@@ -29,8 +28,10 @@ filters:
 format:
   html:
     theme: cosmo
+    margin-right: 0px
     css: styles.css
     toc: true
+    toc-location: left
 
 
 
