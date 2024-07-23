@@ -3,3 +3,7 @@ shinylive
 pandas
 plotnine
 seaborn
+plotly
+scikit-learn
+faicons
+shinywidgets
